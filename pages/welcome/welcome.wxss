@@ -1,0 +1,224 @@
+/* pages/welcome/welcome.wxss */
+
+.header-view {
+  /* height: 310rpx; *//* width: 750rpx; */
+  background-color: #353535;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+  /* margin-top: 1rpx; *//* background-color: #595959; *//* background-color: rgb(0, 47, 255); *//* background-image: url('../../images/yq.png'); */
+  color: white;
+  /* background-color:  *//* display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; */
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  /* width: 690rpx; *//* align-items: center; *//* justify-content: space-between; */
+}
+
+.flex-between {
+  justify-content: space-between;
+}
+
+.flex-end {
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.header-company {
+  font-size: 30rpx;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+}
+
+.header-name {
+  font-size: 40rpx;
+  /* padding-top: 20rpx; */
+  /* padding-bottom: 20rpx; */
+}
+
+.header-zt {
+  font-size: 30rpx;
+  padding-top: 20rpx;
+  /* padding-bottom: 10rpx; */
+}
+
+.header-ztcontrol {
+  font-size: 28rpx;
+  padding-top: 20rpx;
+  padding-left: 20rpx;
+  /* padding-bottom: 10rpx; */
+}
+
+.head-logo-view {
+  /* margin-left: 40rpx;
+  margin-top: 70rpx; */
+  width: 100rpx;
+  height: 100rpx;
+  background-color: white;
+}
+
+.header-logo {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.user-view {
+  font-size: 40rpx;
+  color: white;
+  margin-top: 40rpx;
+}
+
+.func-view {
+  /* height: 480rpx; */
+  /* background-color: whitesmoke; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.icon-view {
+  width: 187.5rpx;
+  height: 197rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.icong-view {
+  /* position: fixed;
+  z-index: 999;
+  top: 80rpx;
+  left: 250rpx;
+  right: 0;
+  bottom: 0; *//* width: 250rpx; *//* height: 240rpx; *//* display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; */
+}
+
+/* .icong-view image {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  margin-bottom: 10rpx;
+} */
+
+.icong-view label {
+  margin: 20rpx;
+  font-size: 40rpx;
+  margin-bottom: 10rpx;
+  margin-top: 10rpx;
+}
+
+.icon-view image {
+  width: 80rpx;
+  height: 80rpx;
+  margin: 20rpx;
+  margin-bottom: 10rpx;
+}
+
+.icon-view label {
+  margin: 20rpx;
+  font-size: 28rpx;
+  margin-bottom: 10rpx;
+}
+
+.cover-view {
+  background-color: white;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.cover-main-view {
+  background-color: white;
+  /* position:absolute;  *//* z-index:999; */
+  margin-top: 400rpx;
+  /* margin-left: 25rpx; *//* width: 700rpx; */
+  height: 900rpx;
+}
+
+.item-view {
+  position: absolute;
+  z-index: 999;
+  width: 730rpx;
+  height: 80rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  background-color: white;
+  border-bottom: 2.5rpx solid whitesmoke;
+  margin-top: 130rpx;
+  margin-left: 10rpx;
+  /* justify-content: center; *//* border-bottom-style: solid;
+    border-bottom-width: 0.5rpx;
+    border-bottom-color: lavender; *//*margin-left: 5rpx;*/
+}
+
+.cover-header-view {
+  /* height: 300rpx; *//* background-color: blue; */
+  width: 750rpx;
+  position: absolute;
+  z-index: 999;
+  color: darkgray;
+  font-size: 30rpx;
+  /* padding: 30rpx 15rpx 15rpx 15rpx; */
+  text-align: center;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; */
+}
+
+.cover-main-view label {
+  margin-left: 10rpx;
+  margin-top: 10rpx;
+  height: 40rpx;
+  width: 140rpx;
+  /* color: mediumpurple; */
+  color: #353535;
+  /* text-align: right;  */
+}
+
+input {
+  background-color: white;
+  width: 730rpx;
+  height: 40rpx;
+  margin-left: 10rpx;
+  margin-top: 10rpx;
+  text-align: center;
+  /* border-bottom-style: solid;
+    border-bottom-width: 0.5rpx;
+    border-bottom-color: lavender;  */
+}
+
+.cover-view-button {
+  position: absolute;
+  width: 730rpx;
+  height: 90rpx;
+  z-index: 999;
+  margin-top: 250rpx;
+  margin-left: 10rpx;
+  background-color: #0c0;
+  text-align: center;
+  color: white;
+  line-height: 90rpx;
+  border-radius: 10rpx;
+}
+
+.main-image {
+  height: 400rpx;
+  width: 750rpx;
+  /* margin-left: 50rpx; */
+}

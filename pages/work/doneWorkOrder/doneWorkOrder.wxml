@@ -1,0 +1,59 @@
+<!--pages/wrokOrder/wrokOrder.wxml-->
+<!--pages/login/login.wxml-->
+
+<view class="main-view">
+
+
+  <view class='yi-button' bindtap='toDoneWorkOrder'>
+    <text class='yi-button-text'>{{"< 未处理 "}}</text>
+    <!-- <image class='doneImage' src='../../../images/xiayiye.png' /> -->
+  </view>
+  <view class='header-func'>
+    <view class='sort-view'>
+      <text id='done' class='{{doneTime ? "choose" : "nonChoose"}}' bindtap='sortTextTaped'>完成时间</text>
+      <text id='repair' class='{{repairTime ? "choose" : "nonChoose"}}' bindtap='sortTextTaped'>报修时间</text>
+    </view>
+    <view class='line'></view>
+    <picker range='{{filtrateList}}' bindchange='filtrateStatus' value='{{filtrateIndex}}'>
+      <view class='filtrate-view'>
+        <!-- <view class='title-text'>筛选：</view> -->
+        <view class='filtrate-text'>{{filtrateList[filtrateIndex]}}</view>
+        <image class='dropDown-image' src='../../../images/xiala.png' />
+      </view>
+    </picker>
+  </view>
+  <scroll-view scroll-y="{{true}}" bindscrolltoupper="scrolltoupper">
+    <block wx:for="{{filtrateRepairOrder}}">
+      <view id="{{index}}" class="item-view" bindtap="viewTaped">
+        <view class='left'>
+          <!-- 工单编号 -->
+          <view class='item-number'>{{item.SerialNumber}}</view>
+          <!-- 房号 -->
+          <view class='item-child'>
+            <view class='item-title'>报修地址：</view>
+            <view class='item-info'>{{item.Address}}</view>
+          </view>
+          <!-- 报修项目 -->
+          <view class='item-child'>
+            <view class='item-title'>报修项目：</view>
+            <view class='item-content'>{{item.ServiceProject}}</view>
+          </view>
+          <!-- 报修时间 -->
+          <view class='item-child'>
+            <view class='item-title'>报修时间：</view>
+            <view class='item-info'>{{item.RepairTime}}</view>
+          </view>
+          <!-- 完成时间 -->
+          <view class='item-child'>
+            <view class='item-title'>完成时间：</view>
+            <view class='item-info'>{{item.CompleteTime}}</view>
+          </view>
+        </view>
+        <view class='right'>
+          <!-- <image src="{{item.IsRead == 0 ? '../../../images/new.png ' : ' '}}"></image> -->
+          <!-- <image src="../../../images/new.png"></image> -->
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+</view>

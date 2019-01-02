@@ -1,0 +1,309 @@
+<!--pages/login/login.wxml-->
+
+<view class="main-view">
+  <view class="header-view">
+    <view class="tip-view">
+      发起信息
+    </view>
+  </view>
+  <form bindsubmit="submit">
+
+    <view class="form-view">
+      <view class="item-view">
+        <label>发起人</label>
+        <label class='input'>{{requestPayment.registerMan}}</label>
+      </view>
+      <view class="item-view">
+        <label>发起部门</label>
+        <label class='input'>{{requestPayment.requestDepartment}}</label>
+      </view>
+      <view class="item-view">
+        <label>摘要</label>
+        <label class='input'>{{requestPayment.registerExplain}}</label>
+      </view>
+
+
+
+
+
+    </view>
+
+    <view class="header-view">
+      <view class="tip-view">
+        请款详情
+      </view>
+    </view>
+    <view class="form-view">
+      <view class="item-view">
+        <label>请款编号</label>
+        <label class='input'>{{requestPayment.requestNumber}}</label>
+      </view>
+      <view class="item-view">
+        <label>请款人</label>
+        <label class='input'>{{requestPayment.requestMan}}</label>
+      </view>
+      <view class="item-view">
+        <label>请款日期</label>
+        <label class='input'>{{requestPayment.requestTime}}</label>
+      </view>
+      <view class="item-view">
+        <label>请款月份</label>
+        <label class='input'>{{requestPayment.requestMonth}}</label>
+      </view>
+      <view class="item-view">
+        <label>请款月份</label>
+        <label class='input'>{{requestPayment.requestDepartment}}</label>
+      </view>
+      <view class="item-view">
+        <label>收款单位</label>
+        <label class='input'>{{requestPayment.receiptDepartment}}</label>
+      </view>
+      <view class="item-view">
+        <label>费用种类</label>
+        <label class='input'>{{requestPayment.chargeType}}</label>
+      </view>
+      <view class="item-view">
+        <label>支出性质</label>
+        <label class='input'>{{requestPayment.expenseProperty}}</label>
+      </view>
+      <view class="item-view">
+        <label>预算处</label>
+        <label class='input'>{{requestPayment.budgeBureau}}</label>
+      </view>
+      <view class="item-view">
+        <label>预算年度</label>
+        <label class='input'>{{requestPayment.budgetYear}}</label>
+      </view>
+      <view class="item-view">
+        <label>预算类别</label>
+        <label class='input'>{{requestPayment.budgeType}}</label>
+      </view>
+
+      <view class="item-view">
+        <label>项目名称</label>
+        <label class='input'>{{requestPayment.chargeType}}</label>
+      </view>
+      <view class="item-view">
+        <label>请款金额</label>
+        <label class='input'>{{requestPayment.requestSum}}</label>
+      </view>
+      <view class="item-view">
+        <label>支付方式</label>
+        <label class='input'>{{requestPayment.payMethod}}</label>
+      </view>
+      <view class="item-view">
+        <label>用途</label>
+        <label class='input'>{{requestPayment.purpose}}</label>
+      </view>
+      <view class="item-view">
+        <label>合同编号</label>
+        <label class='input'>{{requestPayment.compactNumber}}</label>
+      </view>
+      <view class="item-view">
+        <label>合同金额</label>
+        <label class='input'>{{requestPayment.compactSum}}</label>
+      </view>
+      <view class="item-view">
+        <label>采购计划内</label>
+        <label class='input'>{{requestPayment.isInPurchasePlan}}</label>
+      </view>
+      <view class="item-view">
+        <label>采购编号</label>
+        <label class='input'>{{requestPayment.purchaseNumber}}</label>
+      </view>
+    </view>
+
+    <view class="header-view">
+      <view class="tip-view">
+        支出项目
+      </view>
+    </view>
+    <view class="form-view">
+      <view class="item-view">
+        <label>预算编号</label>
+        <label class='input'>{{requestPayment.budgeNumber}}</label>
+      </view>
+      <view class="item-view">
+        <label>项目名称</label>
+        <label class='input'>{{requestPayment.itemName}}</label>
+      </view>
+      <view class="item-view">
+        <label class='small-title'>年度预算金额</label>
+        <label class='input'>￥{{requestPayment.yearBudgeSum}}</label>
+      </view>
+      <view class="item-view">
+        <label class='small-title'>年度预算余额</label>
+        <label class='input'>￥{{requestPayment.yearRemainingSum}}</label>
+      </view>
+      <view class="item-view">
+        <label class='small-title'>月累计预算金额</label>
+        <label class='input'>￥{{requestPayment.monthBudgeSum}}</label>
+      </view>
+      <view class="item-view">
+        <label class='small-title'>月累计请款后余额</label>
+        <label class='input'>￥{{requestPayment.budgeRemainingSum}}</label>
+      </view>
+      <view class="item-view">
+        <label class='small-title'>本次请款金额</label>
+        <label class='input orange'>￥{{requestPayment.requestSum}}</label>
+      </view>
+    </view>
+
+
+    <view class="header-view">
+      <view class="tip-view">
+        办公室审批请款情况
+      </view>
+    </view>
+    <view class="form-view">
+      <view class="item-view">
+        <label>审核员</label>
+        <label class='input'>{{requestPayment.budgeAssessor}}</label>
+      </view>
+      <view class="item-view">
+        <label>审批时间</label>
+        <label class='input'>{{requestPayment.budgeAssessorApprovalTime}}</label>
+      </view>
+      <view class="item-view">
+        <label>审批意见</label>
+        <label class='input'>{{requestPayment.budgeAssessorApprovalOpinion}}</label>
+      </view>
+    </view>
+
+
+    <view class="header-view">
+      <view class="tip-view">
+        运行部审批请款情况
+      </view>
+    </view>
+    <view class="form-view">
+      <view class="item-view">
+        <label>审核员</label>
+        <label class='input'>{{requestPayment.controlledCorporationOperationDepartment}}</label>
+      </view>
+      <view class="item-view">
+        <label>审批时间</label>
+        <label class='input'>{{requestPayment.controlledCorporationOperationDepartmentApprovalTime}}</label>
+      </view>
+      <view class="item-view">
+        <label>审批意见</label>
+        <label class='input'>{{requestPayment.controlledCorporationOperationDepartmentApprovalOpinion}}</label>
+      </view>
+    </view>
+
+
+    <view class="header-view">
+      <view class="tip-view">
+        行政部审批请款情况
+      </view>
+    </view>
+    <view class="form-view">
+      <view class="item-view">
+        <label>审核员</label>
+        <label class='input'>{{requestPayment.controlledCorporationAdministrativeDepartment}}</label>
+      </view>
+      <view class="item-view">
+        <label>审批时间</label>
+        <label class='input'>{{requestPayment.controlledCorporationAdministrativeDepartmentApprovalTime}}</label>
+      </view>
+      <view class="item-view">
+        <label>审批意见</label>
+        <label class='input'>{{requestPayment.controlledCorporationAdministrativeDepartmentApprovalOpinion}}</label>
+      </view>
+    </view>
+
+
+
+
+    <block wx:if="{{userName == '李军' ? true : false}}">
+    <!-- <block wx:if="{{userName == '孔令才' ? true : false}}"> -->
+      <view class="header-view">
+        <view class="tip-view">
+          任务
+        </view>
+      </view>
+      <view class="form-view">
+        <picker id="100" name="deputyApprovalResult" value="{{deputyApprovalResult[darIndex]}}" range='{{deputyApprovalResult}}' bindchange="datepickerBindchange">
+          <view class="item-view">
+            <label>审核结果</label>
+            <label class='input small'>{{deputyApprovalResult[darIndex]}}</label>
+            <image class='xiala' src='../../../images/xiala.png' />
+          </view>
+        </picker>
+        <view class="item-view">
+          <label>审批意见</label>
+          <input id="1" name="deputyOpinion" placeholder="请输入审批意见" placeholder-class="placeholder-text" />
+        </view>
+
+        <view class="item-view">
+          <label>留言</label>
+          <input id="2" name="deputyLeaveWord" placeholder="请输入留言" placeholder-class="placeholder-text" />
+        </view>
+      </view>
+    </block>
+
+    <block wx:if="{{userName == '郑永军' ? true : false}}">
+    <!-- <block wx:if="{{userName == '孔令才' ? false : true}}"> -->
+      <view class="header-view">
+        <view class="tip-view">
+          公司审批请款情况
+        </view>
+      </view>
+      <view class="form-view">
+        <view class="item-view">
+          <label>审核人</label>
+          <label class='input'>{{requestPayment.controlledCorporationApproval}}</label>
+        </view>
+        <view class="item-view">
+          <label>审批时间</label>
+          <label class='input'>{{requestPayment.controlledCorporationApprovalTime}}</label>
+        </view>
+        <view class="item-view">
+          <label>审批意见</label>
+          <label class='input'>{{requestPayment.controlledCorporationApprovalOpinion}}</label>
+        </view>
+      </view>
+      <view class="header-view">
+        <view class="tip-view">
+          任务
+        </view>
+      </view>
+      <view class="form-view">
+        <picker id="200" name="approvalResult" value="{{approvalResult[arIndex]}}" range='{{approvalResult}}' bindchange="datepickerBindchange">
+          <view class="item-view">
+            <label>审核结果</label>
+            <label class='input small'>{{approvalResult[arIndex]}}</label>
+            <image class='xiala' src='../../../images/xiala.png' />
+          </view>
+        </picker>
+        <view class="item-view">
+          <label>审批意见</label>
+          <input id="1" name="opinion" placeholder="请输入审批意见" placeholder-class="placeholder-text" />
+        </view>
+
+        <view class="item-view">
+          <label>留言</label>
+          <input id="2" name="leaveWord" placeholder="请输入留言" placeholder-class="placeholder-text" />
+        </view>
+      </view>
+    </block>
+
+    <button id="submit" formType="submit" type='primary'>确认提交</button>
+
+  </form>
+
+
+</view>
+<view class="footer-view"></view>
+
+
+
+
+<!-- <view class="header-view">
+      <view class="tip-view">
+        公司领导审批请款情况
+      </view>
+    </view>
+    <view class="form-view">
+      
+    </view> -->

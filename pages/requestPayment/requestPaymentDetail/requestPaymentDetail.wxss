@@ -1,0 +1,229 @@
+/* pages/login/login.wxss */
+page {
+  background-color: whitesmoke;
+}
+label {
+  margin-left: 30rpx;
+  margin-top: 10rpx;
+  height: 40rpx;
+  width: 160rpx;
+  /* color: mediumpurple; */
+  color: black;
+   text-align: left; 
+}
+.header-view {
+  /* height: 300rpx; */
+  /* background-color: blue; */
+  color: darkgray;
+  font-size: 28rpx;
+  padding: 30rpx 15rpx 15rpx 15rpx;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; */
+}
+
+.main-view {
+    width:750rpx;
+    /*height:1234rpx;*/
+   /* background-color: #f0f0f0;*/
+    font-size: 32rpx;
+    line-height: 40rpx;
+}
+
+
+
+  .form-view {
+  background-color: white;
+  margin-top: 10rpx;
+     /* border-bottom: 0.5rpx solid lightgray;
+    border-top: 0.5rpx solid lightgray;  */
+}  
+
+.pic-view {
+  background-color: white;
+  margin-top: 30rpx;
+}
+
+/*--------------------------item-view----------------------------------*/
+.item-view {
+    width:750rpx;
+    height:80rpx;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: white;
+    border-bottom: 0.5rpx solid whitesmoke;
+    /* margin-left: 30rpx; */
+    /* justify-content: center; */
+    /* border-bottom-style: solid;
+    border-bottom-width: 0.5rpx;
+    border-bottom-color: lavender; */
+    /*margin-left: 5rpx;*/
+}
+
+/*--------------------------input--------------------------------------------*/
+.input {
+    background-color: white;
+    width:430rpx;
+    height:40rpx;
+    margin-left: 60rpx;
+    margin-top:10rpx;
+    color: #353535;
+ 
+     /* border-bottom-style: solid;
+    border-bottom-width: 0.5rpx;
+    border-bottom-color: lavender;  */
+}
+
+textarea {
+  background-color: white;
+    width:500rpx;
+    /* height:40rpx; */
+    margin-left: 20rpx;
+    margin-top:10rpx;
+    color: #353535;
+}
+
+
+input {
+    background-color: white;
+    width:530rpx;
+    height:40rpx;
+    margin-left: 20rpx;
+    margin-top:10rpx;
+    color: black;
+     /* border-bottom-style: solid;
+    border-bottom-width: 0.5rpx;
+    border-bottom-color: lavender;  */
+}
+/*-----------------------------------------------------------------------------*/
+
+.placeholder-text {
+    font-size: 32rpx;
+    color: lightgray;
+}
+
+
+button {
+    margin: 20rpx;
+    margin-top:60rpx;
+    /* background-color: rgb(53, 178, 168); */
+    color: white;
+    font-size: 32rpx;
+}
+.footer-view {
+  height: 80rpx;
+}
+/* .header-view {
+  background-color: mediumpurple;
+} */
+
+
+
+
+.title-label {
+  color: white;
+}
+
+#submit {
+   margin-top: 120rpx; 
+  /* margin-bottom: 80rpx; */
+  /* background-color: #fff; */
+}
+#cancel {
+  margin-top: 40rpx;
+  background-color: palevioletred;
+}
+
+.add-image {
+  width:750rpx;
+  height:200rpx;
+
+  /* margin-top: 227.5rpx;
+  margin-left: 325rpx; */
+}
+
+image {
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  width: 200rpx;
+  height: 200rpx;
+  /* background-color: black; */
+  /* margin-left: 5rpx; */
+}
+
+radio {
+  margin-left: 30rpx;
+}
+
+.xiala{
+  margin-left: 10rpx;
+  margin-top: 10rpx;
+  width: 30rpx;
+  height: 30rpx;
+}
+
+ .images-view {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+} 
+
+.call {
+  color: blue;
+  text-decoration:underline;
+}
+
+
+.high-view {
+  /* height: 420rpx; */
+  width:750rpx;
+    /* height:80rpx; */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: white;
+    border-bottom: 0.5rpx solid whitesmoke;
+}
+
+.high-text {
+  /* height: 400rpx; */
+  background-color: white;
+    width:550rpx;
+    /* height:40rpx; */
+    margin:10rpx;
+    margin-left: 20rpx;
+    margin-right: 20rpx;
+    color: red;
+   word-break: break-all;
+   font-size: 30rpx;
+   /* width:750rpx; */
+    /* height:80rpx; */
+    /* display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: white;
+    border-bottom: 0.5rpx solid whitesmoke; */
+}
+
+.small {
+  font-size: 28rpx;
+  width: 480rpx;
+  margin-left: 0rpx;
+  text-align: center;
+}
+
+.small-title {
+  font-size: 28rpx;
+  width: 180rpx;
+}
+
+.orange {
+  color: #df9c0c;
+}

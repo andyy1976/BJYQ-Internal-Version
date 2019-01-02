@@ -1,0 +1,133 @@
+<!--pages/login/login.wxml-->
+
+<view class="main-view">
+  <view class="header-view">
+    <view class="tip-view">
+      设备信息
+    </view>
+  </view>
+  <form bindsubmit="submit">
+
+    <view class="form-view">
+      <view class="item-view">
+        <label>设备编号</label>
+        <label class='input'>{{equipment.Number}}</label>
+      </view>
+      <view class="item-view">
+        <label>设备名称</label>
+        <label class='input'>{{equipment.Name}}</label>
+      </view>
+      <view class="item-view">
+        <label>系统名称</label>
+        <label class='input'>{{equipment.SystemName}}</label>
+      </view>
+      <view class="item-view">
+        <label>安装地点</label>
+        <label class='input'>{{equipment.UseAddress}}</label>
+      </view>
+      <view class="item-view">
+        <label>出厂日期</label>
+        <label class='input'>{{equipment.ProductionDate}}</label>
+      </view>
+      <view class="item-view">
+        <label>设计寿命</label>
+        <label class='input'>{{equipment.DesignedLife}}</label>
+      </view>
+    </view>
+
+    <view class="header-view">
+      <view class="tip-view">
+        保养信息
+      </view>
+    </view>
+    <!-- <form bindsubmit="submit"> -->
+    <view class="form-view">
+      <view class="item-view">
+        <label>保养代号</label>
+        <label class='input'>{{equipment.MaintainNumber}}</label>
+      </view>
+      <view class="high-view">
+        <label>保养内容</label>
+        <text class='high-text'>  {{equipment.MaintainContent}}</text>
+      </view>
+      <view class="item-view">
+        <label>工作日期</label>
+        <label class='input'>{{equipment.WorkDate}}</label>
+      </view>
+      <view class="item-view">
+        <label>上延天数</label>
+        <label class='input'>{{equipment.BeforeDays}}</label>
+      </view>
+      <view class="item-view">
+        <label>下延天数</label>
+        <label class='input'>{{equipment.AfterDays}}</label>
+      </view>
+    </view>
+
+    <view class="header-view">
+      <view class="tip-view">
+        设备保养情况
+      </view>
+    </view>
+    <view class="form-view">
+      <view class="item-view">
+        <label>是否完成</label>
+        <radio-group name="isDone">
+          <radio value='已完成' checked='{{true}}'>已完成</radio>
+          <radio value='未完成'>未完成</radio>
+        </radio-group>
+      </view>
+      <picker mode="date" value='today' bindchange='pickerChange'>
+        <view class="item-view">
+          <label>完成时间</label>
+          <input id="2" name='inputDate' value="{{equipment.InputDate}}" placeholder-class="placeholder-text" disabled='{{true}}' />
+
+          <image class='xiala' src='../../../images/xiala.png' />
+        </view>
+      </picker>
+      <view class="item-view">
+        <label>完成说明</label>
+        <input id="2" name="doneInfo" value="{{equipment.DoneInfo}}" placeholder="请输入完成说明" placeholder-class="placeholder-text" />
+      </view>
+    </view>
+
+
+
+    <view class="header-view">
+      <view class="tip-view">
+        保养前照片
+      </view>
+    </view>
+    <view class="form-view">
+      <view class="add-image">
+        <image src='{{beforeImage}}' bindtap='beforeImageTaped' />
+        <!-- </image> -->
+      </view>
+    </view>
+    <view class="header-view">
+      <view class="tip-view">
+        保养中照片
+      </view>
+    </view>
+    <view class="form-view">
+      <view class="add-image">
+        <image src='{{middleImage}}' bindtap='middleImageTaped' />
+        <!-- </image> -->
+      </view>
+    </view>
+    <view class="header-view">
+      <view class="tip-view">
+        保养后照片
+      </view>
+    </view>
+    <view class="form-view">
+      <view class="add-image">
+        <image src='{{afterImage}}' bindtap='afterImageTaped' />
+        <!-- </image> -->
+      </view>
+    </view>
+    <view class="footer-view"></view>
+  </form>
+
+
+</view>

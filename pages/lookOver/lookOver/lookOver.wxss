@@ -1,0 +1,27 @@
+.icon-image {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.icon-view label {
+  font-size: 34rpx;
+  margin-left: 50rpx;
+  width: 450rpx;
+  color: black;
+}
+
+.icon-view {
+  width: 750rpx;
+  display: flex;
+  padding: 30rpx;
+  padding-left: 0rpx;
+  margin-left: 30rpx;
+  color: white;
+  border-bottom: 1rpx solid #606060;
+  align-items: center;
+}
+
+.xiayiye {
+  width: 30rpx;
+  height: 30rpx;
+}

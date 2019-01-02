@@ -1,0 +1,195 @@
+/* pages/wrokOrder/wrokOrder.wxss */
+
+/* pages/login/login.wxss */
+
+page {
+  background-color: whitesmoke;
+}
+
+
+.search-view{
+  height: 60rpx;
+  position: fixed;
+  left: 0rpx;
+  top: 20rpx;
+  right: 0rpx;
+  z-index: 998;
+  /* display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center; */
+  background-color: whitesmoke;
+}
+
+.search-view view {
+  margin-left: 25rpx;
+  height: 60rpx;
+  width: 700rpx;
+  /* border: 1.5rpx solid darkgray;
+  border-radius: 10rpx; */
+  background-color: white;
+  /* padding: 10rpx; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+
+
+.header-view {
+  height: 80rpx;
+  position: fixed;
+  left: 0rpx;
+  top: 100rpx;
+  right: 0rpx;
+  z-index: 998;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+}
+
+.switch-view {
+  width: 375rpx;
+  height: 80rpx;
+  /* background-color: yellowgreen; */
+  text-align: center;
+  vertical-align: center;
+  line-height: 80rpx;
+}
+
+.choose {
+  color: white;
+  background-color: rgb(38, 171, 40);
+}
+
+.nonChoose {
+  color: black;
+}
+
+.main-view {
+  margin-top: 200rpx;
+  width: 750rpx;
+  /*height:1234rpx;*//* background-color: #f0f0f0;*/
+  font-size: 32rpx;
+  line-height: 40rpx;
+  background-color: whitesmoke;
+}
+
+
+/*--------------------------input--------------------------------------------*/
+
+input {
+  background-color: white;
+  width: 550rpx;
+  height: 40rpx;
+  margin-left: 40rpx;
+  margin-top: 10rpx;
+}
+
+.placeholder-text {
+  font-size: 32rpx;
+  color: lightgray;
+}
+
+/*-----------------------------------------------------------------------------*/
+
+
+.footer-view {
+  height: 80rpx;
+}
+
+
+
+
+scroll-view {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 200rpx;
+  bottom: 0;
+  /* height: 980rpx; */
+}
+
+.search-view view image {
+  height: 40rpx;
+  width: 40rpx;
+  /* margin-top: 10rpx; */
+  margin-left: 20rpx;
+}
+.search-view view label {
+  height: 50rpx;
+  width: 300rpx;
+  font-size: 30rpx;
+   margin-top: 0rpx; 
+  margin-left: 10rpx;
+   line-height: 50rpx; 
+   /* color: darkgray; */
+}
+
+
+
+
+
+/* ========================列表子项============================= */
+
+.list-item {
+  width: 680rpx;
+  margin-left: 20rpx;
+  margin-top: 20rpx;
+  padding-left: 30rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  /* align-items: center; */
+  background-color: white;
+  border-bottom: 0.5rpx solid whitesmoke;
+}
+
+.list-item-child {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.list-item-child-title {
+  width: 180rpx;
+  font-size: 28rpx;
+  color: black;
+}
+
+.list-item-left {
+  width: 630rpx;
+  padding-top: 10rpx;
+}
+
+.list-item-right {
+  width: 50rpx;
+}
+
+.list-item-number {
+  color: #606060;
+  font-size: 30rpx;
+  /* padding: 10rpx; */
+  padding-bottom: 5rpx;
+  /* margin-bottom: 15rpx; */
+  border-bottom: 1rpx solid whitesmoke;
+}
+
+.list-item-child-info {
+  color: #606060;
+  font-size: 28rpx;
+  padding: 5rpx;
+}
+
+.list-item-child-content {
+  color: #343434;
+  font-size: 28rpx;
+  padding: 5rpx;
+}
+
+/* ============================================================ */

@@ -1,0 +1,73 @@
+<!--pages/wrokOrder/wrokOrder.wxml-->
+<!--pages/login/login.wxml-->
+
+
+<view class="main-view">
+  <view class='search-view'>
+    <view>
+      <image src='../../../images/sousuo.png' />
+      <input placeholder='输入设备编号筛选设备...' bindinput='searchEquipment' />
+    </view>
+  </view>
+  <view class="header-view">
+    <view id="guo" class='switch-view {{guo}}' bindtap='switchViewTaped'>
+      已过期
+    </view>
+    <view id="dai" class='switch-view {{dai}}' bindtap='switchViewTaped'>
+      待处理
+    </view>
+    <view id="yi" class='switch-view {{yi}}' bindtap='switchViewTaped'>
+      已处理
+    </view>
+  </view>
+  <!-- <scroll-view scroll-y="{{true}}" bindscrolltoupper="scrolltoupper"> -->
+  <scroll-view scroll-y="{{true}}">
+    <block wx:for="{{filtrateEquipmentList}}">
+      <view id="{{index}}" class="list-item" bindtap="viewTaped">
+        <view class='list-item-left'>
+          <!-- 设备编号 -->
+          <view class='list-item-number'>{{item.Number}}</view>
+          <!-- 安装地点 -->
+          <view class='list-item-child'>
+            <view class='list-item-child-title'>安装地点：</view>
+            <view class='list-item-child-info'>{{item.UseAddress}}</view>
+          </view>
+          <!-- 保养周期 -->
+          <view class='list-item-child'>
+            <view class='list-item-child-title'>保养周期： </view>
+            <view class='list-item-child-info level'>{{item.MaintainNumber}}</view>
+          </view>
+          <!-- 工作日期 -->
+          <view class='list-item-child'>
+            <view class='list-item-child-title'>工作日期： </view>
+            <view class='list-item-child-info level'>{{item.WorkDate}}</view>
+          </view>
+        </view>
+      </view>
+    </block>
+
+
+
+
+    <!-- <block wx:for="{{filtrateEquipmentList}}">
+      <view id="{{index}}" class="item-view" bindtap="viewTaped">
+        <view class="outline-view">
+          <label class="serial-label">{{item.Number}}</label>
+          <label class="homenum-label">{{item.UseAddress}}</label>
+          <label class="do-label">{{item.MaintainNumber}}</label>
+        </view>
+        <view class="date-view">
+          <view class='image-view'>
+            <image class='temp-view'></image>
+            <image src="{{item.IsRead == 0 ? '../../images/new.png' : ''}}"></image>
+          </view>
+
+          <view>
+            <label class='date-label'>{{item.WorkDate}}</label>
+          </view>
+        </view>
+
+      </view>
+    </block> -->
+  </scroll-view>
+  </view>

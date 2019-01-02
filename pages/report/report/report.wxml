@@ -1,0 +1,19 @@
+<!-- 
+<view class="func-view">
+  <block wx:for="{{icons}}">
+    <view class="icon-view">
+      <image id="{{index}}" src="{{item.imgSrc}}" data-func='{{item.showValue}}' bindtap="imageTouched"></image>
+      <label>{{item.showValue}}</label>
+    </view>
+  </block>
+
+</view> -->
+
+
+<block wx:for="{{icons}}">
+  <view data-func='{{item.showValue}}' class="icon-view" bindtap="imageTouched">
+    <image class="icon-image" src="{{item.imgSrc}}" id="3"></image>
+    <label>{{item.showValue}}</label>
+    <!-- <image class='xiayiye' src="../../../images/xiayiye.png" id="1"></image> -->
+  </view>
+</block>

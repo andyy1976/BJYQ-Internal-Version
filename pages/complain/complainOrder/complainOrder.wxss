@@ -1,0 +1,328 @@
+/* pages/wrokOrder/wrokOrder.wxss */
+
+/* pages/login/login.wxss */
+
+
+.main-view {
+  width: 750rpx;
+  font-size: 32rpx;
+  line-height: 40rpx;
+}
+
+/* scroll-view {
+  height: 1180rpx;
+  margin-top: 20rpx;
+} */
+
+scroll-view {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100rpx;
+  bottom: 0;
+  /* height: 980rpx; */
+}
+
+
+.yi-button {
+  height: 60rpx;
+  /* margin-top: 20rpx; */
+  color: white;
+  font-size: 28rpx;
+  line-height: 60rpx;
+  padding: 10rpx;
+  /* padding-left: 10rpx; */
+  padding-right: 30rpx;
+  text-align: right;
+  background-color: #353535;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+}
+
+.yi-button-text {
+  height: 40rpx;
+  width: 120rpx;
+  border-bottom: 0.5rpx solid white;
+  /* border-radius: 20rpx; */
+  /* padding-left: 20rpx; */
+  /* padding-right: 10rpx; */
+}
+
+
+/* .yi-button{
+  height: 80rpx;
+  margin-top: 20rpx;
+  color: #353535;
+  font-size: 30rpx;
+  line-height: 80rpx;
+  padding-left: 10rpx;
+  padding-right: 10rpx;
+  text-align: center;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.doneImage {
+  width: 40rpx;
+  height:40rpx;
+  margin-left: 60rpx;
+} */
+
+@import "../../../commonCss/common.wxss";
+
+/* page {
+  background-color: whitesmoke;
+}
+
+label {
+  margin-left: 30rpx;
+  margin-top: 10rpx;
+  height: 50rpx;
+  width: 140rpx;
+  color: #353535;
+  text-align: left;
+}
+
+.status-view {
+  margin-top: 20rpx;
+  padding-left: 30rpx;
+}
+
+.call {
+  color: blue;
+  text-decoration:underline;
+}
+
+.status-red {
+  color: red;
+}
+
+.status-orange {
+  color: orange;
+}
+
+.status-green {
+  color: green;
+}
+
+.status-blue {
+  color: blue;
+}
+
+
+
+
+
+.header-view {
+  height: 100rpx;
+  position: fixed;
+  left: 0rpx;
+  top: -1rpx;
+  right: 0rpx;
+  z-index: 998;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  background-color: whitesmoke;
+  border-bottom: 0.5rpx solid white;
+
+}
+
+.sort-view {
+  height: 80rpx;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+  margin-top: 20rpx;
+}
+
+.sort-view text {
+  background-color: white;
+  border-radius: 10rpx;
+  padding: 10rpx;
+  font-size: 28rxp;
+}
+
+
+
+.switch-view {
+  width: 375rpx;
+  height: 100rpx;
+  text-align: center;
+  vertical-align: center;
+  line-height: 100rpx;
+}
+
+.choose {
+  color: #e64340;
+  font-weight: bold;
+}
+
+.nonChoose {
+  color: darkgray;
+}
+
+
+
+
+
+.item-view {
+  width: 750rpx;
+  height: 200rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  background-color: white;
+  border-bottom: 0.5rpx solid whitesmoke;
+}
+
+.outline-view {
+  width: 375rpx;
+  height: 180rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.outline-view label {
+  width: 375rpx;
+  font-size: 34rpx;
+}
+
+.homenum-label {
+  color: darkgray;
+}
+
+.do-label {
+  color: darkgray;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.serial-label {
+  font-weight: bold;
+  font-size: 34rpx;
+  color: black;
+}
+
+.date-view {
+  height: 180rpx;
+  width : 375rpx;
+}
+.date-label {
+  width: 375rpx;
+  font-size: 28rpx;
+  color: darkgray;
+}
+
+
+input {
+  background-color: white;
+  width: 550rpx;
+  height: 40rpx;
+  margin-left: 40rpx;
+  margin-top: 10rpx;
+}
+
+
+.placeholder-text {
+  font-size: 32rpx;
+  color: lightgray;
+}
+
+button {
+  margin: 20rpx;
+  margin-top: 60rpx;
+  color: white;
+  font-size: 32rpx;
+}
+
+.footer-view {
+  height: 80rpx;
+}
+
+
+.title-label {
+  color: white;
+}
+
+#submit {
+  margin-top: 120rpx;
+}
+
+#cancel {
+  margin-top: 40rpx;
+  background-color: palevioletred;
+}
+
+.add-image {
+  width: 100rpx;
+  height: 100rpx;
+  margin-top: 227.5rpx;
+  margin-left: 325rpx;
+}
+
+.show-image {
+  width: 740rpx;
+  height: 555rpx;
+  margin-left: 5rpx;
+}
+
+ .image-view {
+ width: 375rpx;
+ height: 60rpx;
+ display: flex;
+ flex-wrap: nowrap;
+} 
+
+.temp-view {
+  width: 315rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: flex-end;
+}
+
+
+image {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+
+
+
+
+.filtrate-view {
+  display: flex;
+  flex-wrap: nowrap;
+  height: 80rpx;
+  background-color: white;
+  margin-top: 20rpx;
+}
+
+.filtrate-text {
+  width: 530rpx;
+  font-size: 34rpx;
+  line-height: 80rpx;
+  text-align: center;
+}
+
+.dropDown-image {
+  height: 40rpx;
+  width: 40rpx;
+  margin: 20rpx;
+}
+
+.title-text {
+  width: 120rpx;
+  font-size: 34rpx;
+  line-height: 80rpx;
+  margin-left: 20rpx;
+} */

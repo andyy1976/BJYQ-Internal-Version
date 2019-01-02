@@ -1,0 +1,21 @@
+/* pages/charge/toMiniApp/toMiniApp.wxss */
+
+.main-view {
+  margin-top: 160rpx;
+}
+
+image {
+  width: 340rpx;
+  height: 340rpx;
+  margin-left: 205rpx;
+}
+
+
+.tip-view {
+  margin-top: 60rpx;
+  font-size: 34rpx;
+  width: 750rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+}

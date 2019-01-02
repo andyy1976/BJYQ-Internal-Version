@@ -1,0 +1,69 @@
+<!--pages/equipment/equipmentMaintain/equipmentMaintain.wxml-->
+<!--pages/wrokOrder/wrokOrder.wxml-->
+<!--pages/login/login.wxml-->
+
+<view class="main-view">
+
+<scroll-view scroll-y="{{true}}">
+    <block wx:for="{{equipments}}">
+      <view id="{{index}}" class="list-item" bindtap="viewTaped">
+        <view class='list-item-left'>
+          <!-- 设备编号 -->
+          <view class='list-item-number'>{{item.Number}}</view>
+          <!-- 安装地点 -->
+          <view class='list-item-child'>
+            <view class='list-item-child-title'>安装地点：</view>
+            <view class='list-item-child-info'>{{item.UseAddress}}</view>
+          </view>
+          <!-- 保养周期 -->
+          <view class='list-item-child'>
+            <view class='list-item-child-title'>保养周期： </view>
+            <view class='list-item-child-info level'>{{item.MaintainNumber}}</view>
+          </view>
+          <!-- 工作日期 -->
+          <view class='list-item-child'>
+            <view class='list-item-child-title'>工作日期： </view>
+            <view class='list-item-child-info level'>{{item.WorkDate}}</view>
+          </view>
+          <!-- 保养状态 -->
+          <view class='list-item-child'>
+            <view class='list-item-child-title'>保养状态： </view>
+            <view class='list-item-child-info {{item.IsDone == 1 ? "done-label" : "undone-label"}}'>{{item.IsDone == 1 ? "已完成" : "待保养"}}</view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+
+
+
+
+
+
+
+
+
+   <!-- <scroll-view scroll-y="{{true}}" bindscrolltoupper="scrolltoupper"> 
+  <block wx:for="{{equipments}}">
+    <view id="{{index}}" class="item-view" bindtap="viewTaped">
+      <view class="outline-view">
+        <label class="serial-label">{{item.Number}}</label>
+        <label class="homenum-label">{{item.UseAddress}}</label>
+        <label class="do-label">{{item.MaintainNumber}}</label>
+      </view>
+      <view class="date-view">
+        <view class='image-view'>
+        </view>
+
+        <view>
+          <label class='date-label'>{{item.WorkDate}}</label>
+        </view>
+        <view>
+          <label class='{{item.IsDone == 1 ? "done-label" : "undone-label"}}'>{{item.IsDone == 1 ? "已完成" : "待保养"}}</label>
+        </view>
+      </view>
+
+    </view>
+  </block>
+   </scroll-view>  -->
+</view>

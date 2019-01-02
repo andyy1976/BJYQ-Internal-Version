@@ -1,0 +1,100 @@
+<!--pages/chargedDetail/chargedDetail.wxml-->
+<view class="main-view">
+
+  <view class="func-block">
+    <view class="block-header">
+      <view class="tip-view">
+        概览
+      </view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>房号：</view>
+      <view class='sd-content'>{{charged.RoomNumber}}</view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>姓名：</view>
+      <view class='sd-content'>{{charged.Name}}</view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>已收合计：</view>
+      <view class='sd-content'>{{charged.Total}}</view>
+    </view>
+  </view>
+
+  <view class="func-block">
+    <view class="block-header">
+      <view class="tip-view">
+        详情
+      </view>
+    </view>
+
+    <!-- <view class='form-view'>
+      <block wx:for="{{chargedDetailList}}" wx:for-index="cdlIndex" wx:for-item="cdlItem">
+        <view class='detail-view'>
+          <view class='title-view'>
+            <label class='title-label'>{{cdlItem.AmountMonth}}</label>
+          </view> -->
+
+
+
+    <block wx:for="{{chargedDetailList}}" wx:for-index="cdlIndex" wx:for-item="cdlItem">
+      <view id="{{index}}" class="item-view" bindtap="viewTaped">
+        <view class='left'>
+          <!-- 统计月份 -->
+          <view class='item-date'>{{cdlItem.AmountMonth}}</view>
+          <block wx:for="{{cdlItem.Detail}}" wx:for-index="cdIndex" wx:for-item="cdItem">
+            <view class='item-number'>{{cdItem.ChargeName}}</view>
+            <view class='item-child'>
+              <view class='item-title'>收费日期：</view>
+              <view class='item-info'>{{cdItem.ChargeDate}}</view>
+            </view>
+            <view class='item-child'>
+              <view class='item-title'>收费金额：</view>
+              <view class='item-info orange'>￥{{cdItem.AmountReceivable}}</view>
+            </view>
+            <view class='item-child'>
+              <view class='item-title'>收费方式：</view>
+              <view class='item-info'>{{cdItem.ChargeWay}}</view>
+            </view>
+            <view class='item-child'>
+              <view class='item-title'>收费人：</view>
+              <view class='item-info'>{{cdItem.Cashier}}</view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+    <!-- <block wx:for="{{cdlItem.Detail}}" wx:for-index="cdIndex" wx:for-item="cdItem">
+            <view class='charged-view'>
+              <view class='charged-left-view'>
+                <label class='serial-label'>{{cdItem.ChargeName}}</label>
+                <label class='homenum-label'>{{cdItem.ChargeDate}}</label>
+              </view>
+              <view class='charged-right-view'>
+                <view class='left-view'>
+                  <label class='orange-label'>￥{{cdItem.AmountReceivable}}</label>
+                  <label class='green-label'>{{cdItem.ChargeWay}}</label>
+                </view>
+                <view class='right-view'>
+                  <label class='name-label'>{{cdItem.Cashier}}</label>
+                </view>
+              </view>
+            </view>
+          </block> -->
+  <!-- </view>
+  </block>
+</view>
+
+
+</view> -->
+
+<!-- <view class="header-view">
+    <view class="tip-view">
+      详情
+    </view>
+  </view> -->
+
+
+

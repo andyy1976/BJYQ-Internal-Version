@@ -1,0 +1,57 @@
+<!--pages/wrokOrder/wrokOrder.wxml-->
+<!--pages/login/login.wxml-->
+
+<view class="main-view">
+  <view class='yi-button' bindtap='toDoneComplainOrder'>
+  <text>{{"已处理>  "}}</text>
+  <!-- <image class='doneImage' src='../../../images/xiayiye.png'/> -->
+  </view>
+  <!-- <view class='sort-view'>
+    <text id='repairs' class='{{repairsTime ? "choose" : "nonChoose"}}' bindtap='sortTextTaped'>报修时间</text>
+    <text id='book'  class='{{bookTime ? "choose" : "nonChoose"}}' bindtap='sortTextTaped'>预约时间</text>
+    <text id='dispatch'  class='{{dispatchTime ? "choose" : "nonChoose"}}' bindtap='sortTextTaped'>派工时间</text> 
+  </view>
+
+  <picker range='{{filtrateList}}' bindchange='filtrateStatus' value='{{filtrateIndex}}'>
+    <view class='filtrate-view'>
+      <view class='title-text'>筛选：</view>
+      <view class='filtrate-text'>{{filtrateList[filtrateIndex]}}</view>
+      <image class='dropDown-image' src='../../../images/xiala.png'/>
+    </view>
+  </picker> -->
+  
+ <scroll-view scroll-y="{{true}}" bindscrolltoupper="scrolltoupper"> 
+
+  <block wx:for="{{filtrateOrder}}">
+      <view id="{{index}}" class="list-item" bindtap="viewTaped">
+        <view class='list-item-left'>
+          <!-- 工单编号 -->
+          <view class='list-item-number'>{{item.Number}}</view>
+          <!-- 房号 -->
+          <view class='list-item-child'>
+            <view class='list-item-child-title'>地址：</view>
+            <view class='list-item-child-info'>{{item.Address}}</view>
+          </view>
+          <view class='list-item-child'>
+            <view class='list-item-child-title'>投诉内容：</view>
+            <view class='list-item-child-info'>{{item.Content}}</view>
+          </view>
+          <view class='list-item-child'>
+            <view class='list-item-child-title'>投诉时间：</view>
+            <view class='list-item-child-info'>{{item.ReceptionDate}}</view>
+          </view>
+          <view class='list-item-child'>
+            <view class='list-item-child-title'>状态：</view>
+            <view class='list-item-child-info {{item.status == "已派单" ? "status-red" : item.status == "已现场确认" ? "status-orange" : item.status == "维修中" ? "status-green" : "status-blue"}}'>{{item.status}}</view>
+          </view>
+        </view>
+        <view class='list-item-right'>
+          <!-- <image class='new-image' src="{{item.IsRead == 0 ? '../../../images/new.png ' : ' '}}"></image> -->
+        </view>
+      </view>
+    </block>
+
+ </scroll-view> 
+</view>
+
+

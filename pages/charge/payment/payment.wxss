@@ -1,0 +1,126 @@
+/* pages/payment/payment.wxss */
+
+page {
+  background-color: whitesmoke;
+}
+
+.fee-content {
+  /* margin-top: 20rpx; */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+   background-color: white; 
+  height: 120rpx;
+}
+
+/* .detail-content {
+  margin-top: 20rpx;
+   background-color: white; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+} */
+
+.item-view {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-around;
+  height: 80rpx;
+  border-bottom: 0.5rpx solid whitesmoke;
+}
+
+.weight-line {
+  background-color: whitesmoke;
+  height: 30rpx;
+}
+
+.thin-line {
+  background-color: whitesmoke;
+  height: 1rpx;
+}
+
+.title {
+  padding-left: 30rpx;
+  padding-top: 10rpx;
+  background-color: #fcfcfc;
+  width:750rpx;
+  height: 80rpx;
+  /* color: darkgray; */
+  /* font-size: 34rpx; */
+}
+
+.totaltitle-label {
+  font-size: 40rpx;
+}
+.total-fee {
+  color: red;
+  font-size: 60rpx;
+  /* font-size: 34rpx; */
+}
+
+.fee-name {
+  color: darkgray;
+  font-size: 30rpx;
+   width: 450rpx; 
+  margin-top: 0rpx;
+}
+
+.fee {
+  color: darkorange;
+  font-size: 30rpx;
+  margin-top: 0rpx;
+   width: 100rpx; 
+}
+
+scroll-view {
+  margin-top: 20rpx;
+  height: 780rpx;
+  background-color: white;
+}
+
+button {
+  margin-top: 80rpx;
+}
+
+
+
+.form-view {
+  background-color: white;
+  margin-top: 50rpx;
+    /* border-bottom: 0.5rpx solid lightgray;
+    border-top: 0.5rpx solid lightgray; */
+}
+
+
+
+.item-view {
+    width:750rpx;
+    height:80rpx;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: white;
+    border-bottom: 0.5rpx solid whitesmoke;
+    margin-left: 30rpx;
+    /* justify-content: center; */
+    /* border-bottom-style: solid;
+    border-bottom-width: 0.5rpx;
+    border-bottom-color: lavender; */
+    /*margin-left: 5rpx;*/
+}
+
+input {
+    background-color: white;
+    width:550rpx;
+    height:40rpx;
+    margin-left: 40rpx;
+    margin-top:10rpx;
+     /* border-bottom-style: solid;
+    border-bottom-width: 0.5rpx;
+    border-bottom-color: lavender;  */
+}

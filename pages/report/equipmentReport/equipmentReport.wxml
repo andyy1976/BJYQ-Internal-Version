@@ -1,0 +1,28 @@
+<!--pages/wrokOrder/wrokOrder.wxml-->
+<!--pages/login/login.wxml-->
+
+  <view class="main-view">
+    <block wx:for="{{report}}">
+      <view id="{{index}}" class="item-view" bindtap="viewTaped">
+        <view class="outline-view">
+          <label class="serial-label">{{item.Number}}</label>
+          <label class="homenum-label">{{item.UseAddress}}</label>
+          <label class="do-label">{{item.MaintainNumber}}</label>
+        </view>
+        <view class="date-view">
+          <view class='image-view'>
+            <image class='temp-view'></image>
+            <image src="{{item.IsRead == 0 ? '../../images/new.png' : ''}}"></image>
+          </view>
+
+          <view>
+            <label class='date-label'>{{item.WorkDate}}</label>
+          </view>
+        </view>
+
+      </view>
+    </block>
+    <!-- </scroll-view> -->
+  </view>
+
+

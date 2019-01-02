@@ -1,0 +1,319 @@
+/* pages/wrokOrder/wrokOrder.wxss */
+
+/* pages/login/login.wxss */
+
+page {
+  background-color: whitesmoke;
+}
+
+label {
+  margin-left: 30rpx;
+  margin-top: 10rpx;
+  height: 40rpx;
+  width: 140rpx;
+  /* color: mediumpurple; */
+  color: #353535;
+  text-align: left;
+}
+.search-view{
+  height: 60rpx;
+  position: fixed;
+  left: 0rpx;
+  top: 20rpx;
+  right: 0rpx;
+  z-index: 998;
+  /* display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center; */
+  background-color: whitesmoke;
+}
+
+.search-view view {
+  margin-left: 25rpx;
+  height: 60rpx;
+  width: 700rpx;
+  /* border: 1.5rpx solid darkgray;
+  border-radius: 10rpx; */
+  background-color: white;
+  /* padding: 10rpx; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+
+
+.header-view {
+  height: 80rpx;
+  position: fixed;
+  left: 0rpx;
+  top: 0rpx;
+  right: 0rpx;
+  z-index: 998;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+}
+
+.switch-view {
+  width: 375rpx;
+  height: 80rpx;
+  /* background-color: yellowgreen; */
+  text-align: center;
+  vertical-align: center;
+  line-height: 80rpx;
+}
+
+.choose {
+  color: white;
+  background-color: rgb(38, 171, 40);
+}
+
+.nonChoose {
+  color: black;
+}
+
+.main-view {
+  margin-top: 80rpx;
+  width: 750rpx;
+  /*height:1234rpx;*//* background-color: #f0f0f0;*/
+  font-size: 32rpx;
+  line-height: 40rpx;
+}
+
+/*--------------------------item-view----------------------------------*/
+
+.item-view {
+  width: 750rpx;
+  height: 160rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  background-color: white;
+  border-bottom: 0.5rpx solid whitesmoke;
+  /* margin-left: 30rpx; *//* justify-content: center; *//* border-bottom-style: solid;
+    border-bottom-width: 0.5rpx;
+    border-bottom-color: lavender; *//*margin-left: 5rpx;*/
+}
+
+.outline-view {
+  /* background-color: lavenderblush; */
+  width: 375rpx;
+  height: 160rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.outline-view label {
+  width: 375rpx;
+  font-size: 28rpx;
+}
+
+.homenum-label {
+  color: darkgray;
+}
+
+.do-label {
+  color: red;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.serial-label {
+  font-weight: bold;
+  font-size: 34rpx;
+  color: black;
+}
+
+.date-view {
+  height: 160rpx;
+  width : 375rpx;
+}
+.date-label {
+  width: 375rpx;
+  /* margin-right: 30rpx; */
+  /* margin-top: 20rpx; */
+  font-size: 28rpx;
+  color: darkgray;
+}
+
+/*--------------------------input--------------------------------------------*/
+
+input {
+  background-color: white;
+  width: 550rpx;
+  height: 40rpx;
+  margin-left: 40rpx;
+  margin-top: 10rpx;
+  /* border-bottom-style: solid;
+    border-bottom-width: 0.5rpx;
+    border-bottom-color: lavender;  */
+}
+
+/*-----------------------------------------------------------------------------*/
+
+.placeholder-text {
+  font-size: 32rpx;
+  color: lightgray;
+}
+
+button {
+  margin: 20rpx;
+  margin-top: 60rpx;
+  /* background-color: rgb(53, 178, 168); */
+  color: white;
+  font-size: 32rpx;
+}
+
+.footer-view {
+  height: 80rpx;
+}
+
+/* .header-view {
+  background-color: mediumpurple;
+} */
+
+.title-label {
+  color: white;
+}
+
+#submit {
+  margin-top: 120rpx;
+  /* margin-bottom: 80rpx; *//* background-color: #fff; */
+}
+
+#cancel {
+  margin-top: 40rpx;
+  background-color: palevioletred;
+}
+
+.add-image {
+  width: 100rpx;
+  height: 100rpx;
+  margin-top: 227.5rpx;
+  margin-left: 325rpx;
+}
+
+.show-image {
+  width: 740rpx;
+  height: 555rpx;
+  /* background-color: black; */
+  margin-left: 5rpx;
+}
+
+ .image-view {
+ width: 375rpx;
+ height: 60rpx;
+ /* float: right; */
+} 
+
+.temp-view {
+  width: 315rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 28rpx;
+}
+
+image {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+scroll-view {
+  height: 1120rpx;
+}
+
+.search-view view image {
+  height: 40rpx;
+  width: 40rpx;
+  /* margin-top: 10rpx; */
+  margin-left: 20rpx;
+}
+.search-view view label {
+  height: 50rpx;
+  width: 300rpx;
+  font-size: 30rpx;
+   margin-top: 0rpx; 
+  margin-left: 10rpx;
+   line-height: 50rpx; 
+   /* color: darkgray; */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* ========================列表子项 WXSS============================= */
+
+.list-item {
+  width: 680rpx;
+  margin-left: 20rpx;
+  margin-top: 20rpx;
+  padding-left: 30rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  /* align-items: center; */
+  background-color: white;
+  border-bottom: 0.5rpx solid whitesmoke;
+}
+
+.list-item-child {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.list-item-child-title {
+  width: 180rpx;
+  font-size: 28rpx;
+  color: black;
+}
+
+.list-item-left {
+  width: 630rpx;
+  padding-top: 10rpx;
+}
+
+.list-item-right {
+  width: 50rpx;
+}
+
+.list-item-number {
+  color: #606060;
+  font-size: 30rpx;
+  /* padding: 10rpx; */
+  padding-bottom: 5rpx;
+  /* margin-bottom: 15rpx; */
+  border-bottom: 1rpx solid whitesmoke;
+}
+
+.list-item-child-info {
+  color: darkgray;
+  font-size: 28rpx;
+  padding: 5rpx;
+}
+
+.list-item-child-content {
+  color: #343434;
+  font-size: 28rpx;
+  padding: 5rpx;
+}
+
+/* ============================================================ */

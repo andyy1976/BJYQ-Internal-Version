@@ -1,0 +1,10 @@
+<!--pages/changeManagement/changeManagement.wxml-->
+<view class="header-view">
+  请在以下帐套中进行选择
+</view>
+<view wx:for="{{Management}}">
+  <view id="{{index}}" class="item-view" bindtap="viewTap" data-frequency-name="{{item.ZTName}}">
+  <image class="icon" src="../../images/123.png"></image>
+  <label class="item-label">{{item.ZTName}}</label>
+  </view>
+</view>

@@ -1,0 +1,105 @@
+<!--pages/statistics/workOrderStatisticsDetail/workOrderStatisticsDetail.wxml-->
+<!-- <block wx:if="{{level == '一线'}}"> -->
+<view class='header-view'>
+  <view class='header-name-view'>
+    {{level == "接单人" ? statistics.name : statistics.ztName}}
+  </view>
+  <view class='header-project-view'>
+    <!-- <view class='project-title-view'>
+      所属项目
+    </view> -->
+    <!-- <view class='project-name-view'>
+      {{statistics.name}}
+    </view> -->
+  </view>
+</view>
+
+<view class='title-view'>
+  完成情况
+</view>
+
+<view class='item-view'>
+  <view class='top-view'>
+    <view class='top-title-view'>
+      接单总数
+    </view>
+    <view class='top-count-view'>
+      {{statistics.countReceive}}
+    </view>
+  </view>
+  <view class='bottom-view'>
+    <view class='bottom-detail-view'>
+      <view class='detail-title-view'>
+        完成数
+      </view>
+      <view class='detail-count-view'>
+        {{statistics.countFinished}}
+      </view>
+      <view class='detail-percent-view'>
+        {{statistics.rateFinish}}
+      </view>
+    </view>
+    <view class='bottom-detail-view'>
+      <view class='detail-title-view'>
+        未完成数
+      </view>
+      <view class='detail-count-view'>
+        {{statistics.countUnfinished}}
+      </view>
+      <view class='detail-percent-view'>
+        {{statistics.rateUnfinish}}
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class='title-view'>
+  评价情况
+</view>
+
+<view class='item-view'>
+  <view class='top-view'>
+    <view class='top-title-view'>
+      评价总数
+    </view>
+    <view class='top-count-view'>
+      {{statistics.countEvaluation}}
+    </view>
+  </view>
+  <view class='bottom-view'>
+    <view class='bottom-detail-view'>
+      <view class='detail-title-view'>
+        非常满意数
+      </view>
+      <view class='detail-count-view'>
+        {{statistics.countVerySatisfy}}
+      </view>
+      <view class='detail-percent-view'>
+        {{statistics.rateVerySatisfy}}
+      </view>
+    </view>
+    <view class='bottom-detail-view'>
+      <view class='detail-title-view'>
+        满意数
+      </view>
+      <view class='detail-count-view'>
+        {{statistics.countSatisfy}}
+      </view>
+      <view class='detail-percent-view'>
+        {{statistics.rateSatisfy}}
+      </view>
+    </view>
+    <view class='bottom-detail-view'>
+      <view class='detail-title-view'>
+        不满意数
+      </view>
+      <view class='detail-count-view'>
+        {{statistics.countUnsatisfy}}
+      </view>
+      <view class='detail-percent-view'>
+        {{statistics.rateUnsatisfy}}
+      </view>
+    </view>
+  </view>
+</view>
+<!-- </block> -->

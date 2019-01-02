@@ -1,0 +1,93 @@
+{
+  "pages":[
+
+
+    "pages/welcome/welcome",
+
+    "pages/login/login",
+
+    "pages/userinfo/userinfo",
+
+    "pages/changeManagement/changeManagement",
+
+    "pages/charge/charge/charge",
+    "pages/charge/payment/payment",
+    "pages/charge/toMiniApp/toMiniApp",
+    "pages/charge/chargedSearch/chargedSearch",
+    "pages/charge/chargeList/chargeList",
+    "pages/charge/chargedList/chargedList",
+    "pages/charge/chargeDetail/chargeDetail",
+    "pages/charge/chargedDetail/chargedDetail",
+
+    "pages/work/workOrder/workOrder",
+    "pages/work/doneWorkOrder/doneWorkOrder",
+    "pages/work/workDetail/workDetail",
+    "pages/work/doneWorkDetail/doneWorkDetail",
+    "pages/patrol/patrol",
+    "pages/myPatrolHistory/myPatrolHistory",
+
+    "pages/equipment/equipment/equipment",
+    "pages/equipment/equipmentDetail/equipmentDetail",
+    "pages/equipment/equipmentSearch/equipmentSearch",
+    "pages/equipment/equipmentTrouble/equipmentTrouble",
+    "pages/equipment/equipmentTroubleDetail/equipmentTroubleDetail",
+    "pages/equipment/equipmentTroubleDoneDetail/equipmentTroubleDoneDetail",
+    "pages/equipment/equipmentMaintainList/equipmentMaintainList",
+    "pages/equipment/equipmentMaintainDetail/equipmentMaintainDetail",
+
+    "pages/complain/complainOrder/complainOrder",
+    "pages/complain/complainDetail/complainDetail",
+    "pages/complain/doneComplainOrder/doneComplainOrder",
+    "pages/complain/doneComplainDetail/doneComplainDetail",
+
+    "pages/lookOver/lookOver/lookOver",
+    "pages/lookOver/lookOverList/lookOverList",
+    "pages/lookOver/lookOverDetail/lookOverDetail",
+
+    "pages/spot/spot/spot",
+    "pages/spot/spotList/spotList",
+    "pages/spot/spotDetail/spotDetail",
+
+    "pages/statistics/statistics/statistics",
+    "pages/statistics/chargeStatisticsCompany/chargeStatisticsCompany",
+    "pages/statistics/chargeStatisticsProject/chargeStatisticsProject",
+    "pages/statistics/chargeStatisticsGroup/chargeStatisticsGroup",
+    "pages/statistics/chargeStatisticsBuilding/chargeStatisticsBuilding",
+    "pages/statistics/chargeStatisticsUnit/chargeStatisticsUnit",
+    "pages/statistics/workOrderStatistics/workOrderStatistics",
+    "pages/statistics/workOrderStatisticsDetail/workOrderStatisticsDetail",
+    "pages/statistics/equipmentStatistics/equipmentStatistics",
+    "pages/statistics/equipmentStatisticsDetail/equipmentStatisticsDetail",
+    "pages/statistics/complainStatistics/complainStatistics",
+    "pages/statistics/complainStatisticsDetail/complainStatisticsDetail",
+    "pages/statistics/equipmentTroubleStatistics/equipmentTroubleStatistics",
+    "pages/statistics/equipmentTroubleStatisticsDetail/equipmentTroubleStatisticsDetail",
+
+    "pages/report/report/report",
+    "pages/report/workOrderReport/workOrderReport",
+    "pages/report/workOrderReportDetail/workOrderReportDetail",
+    "pages/report/equipmentReport/equipmentReport",
+    "pages/report/equipmentReportList/equipmentReportList",
+    "pages/report/equipmentReportDetail/equipmentReportDetail",
+    "pages/report/equipmentTroubleReport/equipmentTroubleReport",
+    "pages/report/equipmentTroubleReportList/equipmentTroubleReportList",
+    "pages/report/equipmentTroubleReportDetail/equipmentTroubleReportDetail",
+    "pages/report/complainReport/complainReport",
+    "pages/report/complainReportDetail/complainReportDetail",
+
+    "pages/requestPayment/requestPaymentSheet/requestPaymentSheet",
+    "pages/requestPayment/requestPaymentDetail/requestPaymentDetail",
+    
+    "pages/decoration/decorationList/decorationList",
+    "pages/decoration/decorationDetail/decorationDetail",
+
+    "pages/decoration/decorationPatrolList/decorationPatrolList",
+    "pages/decoration/decorationPatrolDetail/decorationPatrolDetail"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#353535",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"white"
+  }
+}

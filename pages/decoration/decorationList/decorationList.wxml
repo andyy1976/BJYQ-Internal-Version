@@ -1,0 +1,44 @@
+<!--pages/wrokOrder/wrokOrder.wxml-->
+<!--pages/login/login.wxml-->
+
+<view class="main-view">
+  <scroll-view scroll-y="{{true}}" bindscrolltoupper="scrolltoupper">
+    <block wx:for="{{decorationList}}">
+      <view id="{{index}}" class="list-item" bindtap="viewTaped">
+        <view class='list-item-left'>
+          <!-- 工单编号 -->
+          <view class='list-item-number'>{{item.roomNumber}}</view>
+          <!-- 房号 -->
+          <view class='list-item-child'>
+            <view class='list-item-child-title'>装修联系人：</view>
+            <view class='list-item-child-info'>{{item.name}}</view>
+          </view>
+          <!-- 房号 -->
+          <view class='list-item-child'>
+            <view class='list-item-child-title'>联系人电话：</view>
+            <view class='list-item-child-info'>{{item.phone}}</view>
+          </view>
+          <!-- 房号 -->
+          <view class='list-item-child'>
+            <view class='list-item-child-title'>办理时间：</view>
+            <view class='list-item-child-info'>{{item.transactTime}}</view>
+          </view>
+          <!-- 房号 -->
+          <view class='list-item-child'>
+            <view class='list-item-child-title'>装修类型：</view>
+            <view class='list-item-child-info status-orange'>{{item.type}}</view>
+          </view>
+          <!-- 房号 -->
+          <view class='list-item-child'>
+            <view class='list-item-child-title'>当前状态：</view>
+            <view class='list-item-child-info status-red'>{{item.status}}</view>
+          </view>
+        </view>
+        <view class='list-item-right'>
+          <image src="{{item.IsRead == 0 ? '../../../images/new.png ' : ' '}}"></image>
+          <!-- <image src="../../../images/new.png"></image> -->
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+</view>

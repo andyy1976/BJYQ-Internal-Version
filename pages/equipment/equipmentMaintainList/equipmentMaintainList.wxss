@@ -1,0 +1,102 @@
+/* pages/wrokOrder/wrokOrder.wxss */
+
+/* pages/login/login.wxss */
+
+page {
+  background-color: whitesmoke;
+}
+
+
+
+
+
+
+scroll-view {
+  height: 1220rpx;
+}
+
+
+/* ========================列表子项============================= */
+
+.list-item {
+  width: 680rpx;
+  margin-left: 20rpx;
+  margin-top: 20rpx;
+  padding-left: 30rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  /* align-items: center; */
+  background-color: white;
+  border-bottom: 0.5rpx solid whitesmoke;
+}
+
+.list-item-child {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.list-item-child-title {
+  width: 180rpx;
+  font-size: 28rpx;
+  color: black;
+}
+
+.list-item-left {
+  width: 630rpx;
+  padding-top: 10rpx;
+}
+
+.list-item-right {
+  width: 50rpx;
+}
+
+.list-item-number {
+  color: #606060;
+  font-size: 30rpx;
+  /* padding: 10rpx; */
+  padding-bottom: 5rpx;
+  /* margin-bottom: 15rpx; */
+  border-bottom: 1rpx solid whitesmoke;
+}
+
+.list-item-child-info {
+  color: #606060;
+  font-size: 28rpx;
+  padding: 5rpx;
+}
+
+.list-item-child-content {
+  color: #343434;
+  font-size: 28rpx;
+  padding: 5rpx;
+}
+
+/* ============================================================ */
+
+
+
+
+
+.done-label {
+   /* width: 375rpx; */
+   /* padding-top: 20rpx; */
+   /* padding-left: 200rpx; */
+  /* margin-right: 30rpx; */
+  /* margin-top: 20rpx; */
+  /* text-align: ; */
+  font-size: 28rpx;
+  color: #09bb07;
+}
+
+.undone-label {
+   width: 375rpx;
+   /* padding-top: 20rpx; */
+   /* padding-left: 200rpx; */
+  /* margin-right: 30rpx; */
+  /* margin-top: 20rpx; */
+  /* text-align: right; */
+  font-size: 28rpx;
+  color: #e64340;
+}

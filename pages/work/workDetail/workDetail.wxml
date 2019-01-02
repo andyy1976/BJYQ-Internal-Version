@@ -1,0 +1,339 @@
+<!--pages/login/login.wxml-->
+<block wx:if="{{status == 'undone'}}">
+  <view class="main-view">
+    <view class="func-block">
+      <view class="block-header">
+        <view class="tip-view">
+          工单详情
+        </view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>序号：</view>
+        <view class='sd-content'>{{repairOrder.SerialNumber}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>地址：</view>
+        <view class='sd-content'>{{repairOrder.Address}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>报修人：</view>
+        <view class='sd-content'>{{repairOrder.RepairPerson}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>联系电话：</view>
+        <view class='sd-content sd-call' bindtap='phoneCall' data-phone-number='{{repairOrder.PhoneNumber}}'>{{repairOrder.PhoneNumber}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>报修时间：</view>
+        <view class='sd-content'>{{repairOrder.RepairTime}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>预约时间：</view>
+        <view class='sd-content'>{{repairOrder.OrderTime}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>发单人：</view>
+        <view class='sd-content'>{{repairOrder.SendPerson}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>接单人：</view>
+        <view class='sd-content'>{{repairOrder.ReceivePerson}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>紧急程度：</view>
+        <view class='sd-content'>{{repairOrder.Level}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>服务项目：</view>
+        <view class='sd-content'>{{repairOrder.ServiceProject}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>是否入户：</view>
+        <view class='sd-content'>{{repairOrder.NeedIn}}</view>
+      </view>
+    </view>
+
+    <view class="func-block">
+      <view class="block-header">
+        <view class="tip-view">
+          注意事项：
+        </view>
+      </view>
+      <!-- <view class="sd-item">
+      <view class='sd-title'>序号：</view>
+      <view class='sd-content'>{{repairOrder.SerialNumber}}</view>
+    </view> -->
+    </view>
+    <!-- ================================================================================ -->
+
+    <form bindsubmit="submit">
+      <view class="func-block">
+        <view class="block-header">
+          <view class="tip-view">
+            工单处理
+          </view>
+        </view>
+        <picker id="100" mode="time" name="arriveTime" value="{{repairOrder.ArriveTime ? repairOrder.ArriveTime : ''}}" bindchange="datepickerBindchange">
+          <view class="cd-item">
+            <view class='cd-title'>到场时间：</view>
+            <view class='cd-content'>{{repairOrder.ArriveTime ? repairOrder.ArriveTime : ""}}</view>
+            <image class='cd-next-image' src='../../../images/xiala.png' />
+          </view>
+        </picker>
+        <view class="cd-item">
+          <view class='cd-title'>延期维修：</view>
+          <radio-group name="isLate" bindchange='isLateChange'>
+            <radio class='cd-radio' value='是' checked='{{repairOrder.status == "维修延期"}}'>是</radio>
+            <radio class='cd-radio' value='否' checked='{{repairOrder.status != "维修延期"}}'>否</radio>
+          </radio-group>
+        </view>
+        <picker id="300" mode="date" name="lateTime" value="{{repairOrder.LateTime ? repairOrder.LateTime : ''}}" bindchange="datepickerBindchange" hidden='{{reasonHidden}}'>
+          <view class="cd-item" hidden='{{repairOrder.isLate == "否" || !repairOrder.isLate}}'>
+            <view class='cd-title'>延期到：</view>
+            <view class='cd-content'>{{repairOrder.LateTime ? repairOrder.LateTime : ""}}</view>
+            <image class='cd-next-image' src='../../../images/xiala.png' />
+          </view>
+        </picker>
+        <view class="cd-item" hidden='{{repairOrder.isLate == "否" || !repairOrder.isLate}}'>
+          <view class='cd-title'>延期原因：</view>
+          <input class='cd-input' id="2" name="lateReason" value="{{repairOrder.LateReason}}" placeholder="请输入需要延期的原因" placeholder-class="cd-placeholder" />
+        </view>
+        <!-- <view class="cd-item" bindtap='checkIdentity' hidden='{{repairOrder.Identity == "维修工"}}'> -->
+        <view class="cd-item" bindtap='checkIdentity'>
+          <view class='cd-title'>收费类别：</view>
+          <radio-group name="chargeType" bindchange='chargeTypeChange'>
+            <radio class='cd-radio' value='收费' checked='{{repairOrder.ChargeType == "收费"}}' disabled='{{repairOrder.Identity == "维修工" ? true : false}}'>收费</radio>
+            <radio class='cd-radio' value='免费' checked='{{repairOrder.ChargeType == "免费" || !repairOrder.ChargeType}}' disabled='{{repairOrder.Identity == "维修工" ? true : false}}'>免费</radio>
+          </radio-group>
+        </view>
+        <view class="cd-item" hidden='{{repairOrder.ChargeType == "免费" || !repairOrder.ChargeType}}' bindtap='checkIdentity'>
+          <view class='cd-title'>材料费：</view>
+          <input class='cd-input' id="2" name="materialExpense" value="{{repairOrder.MaterialExpense == 0 ? null : repairOrder.MaterialExpense}}" placeholder="请输入材料费" placeholder-class="cd-placeholder" disabled='{{repairOrder.Identity == "维修工" ? true : false}}' />
+        </view>
+        <view class="cd-item" hidden='{{repairOrder.ChargeType == "免费" || !repairOrder.ChargeType}}' bindtap='checkIdentity'>
+          <view class='cd-title'>人工费：</view>
+          <input class='cd-input' id="3" name="laborExpense" value="{{repairOrder.LaborExpense == 0 ? null : repairOrder.LaborExpense}}" placeholder="请输入人工费" placeholder-class="cd-placeholder" disabled='{{repairOrder.Identity == "维修工" ? true : false}}' />
+        </view>
+        <view class="cd-item" hidden='{{repairOrder.ChargeType == "免费" || !repairOrder.ChargeType}}' bindtap='checkIdentity'>
+          <view class='cd-title'>是否已交：</view>
+          <radio-group name="isPaid" bindchange='isPaidChange'>
+            <radio class='cd-radio' value='是' checked='{{repairOrder.IsPaid == "是"}}' disabled='{{repairOrder.Identity == "维修工" ? true : false}}'>是</radio>
+            <radio class='cd-radio' value='否' checked='{{repairOrder.IsPaid == "否" || !repairOrder.IsPaid}}' disabled='{{repairOrder.Identity == "维修工" ? true : false}}'>否</radio>
+          </radio-group>
+        </view>
+        <picker id="200" mode="time" name="completeTime" value="{{repairOrder.CompleteTime ? repairOrder.CompleteTime : ''}}" bindchange="datepickerBindchange">
+          <view class="cd-item">
+            <view class='cd-title'>完成时间：</view>
+            <view class='cd-content'>{{repairOrder.CompleteTime ? repairOrder.CompleteTime : ""}}</view>
+            <image class='cd-next-image' src='../../../images/xiala.png' />
+          </view>
+        </picker>
+        <view class="cd-item">
+          <view class='cd-title'>完成情况：</view>
+          <input class='cd-input' id="1" name="completeStatus" value="{{repairOrder.CompleteStatus}}" placeholder="请输入完成情况" placeholder-class="cd-placeholder" />
+        </view>
+      </view>
+
+      <view class="func-block">
+        <view class="block-header">
+          <view class="tip-view">
+            报修前照片
+          </view>
+        </view>
+        <view class="images-view">
+          <block wx:for="{{beforeImage}}">
+            <image class='sd-image' id='{{index}}' src='{{item}}' bindtap='beforeImageTaped' />
+            <!-- <image id='{{index}}' src='{{item}}' bindtap='beforeImageTaped' bindlongtap='beforeImageLongTaped' /> -->
+          </block>
+        </view>
+      </view>
+
+      <view class="func-block">
+        <view class="block-header">
+          <view class="tip-view">
+            处理后照片(点击添加,长按预览)
+          </view>
+        </view>
+        <view class=" images-view">
+          <block wx:for="{{afterImage}}">
+            <image class='cd-image' id='{{index}}' src='{{item}}' bindtap='afterImageTaped' bindlongpress='afterImageLongTaped' />
+          </block>
+        </view>
+      </view>
+      <button id="submit" formType="submit" type='primary'>确认提交</button>
+
+    </form>
+
+
+  </view>
+  <view class="page-footer"></view>
+
+</block>
+
+
+
+
+<block wx:if="{{status == 'done'}}">
+  <view class="main-view">
+    <view class="func-block">
+      <view class="block-header">
+        <view class="tip-view">
+          工单详情
+        </view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>序号：</view>
+        <view class='sd-content'>{{repairOrder.SerialNumber}}</view>
+      </view>
+      <!-- <view class="sd-item">
+      <view class='sd-title'>发单人：</view>
+      <view class='sd-content'>{{repairOrder.SendPerson}}</view>
+    </view> -->
+      <view class="sd-item">
+        <view class='sd-title'>地址：</view>
+        <view class='sd-content'>{{repairOrder.Address}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>报修人：</view>
+        <view class='sd-content'>{{repairOrder.RepairPerson}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>联系电话：</view>
+        <view class='sd-content sd-call' bindtap='phoneCall' data-phone-number='repairOrder.PhoneNumber'>{{repairOrder.PhoneNumber}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>报修时间：</view>
+        <view class='sd-content'>{{repairOrder.RepairTime}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>预约时间：</view>
+        <view class='sd-content'>{{repairOrder.OrderTime}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>紧急程度：</view>
+        <view class='sd-content'>{{repairOrder.Level}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>服务项目：</view>
+        <view class='sd-content'>{{repairOrder.ServiceProject}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>是否入户：</view>
+        <view class='sd-content'>{{repairOrder.NeedIn}}</view>
+      </view>
+    </view>
+    <!-- ================================================================================ -->
+
+    <!-- <form bindsubmit="submit"> -->
+    <view class="func-block">
+      <view class="block-header">
+        <view class="tip-view">
+          工单处理
+        </view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>完成情况：</view>
+        <view class='sd-content'>{{repairOrder.CompleteStatus}}</view>
+      </view>
+      <!-- <view class="sd-item">
+      <view class='sd-title'>发单人：</view>
+      <view class='sd-content'>{{repairOrder.SendPerson}}</view>
+    </view> -->
+      <view class="sd-item">
+        <view class='sd-title'>材料费：</view>
+        <view class='sd-content'>{{repairOrder.MaterialExpense}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>人工费：</view>
+        <view class='sd-content'>{{repairOrder.LaborExpense}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>到场时间：</view>
+        <view class='sd-content'>{{repairOrder.ArriveTime ? repairOrder.ArriveTime : ""}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>完成时间：</view>
+        <view class='sd-content'>{{repairOrder.CompleteTime ? repairOrder.CompleteTime : ""}}</view>
+      </view>
+    </view>
+
+    <view class="func-block">
+      <view class="block-header">
+        <view class="tip-view">
+          报修前照片
+        </view>
+      </view>
+      <view class="images-view">
+        <block wx:for="{{beforeImage}}">
+          <image class='sd-image' id='{{index}}' src='{{item}}' bindtap='beforeImageTaped' />
+          <!-- <image id='{{index}}' src='{{item}}' bindtap='beforeImageTaped' bindlongtap='beforeImageLongTaped' /> -->
+        </block>
+      </view>
+    </view>
+
+    <view class="func-block">
+      <view class="block-header">
+        <view class="tip-view">
+          处理后照片
+        </view>
+      </view>
+      <view class=" images-view">
+        <block wx:for="{{afterImage}}">
+          <image class='cd-image' id='{{index}}' src='{{item}}' bindtap='afterImageTaped' />
+        </block>
+      </view>
+    </view>
+
+    <view class="func-block">
+      <view class="block-header">
+        <view class="tip-view">
+          业主确认
+        </view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>确认完成：</view>
+        <view class='sd-content'>{{repairOrder.AffirmComplete}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>确认时间：</view>
+        <view class='sd-content'>{{repairOrder.AffirmCompleteTime}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>是否满意：</view>
+        <view class='sd-content'>{{repairOrder.IsSatisfying}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>业主评价：</view>
+        <view class='sd-content'>{{repairOrder.AffirmCompleteEvaluation}}</view>
+      </view>
+    </view>
+
+
+    <view class="func-block">
+      <view class="block-header">
+        <view class="tip-view">
+          回访情况
+        </view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>回访人：</view>
+        <view class='sd-content'>{{repairOrder.CallBackPerson}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>回访时间：</view>
+        <view class='sd-content'>{{repairOrder.CallBackTime}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>业主评价：</view>
+        <view class='sd-content'>{{repairOrder.CallBackEvaluation}}</view>
+      </view>
+    </view>
+
+
+
+  </view>
+  <view class="page-footer"></view>
+
+
+
+</block>

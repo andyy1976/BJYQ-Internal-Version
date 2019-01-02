@@ -1,0 +1,157 @@
+
+
+page {
+  background-color: whitesmoke;
+}
+
+.main-view {
+  width: 750rpx;
+}
+
+
+/* 用于分隔不同功能区 */
+.func-block {
+  background-color: white;
+  margin-top: 10rpx;
+  margin-bottom: 60rpx;
+  /* padding-left: 20rpx;
+  padding-right: 20rpx; */
+  /* border-bottom: 0.5rpx solid lightgray;
+    border-top: 0.5rpx solid lightgray;  */
+}
+
+/* 功能区标题 */
+.block-header {
+  color: orange;
+  font-size: 30rpx;
+  padding: 30rpx 0rpx 10rpx 30rpx;
+}
+
+button {
+  margin: 20rpx;
+  margin-top: 60rpx;
+  color: white;
+  font-size: 32rpx;
+}
+
+.page-footer {
+  height: 80rpx;
+}
+
+
+/*--------------------------sd-item---用于显示不需要处理的信息-------------------------------*/
+
+.sd-item {
+  /* padding-top: 10rpx;
+  padding-bottom: 10rpx; */
+  padding: 10rpx 0rpx 10rpx 30rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  background-color: white;
+  font-size: 28rpx;
+}
+
+.sd-title {
+  width: 180rpx;
+  color: black;
+}
+
+.sd-content {
+  background-color: white;
+  margin-left: 10rpx;
+  color: #606060;
+}
+
+.sd-call {
+  color: blue;
+  text-decoration: underline;
+}
+
+
+
+
+.item-view {
+  /* width: 680rpx; */
+  /* margin-left: 20rpx; */
+  /* margin-top: 20rpx; */
+  /* padding-left: 30rpx; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin-top: 10rpx;
+  /* align-items: center; */
+  background-color: white;
+  border-bottom: 10rpx solid whitesmoke;
+}
+
+.item-child {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  padding: 5rpx 0rpx 0rpx 30rpx;
+}
+
+.item-title {
+  width: 180rpx;
+  font-size: 28rpx;
+  color: black;
+}
+
+.left {
+  /* width: 630rpx; */
+  width: 100%;
+  /* padding-top: 10rpx; */
+}
+
+.right {
+  width: 50rpx;
+}
+
+.item-number {
+  color: #996600;
+  font-size: 30rpx;
+  /* padding-top: 20rpx;
+  padding-bottom: 5rpx; */
+  padding: 20rpx 0rpx 5rpx 30rpx;
+  /* margin-bottom: 15rpx; */
+  /* border-bottom: 1rpx solid whitesmoke; */
+}
+
+.item-date {
+  color: #576b95;
+  font-size: 34rpx;
+  border-bottom: 1rpx solid whitesmoke;
+  /* border-top: 1rpx solid whitesmoke; */
+  /* margin-top: 10rpx; */
+  /* padding-top: 20rpx;
+  padding-bottom: 5rpx; */
+  padding: 20rpx 0rpx 5rpx 30rpx;
+  /* background-color: #3366FF; */
+  /* background-color: whitesmoke; */
+  /* margin-bottom: 15rpx; */
+  /* border-bottom: 1rpx solid whitesmoke; */
+}
+
+.item-info {
+  color: #606060;
+  font-size: 28rpx;
+  padding: 5rpx;
+}
+
+.item-content {
+  color: #343434;
+  font-size: 28rpx;
+  padding: 5rpx;
+}
+
+
+
+.orange {
+  color: orange;
+}
+
+
+
+

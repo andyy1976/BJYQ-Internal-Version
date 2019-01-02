@@ -1,0 +1,92 @@
+<!--pages/login/login.wxml-->
+<form bindsubmit="submit">
+  <view class="main-view">
+    <view class="func-block">
+      <view class="block-header">
+        <view class="tip-view">
+          投诉详情
+        </view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>编号：</view>
+        <view class='sd-content'>{{complainOrder.Number}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>姓名：</view>
+        <view class='sd-content'>{{complainOrder.Name}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>联系电话：</view>
+        <view class='sd-content call' bindtap='phoneCall' data-phone-number='complainOrder.Phone'>{{complainOrder.Phone}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>地址：</view>
+        <view class='sd-content'>{{complainOrder.Address}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>接待时间：</view>
+        <view class='sd-content'>{{complainOrder.ReceptionDate}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>投诉内容：</view>
+        <view class='sd-content'>{{complainOrder.Content}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>登记人：</view>
+        <view class='sd-content'>{{complainOrder.Registrant}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>责任部门：</view>
+        <view class='sd-content'>{{complainOrder.Department}}</view>
+      </view>
+    </view>
+
+
+    <view class="func-block">
+      <view class="block-header">
+        <view class="tip-view">
+          投诉处理
+        </view>
+      </view>
+      <picker id="100" mode="time" name="finishDate" value="{{complainOrder.FinishDate ? complainOrder.FinishDate : ''}}" bindchange="datepickerBindchange">
+        <view class="cd-item">
+          <view class='cd-title'>完成时间：</view>
+          <view class='cd-content'>{{complainOrder.FinishDate ? complainOrder.FinishDate : ""}}</view>
+          <image class='cd-next-image' src='../../../images/xiala.png' />
+        </view>
+      </picker>
+      <view class="cd-item">
+        <view class='cd-title'>完成情况：</view>
+        <input class='cd-input' id="1" name="finishStatus" value="{{complainOrder.FinishStatus}}" placeholder="请输入完成情况" placeholder-class="cd-placeholder" />
+      </view>
+    </view>
+
+<view class="func-block">
+    <view class="block-header">
+      <view class="tip-view">
+        投诉前照片
+      </view>
+    </view>
+    <view class="images-view">
+      <block wx:for="{{beforeImage}}">
+        <image class='sd-image' id='{{index}}' src='{{item}}' bindtap='beforeImageTaped' />
+      </block>
+    </view>
+  </view>
+<view class="func-block">
+    <view class="block-header">
+      <view class="tip-view">
+        处理后照片(点击添加,长按预览)
+      </view>
+    </view>
+    <view class=" images-view">
+      <block wx:for="{{afterImage}}">
+        <image class='cd-image' id='{{index}}' src='{{item}}' bindtap='afterImageTaped' bindlongpress='afterImageLongTaped' />
+      </block>
+    </view>
+  </view>
+    <button id="submit" formType="submit" type='primary'>确认提交</button>
+  </view>
+  <view class="footer-view"></view>
+
+</form>

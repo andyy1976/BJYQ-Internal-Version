@@ -1,0 +1,15 @@
+<!--pages/wrokOrder/wrokOrder.wxml-->
+<!--pages/login/login.wxml-->
+
+<view class="main-view">
+  <block wx:for="{{report}}">
+    <view id="{{index}}" class="item-view" bindtap="viewTaped">
+      <view class='project-view'>{{item.ztName}}</view>
+      <view class='count-view'>
+        <view class='count-title-view'>逾期未保养数：</view>
+        <view class='count-number-view'>{{item.countTimeout}}</view>
+      </view>
+    </view>
+  </block>
+  <!-- </scroll-view> -->
+</view>

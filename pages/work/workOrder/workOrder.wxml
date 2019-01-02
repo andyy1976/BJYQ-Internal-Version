@@ -1,0 +1,61 @@
+
+<view class="main-view">
+  <view class='yi-button' bindtap='toDoneWorkOrder'>
+    <text class='yi-button-text'>{{"已处理 >"}}</text>
+  </view>
+  <view class='header-func'>
+    <view class='sort-view'>
+      <block wx:for="{{sortTypeList}}">
+        <text id='{{index}}' class='{{sortTypeListIndex == index ? "choose" : "nonChoose"}}' bindtap='sortTextTaped'>{{item}}</text>
+      </block>
+    </view>
+    <view class='line'></view>
+    <picker range='{{filtrateList}}' bindchange='filtrateStatus' value='{{filtrateIndex}}'>
+      <view class='filtrate-view'>
+        <view class='filtrate-text'>{{filtrateList[filtrateIndex]}}</view>
+        <image class='dropDown-image' src='../../../images/xiala.png' />
+      </view>
+    </picker>
+  </view>
+  <scroll-view scroll-y="{{true}}" bindscrolltoupper="scrolltoupper">
+    <block wx:for="{{filtrateRepairOrder}}">
+      <view id="{{index}}" class="list-item" bindtap="viewTaped">
+        <view class='list-item-left'>
+          <!-- 工单编号 -->
+
+          <view class='list-item-number'>{{item.SerialNumber}}</view>
+
+          <!-- 房号 -->
+          <view class='list-item-child'>
+            <view class='list-item-child-title'>报修地址：</view>
+            <view class='list-item-child-info'>{{item.Address}}</view>
+          </view>
+          <!-- 紧急程度 -->
+          <view class='list-item-child'>
+            <view class='list-item-child-title'>紧急程度： </view>
+            <view class='list-item-child-info level'>{{item.Level}}</view>
+          </view>
+          <!-- 状态 -->
+          <view class='list-item-child'>
+            <view class='list-item-child-title'>当前状态：</view>
+            <view class='list-item-child-info {{item.status == "已派单" ? "status-red" : item.status == "已现场确认" ? "status-orange" : item.status == "维修中" ? "status-green" : "status-blue"}}'>{{item.status}}</view>
+          </view>
+          <!-- 报修项目 -->
+          <view class='list-item-child'>
+            <view class='list-item-child-title'>报修项目：</view>
+            <view class='list-item-child-content'>{{item.ServiceProject}}</view>
+          </view>
+          <!-- 报修时间 -->
+          <view class='list-item-child'>
+            <view class='list-item-child-title'>报修时间：</view>
+            <view class='list-item-child-info'>{{item.RepairTime}}</view>
+          </view>
+        </view>
+        <view class='list-item-right'>
+          <image src="{{item.IsRead == 0 ? '../../../images/new.png ' : ' '}}"></image>
+          <!-- <image src="../../../images/new.png"></image> -->
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+</view>

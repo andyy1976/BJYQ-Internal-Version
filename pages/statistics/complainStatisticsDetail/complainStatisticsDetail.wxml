@@ -1,0 +1,100 @@
+<!--pages/statistics/complainStatisticsDetail/complainStatisticsDetail.wxml-->
+
+  <view class='header-view'>
+    <view class='header-name-view'>
+      {{level == "接单人" ? statistics.name : statistics.ztName}}
+    </view>
+    <view class='header-project-view'>
+    </view>
+  </view>
+
+  <view class='title-view'>
+    投诉情况
+  </view>
+
+  <view class='item-view'>
+    <view class='top-view'>
+      <view class='top-title-view'>
+        投诉总数
+      </view>
+      <view class='top-count-view'>
+        {{statistics.countReceive}}
+      </view>
+    </view>
+    <view class='bottom-view'>
+      <view class='bottom-detail-view'>
+        <view class='detail-title-view'>
+          有效投诉数
+        </view>
+        <view class='detail-count-view'>
+          {{statistics.countValid}}
+        </view>
+        <view class='detail-percent-view'>
+          {{statistics.rateValid}}
+        </view>
+      </view>
+      <view class='bottom-detail-view'>
+        <view class='detail-title-view'>
+          无效投诉数
+        </view>
+        <view class='detail-count-view'>
+          {{statistics.countInvalid}}
+        </view>
+        <view class='detail-percent-view'>
+          {{statistics.rateInvalid}}
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class='title-view'>
+    处理情况
+  </view>
+
+  <view class='item-view'>
+    <view class='top-view'>
+      <view class='top-title-view'>
+        应解决总数
+      </view>
+      <view class='top-count-view'>
+        {{statistics.countValid}}
+      </view>
+    </view>
+    <view class='bottom-view'>
+      <view class='bottom-detail-view'>
+        <view class='detail-title-view'>
+          已解决数
+        </view>
+        <view class='detail-count-view'>
+          {{statistics.countFinished}}
+        </view>
+        <view class='detail-percent-view'>
+          {{statistics.rateFinished}}
+        </view>
+      </view>
+      <view class='bottom-detail-view'>
+        <view class='detail-title-view'>
+          未解决数
+        </view>
+        <view class='detail-count-view'>
+          {{statistics.countUnfinished}}
+        </view>
+        <view class='detail-percent-view'>
+          {{statistics.rateUnfinished}}
+        </view>
+      </view>
+      <view class='bottom-detail-view'>
+        <view class='detail-title-view'>
+          已关闭数
+        </view>
+        <view class='detail-count-view'>
+          {{statistics.countClosed}}
+        </view>
+        <view class='detail-percent-view'>
+          {{statistics.rateClosed}}
+        </view>
+      </view>
+    </view>
+  </view>
+  
+

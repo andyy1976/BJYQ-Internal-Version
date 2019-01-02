@@ -1,0 +1,126 @@
+<!--pages/login/login.wxml-->
+
+<view class="main-view">
+
+  <view class="func-block">
+    <view class="block-header">
+      <view class="tip-view">
+        装修信息
+      </view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>装修施工证编号：</view>
+      <view class='sd-content'>{{decoration.certificateNumber}}</view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>房产编号：</view>
+      <view class='sd-content'>{{decoration.roomNumber}}</view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>业主姓名：</view>
+      <view class='sd-content'>{{decoration.name}}</view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>业主电话：</view>
+      <view class='sd-content call' bindtap='phoneCall' data-phone-number='decoration.phone'>{{decoration.phone}}</view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>客服专员：</view>
+      <view class='sd-content'>{{decoration.attache}}</view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>装修负责人：</view>
+      <view class='sd-content'>{{decoration.decorationMan}}</view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>负责人电话：</view>
+      <view class='sd-content call' bindtap='phoneCall' data-phone-number='decoration.decorationPhone'>{{decoration.decorationPhone}}</view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>装修类型：</view>
+      <view class='sd-content'>{{decoration.type}}</view>
+    </view>
+  </view>
+  <view class="func-block">
+    <view class="block-header">
+      <view class="tip-view">
+        巡检内容
+      </view>
+    </view>
+    <block wx:for="{{decorationPatrolItems}}">
+      <view class="sdl-item">
+        <view class='sdl-title'>{{item.number}}、</view>
+        <view class='sdl-content'>{{item.item}}</view>
+      </view>
+      <!-- <view class="patrolItems-view">
+        {{item.number + "、" + item.item}}
+      </view> -->
+    </block>
+  </view>
+  <form bindsubmit="submit">
+    <view class="func-block">
+      <view class="block-header">
+        <view class="tip-view">
+          巡检情况
+        </view>
+      </view>
+      <picker id="100" mode="date" name="checkDate" value="{{checkDate}}" bindchange="datepickerBindchange">
+        <view class="cd-item">
+          <view class='cd-title'>巡检日期：</view>
+          <view class='cd-content'>{{checkDate}}</view>
+          <image class='cd-next-image' src='../../../images/xiala.png' />
+        </view>
+      </picker>
+      <picker id="200" name="schedule" value="{{schedule[scheduleIndex]}}" range='{{schedule}}' bindchange="pickerBindchange">
+        <view class="cd-item">
+          <view class='cd-title'>当前进度：</view>
+          <view class='cd-content'>{{schedule[scheduleIndex]}}</view>
+          <image class='cd-next-image' src='../../../images/xiala.png' />
+        </view>
+      </picker>
+      <view class="cd-item">
+        <view class='cd-title'>是否正常：</view>
+        <radio-group name="isNormal" bindchange='chargeTypeChange'>
+          <radio class='cd-radio' value='正常' checked='{{true}}'>正常</radio>
+          <radio class='cd-radio' value='不正常'>不正常</radio>
+        </radio-group>
+      </view>
+      <view class="cd-item">
+        <view class='cd-title'>不合格项编号：</view>
+        <input class='cd-input' placeholder-class="cd-placeholder" id="1" name="unnormalItemNumber" placeholder="不合格项编号(以逗号分隔)" />
+      </view>
+      <view class="cd-item">
+        <view class='cd-title'>其他不合格内容说明：</view>
+        <input class='cd-input' placeholder-class="cd-placeholder" id="1" name="otherUnnormalItemExplain" placeholder="请输入其他不合格内容说明" />
+      </view>
+      <view class="cd-item">
+        <view class='cd-title'>现场是否有人：</view>
+        <radio-group name="havePeople" bindchange='chargeTypeChange'>
+          <radio class='cd-radio' value='有' checked='{{true}}'>有</radio>
+          <radio class='cd-radio' value='没有'>没有</radio>
+        </radio-group>
+      </view>
+      <view class="cd-item">
+        <view class='cd-title'>处理方式：</view>
+        <radio-group name="dealWay" bindchange='chargeTypeChange'>
+          <radio class='cd-radio' value='当场劝阻' checked='{{true}}'>当场劝阻</radio>
+          <radio class='cd-radio' value='发整改通知'>发整改通知</radio>
+        </radio-group>
+      </view>
+    </view>
+    <view class="func-block">
+      <view class="block-header">
+        <view class="tip-view">
+          不正常情况照片(点击添加,长按预览)
+        </view>
+      </view>
+      <view class=" images-view">
+        <block wx:for="{{unnormalImage}}">
+          <image class='cd-image' id='{{index}}' src='{{item}}' bindtap='unnormalImageTaped' bindlongpress='unnormalImageLongTaped' />
+        </block>
+      </view>
+    </view>
+    <button id="submit" formType="submit" type='primary'>确认提交</button>
+  </form>
+</view>
+<view class="footer-view"></view>

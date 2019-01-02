@@ -1,0 +1,245 @@
+/* pages/login/login.wxss */
+page {
+  background-color: whitesmoke;
+}
+label {
+  margin-left: 30rpx;
+  margin-top: 10rpx;
+  height: 40rpx;
+  width: 140rpx;
+  /* color: mediumpurple; */
+  color: #353535;
+   text-align: left; 
+}
+
+.search-view{
+  height: 80rpx;
+  /* position: fixed;
+  left: 0rpx;
+  top: 20rpx;
+  right: 0rpx;
+  z-index: 998; */
+  margin-top: 20rpx;
+   display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center; 
+  align-items: center;
+  background-color: whitesmoke;
+}
+
+
+.search-view image {
+  height: 40rpx;
+  width: 40rpx;
+  /* margin-top: 10rpx; */
+  margin-left: 20rpx;
+}
+.search-view input {
+  height: 60rpx;
+  width: 600rpx;
+  font-size: 30rpx;
+   margin-top: 0rpx; 
+    margin-left: 0rpx;
+  /* margin-left: 10rpx; */
+   /* line-height: 50rpx;  */
+   padding-left: 10rpx;
+   /* color: darkgray; */
+}
+
+
+.header-view {
+  /* height: 300rpx; */
+  /* background-color: blue; */
+  color: darkgray;
+  font-size: 28rpx;
+  padding: 30rpx 15rpx 15rpx 15rpx;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; */
+}
+
+.main-view {
+    /* width:750rpx; */
+    /*height:1234rpx;*/
+   /* background-color: #f0f0f0;*/
+    font-size: 34rpx;
+    line-height: 40rpx;
+  height: 900rpx;
+}
+
+
+  .form-view {
+  background-color: white;
+  margin-top: 10rpx;
+     /* border-bottom: 0.5rpx solid lightgray;
+    border-top: 0.5rpx solid lightgray;  */
+}  
+
+.pic-view {
+  background-color: white;
+  margin-top: 30rpx;
+}
+
+
+
+
+
+/*--------------------------input--------------------------------------------*/
+.input {
+    background-color: white;
+    width:550rpx;
+    height:40rpx;
+    margin-left: 20rpx;
+    margin-top:10rpx;
+    color: darkgray;
+ 
+     /* border-bottom-style: solid;
+    border-bottom-width: 0.5rpx;
+    border-bottom-color: lavender;  */
+}
+
+
+input {
+    background-color: white;
+    width:550rpx;
+    height:40rpx;
+    margin-left: 20rpx;
+    margin-top:10rpx;
+    color: black;
+     /* border-bottom-style: solid;
+    border-bottom-width: 0.5rpx;
+    border-bottom-color: lavender;  */
+}
+/*-----------------------------------------------------------------------------*/
+
+
+.high {
+  height: 320rpx;
+}
+
+.high-text {
+  height: 300rpx;
+   word-break: break-all;
+}
+
+.placeholder-text {
+    font-size: 32rpx;
+    color: lightgray;
+}
+
+
+button {
+    margin: 20rpx;
+    margin-top:60rpx;
+}
+.footer-view {
+  height: 80rpx;
+}
+
+
+#submit {
+   margin-top: 80rpx; 
+}
+
+
+image {
+  margin-left: 20rpx;
+  width: 200rpx;
+  height: 200rpx;
+}
+
+
+
+.button-view {
+  color: #576b95;
+  padding: 20rpx;
+  background-color: white;
+  text-align: right;
+  font-size: 32rpx;
+  text-decoration:underline;
+  margin-right: 20rpx;
+  margin-top: 40rpx;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 用于分隔不同功能区 */
+.func-block {
+  background-color: white;
+  margin-top: 10rpx;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  /* border-bottom: 0.5rpx solid lightgray;
+    border-top: 0.5rpx solid lightgray;  */
+}
+
+/* 功能区标题 */
+.block-header {
+  color: orange;
+  font-size: 30rpx;
+  padding: 30rpx 0rpx 10rpx 0rpx;
+}
+
+button {
+  margin: 20rpx;
+  margin-top: 60rpx;
+  color: white;
+  font-size: 32rpx;
+}
+
+.page-footer {
+  height: 80rpx;
+}
+
+.sd-item {
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  background-color: white;
+  font-size: 28rpx;
+}
+
+.sd-title {
+  width: 180rpx;
+  color: black;
+}
+
+.sd-content {
+  background-color: white;
+  margin-left: 10rpx;
+  color: #606060;
+}
+
+.sd-call {
+  color: blue;
+  text-decoration: underline;
+}

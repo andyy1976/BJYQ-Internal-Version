@@ -1,0 +1,45 @@
+/* pages/login/login.wxss */
+
+@import "../../../commonCss/common.wxss";
+
+page {
+  background-color: whitesmoke;
+}
+
+.main-view {
+    width:750rpx;
+}
+
+button {
+    margin: 20rpx;
+    margin-top:60rpx;
+    color: white;
+    font-size: 32rpx;
+}
+.footer-view {
+  height: 80rpx;
+}
+
+
+#submit {
+   margin-top: 120rpx; 
+}
+
+
+.call {
+  color: blue;
+  text-decoration:underline;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

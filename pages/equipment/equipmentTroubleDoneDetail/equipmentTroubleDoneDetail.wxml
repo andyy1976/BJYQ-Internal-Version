@@ -1,0 +1,117 @@
+<!--pages/login/login.wxml-->
+<view class="main-view">
+    <view class="func-block">
+      <view class="block-header">
+        <view class="tip-view">
+          设备信息
+        </view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>设备名称：</view>
+        <view class='sd-content'>{{equipment.number}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>设备编号：</view>
+        <view class='sd-content'>{{equipment.name}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>安装地点：</view>
+        <view class='sd-content'>{{equipment.UseAddress}}</view>
+      </view>
+    </view>
+
+    <view class="func-block">
+      <view class="block-header">
+        <view class="tip-view">
+          报修信息
+        </view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>发生时间：</view>
+        <view class='sd-content'>{{equipment.brokenTime}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>故障描述：</view>
+        <view class='sd-content'>{{equipment.brokenInfo}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>状态：</view>
+        <view class='sd-content'>{{equipment.status}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>维修人：</view>
+        <view class='sd-content'>{{equipment.repairMan}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>维修时限：</view>
+        <view class='sd-content'>{{equipment.repairTimeLimit}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>接单时间：</view>
+        <view class='sd-content'>{{equipment.receiveTime}}</view>
+      </view>
+    </view>
+ <view class="func-block">
+    <view class="block-header">
+      <view class="tip-view">
+        设备保养情况
+      </view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>完成时间：</view>
+      <view class='sd-content'>{{equipment.finishTime}}</view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>维修费用：</view>
+      <view class='sd-content'>{{equipment.fee}}</view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>维修说明</view>
+      <view class='sd-content'>{{equipment.repairInfo}}</view>
+    </view>
+  </view>
+    <view class="func-block">
+    <view class="block-header">
+      <view class="tip-view">
+        维修前照片
+      </view>
+    </view>
+    <view class="images-view">
+      <block wx:for="{{beforeImage}}">
+        <image class='sd-image' id='{{index}}' src='{{item}}' bindtap='beforeImageTaped' />
+      </block>
+    </view>
+  </view>
+
+
+
+<view class="func-block">
+    <view class="block-header">
+      <view class="tip-view">
+        处理后照片(点击添加,长按预览)
+      </view>
+    </view>
+    <view class=" images-view">
+      <block wx:for="{{afterImage}}">
+        <image class='cd-image' id='{{index}}' src='{{item}}' bindtap='afterImageTaped' bindlongpress='afterImageLongTaped' />
+      </block>
+    </view>
+  </view>
+    <view class="footer-view"></view>
+  <!-- </form> -->
+
+
+</view>
+
+
+
+
+
+
+
+
+
+
+
+
+

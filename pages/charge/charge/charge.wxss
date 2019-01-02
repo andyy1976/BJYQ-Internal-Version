@@ -1,0 +1,99 @@
+page {
+  background-color: whitesmoke;
+}
+
+label {
+  margin-left: 10rpx;
+  height: 40rpx;
+  width: 140rpx;
+  color: #353535;
+  font-size: 30rpx;
+}
+
+.header-view {
+  color: darkgray;
+  font-size: 28rpx;
+  margin: 30rpx 15rpx 15rpx 15rpx;
+}
+
+.main-view {
+  width: 750rpx;
+  font-size: 34rpx;
+  line-height: 40rpx;
+}
+
+.title-label {
+  font-size: 34rpx;
+  height: 60rpx;
+  width: 700rpx;
+  color: white;
+  text-align: left;
+}
+
+.alabel {
+  color: #353535;
+}
+
+.form-view {
+  background-color: white;
+  margin-top: 50rpx;
+}
+
+.item-view {
+  width: 720rpx;
+  height: 90rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  background-color: white;
+  border-bottom: 0.5rpx solid whitesmoke;
+  margin-left: 30rpx;
+}
+
+input {
+  background-color: white;
+  width: 530rpx;
+  height: 40rpx;
+  margin-left: 40rpx;
+  font-size: 30rpx;
+  color: black;
+}
+
+.placeholder-text {
+  font-size: 30rpx;
+  color: lightgray;
+}
+
+button {
+  margin: 20rpx;
+  margin-top: 60rpx;
+  color: white;
+  font-size: 34rpx;
+}
+
+.footer-view {
+  height: 80rpx;
+}
+
+
+.title-label {
+  color: white;
+}
+
+#submit {
+  margin-top: 120rpx;
+}
+
+radio-group {
+   background-color: white;
+    width:450rpx;
+    height:40rpx;
+    margin-left: 40rpx;
+    color: darkgray;
+}
+
+radio {
+  margin-right: 20rpx;
+  font-size: 30rpx;
+}

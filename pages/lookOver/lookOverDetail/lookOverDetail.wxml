@@ -1,0 +1,54 @@
+<form bindsubmit="submit">
+
+<view class='header-view'>
+  <view class='header-name-view'>
+    {{objectName}}
+  </view>
+  <view class='header-project-view'>
+  </view>
+</view>
+
+
+<view class="form-view">
+    <view class="item-view">
+        <label>是否抽检</label>
+        <radio-group name="isSpotCheck" bindchange='chargeChange'>
+          <radio value='是'>是</radio>
+          <radio value='否' checked='{{true}}'>否</radio>
+        </radio-group>
+      </view>
+  </view>
+
+<view class="main-view">
+  <block wx:for="{{lookOverItem}}" wx:for-index="lkiIndex" wx:for-item="lkiItem">
+    <view class='i-view'>
+      <view id="{{lkiIndex}}" class="content-view {{lkiItem.isNormal ? 'color-black' : 'color-red'}}" bindtap="viewTaped">
+        <!-- <view class='number-view'>{{lkiItem.number + "、"}}</view> -->
+        <view class="outline-view">{{lkiItem.item}}</view>
+        <!-- 是否正常小图片 -->
+        <image id="{{lkiIndex}}" src='{{lkiItem.isNormal ? "../../../images/weixuanze.png" : "../../../images/cuowu.png"}}' bindtap='imageTaped' />
+      </view>
+      <!-- 如果显示不正常图片，则显示以下不正常说明和图片 -->
+      <block wx:if="{{lkiItem.isNormal == false}}">
+        <!-- 不正常说明 -->
+        <view class='explain-view'>
+          <textarea id='{{lkiIndex}}' value='{{lkiItem.explain}}' placeholder-class='placeholder' placeholder='请输入不合格说明' bindinput='textInput' />
+        </view>
+        <!-- 不正常照片 -->
+        <view class="add-image-view images-view">
+          <block wx:for="{{lkiItem.images}}" wx:for-index="imageIndex" wx:for-item="imageItem">
+            <image class='add-image' id='{{imageIndex}}' src='{{imageItem}}' bindtap='addImageTaped' bindlongtap='addImageLongTaped' data-item-index='{{lkiIndex}}' />
+          </block>
+        </view>
+      </block>
+    </view>
+  </block>
+</view>
+
+
+  
+  <button id="submit" formType="submit" type='primary'>提交</button>
+
+  <view class='footer'></view>
+
+</form>

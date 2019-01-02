@@ -1,0 +1,102 @@
+<view class='date-view'>
+
+</view>
+
+
+
+
+
+
+
+
+
+
+
+
+<view class='header-view'>
+  <view class='header-name-view'>
+    {{statistics.unit}} 单元
+  </view>
+  <view class='header-project-view'>
+  </view>
+</view>
+
+
+<view class='item-view'>
+
+  <view class='bottom-view'>
+    <view class='bottom-detail-view'>
+      <view class='detail-title-view'>
+        实收当期合计
+      </view>
+      <view class='detail-percent-view'>
+        {{statistics.receivedNow}}
+      </view>
+    </view>
+    <view class='bottom-detail-view'>
+      <view class='detail-title-view'>
+        当期应收
+      </view>
+      <view class='detail-percent-view'>
+        {{statistics.nowShouldReceived}}
+      </view>
+    </view>
+    <view class='bottom-detail-view'>
+      <view class='detail-title-view'>
+        累计欠费
+      </view>
+      <view class='detail-percent-view'>
+        {{statistics.addupNotReceived}}
+      </view>
+    </view>
+  </view>
+  <view class='bottom-view'>
+    <view class='bottom-detail-view'>
+      <view class='detail-title-view'>
+        本期收缴率
+      </view>
+      <view class='detail-count-view'>
+        {{statistics.rateNowReceived}}
+      </view>
+    </view>
+    <view class='bottom-detail-view'>
+      <view class='detail-title-view'>
+        累计收费率
+      </view>
+      <view class='detail-count-view'>
+        {{statistics.rateAddupReceived}}
+      </view>
+    </view>
+    <view class='bottom-detail-view'>
+      <view class='detail-title-view'>
+        预收费率
+      </view>
+      <view class='detail-count-view'>
+        {{statistics.rateBeforeReceived}}
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- <block wx:if="{{level != '公司'}}">
+  <view class='title-view'>
+    查看各单元统计
+  </view>
+  <view class='list-view'>
+    <view id='{{index}}' class='list-item-view' wx:for="{{statistics.csUnits}}" bindtap='viewTaped' data-level='项目'>
+      <view class='item-text-view'>
+        {{item.unit}} 单元
+      </view>
+      <image class='item-image' src='../../../images/xiayiye.png' />
+    </view>
+  </view>
+</block> -->
+
+
+
+
+
+
+
+
+<view class='foot-view'></view>

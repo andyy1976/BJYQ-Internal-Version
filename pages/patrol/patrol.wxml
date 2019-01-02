@@ -1,0 +1,43 @@
+
+
+<view class="main-view">
+  <view class="header-view">
+    <view class="tip-view">
+      请填写如下报事信息
+    </view>
+  </view>
+  <form bindsubmit="submit">
+    <view class="form-view">
+      <view class="item-view">
+        <label>报事人</label>
+        <input id="0" name="name" value='{{name}}' disabled='{{true}}' />
+      </view>
+      <view class="item-view">
+        <label>报事地点</label>
+        <input id="1" name="address" placeholder="请输入报事地点" placeholder-class="placeholder-text" />
+      </view>
+      <view class="item-view textarea-content">
+        <label>报事详情</label>
+        <textarea id="2" name="detail" placeholder="请输入报事详情" placeholder-class="placeholder-text" />
+      </view>
+    </view>
+
+    <view class="header-view">
+      <view class="tip-view">
+        添加图片(点击添加，长按预览）
+      </view>
+    </view>
+
+    <view class="item-view image-content">
+      <view class="add-image images-view">
+        <block wx:for="{{image}}">
+          <image id='{{index}}' src='{{item}}' bindtap='imageTaped' bindlongtap='imageLongTaped' />
+        </block>
+      </view>
+    </view>
+    <text class='text-button' bindtap='toMyPatrol'>{{"我的历史报事 "}}</text>
+    <button id="submit" formType="submit" type='primary'>提交</button>
+  </form>
+
+
+</view>

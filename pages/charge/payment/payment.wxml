@@ -1,0 +1,33 @@
+<!--pages/payment/payment.wxml-->
+<view class='fee-content'>
+    <label class='totaltitle-label'>待收费总额：</label>
+    <label class='total-fee'>￥{{totalCharge}}</label>
+  </view>
+<scroll-view scroll-y="{{true}}">
+  
+  <!-- <view class="weight-line"></view> -->
+  <!-- <view class='title'>详情：</view> -->
+  <view class='detail-content'>
+    <block wx:for="{{chargeList}}">
+      <view class='item-view'>
+        <label class='fee-name'>{{item.ChargeInfo}}</label>
+        <label class='fee'>￥{{item.Charge}}</label>
+      </view>
+      <!-- <view class='thin-line'></view> -->
+    </block>
+  </view>
+</scroll-view>
+
+
+<!-- <form bindsubmit="submit">
+<view class="form-view">
+  <view class="item-view">
+    <label>凭证号</label>
+    <input id="1" name="userName" placeholder="请输入收费凭证号" placeholder-class="placeholder-text" />
+  </view>
+  </view>
+  <button id="submit" formType="submit" type='primary'>确认收费</button>
+  </form> -->
+
+
+ <button type='primary' bindtap='buttonTaped'>确认收费</button> 

@@ -1,0 +1,33 @@
+<!--pages/wrokOrder/wrokOrder.wxml-->
+<!--pages/login/login.wxml-->
+
+<view class="main-view">
+  <block wx:for="{{requestPaymentList}}">
+    <view id="{{index}}" class="item-view" bindtap="viewTaped">
+      <view class="outline-view">
+        <label class="serial-label">{{item.requestNumber}}</label>
+        <!-- 请款编号 -->
+        <label class="homenum-label">{{item.requestDepartment}}</label>
+        <!-- 请款单位 -->
+        <label class="do-label">{{item.purpose}}</label>
+        <!-- 服务项目 -->
+      </view>
+      <view class="date-view">
+        <view class='image-view'>
+          <view class='temp-view'>
+            <label class='date-label '>{{item.requestTime}}</label>
+          </view>
+          <!-- 报修时间 -->
+        </view>
+        <view class='temp-view'>
+          <label class='date-label'>{{item.requestMan}}</label>
+        </view>
+
+        <view class='temp-view'>
+          <label class='level-label'>￥{{item.requestSum}}</label>
+        </view>
+      </view>
+
+    </view>
+  </block>
+</view>

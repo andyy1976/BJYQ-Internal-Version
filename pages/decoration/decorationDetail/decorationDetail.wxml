@@ -1,0 +1,261 @@
+<!--pages/login/login.wxml-->
+
+<view class="main-view">
+  <view class="main-view">
+    <view class="func-block">
+      <view class="block-header">
+        <view class="tip-view">
+          装修信息
+        </view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>装修施工证编号：</view>
+        <view class='sd-content'>{{decoration.certificateNumber}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>房产编号：</view>
+        <view class='sd-content'>{{decoration.roomNumber}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>业主姓名：</view>
+        <view class='sd-content'>{{decoration.name}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>业主电话：</view>
+        <view class='sd-content call' bindtap='phoneCall' data-phone-number='decoration.phone'>{{decoration.phone}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>客服专员：</view>
+        <view class='sd-content'>{{decoration.attache}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>装修负责人：</view>
+        <view class='sd-content'>{{decoration.decorationMan}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>装修负责人电话：</view>
+        <view class='sd-content call' bindtap='phoneCall' data-phone-number='decoration.decorationPhone'>{{decoration.decorationPhone}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>装修类型：</view>
+        <view class='sd-content'>{{decoration.type}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>装修公司押金交纳人：</view>
+        <view class='sd-content'>{{decoration.decorationCompanyChargeMan}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>装修押金金额：</view>
+        <view class='sd-content'>{{decoration.decorationCharge}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>财务收款人：</view>
+        <view class='sd-content'>{{decoration.decorationChargeReceiver}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>收款时间：</view>
+        <view class='sd-content'>{{decoration.decorationChargeReceiveDate}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>办理时间：</view>
+        <view class='sd-content'>{{decoration.transactTime}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>开工时间：</view>
+        <view class='sd-content'>{{decoration.startTime}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>状态：</view>
+        <view class='sd-content'>{{decoration.status}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>是否封阳台：</view>
+        <view class='sd-content'>{{decoration.needSealingBalcony}}</view>
+      </view>
+    </view>
+    <block wx:if="{{decoration.needSealingBalcony == '是'}}">
+      <view class="func-block">
+        <view class="block-header">
+          <view class="tip-view">
+            封阳台信息
+          </view>
+        </view>
+        <view class="sd-item">
+          <view class='sd-title'>安装单位名称：</view>
+          <view class='sd-content'>{{decoration.installDepartment}}</view>
+        </view>
+        <view class="sd-item">
+          <view class='sd-title'>执照号码：</view>
+          <view class='sd-content'>{{decoration.licenseNumber}}</view>
+        </view>
+        <view class="sd-item">
+          <view class='sd-title'>负责人姓名：</view>
+          <view class='sd-content'>{{decoration.leaderName}}</view>
+        </view>
+        <view class="sd-item">
+          <view class='sd-title'>负责人电话：</view>
+          <view class='sd-content call' bindtap='phoneCall' data-phone-number='decoration.leaderPhone'>{{decoration.leaderPhone}}</view>
+        </view>
+        <view class="sd-item">
+          <view class='sd-title'>押金交纳人：</view>
+          <view class='sd-content'>{{decoration.chargeMan}}</view>
+        </view>
+        <view class="sd-item">
+          <view class='sd-title'>押金金额：</view>
+          <view class='sd-content'>{{decoration.charge}}</view>
+        </view>
+        <view class="sd-item">
+          <view class='sd-title'>收款人：</view>
+          <view class='sd-content'>{{decoration.receiver}}</view>
+        </view>
+        <view class="sd-item">
+          <view class='sd-title'>退款人：</view>
+          <view class='sd-content'>{{decoration.refundMan}}</view>
+        </view>
+        <view class="sd-item">
+          <view class='sd-title'>退款时间：</view>
+          <view class='sd-content'>{{decoration.refundDate}}</view>
+        </view>
+      </view>
+    </block>
+    <form bindsubmit="submit">
+      <block wx:if="{{decoration.needSealingBalcony == '是'}}">
+        <view class="func-block">
+          <view class="block-header">
+            <view class="tip-view">
+              封阳台处理情况
+            </view>
+          </view>
+          <view class="cd-item">
+            <view class='cd-title'>工程指导人员签字：</view>
+            <input class='cd-input'  placeholder-class="cd-placeholder" id="1" name="checkEngineer" value="{{decoration.checkEngineer}}" placeholder="请输入操作人姓名" />
+          </view>
+          <picker id="100" mode="date" name="checkEngineerSignDate" value="{{decoration.checkEngineerSignDate ? decoration.checkEngineerSignDate : ''}}" bindchange="datepickerBindchange">
+            <view class="cd-item">
+              <view class='cd-title'>签字日期</view>
+              <view class='cd-content'>{{decoration.checkEngineerSignDate ? decoration.checkEngineerSignDate : ""}}</view>
+              <image class='cd-next-image' src='../../../images/xiala.png' />
+            </view>
+          </picker>
+          <view class="cd-item">
+            <view class='cd-title'>门岗进场控制签字</view>
+            <input class='cd-input'  placeholder-class="cd-placeholder" id="1" name="accessController" value="{{decoration.accessController}}" placeholder="请输入操作人姓名" />
+          </view>
+          <picker id="200" mode="date" name="accessControllerSignDate" value="{{decoration.accessControllerSignDate ? decoration.accessControllerSignDate : ''}}" bindchange="datepickerBindchange">
+            <view class="cd-item">
+              <view class='cd-title'>签字日期</view>
+              <view class='cd-content'>{{decoration.accessControllerSignDate ? decoration.accessControllerSignDate : ""}}</view>
+              <image class='cd-next-image' src='../../../images/xiala.png' />
+            </view>
+          </picker>
+          <view class="cd-item">
+            <view class='cd-title'>工程确认进场签字</view>
+            <input class='cd-input'  placeholder-class="cd-placeholder" id="1" name="engineeringCheckAccessMan" value="{{decoration.engineeringCheckAccessMan}}" placeholder="请输入操作人姓名" />
+          </view>
+          <picker id="300" mode="date" name="engineeringCheckAccessManSignDate" value="{{decoration.engineeringCheckAccessManSignDate ? decoration.engineeringCheckAccessManSignDate : ''}}" bindchange="datepickerBindchange">
+            <view class="cd-item">
+              <view class='cd-title'>签字日期</view>
+              <view class='cd-content'>{{decoration.engineeringCheckAccessManSignDate ? decoration.engineeringCheckAccessManSignDate : ""}}</view>
+              <image class='cd-next-image' src='../../../images/xiala.png' />
+            </view>
+          </picker>
+          <view class="cd-item">
+            <view class='cd-title'>工程封装巡查签字</view>
+            <input class='cd-input'  placeholder-class="cd-placeholder" id="1" name="engineeringPatrolMan" value="{{decoration.engineeringPatrolMan}}" placeholder="请输入操作人姓名" />
+          </view>
+          <picker id="400" mode="date" name="engineeringPatrolManSignDate" value="{{decoration.engineeringPatrolManSignDate ? decoration.engineeringPatrolManSignDate : ''}}" bindchange="datepickerBindchange">
+            <view class="cd-item">
+              <view class='cd-title'>签字日期</view>
+              <view class='cd-content'>{{decoration.engineeringPatrolManSignDate ? decoration.engineeringPatrolManSignDate : ""}}</view>
+              <image class='cd-next-image' src='../../../images/xiala.png' />
+            </view>
+          </picker>
+          <view class="cd-item">
+            <view class='cd-title'>封装完毕验收签字</view>
+            <input class='cd-input'  placeholder-class="cd-placeholder" id="1" name="engineeringCheckMan" value="{{decoration.engineeringCheckMan}}" placeholder="请输入操作人姓名" />
+          </view>
+          <picker id="500" mode="date" name="engineeringCheckManSignDate" value="{{decoration.engineeringCheckManSignDate ? decoration.engineeringCheckManSignDate : ''}}" bindchange="datepickerBindchange">
+            <view class="cd-item">
+              <view class='cd-title'>签字日期</view>
+              <view class='cd-content'>{{decoration.engineeringCheckManSignDate ? decoration.engineeringCheckManSignDate : ""}}</view>
+              <image class='cd-next-image' src='../../../images/xiala.png' />
+            </view>
+          </picker>
+          <view class="cd-item">
+            <view class='cd-title'>工程主管审核</view>
+            <input class='cd-input'  placeholder-class="cd-placeholder" id="1" name="engineeringManager" value="{{decoration.engineeringManager}}" placeholder="请输入操作人姓名" />
+          </view>
+          <picker id="600" mode="date" name="engineeringManagerSignDate" value="{{decoration.engineeringManagerSignDate ? decoration.engineeringManagerSignDate : ''}}" bindchange="datepickerBindchange">
+            <view class="cd-item">
+              <view class='cd-title'>审核日期</view>
+              <view class='cd-content'>{{decoration.engineeringManagerSignDate ? decoration.engineeringManagerSignDate : ""}}</view>
+              <image class='cd-next-image' src='../../../images/xiala.png' />
+            </view>
+          </picker>
+        </view>
+      </block>
+      <view class="func-block">
+        <view class="block-header">
+          <view class="tip-view">
+            第一次验收情况
+          </view>
+        </view>
+        <view class="cd-item">
+          <view class='cd-title'>验收人</view>
+          <input class='cd-input'  placeholder-class="cd-placeholder" id="1" name="checkMan1" value="{{decoration.checkMan1}}" placeholder="请输入验收人" />
+        </view>
+        <picker id="700" mode="date" name="checkTime1" value="{{decoration.checkTime1 ? decoration.checkTime1 : ''}}" bindchange="datepickerBindchange">
+          <view class="cd-item">
+            <view class='cd-title'>验收时间</view>
+            <view class='cd-content'>{{decoration.checkTime1 ? decoration.checkTime1 : ""}}</view>
+            <image class='cd-next-image' src='../../../images/xiala.png' />
+          </view>
+        </picker>
+        <view class="cd-item">
+          <view class='cd-title'>验收结果</view>
+          <radio-group name="checkResult1" bindchange='resultChange'>
+            <radio class='cd-radio' value='合格' checked='{{decoration.checkResult1 == "合格" ||decoration.checkResult1 == ""}}'>合格</radio>
+            <radio class='cd-radio' value='不合格' checked='{{decoration.checkResult1 == "不合格"}}'>不合格</radio>
+          </radio-group>
+        </view>
+        <view class="cd-item">
+          <view class='cd-title'>验收结果说明</view>
+          <input class='cd-input'  placeholder-class="cd-placeholder" id="1" name="checkResultExplain1" value="{{decoration.checkResultExplain1}}" placeholder="请输入验收结果说明" />
+        </view>
+      </view>
+      <block wx:if="{{decoration.checkResult1 == '不合格'}}">
+        <view class="func-block">
+          <view class="block-header">
+            <view class="tip-view">
+              第一次验收情况
+            </view>
+          </view>
+          <view class="cd-item">
+            <view class='cd-title'>验收人</view>
+            <input class='cd-input'  placeholder-class="cd-placeholder" id="1" name="checkMan2" value="{{decoration.checkMan2}}" placeholder="请输入验收人" />
+          </view>
+          <picker id="800" mode="time" name="checkTime2" value="{{decoration.checkTime2 ? decoration.checkTime2 : ''}}" bindchange="datepickerBindchange">
+            <view class="cd-item">
+              <view class='cd-title'>验收时间</view>
+              <view class='cd-content'>{{decoration.checkTime2 ? decoration.checkTime2 : ""}}</view>
+              <image class='cd-next-image' src='../../../images/xiala.png' />
+            </view>
+          </picker>
+          <view class="cd-item">
+            <view class='cd-title'>验收结果</view>
+            <radio-group name="checkResult2" bindchange='chargeTypeChange'>
+              <radio class='cd-radio' value='合格' checked='{{decoration.checkResult2 == "合格" ||decoration.checkResult2 == ""}}'>合格</radio>
+              <radio class='cd-radio' value='不合格' checked='{{decoration.checkResult2 == "不合格"}}'>不合格</radio>
+            </radio-group>
+          </view>
+          <view class="cd-item">
+            <view class='cd-title'>验收结果说明</view>
+            <input class='cd-input'  placeholder-class="cd-placeholder" id="1" name="checkResultExplain2" value="{{decoration.checkResultExplain2}}" placeholder="请输入验收结果说明" />
+          </view>
+        </view>
+      </block>
+      <button id="submit" formType="submit" type='primary'>确认提交</button>
+    </form>
+  </view>
+  <view class="footer-view"></view>
+</view>

@@ -1,0 +1,182 @@
+<!--pages/login/login.wxml-->
+
+<view class="main-view">
+  <view class="header-view">
+    <view class="tip-view">
+      工单详情
+    </view>
+  </view>
+  <form bindsubmit="submit">
+
+    <view class="form-view">
+      <view class="item-view">
+        <label>序号</label>
+        <label class='input'>{{repairOrder.SerialNumber}}</label>
+      </view>
+      <view class="item-view">
+        <label>地址</label>
+        <label class='input'>{{repairOrder.Address}}</label>
+      </view>
+      <view class="item-view">
+        <label>报修人</label>
+        <label class='input'>{{repairOrder.RepairPerson}}</label>
+      </view>
+      <view class="item-view">
+        <label>联系电话</label>
+        <label class='input'>{{repairOrder.PhoneNumber}}</label>
+      </view>
+      <view class="item-view">
+        <label>报修时间</label>
+        <label class='input'>{{repairOrder.RepairTime}}</label>
+      </view>
+      <view class="item-view">
+        <label>预约时间</label>
+        <label class='input'>{{repairOrder.OrderTime}}</label>
+      </view>
+      <view class="item-view">
+        <label>紧急程度</label>
+        <label class='input'>{{repairOrder.Level}}</label>
+      </view>
+      <view class="item-view">
+        <label>服务项目</label>
+        <label class='input'>{{repairOrder.ServiceProject}}</label>
+      </view>
+    </view>
+
+    <view class="header-view">
+      <view class="tip-view">
+        工单处理
+      </view>
+    </view>
+    <!-- <form bindsubmit="submit"> -->
+    <view class="form-view">
+      <view class="item-view">
+        <label>完成情况</label>
+        <input id="1" name="completeStatus" value="{{repairOrder.CompleteStatus}}" disabled='{{true}}' />
+      </view>
+      <!-- <view class="item-view">
+          <label>收费类别</label>
+          <label class='input'>{{repairOrder.Address}}</label>
+        </view> -->
+      <view class="item-view">
+        <label>材料费</label>
+        <input id="2" name="materialExpense" value="{{repairOrder.MaterialExpense}}" disabled='{{true}}' />
+      </view>
+      <view class="item-view">
+        <label>人工费</label>
+        <input id="3" name="laborExpense" value="{{repairOrder.LaborExpense}}" disabled='{{true}}' />
+      </view>
+      <!-- <picker id="100" mode="time" name="arriveTime" value="{{repairOrder.ArriveTime ? repairOrder.ArriveTime : toDay}}" bindchange="datepickerBindchange"> -->
+        <view class="item-view">
+          <label>到场时间</label>
+          <label class='input'>{{repairOrder.ArriveTime ? repairOrder.ArriveTime : ""}}</label>
+        </view>
+      <!-- </picker> -->
+      <!-- <picker id="200" mode="time" name="completeTime" value="{{repairOrder.CompleteTime ? repairOrder.CompleteTime : toDay}}" bindchange="datepickerBindchange"> -->
+        <view class="item-view">
+          <label>完成时间</label>
+          <label class='input'>{{repairOrder.CompleteTime ? repairOrder.CompleteTime : ""}}</label>
+        </view>
+      <!-- </picker> -->
+      <!-- <picker id="3" mode="date" value="{{pageData[3].value}}" bindchange="datepickerBindchange">
+        <view class="item-view" id="104" bindtap="viewTap">
+          <label class="blabel">{{pageData[3].showValue}}</label>
+          <label>{{pageData[3].value}}</label>
+        </view>
+      </picker> -->
+      <!-- <view class="item-view">
+          <label>服务项目</label>
+          <label class='input'>{{repairOrder.ServiceProject}}</label>
+        </view> -->
+    </view>
+    <view class="header-view">
+      <view class="tip-view">
+        报修前照片
+      </view>
+    </view>
+    <view class="form-view">
+      <view class="add-image images-view">
+        <block wx:for="{{beforeImage}}">
+          <image id='{{index}}' src='{{item}}' bindtap='beforeImageTaped' />
+          <!-- <image id='{{index}}' src='{{item}}' bindtap='beforeImageTaped' bindlongtap='beforeImageLongTaped' /> -->
+        </block>
+      </view>
+    </view>
+    <view class="header-view">
+      <view class="tip-view">
+        处理后照片
+      </view>
+    </view>
+    <view class="form-view">
+      <view class="add-image images-view">
+        <block wx:for="{{afterImage}}">
+          <image id='{{index}}' src='{{item}}' bindtap='afterImageTaped' bindlongpress='afterImageLongTaped' />
+        </block>
+      </view>
+    </view>
+
+
+    <view class="header-view">
+      <view class="tip-view">
+        业主确认
+      </view>
+    </view>
+    <!-- <form bindsubmit="submit"> -->
+    <view class="form-view">
+      <view class="item-view">
+        <label>确认完成</label>
+        <input id="1" name="completeStatus" value="{{repairOrder.AffirmComplete}}" disabled='{{true}}' />
+      </view>
+      <view class="item-view">
+        <label>确认时间</label>
+        <input id="1" name="completeStatus" value="{{repairOrder.AffirmCompleteTime}}" disabled='{{true}}' />
+      </view>
+      <!-- <view class="item-view">
+          <label>收费类别</label>
+          <label class='input'>{{repairOrder.Address}}</label>
+        </view> -->
+      <view class="item-view">
+        <label>是否满意</label>
+        <input id="2" name="materialExpense" value="{{repairOrder.IsSatisfying}}" disabled='{{true}}' />
+      </view>
+      <view class="item-view">
+        <label>业主评价</label>
+        <input id="2" name="materialExpense" value="{{repairOrder.AffirmCompleteEvaluation}}" disabled='{{true}}' />
+      </view>
+    </view>
+
+
+    <view class="header-view">
+      <view class="tip-view">
+        回访情况
+      </view>
+    </view>
+    <!-- <form bindsubmit="submit"> -->
+    <view class="form-view">
+      <view class="item-view">
+        <label>回访人</label>
+        <input id="1"  value="{{repairOrder.CallBackPerson}}"disabled='{{true}}' />
+      </view>
+      <!-- <view class="item-view">
+          <label>收费类别</label>
+          <label class='input'>{{repairOrder.Address}}</label>
+        </view> -->
+      <view class="item-view">
+        <label>回访时间</label>
+        <input id="2"  value="{{repairOrder.CallBackTime}}" disabled='{{true}}' />
+      </view>
+      
+    <view class="item-view">
+      <label>业主评价</label>
+      <input id="2" value="{{repairOrder.CallBackEvaluation}}" disabled='{{true}}' />
+    </view>
+    </view>
+
+
+
+
+<!-- 
+    <button id="submit" formType="submit" type='primary' hidden='{{repairOrder.status =="已完成" ? true : false}}'>确认提交</button> -->
+    <view class="footer-view"></view>
+  </form>
+</view>

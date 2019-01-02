@@ -1,0 +1,42 @@
+
+page {
+  background-color: whitesmoke;
+}
+
+
+.item-view{
+  height: 100rpx;
+  display: flex;
+  background-color: white;
+  border-bottom: 1rpx solid whitesmoke;
+}
+
+
+.project-view {
+  font-size: 34rpx;
+  color: black;
+  line-height: 100rpx;
+  width: 270rpx;
+  padding-left: 40rpx;
+}
+
+.count-view {
+  display: flex;
+  width: 500rpx;
+  margin-left: 100rpx;
+}
+
+.count-title-view {
+  width: 220rpx;
+  color: #343434;
+  line-height: 100rpx;
+  font-size: 30rpx;
+}
+
+.count-number-view {
+  width: 140rpx;
+  /* margin-left: 10rpx; */
+  font-size: 30rpx;
+  line-height: 100rpx;
+  color: #df9c0c;
+}

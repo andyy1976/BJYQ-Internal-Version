@@ -1,0 +1,267 @@
+<view class='date-view'>
+  <!-- <block wx:for="{{choose}}"> -->
+    <view id='{{choose[0].num}}' class='date-choose-view {{choose[0].isChoose}}' bindtap='chooseTaped'>
+      {{choose[0].name}}
+    </view>
+    <view id='{{choose[1].num}}' class='date-choose-view {{choose[1].isChoose}}' bindtap='chooseTaped'>
+      {{choose[1].name}}
+    </view>
+    <view id='{{choose[2].num}}' class='date-choose-view {{choose[2].isChoose}}' bindtap='chooseTaped'>
+      {{choose[2].name}}
+    </view>
+    <view id='{{choose[3].num}}' class='date-choose-view {{choose[3].isChoose}}' bindtap='chooseTaped'>
+      {{choose[3].name}}
+    </view>
+  <!-- </block> -->
+  <!-- <view class='date-choose-view {{choose2}}'>
+    近两个月
+  </view>
+  <view class='date-choose-view {{choose3}}'>
+    近三个月
+  </view>
+  <view class='date-choose-view {{choose4}}'>
+    近四个月
+  </view> -->
+  <!-- <view class='date-title-view'>查询时段：</view>
+  <view class='date-choose-view'>
+    <view class='choose-detail-view'>
+
+    </view>
+    <image src='../../../images/xiala.png' />
+  </view> -->
+</view>
+
+
+
+
+<block wx:if="{{level == '助理' || level == '项目经理'}}">
+  <view class='header-view'>
+    <view class='header-name-view'>
+      {{statistics.ztName}}
+    </view>
+    <view class='header-project-view'>
+    </view>
+  </view>
+
+  <view class='title-view'>
+    投诉情况
+  </view>
+
+  <view class='item-view'>
+    <view class='top-view'>
+      <view class='top-title-view'>
+        投诉总数
+      </view>
+      <view class='top-count-view'>
+        {{statistics.countReceive}}
+      </view>
+    </view>
+    <view class='bottom-view'>
+      <view class='bottom-detail-view'>
+        <view class='detail-title-view'>
+          有效投诉数
+        </view>
+        <view class='detail-count-view'>
+          {{statistics.countValid}}
+        </view>
+        <view class='detail-percent-view'>
+          {{statistics.rateValid}}
+        </view>
+      </view>
+      <view class='bottom-detail-view'>
+        <view class='detail-title-view'>
+          无效投诉数
+        </view>
+        <view class='detail-count-view'>
+          {{statistics.countInvalid}}
+        </view>
+        <view class='detail-percent-view'>
+          {{statistics.rateInvalid}}
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class='title-view'>
+    处理情况
+  </view>
+
+  <view class='item-view'>
+    <view class='top-view'>
+      <view class='top-title-view'>
+        应解决总数
+      </view>
+      <view class='top-count-view'>
+        {{statistics.countValid}}
+      </view>
+    </view>
+    <view class='bottom-view'>
+      <view class='bottom-detail-view'>
+        <view class='detail-title-view'>
+          已解决数
+        </view>
+        <view class='detail-count-view'>
+          {{statistics.countFinished}}
+        </view>
+        <view class='detail-percent-view'>
+          {{statistics.rateFinished}}
+        </view>
+      </view>
+      <view class='bottom-detail-view'>
+        <view class='detail-title-view'>
+          未解决数
+        </view>
+        <view class='detail-count-view'>
+          {{statistics.countUnfinished}}
+        </view>
+        <view class='detail-percent-view'>
+          {{statistics.rateUnfinished}}
+        </view>
+      </view>
+      <view class='bottom-detail-view'>
+        <view class='detail-title-view'>
+          已关闭数
+        </view>
+        <view class='detail-count-view'>
+          {{statistics.countClosed}}
+        </view>
+        <view class='detail-percent-view'>
+          {{statistics.rateClosed}}
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='title-view'>
+    查看各接单人统计
+  </view>
+  <view class='list-view'>
+    <view id='{{index}}' class='list-item-view' wx:for="{{statistics.complainStatistics}}" bindtap='viewTaped' data-level='接单人'>
+      <view class='item-text-view'>
+        {{item.name}}
+      </view>
+      <image class='item-image' src='../../../images/xiayiye.png' />
+    </view>
+  </view>
+</block>
+
+
+
+
+<block wx:if="{{level == '公司'}}">
+  <view class='header-view'>
+    <view class='header-name-view'>
+      全公司统计
+    </view>
+    <view class='header-project-view'>
+    </view>
+  </view>
+
+  <view class='title-view'>
+    投诉情况
+  </view>
+
+  <view class='item-view'>
+    <view class='top-view'>
+      <view class='top-title-view'>
+        投诉总数
+      </view>
+      <view class='top-count-view'>
+        {{statistics.countReceive}}
+      </view>
+    </view>
+    <view class='bottom-view'>
+      <view class='bottom-detail-view'>
+        <view class='detail-title-view'>
+          有效投诉数
+        </view>
+        <view class='detail-count-view'>
+          {{statistics.countValid}}
+        </view>
+        <view class='detail-percent-view'>
+          {{statistics.rateValid}}
+        </view>
+      </view>
+      <view class='bottom-detail-view'>
+        <view class='detail-title-view'>
+          无效投诉数
+        </view>
+        <view class='detail-count-view'>
+          {{statistics.countInvalid}}
+        </view>
+        <view class='detail-percent-view'>
+          {{statistics.rateInvalid}}
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class='title-view'>
+    处理情况
+  </view>
+
+  <view class='item-view'>
+    <view class='top-view'>
+      <view class='top-title-view'>
+        应解决总数
+      </view>
+      <view class='top-count-view'>
+        {{statistics.countValid}}
+      </view>
+    </view>
+    <view class='bottom-view'>
+      <view class='bottom-detail-view'>
+        <view class='detail-title-view'>
+          已解决数
+        </view>
+        <view class='detail-count-view'>
+          {{statistics.countFinished}}
+        </view>
+        <view class='detail-percent-view'>
+          {{statistics.rateFinished}}
+        </view>
+      </view>
+      <view class='bottom-detail-view'>
+        <view class='detail-title-view'>
+          未解决数
+        </view>
+        <view class='detail-count-view'>
+          {{statistics.countUnfinished}}
+        </view>
+        <view class='detail-percent-view'>
+          {{statistics.rateUnfinished}}
+        </view>
+      </view>
+      <view class='bottom-detail-view'>
+        <view class='detail-title-view'>
+          已关闭数
+        </view>
+        <view class='detail-count-view'>
+          {{statistics.countClosed}}
+        </view>
+        <view class='detail-percent-view'>
+          {{statistics.rateClosed}}
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='title-view'>
+    查看各项目统计
+  </view>
+  <view class='list-view'>
+    <view id='{{index}}' class='list-item-view' wx:for="{{statistics.complainStatisticsProject}}" bindtap='viewTaped' data-level='项目'>
+      <view class='item-text-view'>
+        {{item.ztName}}
+      </view>
+      <image class='item-image' src='../../../images/xiayiye.png' />
+    </view>
+  </view>
+</block>
+
+
+
+
+
+
+
+
+<view class='foot-view'></view>

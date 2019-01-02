@@ -1,0 +1,47 @@
+<!--pages/wrokOrder/wrokOrder.wxml-->
+<!--pages/login/login.wxml-->
+
+<view class="main-view">
+  <view class='yi-button' bindtap='toComplainOrder'>
+  <image class='doneImage' src='../../../images/shangyiye.png'/>
+  <text>{{"   返回未处理投诉"}}</text>
+  </view>
+  <!-- <view class='sort-view'>
+    <text id='repairs' class='{{repairsTime ? "choose" : "nonChoose"}}' bindtap='sortTextTaped'>报修时间</text>
+    <text id='book'  class='{{bookTime ? "choose" : "nonChoose"}}' bindtap='sortTextTaped'>预约时间</text>
+    <text id='dispatch'  class='{{dispatchTime ? "choose" : "nonChoose"}}' bindtap='sortTextTaped'>派工时间</text> 
+  </view>
+
+  <picker range='{{filtrateList}}' bindchange='filtrateStatus' value='{{filtrateIndex}}'>
+    <view class='filtrate-view'>
+      <view class='title-text'>筛选：</view>
+      <view class='filtrate-text'>{{filtrateList[filtrateIndex]}}</view>
+      <image class='dropDown-image' src='../../../images/xiala.png'/>
+    </view>
+  </picker> -->
+  
+ <scroll-view scroll-y="{{true}}" bindscrolltoupper="scrolltoupper"> 
+<block wx:for= "{{filtrateOrder}}">
+    <view id="{{index}}" class="item-view" bindtap="viewTaped">
+      <view class="outline-view">
+        <label class="serial-label">{{item.Number}}</label><!-- 工单编号 -->
+        <label class="homenum-label">{{item.Address}}</label><!-- 地址 -->
+        <label class="do-label">{{item.Content}}</label><!-- 服务项目 -->
+      </view>
+      <view class="date-view">
+      <view class='image-view'>
+      <view class='temp-view'><label class='date-label '>投诉时间：</label></view><!-- 报修时间 -->
+      
+      <image src="{{item.IsRead == 0 ? '../../../images/new.png' : ''}}"></image>
+      </view>
+        <view><label class='date-label'>{{item.ReceptionDate}}</label></view>
+        <!-- <view class='status-view'><label class='status-label'>{{item.status}}</label></view> -->
+        <view class='status-view {{item.status == "已派单" ? "status-red" : item.status == "已现场确认" ? "status-orange" : item.status == "维修中" ? "status-green" : "status-blue"}}'>{{item.status}}</view>
+      </view>
+        
+    </view>
+</block>
+ </scroll-view> 
+</view>
+
+

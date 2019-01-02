@@ -1,0 +1,95 @@
+/* pages/login/login.wxss */
+@import "../../../commonCss/common.wxss";
+
+.sd-title {
+  width: 260rpx;
+  color: black;
+}
+
+.cd-title {
+  width: 300rpx;
+  color: black;
+}
+
+.cd-content {
+  background-color: white;
+  width: 330rpx;
+  margin-left: 10rpx;
+  color: #606060;
+}
+
+.cd-input {
+  background-color: white;
+  margin-left: 10rpx;
+  color: #606060;
+  width: 360rpx;
+}
+
+.cd-radio {
+  margin-left: 10rpx;
+  color: #606060;
+}
+
+.sdl-item {
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  background-color: white;
+  font-size: 28rpx;
+}
+
+.sdl-title {
+  width: 40rpx;
+  color: black;
+}
+
+.sdl-content {
+  background-color: white;
+  margin-left: 5rpx;
+  color: #606060;
+}
+
+.patrolItems-view {
+  /* width: 750rpx; */
+  /* height: 80rpx; */
+  font-size: 28rpx;
+  padding: 10rpx;
+  background-color: white;
+  border-bottom: 0.5rpx solid whitesmoke;
+}
+
+
+
+
+
+button {
+  margin: 20rpx;
+  margin-top: 60rpx;
+  /* background-color: rgb(53, 178, 168); */
+  color: white;
+  font-size: 32rpx;
+}
+
+.footer-view {
+  height: 80rpx;
+}
+
+
+
+#submit {
+  margin-top: 120rpx;
+  /* margin-bottom: 80rpx; *//* background-color: #fff; */
+}
+
+#cancel {
+  margin-top: 40rpx;
+  background-color: palevioletred;
+}
+
+
+
+
+

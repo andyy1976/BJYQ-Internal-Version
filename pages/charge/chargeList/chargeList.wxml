@@ -1,0 +1,37 @@
+<!-- <view class="main-view">
+ 
+
+<block wx:for= "{{chargedList}}">
+    <view id="{{index}}" class="item-view" bindtap="viewTaped">
+      <view class="outline-view">
+        <label class="serial-label">{{item.RoomNumber}}</label>
+        <label class="homenum-label">{{item.Name}}</label>
+      </view>
+      <view class="date-view">
+        <label>应收总额：￥{{item.Total}}</label>
+      </view>
+    </view>
+</block>
+
+</view> -->
+
+
+
+  <block wx:for="{{chargedList}}">
+    <view id="{{index}}" class="item-view" bindtap="viewTaped">
+      <view class='left'>
+        <!-- 房产编号 -->
+        <view class='item-number'>{{item.RoomNumber}}</view>
+        <!-- 业主姓名 -->
+        <view class='item-child'>
+          <view class='item-title'>业主姓名：</view>
+          <view class='item-info'>{{item.Name}}</view>
+        </view>
+        <!-- 已收总额 -->
+        <view class='item-child'>
+          <view class='item-title'>应收总额：</view>
+          <view class='item-info orange'>￥{{item.Total}}</view>
+        </view>
+      </view>
+    </view>
+  </block>

@@ -1,0 +1,32 @@
+<view class="main-view">
+
+  <scroll-view scroll-y="{{true}}" bindscrolltoupper="scrolltoupper">
+
+    <block wx:for="{{needPatrolDecorations}}">
+      <view id="{{index}}" class="list-item" bindtap="viewTaped">
+        <view class='list-item-left'>
+          <view class='list-item-number'>{{item.roomNumber}}</view>
+          <view class='list-item-child'>
+            <view class='list-item-child-title'>装修联系人：</view>
+            <view class='list-item-child-info'>{{item.name}}</view>
+          </view>
+          <view class='list-item-child'>
+            <view class='list-item-child-title'>联系人电话：</view>
+            <view class='list-item-child-info'>{{item.phone}}</view>
+          </view>
+          <view class='list-item-child'>
+            <view class='list-item-child-title'>装修负责人：</view>
+            <view class='list-item-child-info'>{{item.decorationMan}}</view>
+          </view>
+          <view class='list-item-child'>
+            <view class='list-item-child-title'>装修类型：</view>
+            <view class='list-item-child-info'>{{item.type}}</view>
+          </view>
+        </view>
+        <!-- <view class='list-item-right'>
+          <image src="{{item.IsRead == 0 ? '../../../images/new.png ' : ' '}}"></image>
+        </view> -->
+      </view>
+    </block>
+  </scroll-view>
+</view>

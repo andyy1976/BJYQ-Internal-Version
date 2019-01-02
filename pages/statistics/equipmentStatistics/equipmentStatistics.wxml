@@ -1,0 +1,136 @@
+<view class='date-view'>
+
+</view>
+
+<block wx:if="{{level == '助理' || level == '项目经理'}}">
+  <view class='header-view'>
+    <view class='header-name-view'>
+      {{statistics.ztName}}
+    </view>
+    <!-- <view class='header-project-view'>
+      <view class='project-name-view'>
+        {{statistics.ztName}}
+      </view>
+    </view> -->
+  </view>
+
+  <view class='title-view'>
+    完成情况
+  </view>
+
+  <view class='item-view'>
+    <view class='top-view'>
+      <view class='top-title-view'>
+        本月应保养总数
+      </view>
+      <view class='top-count-view'>
+        {{statistics.countShouldFinished}}
+      </view>
+    </view>
+    <view class='bottom-view'>
+      <view class='bottom-detail-view'>
+        <view class='detail-title-view'>
+          本月已保养数
+        </view>
+        <view class='detail-count-view'>
+          {{statistics.countFinished}}
+        </view>
+        <view class='detail-percent-view'>
+          {{statistics.rateFinished}}
+        </view>
+      </view>
+      <view class='bottom-detail-view'>
+        <view class='detail-title-view'>
+          本月未保养数
+        </view>
+        <view class='detail-count-view'>
+          {{statistics.countUnfinished}}
+        </view>
+        <view class='detail-percent-view'>
+          {{statistics.rateUnfinished}}
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+</block>
+
+
+
+
+
+
+
+
+
+<block wx:if="{{level == '公司'}}">
+  <view class='header-view'>
+    <view class='header-name-view'>
+      全公司统计
+    </view>
+    <view class='header-project-view'>
+    </view>
+  </view>
+
+  <view class='title-view'>
+    完成情况
+  </view>
+
+  <view class='item-view'>
+    <view class='top-view'>
+      <view class='top-title-view'>
+        应保养总数
+      </view>
+      <view class='top-count-view'>
+        {{statistics.countShouldFinished}}
+      </view>
+    </view>
+    <view class='bottom-view'>
+      <view class='bottom-detail-view'>
+        <view class='detail-title-view'>
+          完成数
+        </view>
+        <view class='detail-count-view'>
+          {{statistics.countFinished}}
+        </view>
+        <view class='detail-percent-view'>
+          {{statistics.rateFinished}}
+        </view>
+      </view>
+      <view class='bottom-detail-view'>
+        <view class='detail-title-view'>
+          未完成数
+        </view>
+        <view class='detail-count-view'>
+          {{statistics.countUnfinished}}
+        </view>
+        <view class='detail-percent-view'>
+          {{statistics.rateUnfinished}}
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+  <view class='title-view'>
+    查看各项目统计
+  </view>
+  <view class='list-view'>
+    <view id='{{index}}' class='list-item-view' wx:for="{{statistics.equipmentStatisticsProjects}}" bindtap='viewTaped' data-level='项目'>
+      <view class='item-text-view'>
+        {{item.ztName}}
+      </view>
+      <image class='item-image' src='../../../images/xiayiye.png' />
+    </view>
+  </view>
+</block>
+
+
+
+
+
+
+
+
+<view class='foot-view'></view>

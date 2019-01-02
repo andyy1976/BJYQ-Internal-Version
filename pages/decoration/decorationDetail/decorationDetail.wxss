@@ -1,0 +1,58 @@
+/* pages/login/login.wxss */
+@import "../../../commonCss/common.wxss";
+
+.sd-title {
+  width: 280rpx;
+  color: black;
+}
+.cd-title {
+  width: 280rpx;
+  color: black;
+}
+
+.cd-content {
+  background-color: white;
+  width: 350rpx;
+  margin-left: 10rpx;
+  color: #606060;
+}
+
+.cd-input {
+  background-color: white;
+  margin-left: 10rpx;
+  color: #606060;
+  width: 380rpx;
+}
+
+
+.main-view {
+    width:750rpx;
+}
+
+
+button {
+    margin: 20rpx;
+    margin-top:60rpx;
+    /* background-color: rgb(53, 178, 168); */
+    color: white;
+    font-size: 32rpx;
+}
+.footer-view {
+  height: 80rpx;
+}
+
+#submit {
+   margin-top: 120rpx; 
+}
+#cancel {
+  margin-top: 40rpx;
+  background-color: palevioletred;
+}
+
+
+.call {
+  color: blue;
+  text-decoration:underline;
+}
+
+

@@ -1,0 +1,23 @@
+
+<block wx:for= "{{report}}">
+    <view id="{{index}}" class="item-view" bindtap="viewTaped">
+      <view class="outline-view">
+        <label class="serial-label">{{item.SerialNumber}}</label><!-- 工单编号 -->
+        <label class="homenum-label">{{item.Address}}</label><!-- 地址 -->
+        <label class="do-label">{{item.ServiceProject}}</label><!-- 服务项目 -->
+      </view>
+      <view class="date-view">
+      <view class='image-view'>
+      <view class='temp-view'><label class='date-label '>报修时间：</label></view><!-- 报修时间 -->
+      
+      <image src="{{item.IsRead == 0 ? '../../../images/new.png' : ''}}"></image>
+      </view>
+        <view><label class='date-label'>{{item.RepairTime}}</label></view>
+
+        <view><label class='level-label'>{{item.type}}</label></view>
+        <!-- <view class='status-view'><label class='status-label'>{{item.status}}</label></view> -->
+        <!-- <view class='status-view {{item.status == "已派单" ? "status-red" : item.status == "已现场确认" ? "status-orange" : item.status == "维修中" ? "status-green" : "status-blue"}}'>{{item.status}}</view> -->
+      </view>
+        
+    </view>
+</block>

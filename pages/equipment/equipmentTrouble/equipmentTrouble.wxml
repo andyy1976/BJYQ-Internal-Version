@@ -1,0 +1,70 @@
+<view class="main-view">
+  <!-- <view class='search-view' >
+    <view>
+      <image src='../../../images/sousuo.png' />
+      <input placeholder='输入设备编号筛选设备...' bindinput='searchEquipment'/>
+    </view>
+  </view> -->
+  <view class="header-view">
+    <view id="dai" class='switch-view {{dai}}' bindtap='switchViewTaped'>
+      待处理
+    </view>
+    <view id="yi" class='switch-view {{yi}}' bindtap='switchViewTaped'>
+      已处理
+    </view>
+  </view>
+  <scroll-view scroll-y="{{true}}" bindscrolltoupper="scrolltoupper">
+    <!-- <block wx:for="{{filtrateEquipmentTroubleList}}">
+      <view id="{{index}}" class="item-view" bindtap="viewTaped">
+        <view class="outline-view">
+          <label class="serial-label">{{item.number}}</label>
+          <label class="homenum-label">{{item.name}}</label>
+          <label class="homenum-label">{{item.brokenInfo}}</label>
+        </view>
+        <view class="outline-view">
+          <label class="homenum-label">{{item.receiveTime}}</label>
+          <label class="homenum-label">{{item.repairTimeLimit}}</label>
+          <label class="do-label">{{item.status}}</label>
+        </view>
+      </view>
+    </block> -->
+
+    <block wx:for="{{filtrateEquipmentTroubleList}}">
+      <view id="{{index}}" class="list-item" bindtap="viewTaped">
+        <view class='list-item-left'>
+          <!-- 工单编号 -->
+          <view class='list-item-number'>{{item.number}}</view>
+          <!-- 房号 -->
+          <view class='list-item-child'>
+            <view class='list-item-child-title'>设备名称：</view>
+            <view class='list-item-child-info'>{{item.name}}</view>
+          </view>
+          <!-- 房号 -->
+          <view class='list-item-child'>
+            <view class='list-item-child-title'>故障描述：</view>
+            <view class='list-item-child-info'>{{item.brokenInfo}}</view>
+          </view>
+          <!-- 房号 -->
+          <view class='list-item-child'>
+            <view class='list-item-child-title'>接单时间：</view>
+            <view class='list-item-child-info'>{{item.receiveTime}}</view>
+          </view>
+          <!-- 房号 -->
+          <view class='list-item-child'>
+            <view class='list-item-child-title'>维修时限：</view>
+            <view class='list-item-child-info'>{{item.repairTimeLimit}}</view>
+          </view>
+          <!-- 房号 -->
+          <view class='list-item-child'>
+            <view class='list-item-child-title'>状态：</view>
+            <view class='list-item-child-info'>{{item.status}}</view>
+          </view>
+        </view>
+        <view class='list-item-right'>
+          <image src="{{item.IsRead == 0 ? '../../../images/new.png ' : ' '}}"></image>
+          <!-- <image src="../../../images/new.png"></image> -->
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+</view>

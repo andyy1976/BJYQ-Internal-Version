@@ -1,0 +1,18 @@
+
+<view class="main-view">
+ 
+
+<block wx:for= "{{proprietorList}}">
+    <view id="{{index}}" class="item-view" bindtap="viewTaped">
+      <view class="outline-view">
+        <label class="serial-label">{{item.RoomNumber}}</label>
+        <label class="homenum-label">{{item.Name}}</label>
+        <label class="do-label">{{item.Phone}}</label>
+      </view>
+      <view class="date-view">
+        <label>{{item.RoomAddress}}</label>
+      </view>
+    </view>
+</block>
+
+</view>

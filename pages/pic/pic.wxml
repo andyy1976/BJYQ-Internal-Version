@@ -1,0 +1,14 @@
+<!--pages/pic/pic.wxml-->
+<text>pages/pic/pic.wxml</text>
+<view class='main-view'>
+  <block wx:for="{{pictures}}">
+    <view class="pic-view">
+      <image src="{{item.src}}"></image>
+      <view class="content-view">
+        <label>{{item.num}}</label>
+        <label>{{item.count}}</label>
+        <button>投票</button>
+      </view>
+    </view>
+  </block>
+</view>

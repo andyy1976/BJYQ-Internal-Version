@@ -1,0 +1,58 @@
+<!--pages/equipmentSearch/equipmentSearch.wxml-->
+<view class='search-view'>
+  <input placeholder='请输入设备运行编号...' value="{{Number}}" focus="{{true}}" bindinput='input' />
+  <image src='../../../images/saoma.png' bindtap='scan' />
+</view>
+<view class='main-view'>
+  <view hidden='{{pageHidden}}'>
+    <!-- <view class="header-view">
+      <view class="tip-view">
+        设备信息
+      </view>
+    </view> -->
+
+    <view class="func-block">
+      <view class="block-header">
+        <view class="tip-view">
+          设备信息
+        </view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>设备编号:</view>
+        <view class='sd-content'>{{equipment.Number}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>设备名称：</view>
+        <view class='sd-content'>{{equipment.Name}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>系统名称：</view>
+        <view class='sd-content'>{{equipment.SystemName}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>安装地点：</view>
+        <view class='sd-content'>{{equipment.UseAddress}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>出厂日期：</view>
+        <view class='sd-content'>{{equipment.ProductionDate}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>使用日期：</view>
+        <view class='sd-content'>{{equipment.UseDate}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>设计寿命：</view>
+        <view class='sd-content'>{{equipment.DesignedLife}}年</view>
+      </view>
+      <view class='button-view' bindtap='checkMaintainRecord'>
+      查看保养记录
+    </view>
+    </view>
+
+
+    
+  </view>
+</view>
+
+<button type='primary' bindtap='buttonTaped'>查询</button>

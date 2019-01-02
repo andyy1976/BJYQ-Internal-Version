@@ -1,0 +1,19 @@
+<!--pages/wrokOrder/wrokOrder.wxml-->
+<!--pages/login/login.wxml-->
+<view class="header-view">
+  <view id="day" class='switch-view {{day}}' bindtap='switchViewTaped'>
+      日巡检
+    </view>
+    <view id="week" class='switch-view {{week}}' bindtap='switchViewTaped'>
+      周巡检
+    </view>
+  </view>
+<view class="main-view">
+  <block wx:for="{{objects}}">
+    <view id="{{index}}" class="item-view" bindtap="viewTaped" data-can-touch='{{!item.isLook}}'>
+      <image src="{{item.isLook == false ? '../../../images/zuobiaogreen.png' : '../../../images/zuobiao.png'}}" />
+      <view class="outline-view {{item.isLook == false ? 'color-black' : 'color-gray'}}">{{item.name}}</view>
+      <image src='../../../images/xiayiye.png' />
+    </view>
+  </block>
+</view>

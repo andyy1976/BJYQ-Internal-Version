@@ -1,0 +1,99 @@
+<view class='header-view'>
+  <view class='header-name-view'>
+    {{statistics.ztName}}
+  </view>
+  <!-- <view class='header-project-view'>
+      <view class='project-name-view'>
+        {{statistics.ztName}}
+      </view>
+    </view> -->
+</view>
+
+<view class='title-view'>
+  完成情况
+</view>
+
+<view class='item-view'>
+  <view class='top-view'>
+    <view class='top-title-view'>
+      应保养总数
+    </view>
+    <view class='top-count-view'>
+      {{statistics.countShouldFinished}}
+    </view>
+  </view>
+  <view class='bottom-view'>
+    <view class='bottom-detail-view'>
+      <view class='detail-title-view'>
+        已保养数
+      </view>
+      <view class='detail-count-view'>
+        {{statistics.countFinished}}
+      </view>
+      <view class='detail-percent-view'>
+        {{statistics.rateFinished}}
+      </view>
+    </view>
+    <view class='bottom-detail-view'>
+      <view class='detail-title-view'>
+        未保养数
+      </view>
+      <view class='detail-count-view'>
+        {{statistics.countUnfinished}}
+      </view>
+      <view class='detail-percent-view'>
+        {{statistics.rateUnfinished}}
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- <view class='title-view'>
+    评价情况
+  </view>
+
+  <view class='item-view'>
+    <view class='top-view'>
+      <view class='top-title-view'>
+        评价总数
+      </view>
+      <view class='top-count-view'>
+        {{statistics.countEvaluation}}
+      </view>
+    </view>
+    <view class='bottom-view'>
+      <view class='bottom-detail-view'>
+        <view class='detail-title-view'>
+          非常满意数
+        </view>
+        <view class='detail-count-view'>
+          {{statistics.countVerySatisfy}}
+        </view>
+        <view class='detail-percent-view'>
+          {{statistics.rateVerySatisfy}}
+        </view>
+      </view>
+      <view class='bottom-detail-view'>
+        <view class='detail-title-view'>
+          满意数
+        </view>
+        <view class='detail-count-view'>
+          {{statistics.countSatisfy}}
+        </view>
+        <view class='detail-percent-view'>
+          {{statistics.rateSatisfy}}
+        </view>
+      </view>
+      <view class='bottom-detail-view'>
+        <view class='detail-title-view'>
+          不满意数
+        </view>
+        <view class='detail-count-view'>
+          {{statistics.countUnsatisfy}}
+        </view>
+        <view class='detail-percent-view'>
+          {{statistics.rateUnsatisfy}}
+        </view>
+      </view>
+    </view>
+  </view> -->

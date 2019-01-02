@@ -1,0 +1,168 @@
+
+
+<view class="main-view">
+
+  <!-- ================================================================= -->
+
+  <!-- <form bindsubmit="submit"> -->
+  <view class="func-block">
+    <view class="block-header">
+      <view class="tip-view">
+        工单详情
+      </view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>序号：</view>
+      <view class='sd-content'>{{repairOrder.SerialNumber}}</view>
+    </view>
+    <!-- <view class="sd-item">
+      <view class='sd-title'>发单人：</view>
+      <view class='sd-content'>{{repairOrder.SendPerson}}</view>
+    </view> -->
+    <view class="sd-item">
+      <view class='sd-title'>地址：</view>
+      <view class='sd-content'>{{repairOrder.Address}}</view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>报修人：</view>
+      <view class='sd-content'>{{repairOrder.RepairPerson}}</view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>联系电话：</view>
+      <view class='sd-content sd-call' bindtap='phoneCall' data-phone-number='repairOrder.PhoneNumber'>{{repairOrder.PhoneNumber}}</view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>报修时间：</view>
+      <view class='sd-content'>{{repairOrder.RepairTime}}</view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>预约时间：</view>
+      <view class='sd-content'>{{repairOrder.OrderTime}}</view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>紧急程度：</view>
+      <view class='sd-content'>{{repairOrder.Level}}</view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>服务项目：</view>
+      <view class='sd-content'>{{repairOrder.ServiceProject}}</view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>是否入户：</view>
+      <view class='sd-content'>{{repairOrder.NeedIn}}</view>
+    </view>
+  </view>
+  <!-- ================================================================================ -->
+
+  <!-- <form bindsubmit="submit"> -->
+  <view class="func-block">
+    <view class="block-header">
+      <view class="tip-view">
+        工单处理
+      </view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>完成情况：</view>
+      <view class='sd-content'>{{repairOrder.CompleteStatus}}</view>
+    </view>
+    <!-- <view class="sd-item">
+      <view class='sd-title'>发单人：</view>
+      <view class='sd-content'>{{repairOrder.SendPerson}}</view>
+    </view> -->
+    <view class="sd-item">
+      <view class='sd-title'>材料费：</view>
+      <view class='sd-content'>{{repairOrder.MaterialExpense}}</view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>人工费：</view>
+      <view class='sd-content'>{{repairOrder.LaborExpense}}</view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>到场时间：</view>
+      <view class='sd-content'>{{repairOrder.ArriveTime ? repairOrder.ArriveTime : ""}}</view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>完成时间：</view>
+      <view class='sd-content'>{{repairOrder.CompleteTime ? repairOrder.CompleteTime : ""}}</view>
+    </view>
+  </view>
+
+  <view class="func-block">
+    <view class="block-header">
+      <view class="tip-view">
+        报修前照片
+      </view>
+    </view>
+    <view class="images-view">
+      <block wx:for="{{beforeImage}}">
+        <image class='sd-image' id='{{index}}' src='{{item}}' bindtap='beforeImageTaped' />
+        <!-- <image id='{{index}}' src='{{item}}' bindtap='beforeImageTaped' bindlongtap='beforeImageLongTaped' /> -->
+      </block>
+    </view>
+  </view>
+
+  <view class="func-block">
+    <view class="block-header">
+      <view class="tip-view">
+        处理后照片
+      </view>
+    </view>
+    <view class=" images-view">
+      <block wx:for="{{afterImage}}">
+        <image class='cd-image' id='{{index}}' src='{{item}}' bindtap='afterImageTaped' />
+      </block>
+    </view>
+  </view>
+
+  <view class="func-block">
+    <view class="block-header">
+      <view class="tip-view">
+        业主确认
+      </view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>确认完成：</view>
+      <view class='sd-content'>{{repairOrder.AffirmComplete}}</view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>确认时间：</view>
+      <view class='sd-content'>{{repairOrder.AffirmCompleteTime}}</view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>是否满意：</view>
+      <view class='sd-content'>{{repairOrder.IsSatisfying}}</view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>业主评价：</view>
+      <view class='sd-content'>{{repairOrder.AffirmCompleteEvaluation}}</view>
+    </view>
+  </view>
+
+
+   <view class="func-block">
+    <view class="block-header">
+      <view class="tip-view">
+        回访情况
+      </view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>回访人：</view>
+      <view class='sd-content'>{{repairOrder.CallBackPerson}}</view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>回访时间：</view>
+      <view class='sd-content'>{{repairOrder.CallBackTime}}</view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>业主评价：</view>
+      <view class='sd-content'>{{repairOrder.CallBackEvaluation}}</view>
+    </view>
+  </view>
+
+
+
+</view>
+<view class="page-footer"></view>
+
+
+    

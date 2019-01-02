@@ -1,0 +1,49 @@
+<!--pages/chargedDetail/chargedDetail.wxml-->
+<view class="main-view">
+  <view class='fee-content'>
+    <label class='totaltitle-label'>合计：</label>
+    <label class='total-fee'>￥{{totalCharge}}</label>
+  </view>
+  <scroll-view scroll-y="{{true}}">
+    <view class='form-view'>
+      <block wx:for="{{chargeList}}" wx:for-index="clIndex" wx:for-item="clItem">
+        <!-- <view class='detail-view'> -->
+        <view id="{{(clIndex + 1) * 10}}" class='title-view'>
+          <!-- <view id="{{(clIndex + 1) * 10}}" class='title-view' bindtap='titleViewTaped'> -->
+          <!-- <image class='all-choose-image' src="{{clItem.isAllChoosed ? chooseImage : noChooseImage}}"></image> -->
+          <label class='title-label'>{{clItem.ChargeName}}</label>
+        </view>
+        <block wx:for="{{clItem.ChargeDetails}}" wx:for-index="cdIndex" wx:for-item="cdItem">
+          <view id="{{'' + clIndex + '-' + cdIndex}}" class='charged-view'>
+            <!-- <view id = "{{'' + clIndex + '-' + cdIndex}}" class='charged-view' bindtap='chargeViewTaped'> -->
+            <!-- <image class='choose-image' src='{{cdItem.isChoosed ? chooseImage : noChooseImage}}'></image> -->
+            <!-- <view class='charged-left-view'> -->
+            <label class='serial-label'>{{cdItem.ChargeInfo}}</label>
+            <!-- <label class='homenum-label'>{{cdItem.ChargeTime}}</label> -->
+            <!-- </view> -->
+            <!-- <view class='charged-right-view'> -->
+            <!-- <view class='left-view'> -->
+            <label class='orange-label'>￥{{cdItem.Charge * 1.00}}</label>
+            <!-- <label class='green-label'>现金</label> -->
+            <!-- </view> -->
+            <!-- <view class='right-view'> -->
+            <!-- <label class='name-label'>孔令才</label> -->
+            <!-- </view> -->
+            <!-- </view> -->
+          </view>
+        </block>
+        <!-- </view> -->
+      </block>
+    </view>
+  </scroll-view>
+  <view class='footer-view'>
+    <!-- <view id="100" class='all-choose-view'> -->
+      <!-- <view id = "100" class='all-choose-view' bindtap='allChooseViewTaped'> -->
+      <!-- <image class='all-choose-image' src="{{isAllChoosed ? chooseImage : noChooseImage}}"></image>
+      <label>全选</label> -->
+    <!-- </view> -->
+    <!-- <label class='footer-label'>合计：￥{{totalCharge}}</label> -->
+    <button type='primary' bindtap='buttonTaped'>确认收费</button>
+  </view>
+
+</view>

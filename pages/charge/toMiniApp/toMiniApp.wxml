@@ -1,0 +1,5 @@
+<!--pages/charge/toMiniApp/toMiniApp.wxml-->
+<view class='main-view'>
+  <image src='../../../images/xiaochengxuma.jpg' />
+  <view class='tip-view'>请扫码使用业主版小程序进行支付</view>
+</view>

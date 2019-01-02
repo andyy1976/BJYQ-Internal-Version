@@ -1,0 +1,43 @@
+<view class="main-view">
+  <view class="header-view">
+    <view class="tip-view">
+      请您在此页面输入业主房号、姓名，并选择要查询费用的开始月份和结束月份（计费年月），小程序会根据您输入的内容查询对应的费用信息。
+    </view>
+  </view>
+  <form bindsubmit="submit">
+    <view class="form-view">
+    <view class="item-view">
+        <label>楼号</label>
+        <input id="2" name="buildingNumber" placeholder="请输入业主所在楼号" placeholder-class="placeholder-text" />
+      </view>
+      <view class="item-view">
+        <label>房号</label>
+        <input id="1" name="homeNumber" placeholder="请输入业主房号" placeholder-class="placeholder-text" />
+      </view>
+      <view class="item-view">
+        <label>姓名</label>
+        <input id="3" name="name" placeholder="请输入业主姓名" placeholder-class="placeholder-text" />
+      </view>
+      <view class="item-view">
+        <label>已收未收</label>
+        <radio-group name="isCharge" bindchange='chargeChange'>
+          <radio value='已收' checked='{{true}}'>已收</radio>
+          <radio value='未收'>未收</radio>
+        </radio-group>
+      </view>
+      <picker id='startMonth' mode="date" fields="month" value="{{startMonth}}" bindchange='dateChange' >
+        <view class="item-view" hidden='{{startMonthHidden}}'>
+          <label>开始月份</label>
+          <input id="3" name="startMonth" value="{{startMonth}}" disabled='{{true}}'/>
+        </view>
+      </picker>
+      <picker id='endMonth' mode="date" fields="month" value="{{endMonth}}" bindchange='dateChange'>
+        <view class="item-view" hidden='{{endMonthHidden}}'>
+          <label>结束月份</label>
+          <input id="4" name="endMonth" value='{{endMonth}}' disabled='{{true}}' />
+        </view>
+      </picker>
+    </view>
+    <button id="submit" formType="submit" type='primary'>查询</button>
+  </form>
+</view>
