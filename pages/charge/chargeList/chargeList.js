@@ -60,7 +60,7 @@ Page({
       title: '正在加载...',
     })
     wx.request({
-      url: config.urls.cloudUrl,
+      url: config.urls.getChargeListUrl,
       method: "POST",
       header: { 'content-type': 'application/x-www-form-urlencoded;charset=uft-8' },
       data: that.data.submitData,

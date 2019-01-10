@@ -20,7 +20,7 @@ Page({
     submitData.serverUrl = config.urls.getProprietorListUrl;
     console.log(submitData);
     wx.request({
-      url: config.urls.cloudUrl,
+      url: config.urls.getProprietorListUrl,
       method: "POST",
       header: {
         'content-type': 'application/x-www-form-urlencoded;charset=uft-8'

@@ -153,7 +153,7 @@ Page({
       title: '正在上传...',
     })
     wx.request({
-      url: config.urls.cloudUrl,
+      url: config.urls.setLookOverResultUrl,
       method: "POST",
       header: {
         'content-type': 'application/x-www-form-urlencoded;charset=uft-8'

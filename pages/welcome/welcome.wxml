@@ -13,8 +13,8 @@
   
   <view class='flex-row flex-between'>
     <view style='padding-left: 20rpx;' >
-    <view class='header-company'>燕侨物业管理公司苏州分公司</view>
-    <view class='header-name'> 孔令才</view>
+    <view class='header-company'>北京燕侨物业管理有限公司</view>
+    <view class='header-name'> {{userInfo.UserCode}}</view>
     </view>
     <view class='head-logo-view'>
      <open-data type="userAvatarUrl"></open-data>

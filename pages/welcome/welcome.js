@@ -63,7 +63,7 @@ Page({
       {
         imgSrc: "../../images/liucheng.png",
         bindtap: "imageTouched",
-        showValue: "请款流程"
+        showValue: "流程业务"
       },
     ],
     navPages: [
@@ -81,12 +81,12 @@ Page({
       "../spot/spot/spot",
       "../statistics/statistics/statistics",
       "../report/report/report",
-      "../requestPayment/requestPaymentSheet/requestPaymentSheet",
+      "../process/process/process",
     ],
     userInfo: {},
     currentZT: {
       "ZTCode": "100000",
-      "ZTName": "燕侨苏州"
+      "ZTName": "北京燕侨"
     }
   },
 
@@ -132,15 +132,12 @@ Page({
     var userId = userInfo.Id;
     var password = that.data.password;
     wx.request({
-      url: config.urls.cloudUrl,
+      url: config.urls.checkPasswordUrl,
       method: "POST",
-      header: {
-        'content-type': 'application/x-www-form-urlencoded;charset=uft-8'
-      },
+      header: {'content-type': 'application/x-www-form-urlencoded;charset=uft-8'},
       data: {
         userId: '' + userId,
-        password: password,
-        serverUrl: config.urls.checkPasswordUrl
+        password: password
       },
       success: function(res) {
         console.log(res);
@@ -300,12 +297,11 @@ function toLogin() {
 function getUserInfo(that) {
   wx.showLoading({title: '正在加载...',})
   wx.request({
-    url: config.urls.cloudUrl,
+    url: config.urls.getUserInfoUrl,
     method: "POST",
     header: {'content-type': 'application/x-www-form-urlencoded;charset=uft-8'},
     data: {
-      sessionId: wx.getStorageSync("sessionId"),
-      serverUrl: config.urls.getUserInfoUrl
+      sessionId: wx.getStorageSync("sessionId")
     },
     success: function(res) {
       wx.hideLoading();
@@ -328,10 +324,10 @@ function login(that) {
       // 发送 res.code 到后台换取 openId, sessionKey, unionId
       console.log(res);
       wx.request({
-        url: config.urls.cloudUrl,
+        url: config.urls.loginUrl,
         method: "POST",
         header: {'content-type': 'application/x-www-form-urlencoded;charset=uft-8'},
-        data: {code: res.code,serverUrl: config.urls.loginUrl},
+        data: {code: res.code},
         success: function(res) {
           console.log(res);
           var result = res.data;

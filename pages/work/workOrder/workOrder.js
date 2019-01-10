@@ -77,7 +77,7 @@ Page({
     if (repairOrder) {
       if (repairOrder.IsRead == 0) {
         wx.request({
-          url: config.urls.cloudUrl,
+          url: config.urls.setWorkOrderIsReadUrl,
           method: "POST",
           header: {
             'content-type': 'application/x-www-form-urlencoded;charset=uft-8'
@@ -127,7 +127,7 @@ function getRepairList(that) {
     orderType: that.data.sortTypeList[that.data.sortTypeListIndex],
     serverURL: config.urls.getWorkOrderUrl
   }
-  util.getRequest(config.urls.cloudUrl, data, function (data) {
+  util.getRequest(config.urls.getWorkOrderUrl, data, function (data) {
     var repairList = data;
     filtrateRepairOrder(repairList, that.data.filtrateList[that.data.filtrateIndex], that);
     that.setData({

@@ -21,7 +21,7 @@ Page({
     })
     console.log(charged);
     wx.request({
-      url: config.urls.cloudUrl,
+      url: config.urls.getChargedDetailUrl,
       method:"POST",
       header: { 'content-type': 'application/x-www-form-urlencoded;charset=uft-8' },
       data: charged,

@@ -232,7 +232,7 @@ function getDecorationList(that) {
     title: '加载中...',
   })
   wx.request({
-    url: config.urls.cloudUrl,
+    url: config.urls.getDecorationListUrl,
     method: 'POST',
     data: data,
     header: {

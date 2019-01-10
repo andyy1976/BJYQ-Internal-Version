@@ -107,7 +107,7 @@ function getRequestList(that) {
     title: '加载中...',
   })
   wx.request({
-    url: config.urls.cloudUrl,
+    url: config.urls.getRequestPaymentSheetUrl,
     method: 'POST',
     data: data,
     header: {'content-type': 'application/x-www-form-urlencoded;charset=uft-8'},

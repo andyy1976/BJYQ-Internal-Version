@@ -32,7 +32,7 @@ Page({
     })
     // console.log(e.detail.value);
     wx.request({
-      url: config.urls.cloudUrl,
+      url: config.urls.bindUserUrl,
       method: 'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded;charset=uft-8'

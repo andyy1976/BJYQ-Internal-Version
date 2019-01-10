@@ -216,7 +216,7 @@ function getRepairList(that) {
     title: '加载中...',
   })
   wx.request({
-    url: config.urls.cloudUrl,
+    url: config.urls.getWorkOrderUrl,
     method: 'POST',
     data: data,
     header: {

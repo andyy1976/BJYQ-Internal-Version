@@ -305,12 +305,12 @@ function getChargeList(that) {
   // })
   // var currentZT = wx.getStorageSync("currentZT");
   var submitData = that.data.submitData;
-  submitData.serverUrl = config.urls.getChargeDetailUrl
+  // submitData.serverUrl = config.urls.getChargeDetailUrl
   wx.showLoading({
     title: '正在加载...',
   })
   wx.request({
-    url: config.urls.cloudUrl,
+    url: config.urls.getChargeDetailUrl,
     method: "POST",
     header: { 'content-type': 'application/x-www-form-urlencoded;charset=uft-8' },
     data: submitData,
@@ -360,7 +360,7 @@ function setCharges(that, paymentMethod) {
   var chargeList = that.data.chargeList;
   var userInfo = wx.getStorageSync("userInfo");
   wx.request({
-    url: config.urls.cloudUrl,
+    url: config.urls.setChargesUrl,
     method: "POST",
     header: {
       'content-type': 'application/x-www-form-urlencoded;charset=uft-8'

@@ -210,7 +210,7 @@ function setCharges(that,paymentMethod) {
   var chargeList = that.data.chargeList;
   var userInfo = wx.getStorageSync("userInfo");
   wx.request({
-    url: config.urls.cloudUrl,
+    url: config.urls.setChargesUrl,
     method: "POST",
     header: {
       'content-type': 'application/x-www-form-urlencoded;charset=uft-8'

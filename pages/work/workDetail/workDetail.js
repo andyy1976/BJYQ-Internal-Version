@@ -176,7 +176,7 @@ Page({
     submitData.serverUrl = config.urls.setWorkOrderUrl;
     console.log(submitData);
     if (!checkSubmitData(submitData)){return;}
-    util.setRequest(config.urls.cloudUrl,submitData,function(status,data){
+    util.setRequest(config.urls.setWorkOrderUrl,submitData,function(status,data){
       if (status == "success"){util.showTip("提交成功");}
     });
   },

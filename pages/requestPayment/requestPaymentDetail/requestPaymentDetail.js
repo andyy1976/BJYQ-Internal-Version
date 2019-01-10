@@ -174,7 +174,7 @@ Page({
       title: '正在提交...',
     })
     wx.request({
-      url: config.urls.cloudUrl,
+      url: config.urls.setRequestPaymentFlowUrl,
       method: "POST",
       header: {
         'content-type': 'application/x-www-form-urlencoded;charset=uft-8'
