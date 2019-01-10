@@ -64,7 +64,7 @@ Page({
           else {
             wx.showModal({
               title: '提示',
-              content: '您输入的账号密码有误，请查证后重试',
+              content: res.data.result,
               showCancel: false,
             })
             return;

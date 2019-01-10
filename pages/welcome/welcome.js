@@ -95,14 +95,6 @@ Page({
    */
   onLoad: function(options) {
     var that = this;
-    // var app = getApp();
-    // app.checkSession();
-    // var userInfo = wx.getStorageSync("userInfo");
-    // var currentZT = wx.getStorageSync("currentZT");
-    // that.setData({
-    //   userInfo: userInfo,
-    //   currentZT: currentZT
-    // })
     wx.checkSession({
       success: res => {
         console.log(res);
@@ -124,15 +116,6 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-    // wx.checkIsSupportSoterAuthentication({
-    //   success(res) {
-    //     console.log("++++++++++++++++++++++++++++++++++")
-    //     console.log(res);
-    //     // res.supportMode = [] 不具备任何被SOTER支持的生物识别方式
-    //     // res.supportMode = ['fingerPrint'] 只支持指纹识别
-    //     // res.supportMode = ['fingerPrint', 'facial'] 支持指纹识别和人脸识别
-    //   }
-    // })
   },
 
   input: function(e) {
@@ -292,102 +275,104 @@ Page({
  * 自定义函数，跳转到登陆界面
  */
 function toLogin() {
-  wx.navigateTo({
-    url: '../login/login',
+  wx.showModal({
+    title: '提示',
+    content: '您尚未绑定物业通账号，立即绑定？',
+    confirmText: '是',
+    cancelText: '否',
+    success: res => {
+      if (res.confirm){
+        wx.navigateTo({
+          url: '../login/login',
+        })
+      }
+      else {
+        return;
+      }
+    }
   })
+  
 }
 
 /**
  * 自定义函数，获取用户信息
  */
 function getUserInfo(that) {
-  wx.showLoading({
-    title: '正在加载...',
-  })
+  wx.showLoading({title: '正在加载...',})
   wx.request({
     url: config.urls.cloudUrl,
     method: "POST",
-    header: {
-      'content-type': 'application/x-www-form-urlencoded;charset=uft-8'
-    },
+    header: {'content-type': 'application/x-www-form-urlencoded;charset=uft-8'},
     data: {
       sessionId: wx.getStorageSync("sessionId"),
       serverUrl: config.urls.getUserInfoUrl
     },
     success: function(res) {
-      console.log("getUserInfo");
-      console.log(res);
-      if (res.statusCode != 200 || (res.statusCode == 200 && !res.data.data)) {
-        console.log("网络错误");
-        // wx.showModal({
-        //   title: '提示',
-        //   content: '网络错误，无法获取个人信息，点击确认重试',
-        // })
-        // wx.navigateTo({
-        //   url: '../userinfo/userinfo',
-        // })
-      }
       wx.hideLoading();
-      if (res.data.status == "Fail") {
-        if (res.data.result == "无此用户") {
-          toLogin();
-        } else {
-          login(that);
-        }
-      } else {
-        wx.hideLoading();
-        var userInfo = res.data.data;
-        that.setData({
-          userInfo: userInfo
-        })
-        wx.setStorageSync("userInfo", userInfo);
-        that.setData({
-          pageHidden: false
-        })
-        console.log("user is:");
-        console.log(userInfo);
-        if (!wx.getStorageSync("currentZT")) {
-          wx.setStorageSync("currentZT", userInfo.ZTInfo[0]);
-          that.setData({
-            currentZT: userInfo.ZTInfo[0]
-          })
-        }
-      }
+      checkAndSaveUser(that,res.data);
     },
     fail: res => {
+      wx.hideLoading();
       console.log("网络错误");
     }
   })
 }
 
 function login(that) {
+  wx.showLoading({
+    title: '正在加载...',
+  })
   wx.login({
     success: res => {
+      wx.hideLoading();
       // 发送 res.code 到后台换取 openId, sessionKey, unionId
       console.log(res);
       wx.request({
         url: config.urls.cloudUrl,
         method: "POST",
-        header: {
-          'content-type': 'application/x-www-form-urlencoded;charset=uft-8'
-        },
-        data: {
-          code: res.code,
-          serverUrl: config.urls.loginUrl
-        },
+        header: {'content-type': 'application/x-www-form-urlencoded;charset=uft-8'},
+        data: {code: res.code,serverUrl: config.urls.loginUrl},
         success: function(res) {
           console.log(res);
           var result = res.data;
           if (result.success) {
             wx.setStorageSync("sessionId", result.sessionId);
-            getUserInfo(that);
+            checkAndSaveUser(that, result.userInfo);
           }
         },
         fail: function(res) {
+          wx.hideLoading();
           console.log("wx.login发生错误");
           console.log(res);
         }
       })
     }
   })
+}
+
+
+function checkAndSaveUser (that,data) {
+  if (data.status == "Fail") {
+    if (data.result == "无此用户") {
+      toLogin();
+    } else {
+      login(that);
+    }
+  } 
+  var userInfo = data.data;
+  that.setData({
+    userInfo: userInfo
+  })
+  wx.setStorageSync("userInfo", userInfo);
+  that.setData({
+    pageHidden: false
+  })
+  console.log("user is:");
+  console.log(userInfo);
+  if (!wx.getStorageSync("currentZT")) {
+    wx.setStorageSync("currentZT", userInfo.ZTInfo[0]);
+    that.setData({
+      currentZT: userInfo.ZTInfo[0]
+    })
+  }
 }

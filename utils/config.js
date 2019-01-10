@@ -1,4 +1,5 @@
-  const baseUrl = "http://k17154485y.imwork.net:23530/wx";//本地服务器Url
+  // const baseUrl = "http://k17154485y.imwork.net:23530/wx";//本地服务器Url
+const baseUrl = "http://localhost:33079";
 // const baseUrl = "http://szyqwy.gicp.net/wxinternal";//本地服务器Url
 
 
@@ -16,7 +17,8 @@ const requestPaymentUrl = baseUrl + "/RequestPaymentFlow";//请款流程相关Ur
 
 
 const urls = {
-  cloudUrl: "https://yqwy-hd.com/wxics/SendData/OnSendData",//云服务器向本地服务器发送数据的Url
+  // cloudUrl: "https://yqwy-hd.com/wxics/SendData/OnSendData",//云服务器向本地服务器发送数据的Url
+  cloudUrl: "http://localhost:8080/wxics/SendData/OnSendData",//云服务器向本地服务器发送数据的Url
   cloudImageUrl: "https://yqwy-hd.com/wxics/SetImage/OnSetImage",//云服务器向本地服务器发送图片的Url
   getImageUrl: "https://yqwy-hd.com/wxics/wximages/",//从云服务器获取图片
 
