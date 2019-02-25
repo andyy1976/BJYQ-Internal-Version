@@ -1,0 +1,266 @@
+// pages/process/processDetail/processDetail.js
+const config = require("../../../utils/config.js");
+const util = require("../../../utils/util.js");
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    processInfo: null,
+    processItems: null,
+    checkDataDefines: null,
+    checkDataDefinesIndex: 0,
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var that = this;
+    var process = JSON.parse(options.process);
+    console.log(process);
+    that.setData({ processInfo: process });
+    var submitData = {
+      userId: wx.getStorageSync("currentUserId"),
+      linkId: process.linkId,
+      docTableName: process.docTableName,
+      docTableId: process.docTableId,
+      businessId: process.businessId,
+      transferObjectId: process.transferObjectId,
+      objectType: process.objectType,
+      transferObjectType: process.transferObjectType
+    };
+    util.getRequest("http://localhost:33079/Process/BussinessHandler_TableData", submitData, function (data) {
+      var items = data.items[0];
+      var defines = data.defines;
+      // var processItem = {};
+      // for (var i = 0; i < items.length; i++){
+      //   processItem[items[i].title] = items[i].content;
+      // }
+      // console.log("processItem")
+      // console.log(processItem);
+      // var needShowItems = [];
+      // var needHandleItems = [];
+      var requiredFields = [];
+      for (var i = 0; i < items.length; i++) {
+        for (var j = 0; j < defines.length; j++) {
+          if (items[i].title == defines[j].fieldName) {
+            items[i].fieldSourceName = defines[j].fieldSourceName;
+            items[i].required = defines[j].required;
+            items[i].defaultValue = defines[j].defaultValue;
+            items[i].allowEdit = defines[j].allowEdit;
+            break;
+          }
+        }
+        if (!items[i].fieldSourceName) {
+          items[i].fieldSourceName = items[i].title;
+          items[i].required = false;
+          items[i].defaultValue = '';
+          items[i].allowEdit = false;
+        }
+        // if (items[i].required == true){
+        //   requiredFields.push(items[i].fieldSourceName);
+        // }
+        // if (items[i].allowEidt){
+        //   needHandleItems.push(items[i]);
+        // }
+        // else {
+        //   needShowItems.push(items[i]);
+        // }
+      }
+      console.log("items")
+      console.log(items);
+      // console.log("requiredFields:");
+      // console.log(requiredFields);
+      that.setData({ processItems: items, checkDataDefines: data.checkDataDefines || null });
+      // console.log(needHandleItems);
+      // console.log(needShowItems);
+    })
+    // wx.request({
+    //   url: 'http://localhost:33079/Process/BussinessHandler_TableData?userId=100',
+    //   method: 'GET',
+    //   success: res => {
+    //     console.log(res);
+    //     console.log(res.data.data);
+    //     // return;
+    //     var data = res.data.data;
+    //     var items = data.items[0];
+    //     var defines = data.defines;
+    //     // var processItem = {};
+    //     // for (var i = 0; i < items.length; i++){
+    //     //   processItem[items[i].title] = items[i].content;
+    //     // }
+    //     // console.log("processItem")
+    //     // console.log(processItem);
+    //     // var needShowItems = [];
+    //     // var needHandleItems = [];
+    //     var requiredFields = [];
+    //     for (var i = 0; i < items.length; i++){
+    //       for (var j = 0; j < defines.length; j++){
+    //         if (items[i].title == defines[j].fieldName){
+    //           items[i].fieldSourceName = defines[j].fieldSourceName;
+    //           items[i].required = defines[j].required;
+    //           items[i].defaultValue = defines[j].defaultValue;
+    //           items[i].allowEdit = defines[j].allowEdit;
+    //           break;
+    //         }
+    //       }
+    //       if (!items[i].fieldSourceName){
+    //         items[i].fieldSourceName = items[i].title;
+    //         items[i].required = false;
+    //         items[i].defaultValue = '';
+    //         items[i].allowEdit = false;
+    //       }
+    //       // if (items[i].required == true){
+    //       //   requiredFields.push(items[i].fieldSourceName);
+    //       // }
+    //       // if (items[i].allowEidt){
+    //       //   needHandleItems.push(items[i]);
+    //       // }
+    //       // else {
+    //       //   needShowItems.push(items[i]);
+    //       // }
+    //     }
+    //     console.log("items")
+    //     console.log(items);
+    //     // console.log("requiredFields:");
+    //     // console.log(requiredFields);
+    //     that.setData({ processItems: items, checkDataDefines: data.checkDataDefines});
+    //     // console.log(needHandleItems);
+    //     // console.log(needShowItems);
+    //   },
+    //   fail: res => {
+    //     console.log(res);
+    //   }
+    // })
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  datepickerBindchange: function (e) {
+    var that = this;
+    console.log(e);
+    var index = parseInt(e.detail.value);
+    that.setData({ checkDataDefinesIndex: index });
+  },
+
+  submit: function (e) {
+    var that = this;
+    console.log(e);
+    var processItems = that.data.processItems;
+    var value = e.detail.value;
+    var keys = Object.keys(value);
+    console.log("keys is: =======================");
+    console.log(keys);
+    // var updateString = "";
+    var updateData = {};
+    for (var i = 0; i < keys.length; i++) {
+      var index = parseInt(keys[i]);
+      if (!isNaN(index)) {
+        if (processItems[index].required && !value[keys[i]]) {
+          wx.showModal({
+            title: '提示',
+            content: '存在必填但尚未填写的项',
+            showCancel: false
+          })
+          return;
+        }
+        else {
+          updateData[processItems[index].fieldSourceName] = value[keys[i]];
+          // updateString += processItems[index].fieldSourceName + "=" + "'" + value[keys[i]] + "'" + "*";
+        }
+      }
+    }
+    // updateString = updateString.substring(0,updateString.length - 1);
+    console.log("updateData:");
+    console.log(updateData);
+    var index = parseInt(e.detail.value.checkDataDefinesIndex);
+    var selectedProcess = wx.getStorageSync("selectedProcess");
+    if (e.detail.target.id == "submitDecision") {
+      var selectedCheckData = that.data.checkDataDefines[index];
+      console.log(selectedCheckData);
+      wx.navigateTo({
+        url: '../processNextLink/processNextLink?selectedCheckData=' + JSON.stringify(selectedCheckData) + '&updateData=' + JSON.stringify(updateData) + '&leaveMessage=' + value.leaveMessage,
+      })
+    }
+    if (e.detail.target.id == "submitTerminator"){
+      console.log(e);
+      var updateKeys = Object.keys(updateData);
+      var submitData = {
+        instanceId: selectedProcess.id,
+        userId: wx.getStorageSync("currentUserId"),
+        leaveMessage: value.leaveMessage,
+        isEnd: 1,
+        docTableName: selectedProcess.docTableName,
+        docTableId: selectedProcess.docTableId,
+        updateDataKeys: JSON.stringify(updateKeys),
+        updateData: JSON.stringify(updateData),
+        registId: selectedProcess.registId,
+        transmitConditionAndExplain: selectedProcess.transmitConditionAndExplain
+      };
+      util.setRequest("http://localhost:33079/Process/BussinessHandler_End", submitData, function (data) {
+        wx.showModal({
+          title: '提示',
+          content: '流程已结束,点击确定返回流程列表',
+          showCancel: false,
+          success: res => {
+            wx.reLaunch({
+              url: '../process/process',
+            })
+          }
+        })
+
+        // that.setData({ allowReceiveStaffs: data.allowReceiveStaffs });
+      })
+    }
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  }
+})

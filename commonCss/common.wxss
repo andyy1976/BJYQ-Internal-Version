@@ -13,28 +13,7 @@ page {
   text-decoration: underline;
 }
 
-/* ==================================颜色============================== */
 
-.status-red {
-  color: red;
-}
-
-.status-orange {
-  color: orange;
-}
-
-.status-green {
-  color: green;
-}
-
-.status-blue {
-  color: blue;
-}
-
-/* 默认按钮颜色 */
-.color-green {
-  color: #09bb07;
-}
 
 
 
@@ -76,7 +55,7 @@ button {
   padding-bottom: 10rpx;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   background-color: white;
   font-size: 28rpx;
@@ -91,6 +70,7 @@ button {
   background-color: white;
   margin-left: 10rpx;
   color: #606060;
+  width: 550rpx;
 }
 
 .sd-call {
@@ -105,7 +85,7 @@ button {
   padding-bottom: 15rpx;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   background-color: white;
   font-size: 30rpx;
@@ -195,6 +175,7 @@ button {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  align-items: center;
 }
 
 .list-item-child-title {
@@ -226,6 +207,7 @@ button {
   color: #606060;
   font-size: 28rpx;
   padding: 5rpx;
+  width: 400rpx;
 }
 
 .list-item-child-content {
@@ -239,3 +221,27 @@ button {
 }
 
 /* ============================================================ */
+
+
+/* ==================================颜色============================== */
+
+.status-red {
+  color: red;
+}
+
+.status-orange {
+  color: orange;
+}
+
+.status-green {
+  color: green;
+}
+
+.status-blue {
+  color: blue;
+}
+
+/* 默认按钮颜色 */
+.color-green {
+  color: #09bb07;
+}

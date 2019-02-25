@@ -11,7 +11,14 @@ App({
 
   onLaunch: function () {
     var that = this;
-  
+    //曹英： 45
+    //邢永燕： 120
+    //张树利： 403
+    //黄健： 163
+    //辛伟民： 291
+    //
+    //
+    wx.setStorageSync('currentUserId', 45);
     // if (!wx.getStorageSync("sessionId")){
       // that.checkSession();
     // }

@@ -1,0 +1,47 @@
+<view class="main-view">
+  <form bindsubmit="submit">
+    <view class="func-block">
+      <view class="block-header">
+        <view class="tip-view">
+          传递到下一环节
+        </view>
+      </view>
+      <picker id="100" name="arlIndex" range='{{allowReceiveLinks}}' range-key='operationStaff' value="{{arlIndex}}" bindchange="datepickerBindchange">
+        <view class="cd-item">
+          <view class='normal-title'>传递角色：</view>
+          <view class='normal-content'>{{allowReceiveLinks[arlIndex].operationStaff}}</view>
+          <image class='cd-next-image' src='../../../images/xiala.png' />
+        </view>
+      </picker>
+      <view class="cd-item">
+        <view class='normal-title'>传递环节：</view>
+        <view class='normal-content'>{{allowReceiveLinks[arlIndex].objectExplain}}</view>
+      </view>
+    </view>
+
+
+
+    <view class="func-block">
+      <view class="block-header">
+        <view class="tip-view">
+          下一环节实际接收人（可选）
+        </view>
+      </view>
+      <!-- <checkbox-group bindchange="checkboxChange">
+        <label class="checkbox" wx:for="{{allowReceiveStaffs}}">
+          <checkbox value="{{item.user}}" checked="{{item.userChecked}}" /> {{item.user + '（' + item.userDepartment + '）'}}
+        </label>
+      </checkbox-group> -->
+      <picker id="100" name="{{arsIndex}}" range='{{allowReceiveStaffs}}' range-key='user' value="{{arsIndex}}" bindchange="receiverPickerBindchange">
+      <view class="cd-item">
+        <view class='normal-title'>接收人：</view>
+        <view class='normal-content'>{{allowReceiveStaffs[arsIndex].user + '（' + allowReceiveStaffs[arsIndex].userDepartment + '）'}}</view>
+        <image class='cd-next-image' src='../../../images/xiala.png' />
+      </view>
+    </picker>
+    </view>
+
+    <button id="submit" formType="submit" type='primary'>确认</button>
+    <view class="footer-view"></view>
+  </form>
+</view>

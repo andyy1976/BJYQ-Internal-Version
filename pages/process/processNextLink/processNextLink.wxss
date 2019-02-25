@@ -1,0 +1,59 @@
+/* pages/process/processDetail/processDetail.wxss */
+
+@import "../../../commonCss/common.wxss";
+
+
+.cd-title {
+  width: 320rpx;
+  color: black;
+  font-size: 28rpx;
+}
+
+.cd-input {
+  background-color: white;
+  margin-left: 10rpx;
+  color: #606060;
+  width: 360rpx;
+  font-size: 28rpx;
+}
+
+.normal-title {
+  width: 180rpx;
+  color: black;
+}
+
+.normal-content {
+  background-color: white;
+  width: 450rpx;
+  margin-left: 10rpx;
+  color: black;
+}
+
+
+
+.color-black {
+  color: black;
+}
+
+.color-gray {
+  color: darkgray;
+}
+
+.footer-view {
+  height: 80rpx;
+}
+
+checkbox-group {
+  padding: 10rpx;
+}
+
+label {
+  font-size: 30rpx;
+  padding: 10rpx;
+}
+
+checkbox {
+  /* width: 30rpx;
+  height: 30rpx; */
+  padding: 10rpx;
+}

@@ -1,1 +1,81 @@
-/* pages/process/process/process.wxss */
+/* pages/wrokOrder/wrokOrder.wxss */
+
+/* pages/login/login.wxss */
+
+
+.main-view {
+  width: 750rpx;
+  font-size: 32rpx;
+  line-height: 40rpx;
+}
+
+/* scroll-view {
+  height: 1180rpx;
+  margin-top: 20rpx;
+} */
+
+scroll-view {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100rpx;
+  bottom: 0;
+  /* height: 980rpx; */
+}
+
+
+.yi-button {
+  height: 60rpx;
+  /* margin-top: 20rpx; */
+  color: white;
+  font-size: 28rpx;
+  line-height: 60rpx;
+  padding: 10rpx;
+  /* padding-left: 10rpx; */
+  padding-right: 30rpx;
+  text-align: right;
+  background-color: #353535;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+}
+
+.yi-button-text {
+  height: 40rpx;
+  width: 120rpx;
+  border-bottom: 0.5rpx solid white;
+  /* border-radius: 20rpx; */
+  /* padding-left: 20rpx; */
+  /* padding-right: 10rpx; */
+}
+
+
+/* .yi-button{
+  height: 80rpx;
+  margin-top: 20rpx;
+  color: #353535;
+  font-size: 30rpx;
+  line-height: 80rpx;
+  padding-left: 10rpx;
+  padding-right: 10rpx;
+  text-align: center;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.doneImage {
+  width: 40rpx;
+  height:40rpx;
+  margin-left: 60rpx;
+} */
+
+@import "../../../commonCss/common.wxss";
+
+
+.list-item-child-title {
+width:260rpx;
+font-size:28rpx;
+color:black;
+}

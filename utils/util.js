@@ -14,22 +14,27 @@ function getRequest(url, postData, doSuccess, doFail = null, doComplete = null) 
       wx.hideLoading();
       console.log("request successed!");
       console.log(res);
+      if (res.statusCode == 500) {
+        showSign("服务器内部错误，请稍后重试");
+        return;
+      } 
       if (res.data[0] == "<") {
         showSign("网络错误，请稍后重试");
+        return;
+      } 
+      if (res.data.status == "Fail") {
+        showSign(res.data.result);
         return;
       }
       if (!res.data){
         showSign("网络错误，请稍后重试");
         return;
       }
-      if (res.data.status == "Fail" && res.data.result == "云服务器发生错误：目标url未指定") {
-        showSign("网络错误，请稍后重试");
-        return;
-      }
-      if (res.data.status == "Fail" && res.data.result != "云服务器发生错误：目标url未指定")  {
-        showSign(res.data.result);
-        return;
-      }
+      
+      // if (res.data.status == "Fail" && res.data.result != "云服务器发生错误：目标url未指定")  {
+      //   showSign(res.data.result);
+      //   return;
+      // }
       if (typeof doSuccess == "function") {
         console.log("response data is:");
         console.log(res.data.data);
@@ -74,14 +79,17 @@ function setRequest(url, postData, doSuccess, doFail = null, doComplete = null) 
       //   showSign("网络错误，请稍后重试");
       //   return;
       // }
-      if (res.data.status == "Fail" && res.data.result == "云服务器发生错误：目标url未指定") {
-        showSign("网络错误，请稍后重试");
-        return;
-      }
-      if (res.data.status == "Fail" && res.data.result != "云服务器发生错误：目标url未指定") {
+      if (res.data.status == "Fail") {
         showSign(res.data.result);
         return;
       }
+      // if (res.data.status == "Fail" && res.data.result != "云服务器发生错误：目标url未指定") {
+      //   showSign(res.data.result);
+      //   return;
+      // }
+      // if (res.data.status == "Success"){
+      //   showTip("提交成功");
+      // }
       if (typeof doSuccess == "function") {
         console.log("response data is:");
         console.log(res.data.data);

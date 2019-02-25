@@ -1,2 +1,54 @@
-<!--pages/process/process/process.wxml-->
-<text>pages/process/process/process.wxml</text>
+<!--pages/wrokOrder/wrokOrder.wxml-->
+<!--pages/login/login.wxml-->
+
+<view class="main-view" bindtap='haha'>
+<block wx:for="{{processList}}" wx:for-index="lindex" wx:for-item="litem">
+  <view id="{{lindex}}" class="list-item" bindtap="viewTaped">
+    <view class='list-item-left'>
+    <!-- <block wx:for="{{litem}}" wx:for-index="iindex" wx:for-item="iitem"> -->
+    <view class='list-item-number'>{{litem.tableNubmer}}</view>
+      <view class='list-item-child'>
+        <view class='list-item-child-title'>业务名称：</view>
+        <view class='list-item-child-info status-orange'>{{litem.businessName}}</view>
+      </view>
+      <view class='list-item-child'>
+        <view class='list-item-child-title'>发起人：</view>
+        <view class='list-item-child-info'>{{litem.initiator}}（{{litem.initiateDepartment}}）</view>
+      </view>
+      <!-- <view class='list-item-child'>
+        <view class='list-item-child-title'>发起人部门：</view>
+        <view class='list-item-child-info'>{{litem.initiateDepartment}}</view>
+      </view> -->
+      <view class='list-item-child'>
+        <view class='list-item-child-title'>摘要：</view>
+        <view class='list-item-child-info status-red'>{{litem.summary}}</view>
+      </view>
+      <view class='list-item-child'>
+        <view class='list-item-child-title'>送件人：</view>
+        <view class='list-item-child-info'>{{litem.sender}}</view>
+      </view>
+      <view class='list-item-child'>
+        <view class='list-item-child-title'>送达时间：</view>
+        <view class='list-item-child-info'>{{litem.reachTime}}</view>
+      </view>
+      <view class='list-item-child'>
+        <view class='list-item-child-title'>任务：</view>
+        <view class='list-item-child-info color-green'>{{litem.task==0?"传阅":litem.task==1?"":litem.task==2?"审核":litem.task==3?"":litem.task==4?"知会":litem.task==5?"并行":""}}</view>
+      </view>
+    <!-- </block> -->
+    </view>
+  </view>
+</block>
+
+  <!-- <block wx:for="{{processList}}" wx:for-index="lindex" wx:for-item="litem">
+    <view id="{{lindex}}" class="item-view" bindtap="viewTaped">
+      <block wx:for="{{litem}}" wx:for-index="iindex" wx:for-item="iitem">
+        <view class='item-child'>
+          <view class='item-title'>{{iitem.title}}：</view>
+          <view class='item-content'>{{iitem.content}}</view>
+        </view>
+      </block>
+    </view>
+  </block> -->
+</view>
+

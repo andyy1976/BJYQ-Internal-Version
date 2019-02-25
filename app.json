@@ -78,6 +78,9 @@
     "pages/requestPayment/requestPaymentSheet/requestPaymentSheet",
     "pages/requestPayment/requestPaymentDetail/requestPaymentDetail",
     "pages/process/process/process",
+    "pages/process/processTest/processTest",
+    "pages/process/processDetail/processDetail",
+    "pages/process/processNextLink/processNextLink",
     
     "pages/decoration/decorationList/decorationList",
     "pages/decoration/decorationDetail/decorationDetail",

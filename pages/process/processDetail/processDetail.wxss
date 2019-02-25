@@ -1,0 +1,50 @@
+/* pages/process/processDetail/processDetail.wxss */
+@import "../../../commonCss/common.wxss";
+
+.cd-title {
+  width: 320rpx;
+  color: black;
+  font-size: 28rpx;
+}
+
+.cd-input {
+  background-color: white;
+  margin-left: 10rpx;
+  color: #606060;
+  width: 360rpx;
+  font-size: 28rpx;
+  word-break:break-all; 
+}
+
+.normal-title {
+  width: 180rpx;
+  color: black;
+}
+
+.normal-content {
+  background-color: white;
+  width: 450rpx;
+  margin-left: 10rpx;
+  color: black;
+}
+
+.normal-input {
+  background-color: white;
+  margin-left: 10rpx;
+  color: #606060;
+  width: 480rpx;
+  /* font-size:28rpx; */
+}
+
+.color-black {
+  color: black;
+}
+
+.color-gray {
+  color: darkgray;
+}
+
+.footer-view {
+  height: 80rpx;
+}
+
