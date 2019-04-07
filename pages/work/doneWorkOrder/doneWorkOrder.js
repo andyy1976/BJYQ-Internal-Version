@@ -10,7 +10,8 @@ Page({
     doneTime: true,
     repairTime: false,
     currentSortType:"完成时间",
-    filtrateList: ["全部", "已完成", "业主已确认", "已回访"],//状态筛选
+    // filtrateList: ["全部", "已完成", "业主已确认", "已回访"],//状态筛选
+    filtrateList: ["全部"],//状态筛选
     filtrateIndex: 0,
     filtrateRepairOrder: []
   },
@@ -45,15 +46,15 @@ Page({
       case "0":
         filtrateRepairOrder(repairList, "全部", that);
         break;
-      case "1":
-        filtrateRepairOrder(repairList, "已完成", that);
-        break;
-      case "2":
-        filtrateRepairOrder(repairList, "业主已确认", that);
-        break;
-      case "3":
-        filtrateRepairOrder(repairList, "已回访", that);
-        break;
+      // case "1":
+      //   filtrateRepairOrder(repairList, "已完成", that);
+      //   break;
+      // case "2":
+      //   filtrateRepairOrder(repairList, "业主已确认", that);
+      //   break;
+      // case "3":
+      //   filtrateRepairOrder(repairList, "已回访", that);
+      //   break;
     }
   },
 

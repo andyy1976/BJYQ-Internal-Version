@@ -14,6 +14,9 @@ Page({
     arlIndex: 0,
     allowReceiveStaffs: null,
     arsIndex: 0,
+    outOfControlLinks: [],
+    nextOutOfControlIds: "",
+    nextOutOfControlUserIds: "",
   },
 
   /**
@@ -35,7 +38,7 @@ Page({
       transferObjectId: selectedCheckData.transferObjectId ? selectedCheckData.transferObjectId : selectedProcess.transferObjectId,
       receiveLinkId: selectedCheckData.receiveLinkId ? selectedCheckData.receiveLinkId : selectedProcess.receiveLinkId,
       receiveLinkIds: selectedCheckData.receiveLinkIds ? selectedCheckData.receiveLinkIds : selectedProcess.receiveLinkIds,
-      userId: wx.getStorageSync("currentUserId"),
+      userId: wx.getStorageSync("userInfo").Id,
       businessId: selectedProcess.businessId,
       // linkId: selectedCheckData.linkId,
       // task: selectedCheckData.task,
@@ -49,8 +52,8 @@ Page({
       thridDepartment: selectedProcess.initiateThirdDepartment,
       registerId: selectedProcess.registerId
     }
-    util.getRequest("http://localhost:33079/Process/BussinessHandler_NextLink", submitData, function (data) {
-      that.setData({ allowReceiveLinks: data.allowReceiveLinks, allowReceiveStaffs: data.allowReceiveStaffs });
+    util.getRequest(config.urls.getNextLinkUrl, submitData, function (data) {
+      that.setData({ allowReceiveLinks: data.allowReceiveLinks, allowReceiveStaffs: data.allowReceiveStaffs, outOfControlLinks: data.outOfControlLinks });
     })
     // wx.request({
     //   url: 'http://localhost:33079/Process/BussinessHandler_NextLink?userId=100',
@@ -81,6 +84,23 @@ Page({
 
   },
 
+  checkboxChange: function (e) {
+    var that = this;
+    console.log(e);
+    var chooseValue = e.detail.value;
+    var outOfControlLinks = that.data.outOfControlLinks;
+    var nextOutOfControlIds = "";
+    var nextOutOfControlUserIds = "";
+    for (var i = 0; i < chooseValue.length; i++){
+      nextOutOfControlIds += outOfControlLinks[i].linkId + ",";
+      nextOutOfControlUserIds += outOfControlLinks[i].staffId + ",";
+    }
+    that.setData({
+      nextOutOfControlIds: nextOutOfControlIds.substring(0, nextOutOfControlIds.length - 1),
+      nextOutOfControlUserIds: nextOutOfControlUserIds.substring(0, nextOutOfControlUserIds.length - 1)
+    })
+  },
+
   datepickerBindchange: function (e) {
     var that = this;
     console.log(e);
@@ -90,7 +110,7 @@ Page({
     var nextLink = that.data.allowReceiveLinks[index];
     var submitData = {
       registId: selectedProcess.registId,
-      userId: wx.getStorageSync("currentUserId"),
+      userId: wx.getStorageSync("userInfo").Id,
       businessId: selectedProcess.businessId,
       linkId: nextLink.linkId,
       task: nextLink.task,
@@ -104,7 +124,7 @@ Page({
       thridDepartment: selectedProcess.initiateThirdDepartment,
       registerId: selectedProcess.registerId
     }
-    util.getRequest("http://localhost:33079/Process/BussinessHandler_NextLink_ReceiveStaffs", submitData, function (data) {
+    util.getRequest(config.urls.getNextStaffUrl, submitData, function (data) {
       that.setData({ allowReceiveStaffs: data.allowReceiveStaffs });
     })
 
@@ -132,7 +152,7 @@ Page({
     var updateDataKeys = Object.keys(updateData);
     var submitData = {
       instanceId: selectedProcess.id,
-      userId: wx.getStorageSync("currentUserId"),
+      userId: wx.getStorageSync("userInfo").Id,
       leaveMessage: that.data.leaveMessage,
       docTableName: selectedProcess.docTableName,
       docTableId: selectedProcess.docTableId,
@@ -145,10 +165,10 @@ Page({
       tableNumber: selectedProcess.tableNubmer,
       nextControlLinkId: nextLink.linkId,
       nextControlLink_UserId: nextStaff.userId,
-      nextOutOfControlLinkIds: "",
-      nextOutOfControlLink_UserIds: ""
+      nextOutOfControlLinkIds: that.data.nextOutOfControlIds,
+      nextOutOfControlLink_UserIds: that.data.nextOutOfControlUserIds
     };
-    util.setRequest("http://localhost:33079/Process/BussinessHandler_Save", submitData, function (data) {
+    util.setRequest(config.urls.saveProcessUrl, submitData, function (data) {
       wx.showModal({
         title: '提示',
         content: '传递到下一步成功,点击确定返回流程列表',
@@ -163,7 +183,7 @@ Page({
       // that.setData({ allowReceiveStaffs: data.allowReceiveStaffs });
     })
     // wx.request({
-    //   url: 'http://localhost:33079/Process/BussinessHandler_NextLink_ReceiveStaffs?userId=100',
+    //   url: 'http://localhost:8080/bjyqwx/Process/BussinessHandler_NextLink_ReceiveStaffs?userId=100',
     //   method: 'GET',
     //   success: res => {
     //     console.log(res);

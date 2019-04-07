@@ -24,7 +24,6 @@ function getRequest(url, postData, doSuccess, doFail = null, doComplete = null) 
       } 
       if (res.data.status == "Fail") {
         showSign(res.data.result);
-        return;
       }
       if (!res.data){
         showSign("网络错误，请稍后重试");
@@ -172,10 +171,15 @@ function call(phoneNumber){
  * 简单提示
  */
 function showSign(content) {
-  wx.showModal({
-    title: '提示',
-    content: content,
-    showCancel: false,
+  // wx.showModal({
+  //   title: '提示',
+  //   content: content,
+  //   showCancel: false,
+  // })
+  wx.showToast({
+    title: content,
+    icon: "none",
+    duration: 3000,
   })
 }
 

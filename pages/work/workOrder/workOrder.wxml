@@ -31,10 +31,10 @@
             <view class='list-item-child-info'>{{item.Address}}</view>
           </view>
           <!-- 紧急程度 -->
-          <view class='list-item-child'>
+          <!-- <view class='list-item-child'>
             <view class='list-item-child-title'>紧急程度： </view>
             <view class='list-item-child-info level'>{{item.Level}}</view>
-          </view>
+          </view> -->
           <!-- 状态 -->
           <view class='list-item-child'>
             <view class='list-item-child-title'>当前状态：</view>

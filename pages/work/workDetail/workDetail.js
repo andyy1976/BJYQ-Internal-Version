@@ -33,8 +33,8 @@ Page({
     var beforeImages = [];
     var afterImages = [];
     for (var i = 0; i < 3; i++) {
-      beforeImages.push(repairOrder.BeforeImage[i] ? config.urls.getImageUrl + repairOrder.BeforeImage[i] : "");
-      afterImages.push(repairOrder.AfterImage[i] ? config.urls.getImageUrl + repairOrder.AfterImage[i] : "../../../images/addimage.png");
+      beforeImages.push(repairOrder.BeforeImage[i] ? config.urls.getRepairImageUrl + repairOrder.BeforeImage[i] : "");
+      afterImages.push(repairOrder.AfterImage[i] ? config.urls.getRepairImageUrl + repairOrder.AfterImage[i] : "../../../images/addimage.png");
     }
     that.setData({//设置占位图片
       beforeImage: beforeImages,
@@ -173,9 +173,9 @@ Page({
     submitData.id = that.data.repairOrder.Id;
     submitData.status = repairOrder.isLate == "是" ? "维修延期" : repairOrder.status;
     // submitData.lateReason = repairOrder.lateReason;
-    submitData.serverUrl = config.urls.setWorkOrderUrl;
+    // submitData.serverUrl = config.urls.setWorkOrderUrl;
     console.log(submitData);
-    if (!checkSubmitData(submitData)){return;}
+    // if (!checkSubmitData(submitData)){return;}
     util.setRequest(config.urls.setWorkOrderUrl,submitData,function(status,data){
       if (status == "success"){util.showTip("提交成功");}
     });
@@ -292,8 +292,8 @@ function selectAndUploadImage(that, imageType, id) {
           afterImage: afterImage
         })
       }
-      var formData = { func: imageType, index: id + 1, id: that.data.repairOrder.Id, serverUrl: config.urls.setRepairImageUrl };
-      util.uploadImage(config.urls.cloudImageUrl,tempFilePath,formData);
+      var formData = { func: imageType, index: id + 1, id: that.data.repairOrder.Id };
+      util.uploadImage(config.urls.setRepairImageUrl,tempFilePath,formData);
       // wx.showLoading({
       //   title: '正在上传...',
       // })

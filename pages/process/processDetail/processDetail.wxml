@@ -1,67 +1,89 @@
-<view class="main-view">
-  <view class="func-block">
-    <view class="block-header">
-      <view class="tip-view">
-        流程基本信息
-      </view>
-    </view>
-    <view class="sd-item">
-      <view class='sd-title'>表单编号：</view>
-      <view class='sd-content'>{{processInfo.tableNubmer}}</view>
-    </view>
-    <view class="sd-item">
-      <view class='sd-title'>任务角色：</view>
-      <view class='sd-content'>{{processInfo.taskRole}}</view>
-    </view>
-    <view class="sd-item">
-      <view class='sd-title'>任务说明：</view>
-      <view class='sd-content'>{{processInfo.taskExplain}}</view>
-    </view>
-    <!-- <view class="sd-item">
-      <view class='sd-title'>备注：</view>
-      <view class='sd-content'>{{processInfo.remark}}</view>
-    </view> -->
-    <view class="sd-item">
-      <view class='sd-title'>摘要：</view>
-      <view class='sd-content'>{{processInfo.summary}}</view>
-    </view>
-    <view class="sd-item">
-      <view class='sd-title'>发起人：</view>
-      <view class='sd-content'>{{processInfo.initiator}}</view>
-    </view>
-    <view class="sd-item">
-      <view class='sd-title'>发起人部门：</view>
-      <view class='sd-content'>{{processInfo.initiateDepartment}}</view>
-    </view>
-    <view class="sd-item">
-      <view class='sd-title'>送件人：</view>
-      <view class='sd-content'>{{processInfo.sender}}</view>
-    </view>
-    <view class="sd-item">
-      <view class='sd-title'>送达时间：</view>
-      <view class='sd-content'>{{processInfo.reachTime}}</view>
-    </view>
-  </view>
-  <!-- processItems -->
-
-  <!-- 任务行的“任务”值，如果是 0（传阅） 或 4（知会），那么意味着整个表单都是只读的，所有字段都必须设置为不可编辑 -->
-  <block wx:if="{{processInfo.task == 0 || processInfo.task == 4}}">
+<form bindsubmit="submit">
+  <view class="main-view">
     <view class="func-block">
       <view class="block-header">
         <view class="tip-view">
-          流程处理
+          流程基本信息
         </view>
       </view>
-      <block wx:for="{{processItems}}">
-        <view class="cd-item">
-          <view class='cd-title color-gray'>{{item.title}}：</view>
-          <textarea auto-height='{{true}}' class='cd-input color-gray' value="{{item.defaultValue ? item.defaultValue : item.content}}" disabled='{{true}}' />
-        </view>
-      </block>
+      <view class="sd-item">
+        <view class='sd-title'>表单编号：</view>
+        <view class='sd-content'>{{processInfo.tableNubmer}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>任务角色：</view>
+        <view class='sd-content'>{{processInfo.taskRole}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>任务说明：</view>
+        <view class='sd-content'>{{processInfo.taskExplain}}</view>
+      </view>
+      <!-- <view class="sd-item">
+      <view class='sd-title'>备注：</view>
+      <view class='sd-content'>{{processInfo.remark}}</view>
+    </view> -->
+      <view class="sd-item">
+        <view class='sd-title'>摘要：</view>
+        <view class='sd-content'>{{processInfo.summary}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>发起人：</view>
+        <view class='sd-content'>{{processInfo.initiator}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>发起人部门：</view>
+        <view class='sd-content'>{{processInfo.initiateDepartment}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>送件人：</view>
+        <view class='sd-content'>{{processInfo.sender}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>送达时间：</view>
+        <view class='sd-content'>{{processInfo.reachTime}}</view>
+      </view>
     </view>
-  </block>
-  <block wx:else>
-    <form bindsubmit="submit">
+    <!-- processItems -->
+
+    <!-- 任务行的“任务”值，如果是 0（传阅） 或 4（知会），那么意味着整个表单都是只读的，所有字段都必须设置为不可编辑 -->
+    <block wx:if="{{processInfo.task == 0 || processInfo.task == 4}}">
+      <view class="func-block">
+        <view class="block-header">
+          <view class="tip-view">
+            流程处理
+          </view>
+        </view>
+        <block wx:for="{{processItems}}">
+          <view class="cd-item">
+            <view class='cd-title color-gray'>{{item.title}}：</view>
+            <textarea auto-height='{{true}}' class='cd-input color-gray' value="{{item.defaultValue ? item.defaultValue : item.content}}" disabled='{{true}}' />
+          </view>
+        </block>
+      </view>
+
+      <block wx:if="{{processInfo.task == 4}}">
+        <view class="func-block">
+          <view class="block-header">
+            <view class="tip-view">
+              知会留言
+            </view>
+          </view>
+          <view class="cd-item">
+            <view class='normal-title'>是否归档：</view>
+            <radio-group name="isArchiving" bindchange='radioChange'>
+              <radio class='cd-radio' value='1'>是</radio>
+              <radio class='cd-radio' value='0' checked='{{true}}'>否</radio>
+            </radio-group>
+          </view>
+          <view class="cd-item">
+            <view class='normal-title'>知会留言：</view>
+            <input class='normal-input' placeholder-class="cd-placeholder" name="leaveMessage" placeholder="请输入留言" />
+          </view>
+        </view>
+        <button id="submitNotify" formType="submit" type='primary'>提交</button>
+      </block>
+    </block>
+    <block wx:else>
       <view class="func-block">
         <view class="block-header">
           <view class="tip-view">
@@ -73,7 +95,8 @@
           <block wx:if="{{item.allowEdit == true}}">
             <view class="cd-item">
               <view class='cd-title color-black'>{{item.title}}：</view>
-              <textarea auto-height='{{true}}' id='{{index}}' data-required='{{item.required}}' class='cd-input color-black' name="{{item.defaultValue || item.allowEdit == true ? index : ''}}" value="{{item.defaultValue ? item.defaultValue : item.content}}" disabled='{{false}}' />
+              <textarea auto-height='{{true}}' id='{{index}}' data-required='{{item.required}}' class='cd-input color-black' name="{{item.defaultValue || item.allowEdit == true ? index : ''}}" value="{{item.defaultValue ? item.defaultValue : item.content}}" disabled='{{false}}'
+              />
             </view>
           </block>
           <!-- 不允许编辑的行 -->
@@ -129,12 +152,13 @@
         </view>
         <button id="submitTerminator" formType="submit" type='primary'>结束流程</button>
       </block>
- 
-    </form>
-  </block>
+
+    </block>
 
 
-     <view class="footer-view"></view>
+    <view class="footer-view"></view>
 
 
-</view>
+  </view>
+
+</form>

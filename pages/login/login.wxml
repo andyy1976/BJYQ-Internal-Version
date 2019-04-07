@@ -26,7 +26,7 @@
   </view>
   </view>
   <!-- <button id="submit" formType="submit" type='primary'>绑定账号</button> -->
-  <button id="submit" formType="submit" type='primary'>登录</button>
+  <button id="submit" formType="submit" type='primary'>绑 定</button>
   </form>
 </view>
 

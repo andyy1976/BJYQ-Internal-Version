@@ -17,30 +17,33 @@
         <view class='normal-title'>传递环节：</view>
         <view class='normal-content'>{{allowReceiveLinks[arlIndex].objectExplain}}</view>
       </view>
-    </view>
-
-
-
-    <view class="func-block">
-      <view class="block-header">
-        <view class="tip-view">
-          下一环节实际接收人（可选）
-        </view>
-      </view>
-      <!-- <checkbox-group bindchange="checkboxChange">
-        <label class="checkbox" wx:for="{{allowReceiveStaffs}}">
-          <checkbox value="{{item.user}}" checked="{{item.userChecked}}" /> {{item.user + '（' + item.userDepartment + '）'}}
-        </label>
-      </checkbox-group> -->
       <picker id="100" name="{{arsIndex}}" range='{{allowReceiveStaffs}}' range-key='user' value="{{arsIndex}}" bindchange="receiverPickerBindchange">
-      <view class="cd-item">
-        <view class='normal-title'>接收人：</view>
-        <view class='normal-content'>{{allowReceiveStaffs[arsIndex].user + '（' + allowReceiveStaffs[arsIndex].userDepartment + '）'}}</view>
-        <image class='cd-next-image' src='../../../images/xiala.png' />
-      </view>
-    </picker>
+        <view class="cd-item">
+          <view class='normal-title'>实际接收人：</view>
+          <view class='normal-content'>{{allowReceiveStaffs[arsIndex].user + '（' + allowReceiveStaffs[arsIndex].userDepartment + '）'}}</view>
+          <image class='cd-next-image' src='../../../images/xiala.png' />
+        </view>
+      </picker>
     </view>
 
+    <block wx:if="{{outOfControlLinks.length > 0}}">
+      <view class="func-block">
+        <view class="block-header">
+          <view class="tip-view">
+            选择知会者（可选）
+          </view>
+        </view>
+        <checkbox-group bindchange="checkboxChange">
+          <view wx:for="{{outOfControlLinks}}">
+            <label class="checkbox">
+              <checkbox value="{{index}}" checked="{{item.userChecked}}" /> {{item.operationStaff + '（' + item.department + '）'}}
+            </label>
+            <label wx:if="{{item.task == 4}}">知会</label>
+            <label wx:if="{{item.task == 5}}">并行</label>
+          </view>
+        </checkbox-group>
+      </view>
+    </block>
     <button id="submit" formType="submit" type='primary'>确认</button>
     <view class="footer-view"></view>
   </form>

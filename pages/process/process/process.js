@@ -15,16 +15,16 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    var data = { userId: wx.getStorageSync("currentUserId") };//315,280
-    // var data = { userId: wx.getStorageSync("userInfo").UserId };
-    util.getRequest("http://localhost:33079/Process/GetProcessList", data, function (data) {
+    // var data = { userId: wx.getStorageSync("currentUserId") };//315,280
+    var data = { userId: wx.getStorageSync("userInfo").Id };
+    util.getRequest(config.urls.getProcessListUrl, data, function (data) {
       var processList = data;
       that.setData({
         processList: processList
       })
     })
     // wx.request({
-    //   url: 'http://localhost:33079/Process/GetProcessList?userId=100',
+    //   url: 'http://localhost:8080/bjyqwx/Process/GetProcessList?userId=100',
     //   method: 'GET',
     //   success: res => {
     //     console.log(res);

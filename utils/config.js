@@ -1,31 +1,32 @@
-  // const baseUrl = "http://k17154485y.imwork.net:23530/wx";//本地服务器Url
-const baseUrl = "http://localhost:33079";
-// const baseUrl = "http://szyqwy.gicp.net/wxinternal";//本地服务器Url
-
+  // const baseUrl = "https://yanqiao2018.cn/bjyqwx";//云服务器Url
+const baseUrl = "http://k17154485y.imwork.net:23530/bjyqwx";//本地服务器Url
+const getImageUrl = "http://k17154485y.imwork.net:23530/bjyqImage";//从服务器获取图片
 
 const workOrderUrl = baseUrl + "/WorkOrder";//工单相关功能Url
 const complainUrl = baseUrl + "/Complain";//投诉相关功能Url
 const equipmentUrl = baseUrl + "/Equipment";//设备相关功能Url
 const decorationUrl = baseUrl + "/Decoration";//装修相关功能Url
-const chargeUrl = baseUrl + "/Charge";//费用相关功能Url
+const chargeUrl = baseUrl + "/Charge";//费用相关功能Urly
 const userUrl = baseUrl + "/WxOpen";//用户相关功能Url
 const proprietorUrl = baseUrl + "/Proprietor";//占用者相关功能Url
 const statisticsUrl = baseUrl + "/Statistics";//统计信息相关Url
 const reportUrl = baseUrl + "/Report";//上报信息相关Url
 const lookOverUrl = baseUrl + "/LookOver"//巡检管理相关Url
 const requestPaymentUrl = baseUrl + "/RequestPaymentFlow";//请款流程相关Url
+const processUrl = baseUrl + "/Process";//流程业务相关Url
 
 
 const urls = {
   // cloudUrl: "https://yqwy-hd.com/wxics/SendData/OnSendData",//云服务器向本地服务器发送数据的Url
   // cloudUrl: "http://localhost:8080/wxics/SendData/OnSendData",//云服务器向本地服务器发送数据的Url
-  cloudImageUrl: "https://yqwy-hd.com/wxics/SetImage/OnSetImage",//云服务器向本地服务器发送图片的Url
-  getImageUrl: "https://yqwy-hd.com/wxics/wximages/",//从云服务器获取图片
+  // cloudImageUrl: "https://yqwy-hd.com/wxics/SetImage/OnSetImage",//云服务器向本地服务器发送图片的Url
+  // getImageUrl: "http://k17154485y.imwork.net:23530/bjyqImage",//从云服务器获取图片
 
   getWorkOrderUrl: workOrderUrl + "/OnGetRepairList",//获取工单列表
   setWorkOrderUrl: workOrderUrl + "/OnSetRepairOrder",//设置工单完成情况
   setWorkOrderIsReadUrl : workOrderUrl + "/OnSetOrderIsRead",//设置工单已阅读
   setRepairImageUrl: workOrderUrl + "/OnSetRepairImage",//提交工单图片信息
+  getRepairImageUrl: getImageUrl + "/jczl_fwrwgl/",//获取工单图片
   setPatrolUrl: workOrderUrl + "/OnSetPatrol",//提交报事信息
   setPatrolImageUrl: workOrderUrl + "/OnSetPatrolImage",//提交报事图片信息
   getPatrolUrl: workOrderUrl + "/OnGetPatrol",//获取报事历史
@@ -72,8 +73,16 @@ const urls = {
 
   getReportUrl: reportUrl + "/OnGetReport",//获取上报信息
 
-  getRequestPaymentSheetUrl: requestPaymentUrl + "/OnGetRequestPaymentSheet",//获取请款列表
-  setRequestPaymentFlowUrl: requestPaymentUrl + "/OnSetRequestPaymentFlow"//设置请款流程
+  // getRequestPaymentSheetUrl: requestPaymentUrl + "/OnGetRequestPaymentSheet",//获取请款列表
+  // setRequestPaymentFlowUrl: requestPaymentUrl + "/OnSetRequestPaymentFlow"//设置请款流程
+
+  getProcessListUrl: processUrl + "/GetProcessList",//获取流程列表
+  getProcessDetailUrl: processUrl + "/BussinessHandler_TableData",//获取流程详请
+  endProcessUrl: processUrl + "/BussinessHandler_End",//结束流程
+  setNotifyUrl: processUrl + "/BussinessHandler_Save_Notify",//提交留言信息
+  getNextLinkUrl: processUrl + "/BussinessHandler_NextLink",//获取下一环节信息
+  getNextStaffUrl: processUrl + "/BussinessHandler_NextLink_ReceiveStaffs",//获取下一环节实际接收者信息
+  saveProcessUrl: processUrl + "/BussinessHandler_Save"//保存流程信息
 }
 
 

@@ -19,10 +19,7 @@
         <view class='list-item-child-title'>发起人部门：</view>
         <view class='list-item-child-info'>{{litem.initiateDepartment}}</view>
       </view> -->
-      <view class='list-item-child'>
-        <view class='list-item-child-title'>摘要：</view>
-        <view class='list-item-child-info status-red'>{{litem.summary}}</view>
-      </view>
+      
       <view class='list-item-child'>
         <view class='list-item-child-title'>送件人：</view>
         <view class='list-item-child-info'>{{litem.sender}}</view>
@@ -34,6 +31,10 @@
       <view class='list-item-child'>
         <view class='list-item-child-title'>任务：</view>
         <view class='list-item-child-info color-green'>{{litem.task==0?"传阅":litem.task==1?"":litem.task==2?"审核":litem.task==3?"":litem.task==4?"知会":litem.task==5?"并行":""}}</view>
+      </view>
+      <view class='list-item-child'>
+        <view class='list-item-child-title'>摘要：</view>
+        <view class='list-item-child-info status-red'>{{litem.summary}}</view>
       </view>
     <!-- </block> -->
     </view>

@@ -11,6 +11,7 @@ Page({
     processItems: null,
     checkDataDefines: null,
     checkDataDefinesIndex: 0,
+    isArchiving: 0
   },
 
   /**
@@ -22,7 +23,7 @@ Page({
     console.log(process);
     that.setData({ processInfo: process });
     var submitData = {
-      userId: wx.getStorageSync("currentUserId"),
+      userId: wx.getStorageSync("userInfo").Id,
       linkId: process.linkId,
       docTableName: process.docTableName,
       docTableId: process.docTableId,
@@ -31,7 +32,7 @@ Page({
       objectType: process.objectType,
       transferObjectType: process.transferObjectType
     };
-    util.getRequest("http://localhost:33079/Process/BussinessHandler_TableData", submitData, function (data) {
+    util.getRequest(config.urls.getProcessDetailUrl, submitData, function (data) {
       var items = data.items[0];
       var defines = data.defines;
       // var processItem = {};
@@ -78,7 +79,7 @@ Page({
       // console.log(needShowItems);
     })
     // wx.request({
-    //   url: 'http://localhost:33079/Process/BussinessHandler_TableData?userId=100',
+    //   url: 'http://localhost:8080/bjyqwx/Process/BussinessHandler_TableData?userId=100',
     //   method: 'GET',
     //   success: res => {
     //     console.log(res);
@@ -143,6 +144,13 @@ Page({
 
   },
 
+  radioChange: function (e) {
+    console.log(e);
+    var that = this;
+    var chooseValue = e.detail.value;
+    that.setData({isArchiving: chooseValue});
+  },
+
   datepickerBindchange: function (e) {
     var that = this;
     console.log(e);
@@ -182,6 +190,8 @@ Page({
     console.log(updateData);
     var index = parseInt(e.detail.value.checkDataDefinesIndex);
     var selectedProcess = wx.getStorageSync("selectedProcess");
+
+    //判断审核，传递到下一步
     if (e.detail.target.id == "submitDecision") {
       var selectedCheckData = that.data.checkDataDefines[index];
       console.log(selectedCheckData);
@@ -189,12 +199,14 @@ Page({
         url: '../processNextLink/processNextLink?selectedCheckData=' + JSON.stringify(selectedCheckData) + '&updateData=' + JSON.stringify(updateData) + '&leaveMessage=' + value.leaveMessage,
       })
     }
+    
+    //判断审核，终结业务
     if (e.detail.target.id == "submitTerminator"){
       console.log(e);
       var updateKeys = Object.keys(updateData);
       var submitData = {
         instanceId: selectedProcess.id,
-        userId: wx.getStorageSync("currentUserId"),
+        userId: wx.getStorageSync("userInfo").Id,
         leaveMessage: value.leaveMessage,
         isEnd: 1,
         docTableName: selectedProcess.docTableName,
@@ -204,10 +216,40 @@ Page({
         registId: selectedProcess.registId,
         transmitConditionAndExplain: selectedProcess.transmitConditionAndExplain
       };
-      util.setRequest("http://localhost:33079/Process/BussinessHandler_End", submitData, function (data) {
+      util.setRequest(config.urls.endProcessUrl, submitData, function (data) {
         wx.showModal({
           title: '提示',
           content: '流程已结束,点击确定返回流程列表',
+          showCancel: false,
+          success: res => {
+            wx.reLaunch({
+              url: '../process/process',
+            })
+          }
+        })
+      })
+    }
+
+    //知会留言
+    if (e.detail.target.id == "submitNotify") {
+      console.log("notify");
+      console.log(e);
+      // return;
+      var updateKeys = Object.keys(updateData);
+      var submitData = {
+        instanceId: selectedProcess.id,
+        userId: wx.getStorageSync("userInfo").Id,
+        leaveMessage: value.leaveMessage,
+        needArchiving: that.data.isArchiving,
+        docTableName: selectedProcess.docTableName,
+        docTableId: selectedProcess.docTableId,
+        updateDataKeys: JSON.stringify(updateKeys),
+        updateData: JSON.stringify(updateData),
+      };
+      util.setRequest(config.urls.setNotifyUrl, submitData, function (data) {
+        wx.showModal({
+          title: '提示',
+          content: '留言成功,点击确定返回流程列表',
           showCancel: false,
           success: res => {
             wx.reLaunch({
@@ -219,7 +261,6 @@ Page({
         // that.setData({ allowReceiveStaffs: data.allowReceiveStaffs });
       })
     }
-
   },
 
   /**

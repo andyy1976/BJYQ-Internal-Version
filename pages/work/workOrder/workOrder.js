@@ -13,7 +13,8 @@ Page({
     currentSortType: "报修时间",//当前排序方式
     sortTypeList: ["报修时间", "预约服务时间", "派工时间"],//排序状态
     sortTypeListIndex: 0,
-    filtrateList: ["全部", "已派单", "已现场确认", "维修中", "维修延期"],//状态筛选
+    // filtrateList: ["全部", "已派单", "已现场确认", "维修中", "维修延期"],//状态筛选
+    filtrateList: ["全部"],//状态筛选
     filtrateIndex: 0,
     filtrateRepairOrder: []
   },
@@ -125,7 +126,7 @@ function getRepairList(that) {
     ztcode: ztInfo ? ztInfo.ZTCode : "",
     status: "未完成",
     orderType: that.data.sortTypeList[that.data.sortTypeListIndex],
-    serverURL: config.urls.getWorkOrderUrl
+    // serverURL: config.urls.getWorkOrderUrl
   }
   util.getRequest(config.urls.getWorkOrderUrl, data, function (data) {
     var repairList = data;
@@ -140,6 +141,7 @@ function getRepairList(that) {
  * 自定义函数，筛选小程序本地获取到的符合条件的工单
  */
 function filtrateRepairOrder(repairList, status, that) {
+  console.log(repairList);
   var filtrateRepairOrder = [];
   if (status == "全部") {
     filtrateRepairOrder = repairList;

@@ -39,31 +39,31 @@
         <view class='sd-title'>接单人：</view>
         <view class='sd-content'>{{repairOrder.ReceivePerson}}</view>
       </view>
-      <view class="sd-item">
+      <!-- <view class="sd-item">
         <view class='sd-title'>紧急程度：</view>
         <view class='sd-content'>{{repairOrder.Level}}</view>
-      </view>
+      </view> -->
       <view class="sd-item">
         <view class='sd-title'>服务项目：</view>
         <view class='sd-content'>{{repairOrder.ServiceProject}}</view>
       </view>
-      <view class="sd-item">
+      <!-- <view class="sd-item">
         <view class='sd-title'>是否入户：</view>
         <view class='sd-content'>{{repairOrder.NeedIn}}</view>
-      </view>
+      </view> -->
     </view>
 
-    <view class="func-block">
+    <!-- <view class="func-block">
       <view class="block-header">
         <view class="tip-view">
           注意事项：
         </view>
-      </view>
+      </view> -->
       <!-- <view class="sd-item">
       <view class='sd-title'>序号：</view>
       <view class='sd-content'>{{repairOrder.SerialNumber}}</view>
     </view> -->
-    </view>
+    <!-- </view> -->
     <!-- ================================================================================ -->
 
     <form bindsubmit="submit">
@@ -80,30 +80,32 @@
             <image class='cd-next-image' src='../../../images/xiala.png' />
           </view>
         </picker>
-        <view class="cd-item">
+        <!-- <view class="cd-item">
           <view class='cd-title'>延期维修：</view>
           <radio-group name="isLate" bindchange='isLateChange'>
             <radio class='cd-radio' value='是' checked='{{repairOrder.status == "维修延期"}}'>是</radio>
             <radio class='cd-radio' value='否' checked='{{repairOrder.status != "维修延期"}}'>否</radio>
           </radio-group>
-        </view>
-        <picker id="300" mode="date" name="lateTime" value="{{repairOrder.LateTime ? repairOrder.LateTime : ''}}" bindchange="datepickerBindchange" hidden='{{reasonHidden}}'>
+        </view> -->
+        <!-- <picker id="300" mode="date" name="lateTime" value="{{repairOrder.LateTime ? repairOrder.LateTime : ''}}" bindchange="datepickerBindchange" hidden='{{reasonHidden}}'>
           <view class="cd-item" hidden='{{repairOrder.isLate == "否" || !repairOrder.isLate}}'>
             <view class='cd-title'>延期到：</view>
             <view class='cd-content'>{{repairOrder.LateTime ? repairOrder.LateTime : ""}}</view>
             <image class='cd-next-image' src='../../../images/xiala.png' />
           </view>
-        </picker>
-        <view class="cd-item" hidden='{{repairOrder.isLate == "否" || !repairOrder.isLate}}'>
+        </picker> -->
+        <!-- <view class="cd-item" hidden='{{repairOrder.isLate == "否" || !repairOrder.isLate}}'>
           <view class='cd-title'>延期原因：</view>
           <input class='cd-input' id="2" name="lateReason" value="{{repairOrder.LateReason}}" placeholder="请输入需要延期的原因" placeholder-class="cd-placeholder" />
-        </view>
+        </view> -->
         <!-- <view class="cd-item" bindtap='checkIdentity' hidden='{{repairOrder.Identity == "维修工"}}'> -->
         <view class="cd-item" bindtap='checkIdentity'>
           <view class='cd-title'>收费类别：</view>
           <radio-group name="chargeType" bindchange='chargeTypeChange'>
-            <radio class='cd-radio' value='收费' checked='{{repairOrder.ChargeType == "收费"}}' disabled='{{repairOrder.Identity == "维修工" ? true : false}}'>收费</radio>
-            <radio class='cd-radio' value='免费' checked='{{repairOrder.ChargeType == "免费" || !repairOrder.ChargeType}}' disabled='{{repairOrder.Identity == "维修工" ? true : false}}'>免费</radio>
+            <!-- <radio class='cd-radio' value='收费' checked='{{repairOrder.ChargeType == "收费"}}' disabled='{{repairOrder.Identity == "维修工" ? true : false}}'>收费</radio>
+            <radio class='cd-radio' value='免费' checked='{{repairOrder.ChargeType == "免费" || !repairOrder.ChargeType}}' disabled='{{repairOrder.Identity == "维修工" ? true : false}}'>免费</radio> -->
+         <radio class='cd-radio' value='收费' checked='{{repairOrder.ChargeType == "收费"}}' >收费</radio>
+            <radio class='cd-radio' value='免费' checked='{{repairOrder.ChargeType == "免费" || !repairOrder.ChargeType}}'>免费</radio>
           </radio-group>
         </view>
         <view class="cd-item" hidden='{{repairOrder.ChargeType == "免费" || !repairOrder.ChargeType}}' bindtap='checkIdentity'>
@@ -114,13 +116,13 @@
           <view class='cd-title'>人工费：</view>
           <input class='cd-input' id="3" name="laborExpense" value="{{repairOrder.LaborExpense == 0 ? null : repairOrder.LaborExpense}}" placeholder="请输入人工费" placeholder-class="cd-placeholder" disabled='{{repairOrder.Identity == "维修工" ? true : false}}' />
         </view>
-        <view class="cd-item" hidden='{{repairOrder.ChargeType == "免费" || !repairOrder.ChargeType}}' bindtap='checkIdentity'>
+        <!-- <view class="cd-item" hidden='{{repairOrder.ChargeType == "免费" || !repairOrder.ChargeType}}' bindtap='checkIdentity'>
           <view class='cd-title'>是否已交：</view>
           <radio-group name="isPaid" bindchange='isPaidChange'>
             <radio class='cd-radio' value='是' checked='{{repairOrder.IsPaid == "是"}}' disabled='{{repairOrder.Identity == "维修工" ? true : false}}'>是</radio>
             <radio class='cd-radio' value='否' checked='{{repairOrder.IsPaid == "否" || !repairOrder.IsPaid}}' disabled='{{repairOrder.Identity == "维修工" ? true : false}}'>否</radio>
           </radio-group>
-        </view>
+        </view> -->
         <picker id="200" mode="time" name="completeTime" value="{{repairOrder.CompleteTime ? repairOrder.CompleteTime : ''}}" bindchange="datepickerBindchange">
           <view class="cd-item">
             <view class='cd-title'>完成时间：</view>
@@ -209,18 +211,18 @@
         <view class='sd-title'>预约时间：</view>
         <view class='sd-content'>{{repairOrder.OrderTime}}</view>
       </view>
-      <view class="sd-item">
+      <!-- <view class="sd-item">
         <view class='sd-title'>紧急程度：</view>
         <view class='sd-content'>{{repairOrder.Level}}</view>
-      </view>
+      </view> -->
       <view class="sd-item">
         <view class='sd-title'>服务项目：</view>
         <view class='sd-content'>{{repairOrder.ServiceProject}}</view>
       </view>
-      <view class="sd-item">
+      <!-- <view class="sd-item">
         <view class='sd-title'>是否入户：</view>
         <view class='sd-content'>{{repairOrder.NeedIn}}</view>
-      </view>
+      </view> -->
     </view>
     <!-- ================================================================================ -->
 
@@ -284,7 +286,7 @@
       </view>
     </view>
 
-    <view class="func-block">
+    <!-- <view class="func-block">
       <view class="block-header">
         <view class="tip-view">
           业主确认
@@ -327,7 +329,7 @@
         <view class='sd-title'>业主评价：</view>
         <view class='sd-content'>{{repairOrder.CallBackEvaluation}}</view>
       </view>
-    </view>
+    </view> -->
 
 
 

@@ -6,6 +6,26 @@ App({
     cloudUrl: "http://192.168.0.111/wxics/SendData/OnSendData"
   },
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
 
 
@@ -16,59 +36,26 @@ App({
     //张树利： 403
     //黄健： 163
     //辛伟民： 291
-    //
-    //
-    wx.setStorageSync('currentUserId', 45);
-    // if (!wx.getStorageSync("sessionId")){
-      // that.checkSession();
-    // }
-    // wx.checkSession({
-    //   success: res => {
-    //     console.log(res);
-    //   }
-    // })    
-    
-    // // 展示本地存储能力
-    // var logs = wx.getStorageSync('logs') || []
-    // logs.unshift(Date.now())
-    // wx.setStorageSync('logs', logs)
-    // login();
-    // return;
-    // 登录
-    // wx.checkSession({
-    //   success: res => {
-    //     console.log(res);
-    //     // login();
-    //   },
-    //   fail: res => {
-    //     console.log(res);
-    //     login();
-    //   }
-    // })
-    
-    // 获取用户信息
-    // wx.getSetting({
-    //   success: res => {
-    //     if (res.authSetting['scope.userInfo']) {
-    //       // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-    //       wx.getUserInfo({
-    //         success: res => {
-    //           // 可以将 res 发送给后台解码出 unionId
-    //           this.globalData.userInfo = res.userInfo
-
-    //           // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-    //           // 所以此处加入 callback 以防止这种情况
-    //           if (this.userInfoReadyCallback) {
-    //             this.userInfoReadyCallback(res)
-    //           }
-    //         }
-    //       })
-    //     }
-    //   }
-    // })
+    //朱燕韬： 315
+    //毕岚： 131
+    // wx.setStorageSync('currentUserId', 45);
   },
 
   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   checkSession: function() {
     var that = this;
@@ -199,3 +186,50 @@ App({
   }
 })
 
+// if (!wx.getStorageSync("sessionId")){
+      // that.checkSession();
+    // }
+    // wx.checkSession({
+    //   success: res => {
+    //     console.log(res);
+    //   }
+    // })    
+
+    // // 展示本地存储能力
+    // var logs = wx.getStorageSync('logs') || []
+    // logs.unshift(Date.now())
+    // wx.setStorageSync('logs', logs)
+    // login();
+    // return;
+    // 登录
+    // wx.checkSession({
+    //   success: res => {
+    //     console.log(res);
+    //     // login();
+    //   },
+    //   fail: res => {
+    //     console.log(res);
+    //     login();
+    //   }
+    // })
+
+    // 获取用户信息
+    // wx.getSetting({
+    //   success: res => {
+    //     if (res.authSetting['scope.userInfo']) {
+    //       // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+    //       wx.getUserInfo({
+    //         success: res => {
+    //           // 可以将 res 发送给后台解码出 unionId
+    //           this.globalData.userInfo = res.userInfo
+
+    //           // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+    //           // 所以此处加入 callback 以防止这种情况
+    //           if (this.userInfoReadyCallback) {
+    //             this.userInfoReadyCallback(res)
+    //           }
+    //         }
+    //       })
+    //     }
+    //   }
+    // })
