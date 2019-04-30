@@ -11,7 +11,7 @@ Page({
     equipment: {},
     today: "",
     beforeImage: "../../../images/addimage.png",
-    middleImage: "../../../images/addimage.png",
+    // middleImage: "../../../images/addimage.png",
     afterImage: "../../../images/addimage.png"
   },
 
@@ -29,11 +29,11 @@ Page({
       console.log("beforeImage:");
       console.log(that.data.beforeImage);
     }
-    if (equipment.MiddleImage) {
-      that.setData({
-        middleImage: config.urls.getImageUrl + equipment.MiddleImage
-      })
-    }
+    // if (equipment.MiddleImage) {
+    //   that.setData({
+    //     middleImage: config.urls.getImageUrl + equipment.MiddleImage
+    //   })
+    // }
     if (equipment.AfterImage){
       that.setData({
         afterImage: config.urls.getImageUrl + equipment.AfterImage
@@ -121,15 +121,15 @@ Page({
       selectAndUploadImage(this, "before");
     }
   },
-  middleImageTaped: function () {
-    var that = this;
-    if (that.data.equipment.IsDone == "1") {
-      previewImage(config.urls.getImageUrl + that.data.equipment.MiddleImage);
-    }
-    else {
-      selectAndUploadImage(this, "middle");
-    }
-  },
+  // middleImageTaped: function () {
+  //   var that = this;
+  //   if (that.data.equipment.IsDone == "1") {
+  //     previewImage(config.urls.getImageUrl + that.data.equipment.MiddleImage);
+  //   }
+  //   else {
+  //     selectAndUploadImage(this, "middle");
+  //   }
+  // },
 
   afterImageTaped: function () {
     var that = this;
@@ -224,11 +224,11 @@ function selectAndUploadImage (that,imageType) {
           afterImage: tempFilePath
         })
       }
-      else {
-        that.setData({
-          middleImage: tempFilePath
-        })
-      }
+      // else {
+      //   that.setData({
+      //     middleImage: tempFilePath
+      //   })
+      // }
       
       wx.showLoading({
         title: '正在上传...',

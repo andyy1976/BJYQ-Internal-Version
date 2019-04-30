@@ -93,7 +93,7 @@
         </view>
       </view>
 
-      <view class="func-block">
+      <!-- <view class="func-block">
         <view class="block-header">
           <view class="tip-view">
             保养中照片
@@ -102,7 +102,7 @@
         <view class="images-view">
           <image class='sd-image' src='{{middleImage}}' bindtap='middleImageTaped' />
         </view>
-      </view>
+      </view> -->
       <view class="func-block">
         <view class="block-header">
           <view class="tip-view">

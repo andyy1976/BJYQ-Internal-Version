@@ -11,7 +11,8 @@ Page({
     processItems: null,
     checkDataDefines: null,
     checkDataDefinesIndex: 0,
-    isArchiving: 0
+    isArchiving: 0,
+    isAllCanSelect: false
   },
 
   /**
@@ -22,7 +23,9 @@ Page({
     var process = JSON.parse(options.process);
     console.log(process);
     that.setData({ processInfo: process });
+    // var data = { userId: wx.getStorageSync("currentUserId") };//315,280
     var submitData = {
+      // userId: wx.getStorageSync("currentUserId"),
       userId: wx.getStorageSync("userInfo").Id,
       linkId: process.linkId,
       docTableName: process.docTableName,
@@ -51,6 +54,7 @@ Page({
             items[i].required = defines[j].required;
             items[i].defaultValue = defines[j].defaultValue;
             items[i].allowEdit = defines[j].allowEdit;
+            items[i].isFile = defines[j].isFile;
             break;
           }
         }
@@ -75,6 +79,23 @@ Page({
       // console.log("requiredFields:");
       // console.log(requiredFields);
       that.setData({ processItems: items, checkDataDefines: data.checkDataDefines || null });
+      if (data.checkDataDefines){
+        var checkDataDefines = data.checkDataDefines;
+        var checkDataDefinesIndex = 0;
+        var isAllCanSelect = true;
+        for (var i = 0; i < checkDataDefines.length; i++) {
+          if (checkDataDefines[i].isSelect) {
+            checkDataDefinesIndex = i;
+            isAllCanSelect = false;
+            break;
+          }
+        }
+        that.setData({
+          checkDataDefinesIndex: checkDataDefinesIndex, 
+          isAllCanSelect: isAllCanSelect 
+        })
+      }
+      
       // console.log(needHandleItems);
       // console.log(needShowItems);
     })
@@ -155,7 +176,37 @@ Page({
     var that = this;
     console.log(e);
     var index = parseInt(e.detail.value);
+    
+    if (that.data.checkDataDefines[index].isSelect == false && that.data.checkDataDefines[index].checkResult != "不同意" && !that.data.isAllCanSelect){
+      wx.showToast({
+        title: '不能选择该项',
+        icon: 'none'
+      })
+      return;
+    }
     that.setData({ checkDataDefinesIndex: index });
+  },
+
+
+  lookFile: function (e) {
+    var that = this; 
+    console.log(e);
+    var value = e.currentTarget.dataset.fileName;
+    if (!value){
+      wx.showToast({
+        title: '文件不存在',
+        icon: 'none'
+      })
+      return;
+      }
+    var docValue = value.split('-')[value.split('-').length - 1];
+    var splitArr = docValue.split('|');
+    var docName = splitArr[splitArr.length - 1];
+    var recordId = splitArr[splitArr.length - 2];
+    var fileFullName = "\\" + that.data.processInfo.docTableName + "\\" + recordId + "\\" + docName;
+    var fileUrl = config.urls.getFileUrl + fileFullName;
+    console.log(fileUrl);
+    util.downloadAndLookFiles(fileUrl);
   },
 
   submit: function (e) {
@@ -163,6 +214,7 @@ Page({
     console.log(e);
     var processItems = that.data.processItems;
     var value = e.detail.value;
+    console.log(value);
     var keys = Object.keys(value);
     console.log("keys is: =======================");
     console.log(keys);
@@ -188,13 +240,19 @@ Page({
     // updateString = updateString.substring(0,updateString.length - 1);
     console.log("updateData:");
     console.log(updateData);
-    var index = parseInt(e.detail.value.checkDataDefinesIndex);
+    var index = parseInt(that.data.checkDataDefinesIndex);
     var selectedProcess = wx.getStorageSync("selectedProcess");
 
     //判断审核，传递到下一步
     if (e.detail.target.id == "submitDecision") {
       var selectedCheckData = that.data.checkDataDefines[index];
+      delete selectedCheckData.selectCondition;
+      delete selectedCheckData.hiddenCondition;
+      // delete selectedCheckData.transConditionAndExplain;
+      console.log(index)
+      console.log("===================================")
       console.log(selectedCheckData);
+      console.log("===================================")
       wx.navigateTo({
         url: '../processNextLink/processNextLink?selectedCheckData=' + JSON.stringify(selectedCheckData) + '&updateData=' + JSON.stringify(updateData) + '&leaveMessage=' + value.leaveMessage,
       })
@@ -206,6 +264,7 @@ Page({
       var updateKeys = Object.keys(updateData);
       var submitData = {
         instanceId: selectedProcess.id,
+        // userId: wx.getStorageSync("currentUserId"),
         userId: wx.getStorageSync("userInfo").Id,
         leaveMessage: value.leaveMessage,
         isEnd: 1,
@@ -222,9 +281,12 @@ Page({
           content: '流程已结束,点击确定返回流程列表',
           showCancel: false,
           success: res => {
-            wx.reLaunch({
-              url: '../process/process',
+            wx.navigateBack({
+              delta: 1
             })
+            // wx.reLaunch({
+            //   url: '../process/process',
+            // })
           }
         })
       })
@@ -238,6 +300,7 @@ Page({
       var updateKeys = Object.keys(updateData);
       var submitData = {
         instanceId: selectedProcess.id,
+        // userId: wx.getStorageSync("currentUserId"),
         userId: wx.getStorageSync("userInfo").Id,
         leaveMessage: value.leaveMessage,
         needArchiving: that.data.isArchiving,
@@ -252,9 +315,12 @@ Page({
           content: '留言成功,点击确定返回流程列表',
           showCancel: false,
           success: res => {
-            wx.reLaunch({
-              url: '../process/process',
+            wx.navigateBack({
+              delta: 1
             })
+            // wx.reLaunch({
+            //   url: '../process/process',
+            // })
           }
         })
 

@@ -243,21 +243,13 @@ Page({
       })
       return;
     }
-    // if (func == '请款流程' && (!(userInfo.UserCode == '李军' || userInfo.UserCode == '郑永军'))) {
-    //   wx.showModal({
-    //     title: '提示',
-    //     content: '没有此权限',
-    //     showCancel: false,
-    //   })
-    //   return;
-    // }
     for (var i = 0; i < userInfo.Jurisdiction.length; i++) {
-      if (func == userInfo.Jurisdiction[i]) {
+      // if (func == userInfo.Jurisdiction[i]) {
         wx.navigateTo({
           url: that.data.navPages[e.target.id - 1],
         })
         return;
-      }
+      // }
     }
     wx.showModal({
       title: '提示',

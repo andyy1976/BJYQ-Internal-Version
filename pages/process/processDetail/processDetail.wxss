@@ -16,6 +16,15 @@
   word-break:break-all; 
 }
 
+.cd-file-input {
+  background-color: white;
+  margin-left: 10rpx;
+  color: #606060;
+  width: 320rpx;
+  font-size: 28rpx;
+  word-break:break-all; 
+}
+
 .normal-title {
   width: 180rpx;
   color: black;

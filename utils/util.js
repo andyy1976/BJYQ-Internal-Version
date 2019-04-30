@@ -110,6 +110,76 @@ function setRequest(url, postData, doSuccess, doFail = null, doComplete = null) 
   });
 }
 
+function downloadAndLookFiles(fileUrl,doSuccess = null, doFail = null, doComplete = null) {
+  wx.showLoading({
+    title: '正在加载...',
+  })
+  wx.downloadFile({
+    url: fileUrl, // 仅为示例，并非真实的资源
+    success(res) {
+      wx.hideLoading();
+      console.log("download file success");
+      console.log(res);
+      // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
+      if (res.statusCode === 200) {
+        // if (res["header"]["Content-Type"] == "image/jpeg" || res["header"]["Content-Type"] == "image/png" || res["header"]["Content-Type"] == "image/gif"){
+        var fileType = res.tempFilePath.split(".")[res.tempFilePath.split(".").length - 1];
+        fileType = fileType.toLowerCase();
+        if (fileType == "jpg" || fileType == "jpeg" || fileType == "png" || fileType == "gif"){
+          wx.previewImage({
+            urls: [res.tempFilePath],
+            fail: res => {
+              console.log(res);
+              wx.showToast({
+                title: '文件打开失败',
+                icon: 'none',
+                duration: 3000
+              })
+            }
+          })
+        }
+        else {
+          wx.openDocument({
+            filePath: res.tempFilePath,
+            // filePath: fileUrl,
+            fail: res => {
+              console.log(res);
+              wx.showToast({
+                title: '文件打开失败',
+                icon: 'none',
+                duration: 3000
+              })
+            }
+          })
+        }
+      }
+      else {
+        wx.showToast({
+          title: '文件下载失败',
+          icon: 'none',
+          duration: 3000
+        })
+      }
+      // if (typeof doSuccess == "function") {
+        // console.log("response data is:");
+        // console.log(res.data.data);
+        // doSuccess("success", res.data.data);
+      // }
+    },
+    fail: res => {
+      wx.hideLoading();
+      wx.showToast({
+        title: '文件下载失败',
+        icon: 'none',
+        duration: 3000
+      })
+      console.log("download file failed");
+      console.log(res);
+    }
+  })
+
+}
+
 function uploadImage(url,filePath,formData){
   var userInfo = wx.getStorageSync("userInfo");
   var imageName = "" + userInfo.Id + getTimeStamp() + "." + getImageType(filePath);
@@ -258,7 +328,8 @@ module.exports = {
   showTip: showTip,
   previewImage: previewImage,
   uploadImage: uploadImage,
-  getImageType: getImageType
+  getImageType: getImageType,
+  downloadAndLookFiles: downloadAndLookFiles
 }
 
 

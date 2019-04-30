@@ -2,7 +2,7 @@
 
 
 <block wx:for="{{icons}}">
-  <view data-func='{{item.showValue}}' class="icon-view" bindtap="imageTouched">
+  <view data-func='{{item.showValue}}' class="icon-view" bindtap="imageTouched" id = "{{index}}">
     <image class="icon-image" src="{{item.imgSrc}}" id="3"></image>
     <label>{{item.showValue}}</label>
     <!-- <image class='xiayiye' src="../../../images/xiayiye.png" id="1"></image> -->

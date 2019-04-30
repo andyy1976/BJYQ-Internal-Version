@@ -12,33 +12,33 @@ Page({
     icons: [{
       imgSrc: "../../../images/shoufei.png",
       bindtap: "imageTouched",
-      showValue: "收费统计",
-      navPage: "../chargeStatisticsCompany/chargeStatisticsCompany",//工单统计
+      showValue: "财务_月收费统计",
+      navPage: "../monthChargeStatistics/monthChargeStatistics",//财务_月收费统计
     },
     {
-      imgSrc: "../../../images/gongdan.png",
+      imgSrc: "../../../images/shoufei.png",
       bindtap: "imageTouched",
-      showValue: "工单统计",
-      navPage: "../workOrderStatistics/workOrderStatistics",//工单统计
+      showValue: "财务_未收_欠款情况汇总",
+      // navPage: "../workOrderStatistics/workOrderStatistics",//财务_未收_欠款情况汇总
     },
     {
-      imgSrc: "../../../images/shebei.png",
+      imgSrc: "../../../images/shoufei.png",
       bindtap: "imageTouched",
-      showValue: "设备统计",
-      navPage: "../equipmentStatistics/equipmentStatistics",//设备统计
+      showValue: "收费情况统计",
+      // navPage: "../equipmentStatistics/equipmentStatistics",//设备统计
     },
-      {
-        imgSrc: "../../../images/guzhang.png",
-        bindtap: "imageTouched",
-        showValue: "设备故障统计",
-        navPage: "../equipmentTroubleStatistics/equipmentTroubleStatistics",//设备统计
-      },
-    {
-      imgSrc: "../../../images/tousu.png",
-      bindtap: "imageTouched",
-      showValue: "投诉统计",
-      navPage: "../complainStatistics/complainStatistics",//投诉统计
-    },
+    //   {
+    //     imgSrc: "../../../images/guzhang.png",
+    //     bindtap: "imageTouched",
+    //     showValue: "设备故障统计",
+    //     navPage: "../equipmentTroubleStatistics/equipmentTroubleStatistics",//设备统计
+    //   },
+    // {
+    //   imgSrc: "../../../images/tousu.png",
+    //   bindtap: "imageTouched",
+    //   showValue: "投诉统计",
+    //   navPage: "../complainStatistics/complainStatistics",//投诉统计
+    // },
     ],
     navPages: [
       
@@ -53,34 +53,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
 
   },
 
@@ -109,43 +81,47 @@ Page({
     var level = userInfo.Level[userInfo.Level.length - 1];
     var username = userInfo.UserCode;
     var ztcode = wx.getStorageSync("currentZT").ZTCode;
-    if (func == "设备统计" && level == "一线") {
-      wx.showModal({
-        title: '提示',
-        content: '没有此权限',
-        showCancel: false,
-      })
+    if (func == "财务_未收_欠款情况汇总"){
+      if (level == "公司"){
+        wx.navigateTo({
+          url: '../arrearageStatisticsCompany/arrearageStatisticsCompany',
+        })
+      }
+      else if (level == "项目经理"){
+        wx.navigateTo({
+          url: '../arrearageStatisticsProject/arrearageStatisticsProject',
+        })
+      }
+      else {
+        wx.showToast({
+          title: '没有此权限',
+          icon: "none"
+        })
+      }
       return;
     }
-    // if (func == "设备故障统计" && level == "一线") {
-    //   wx.showModal({
-    //     title: '提示',
-    //     content: '没有此权限',
-    //     showCancel: false,
-    //   })
-    //   return;
-    // }
-    if (func == "收费统计"){
-      if (level == "公司"){
+    if (func == "收费情况统计") {
+      if (level == "公司") {
         wx.navigateTo({
           url: '../chargeStatisticsCompany/chargeStatisticsCompany',
         })
       }
-      else if (level == "一线"){
+      else if (level == "项目经理") {
         wx.navigateTo({
-          url: '../chargeStatisticsGroup/chargeStatisticsGroup',
+          url: '../chargeStatisticsProject/chargeStatisticsProject',
         })
       }
       else {
-        wx.navigateTo({
-          url: '../chargeStatisticsProject/chargeStatisticsProject',
+        wx.showToast({
+          title: '没有此权限',
+          icon: "none"
         })
       }
       return;
     }
 
     wx.navigateTo({
-      url: that.data.icons[e.target.id].navPage,
+      url: that.data.icons[e.currentTarget.id].navPage,
     })
 
 

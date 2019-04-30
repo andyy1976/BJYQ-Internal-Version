@@ -1,93 +1,40 @@
 <view class='header-view'>
   <view class='header-name-view'>
-    {{statistics.ztName}}
+    {{ztName}}
   </view>
   <view class='header-project-view'>
   </view>
 </view>
-<block wx:if="{{level == '助理' || level == '项目经理'}}">
-  <picker mode="date" value="{{date}}" fields="month" bindchange="bindDateChange">
-    <view class='date-view'>
-      <view class='date-show-view'>{{date}} </view>
-      <image class='xiala-image' src='../../../images/xiala.png' />
+<picker mode="date" value="{{date}}" fields="month" bindchange="bindDateChange">
+  <view class='date-view'>
+    <view class='date-show-view'>{{date}} </view>
+    <image class='xiala-image' src='../../../images/xiala.png' />
+  </view>
+</picker>
+
+<block wx:if="{{statisticsProject}}">
+  <view class="func-block">
+    <view class="block-header">
+      <view class="tip-view">
+        {{ztName}}统计
+      </view>
     </view>
-  </picker>
+    <view class="sd-item">
+      <view class='sd-title'>本年应收：</view>
+      <view class='sd-content'>￥{{statisticsProject.receivableYear}}</view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>本年实收：</view>
+      <view class='sd-content'>￥{{statisticsProject.receiptYear}}</view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>追缴前期：</view>
+      <view class='sd-content'>￥{{statisticsProject.earlierStage}}</view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>本年收缴率：</view>
+      <view class='sd-content'>{{statisticsProject.collectionRate}}</view>
+    </view>
+  </view>
 </block>
-<view class='item-view'>
-
-  <view class='bottom-view'>
-    <view class='bottom-detail-view'>
-      <view class='detail-title-view'>
-        实收当期合计
-      </view>
-      <view class='detail-percent-view'>
-        {{statistics.receivedNow}}
-      </view>
-    </view>
-    <view class='bottom-detail-view'>
-      <view class='detail-title-view'>
-        当期应收
-      </view>
-      <view class='detail-percent-view'>
-        {{statistics.nowShouldReceived}}
-      </view>
-    </view>
-    <view class='bottom-detail-view'>
-      <view class='detail-title-view'>
-        累计欠费
-      </view>
-      <view class='detail-percent-view'>
-        {{statistics.addupNotReceived}}
-      </view>
-    </view>
-  </view>
-  <view class='bottom-view'>
-    <view class='bottom-detail-view'>
-      <view class='detail-title-view'>
-        本期收缴率
-      </view>
-      <view class='detail-count-view'>
-        {{statistics.rateNowReceived}}
-      </view>
-    </view>
-    <view class='bottom-detail-view'>
-      <view class='detail-title-view'>
-        累计收费率
-      </view>
-      <view class='detail-count-view'>
-        {{statistics.rateAddupReceived}}
-      </view>
-    </view>
-    <view class='bottom-detail-view'>
-      <view class='detail-title-view'>
-        预收费率
-      </view>
-      <view class='detail-count-view'>
-        {{statistics.rateBeforeReceived}}
-      </view>
-    </view>
-  </view>
-</view>
-
-
-<view class='title-view'>
-  查看各区统计
-</view>
-<view class='list-view'>
-  <view id='{{index}}' class='list-item-view' wx:for="{{statistics.csGroups}}" bindtap='viewTaped' data-level='项目'>
-    <view class='item-text-view'>
-      {{item.group}}
-    </view>
-    <image class='item-image' src='../../../images/xiayiye.png' />
-  </view>
-</view>
-<!-- </block> -->
-
-
-
-
-
-
-
-
 <view class='foot-view'></view>

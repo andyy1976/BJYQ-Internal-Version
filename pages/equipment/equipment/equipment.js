@@ -168,7 +168,7 @@ function getEquipmentList(that, isDone) {
   var app = getApp();
   var ztInfo = wx.getStorageSync("currentZT") || {};
   var data = {
-    classify: ztInfo ? ztInfo.ZTCode + "\\" + ztInfo.ZTName : "",
+    classify: ztInfo ? ztInfo.ZTCode : "",
     isDone: isDone,
     serverURL: config.urls.getEquipmentListUrl
   }

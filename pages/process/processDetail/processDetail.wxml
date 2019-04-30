@@ -54,10 +54,19 @@
           </view>
         </view>
         <block wx:for="{{processItems}}">
-          <view class="cd-item">
-            <view class='cd-title color-gray'>{{item.title}}：</view>
-            <textarea auto-height='{{true}}' class='cd-input color-gray' value="{{item.defaultValue ? item.defaultValue : item.content}}" disabled='{{true}}' />
-          </view>
+          <block wx:if="{{item.isFile}}">
+            <view class="cd-item" bindtap='lookFile' data-file-name='{{item.defaultValue ? item.defaultValue : item.content}}'>
+              <view class='cd-title color-gray'>{{item.title}}：</view>
+              <textarea auto-height='{{true}}' class='cd-file-input color-gray' value="{{item.defaultValue ? item.defaultValue : item.content}}" disabled='{{true}}' />
+              <image class='cd-next-image' src='../../../images/xiayiye.png' />
+            </view>
+          </block>
+          <block wx:else>
+            <view class="cd-item">
+              <view class='cd-title color-gray'>{{item.title}}：</view>
+              <textarea auto-height='{{true}}' class='cd-input color-gray' value="{{item.defaultValue ? item.defaultValue : item.content}}" disabled='{{true}}' />
+            </view>
+          </block>
         </block>
       </view>
 
@@ -92,7 +101,7 @@
         </view>
         <block wx:for="{{processItems}}">
           <!-- 允许编辑的行 -->
-          <block wx:if="{{item.allowEdit == true}}">
+          <block wx:if="{{item.allowEdit == true }}">
             <view class="cd-item">
               <view class='cd-title color-black'>{{item.title}}：</view>
               <textarea auto-height='{{true}}' id='{{index}}' data-required='{{item.required}}' class='cd-input color-black' name="{{item.defaultValue || item.allowEdit == true ? index : ''}}" value="{{item.defaultValue ? item.defaultValue : item.content}}" disabled='{{false}}'
@@ -101,10 +110,27 @@
           </block>
           <!-- 不允许编辑的行 -->
           <block wx:if="{{item.allowEdit == false}}">
-            <view class="cd-item">
+            <block wx:if="{{item.isFile}}">
+              <view class="cd-item" bindtap='lookFile' data-file-name='{{item.defaultValue ? item.defaultValue : item.content}}'>
+                <view class='cd-title color-gray'>{{item.title}}：</view>
+                <!-- <textarea auto-height='{{true}}' class='cd-file-input color-gray' name="{{item.defaultValue ? index : ''}}" value="{{item.defaultValue ? item.defaultValue : item.content}}" /> -->
+                <view class='cd-file-input color-gray'>
+                  {{item.defaultValue ? item.defaultValue : item.content ? item.content : ''}}
+                </view>
+                <image class='cd-next-image' src='../../../images/xiayiye.png' />
+              </view>
+            </block>
+            <block wx:else>
+              <view class="cd-item">
+                <view class='cd-title color-gray'>{{item.title}}：</view>
+                <textarea auto-height='{{true}}' class='cd-input color-gray' name="{{item.defaultValue ? index : ''}}" value="{{item.defaultValue ? item.defaultValue : item.content}}" disabled='{{true}}' />
+              </view>
+            </block>
+
+            <!-- <view class="cd-item">
               <view class='cd-title color-gray'>{{item.title}}：</view>
               <textarea auto-height='{{true}}' class='cd-input color-gray' name="{{item.defaultValue ? index : ''}}" value="{{item.defaultValue ? item.defaultValue : item.content}}" disabled='{{true}}' />
-            </view>
+            </view> -->
           </block>
         </block>
       </view>

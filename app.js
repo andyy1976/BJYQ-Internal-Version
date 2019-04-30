@@ -38,7 +38,10 @@ App({
     //辛伟民： 291
     //朱燕韬： 315
     //毕岚： 131
-    // wx.setStorageSync('currentUserId', 45);
+    //b: 488
+    //刘洵： 57
+    //王占东: 337
+    // wx.setStorageSync('currentUserId', 337);
   },
 
   

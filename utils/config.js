@@ -1,6 +1,14 @@
-  // const baseUrl = "https://yanqiao2018.cn/bjyqwx";//云服务器Url
-const baseUrl = "http://k17154485y.imwork.net:23530/bjyqwx";//本地服务器Url
-const getImageUrl = "http://k17154485y.imwork.net:23530/bjyqImage";//从服务器获取图片
+const baseUrl = "https://yanqiao2018.cn/bjyqwx";//云服务器Url
+const getFileUrl = "https://yanqiao2018.cn/bjyqfiles";//从服务器获取文件
+const getImageUrl = "https://yanqiao2018.cn/bjyqfiles";//从服务器获取图片
+    // const baseUrl = "https://yanqiao2018.cn/bjyqwxtest";//云服务器Url
+// const baseUrl = "http://localhost:33079/";
+// const baseUrl = "http://k17154485y.imwork.net:23530/bjyqwx";//本地服务器Url
+// const getImageUrl = "http://k17154485y.imwork.net:23530/bjyqImage";//从服务器获取图片
+// const getFileUrl = "http://k17154485y.imwork.net:23530/bjyqFile";//从服务器获取文件
+// const baseUrl = "http://192.168.1.106:8080/bjyqwx";//本地服务器Url
+// const getImageUrl = "http://192.168.1.106:8080/bjyqImage";//从服务器获取图片
+// const getFileUrl = "http://192.168.1.106:8080/bjyqFile";//从服务器获取文件
 
 const workOrderUrl = baseUrl + "/WorkOrder";//工单相关功能Url
 const complainUrl = baseUrl + "/Complain";//投诉相关功能Url
@@ -21,7 +29,7 @@ const urls = {
   // cloudUrl: "http://localhost:8080/wxics/SendData/OnSendData",//云服务器向本地服务器发送数据的Url
   // cloudImageUrl: "https://yqwy-hd.com/wxics/SetImage/OnSetImage",//云服务器向本地服务器发送图片的Url
   // getImageUrl: "http://k17154485y.imwork.net:23530/bjyqImage",//从云服务器获取图片
-
+  getFileUrl: getFileUrl,
   getWorkOrderUrl: workOrderUrl + "/OnGetRepairList",//获取工单列表
   setWorkOrderUrl: workOrderUrl + "/OnSetRepairOrder",//设置工单完成情况
   setWorkOrderIsReadUrl : workOrderUrl + "/OnSetOrderIsRead",//设置工单已阅读
@@ -69,7 +77,9 @@ const urls = {
   bindUserUrl: userUrl + "/OnBindUser",//绑定用户的用户ID和openid
   checkPasswordUrl: userUrl + "/OnCheckPassword",//检查用户密码是否正确
 
-  getStatisticsUrl: statisticsUrl + "/OnGetStatistics",//获取统计信息
+  getMonthChargeStatisticsUrl: statisticsUrl + "/OnGetMonthChargeStatistics",//报表_财务_月收费统计_管理处
+  getArrearageStatisticsUrl: statisticsUrl + "/OnGetArrearageStatistics",//报表_财务_未收_欠款情况汇总
+  getChargeStatisticsUrl: statisticsUrl + "/OnGetChargeStatistics",//报表_考核_物业管理费绩效考核
 
   getReportUrl: reportUrl + "/OnGetReport",//获取上报信息
 

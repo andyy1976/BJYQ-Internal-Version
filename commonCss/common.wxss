@@ -245,3 +245,7 @@ button {
 .color-green {
   color: #09bb07;
 }
+
+.color-darkgray {
+  color: #606060;
+}

@@ -1,0 +1,127 @@
+<!-- <block wx:if="{{pageHidden =}}"> -->
+<view class="choose-view">
+  <view id="小业主" class='switch-view {{xyz}}' bindtap='switchViewTaped'>
+    小业主
+  </view>
+  <view id="开发商" class='switch-view {{kfs}}' bindtap='switchViewTaped'>
+    开发商
+  </view>
+</view>
+<block wx:if="{{projects.length == 0}}">
+  <view class='header-view'>
+    <view class='header-name-view'>
+      {{currentZT.ZTName + "（" + type + "）"}}
+    </view>
+    <view class='header-project-view'>
+    </view>
+  </view>
+
+</block>
+<block wx:else>
+  <picker mode="selector" range="{{projects}}" range-key='ZTName' value="{{pIndex}}" bindchange="bindProjectChange">
+    <view class='header-view'>
+      <view class='header-name-view'>
+        {{projects[pIndex].ZTName + "（" + type + "）"}}
+      </view>
+      <image class='xiala1-image' src='../../../images/xiala.png' />
+      <!-- <view class='header-project-view'>
+  </view> -->
+    </view>
+  </picker>
+</block>
+
+<!-- <block wx:if="{{level == '公司'}}"> -->
+<picker mode="date" fields="month" value="{{date}}" bindchange="bindDateChange">
+  <view class='date-view'>
+    <view class='date-show-view color-darkgray'>统计月份： </view>
+    <view class='date-show-view'>{{date}} </view>
+    <image class='xiala-image' src='../../../images/xiala.png' />
+  </view>
+</picker>
+<!-- </block> -->
+<block wx:if="{{statistics}}">
+  <view class="func-block">
+    <view class="block-header">
+      <view class="tip-view">
+        <!-- {{statistics.count.chargeName + "（" + item.type + "）"}} -->
+        合计
+      </view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>本月欠费合计：</view>
+      <view class='sd-content'>{{"￥" + statistics.count.countMonthArrearage}}</view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>本期欠费合计：</view>
+      <view class='sd-content'>{{"￥" + statistics.count.countCurrentArrearage}}</view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>本年欠费合计：</view>
+      <view class='sd-content'>{{"￥" + statistics.count.countYearArrearage}}</view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>累计欠费合计：</view>
+      <view class='sd-content'>{{"￥" + statistics.count.countTotalArrearage}}</view>
+    </view>
+    <!-- <view class="sd-item">
+        <view class='sd-title'>滞纳金实收合计：</view>
+        <view class='sd-content'>{{ "￥" + item.overdueFineFooting}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>实收总计：</view>
+        <view class='sd-right-content'>合计：{{ "￥" + item.allFooting}}</view>
+      </view> -->
+  </view>
+
+
+  <block wx:for="{{statistics.detail}}">
+    <view class="func-block">
+      <view class="block-header">
+        <view class="tip-view">
+          {{item.feeName + "（" + item.feeType + "）"}}
+        </view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>本月欠费合计：</view>
+        <view class='sd-content'>{{"￥" + item.countMonthArrearage}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>本期欠费合计：</view>
+        <view class='sd-content'>{{"￥" + item.countCurrentArrearage}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>本年欠费合计：</view>
+        <view class='sd-content'>{{"￥" + item.countYearArrearage}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>累计欠费合计：</view>
+        <view class='sd-content'>{{"￥" + item.countTotalArrearage}}</view>
+      </view>
+
+    </view>
+  </block>
+</block>
+<!-- <view class='title-view'>
+  查看各项目统计
+</view>
+<view class='list-view'>
+  <view id='{{index}}' class='list-item-view' wx:for="{{statistics.csProjects}}" bindtap='viewTaped' data-level='项目'>
+    <view class='item-text-view'>
+      {{item.ztName}}
+    </view>
+    <image class='item-image' src='../../../images/xiayiye.png' />
+  </view>
+</view> -->
+<!-- </block> -->
+
+
+
+
+
+
+
+
+<view class='foot-view'></view>
+
+
+<!-- </block> -->
