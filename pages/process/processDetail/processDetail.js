@@ -25,8 +25,8 @@ Page({
     that.setData({ processInfo: process });
     // var data = { userId: wx.getStorageSync("currentUserId") };//315,280
     var submitData = {
-      // userId: wx.getStorageSync("currentUserId"),
-      userId: wx.getStorageSync("userInfo").Id,
+      userId: wx.getStorageSync("currentUserId"),
+      // userId: wx.getStorageSync("userInfo").Id,
       linkId: process.linkId,
       docTableName: process.docTableName,
       docTableId: process.docTableId,
@@ -35,69 +35,71 @@ Page({
       objectType: process.objectType,
       transferObjectType: process.transferObjectType
     };
-    util.getRequest(config.urls.getProcessDetailUrl, submitData, function (data) {
-      var items = data.items[0];
-      var defines = data.defines;
-      // var processItem = {};
-      // for (var i = 0; i < items.length; i++){
-      //   processItem[items[i].title] = items[i].content;
-      // }
-      // console.log("processItem")
-      // console.log(processItem);
-      // var needShowItems = [];
-      // var needHandleItems = [];
-      var requiredFields = [];
-      for (var i = 0; i < items.length; i++) {
-        for (var j = 0; j < defines.length; j++) {
-          if (items[i].title == defines[j].fieldName) {
-            items[i].fieldSourceName = defines[j].fieldSourceName;
-            items[i].required = defines[j].required;
-            items[i].defaultValue = defines[j].defaultValue;
-            items[i].allowEdit = defines[j].allowEdit;
-            items[i].isFile = defines[j].isFile;
-            break;
+    util.getRequest(config.urls.getProcessDetailUrl, submitData, function (data,errCode) {
+      if (errCode){
+        var items = data.items[0];
+        var defines = data.defines;
+        // var processItem = {};
+        // for (var i = 0; i < items.length; i++){
+        //   processItem[items[i].title] = items[i].content;
+        // }
+        // console.log("processItem")
+        // console.log(processItem);
+        // var needShowItems = [];
+        // var needHandleItems = [];
+        var requiredFields = [];
+        for (var i = 0; i < items.length; i++) {
+          for (var j = 0; j < defines.length; j++) {
+            if (items[i].title == defines[j].fieldName) {
+              items[i].fieldSourceName = defines[j].fieldSourceName;
+              items[i].required = defines[j].required;
+              items[i].defaultValue = defines[j].defaultValue;
+              items[i].allowEdit = defines[j].allowEdit;
+              items[i].isFile = defines[j].isFile;
+              break;
+            }
           }
-        }
-        if (!items[i].fieldSourceName) {
-          items[i].fieldSourceName = items[i].title;
-          items[i].required = false;
-          items[i].defaultValue = '';
-          items[i].allowEdit = false;
-        }
-        // if (items[i].required == true){
-        //   requiredFields.push(items[i].fieldSourceName);
-        // }
-        // if (items[i].allowEidt){
-        //   needHandleItems.push(items[i]);
-        // }
-        // else {
-        //   needShowItems.push(items[i]);
-        // }
-      }
-      console.log("items")
-      console.log(items);
-      // console.log("requiredFields:");
-      // console.log(requiredFields);
-      that.setData({ processItems: items, checkDataDefines: data.checkDataDefines || null });
-      if (data.checkDataDefines){
-        var checkDataDefines = data.checkDataDefines;
-        var checkDataDefinesIndex = 0;
-        var isAllCanSelect = true;
-        for (var i = 0; i < checkDataDefines.length; i++) {
-          if (checkDataDefines[i].isSelect) {
-            checkDataDefinesIndex = i;
-            isAllCanSelect = false;
-            break;
+          if (!items[i].fieldSourceName) {
+            items[i].fieldSourceName = items[i].title;
+            items[i].required = false;
+            items[i].defaultValue = '';
+            items[i].allowEdit = false;
           }
+          // if (items[i].required == true){
+          //   requiredFields.push(items[i].fieldSourceName);
+          // }
+          // if (items[i].allowEidt){
+          //   needHandleItems.push(items[i]);
+          // }
+          // else {
+          //   needShowItems.push(items[i]);
+          // }
         }
-        that.setData({
-          checkDataDefinesIndex: checkDataDefinesIndex, 
-          isAllCanSelect: isAllCanSelect 
-        })
-      }
-      
+        console.log("items")
+        console.log(items);
+        // console.log("requiredFields:");
+        // console.log(requiredFields);
+        that.setData({ processItems: items, checkDataDefines: data.checkDataDefines || null });
+        if (data.checkDataDefines) {
+          var checkDataDefines = data.checkDataDefines;
+          var checkDataDefinesIndex = 0;
+          var isAllCanSelect = true;
+          for (var i = 0; i < checkDataDefines.length; i++) {
+            if (checkDataDefines[i].isSelect) {
+              checkDataDefinesIndex = i;
+              isAllCanSelect = false;
+              break;
+            }
+          }
+          that.setData({
+            checkDataDefinesIndex: checkDataDefinesIndex,
+            isAllCanSelect: isAllCanSelect
+          })
+        }
+
       // console.log(needHandleItems);
       // console.log(needShowItems);
+      }
     })
     // wx.request({
     //   url: 'http://localhost:8080/bjyqwx/Process/BussinessHandler_TableData?userId=100',
@@ -203,8 +205,12 @@ Page({
     var splitArr = docValue.split('|');
     var docName = splitArr[splitArr.length - 1];
     var recordId = splitArr[splitArr.length - 2];
+    var docType = docName.split(".")[docName.split(".").length - 1];
     var fileFullName = "\\" + that.data.processInfo.docTableName + "\\" + recordId + "\\" + docName;
+    // // var fileFullName = '/abc/Background-a.jpg';
     var fileUrl = config.urls.getFileUrl + fileFullName;
+    // var docTableName = that.data.processInfo.docTableName;
+    // var fileUrl = config.urls.getFileUrl + "?tempFileName=" + value + "&docTableName=" + docTableName;
     console.log(fileUrl);
     util.downloadAndLookFiles(fileUrl);
   },
@@ -264,8 +270,8 @@ Page({
       var updateKeys = Object.keys(updateData);
       var submitData = {
         instanceId: selectedProcess.id,
-        // userId: wx.getStorageSync("currentUserId"),
-        userId: wx.getStorageSync("userInfo").Id,
+        userId: wx.getStorageSync("currentUserId"),
+        // userId: wx.getStorageSync("userInfo").Id,
         leaveMessage: value.leaveMessage,
         isEnd: 1,
         docTableName: selectedProcess.docTableName,
@@ -300,8 +306,8 @@ Page({
       var updateKeys = Object.keys(updateData);
       var submitData = {
         instanceId: selectedProcess.id,
-        // userId: wx.getStorageSync("currentUserId"),
-        userId: wx.getStorageSync("userInfo").Id,
+        userId: wx.getStorageSync("currentUserId"),
+        // userId: wx.getStorageSync("userInfo").Id,
         leaveMessage: value.leaveMessage,
         needArchiving: that.data.isArchiving,
         docTableName: selectedProcess.docTableName,

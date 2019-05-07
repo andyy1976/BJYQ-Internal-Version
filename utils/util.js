@@ -14,30 +14,27 @@ function getRequest(url, postData, doSuccess, doFail = null, doComplete = null) 
       wx.hideLoading();
       console.log("request successed!");
       console.log(res);
+      var errCode = true;
+      if (res.data[0] == "<" && res.statusCode != 500) {
+        showSign("网络错误，请稍后重试");
+        errCode = false;
+      }
       if (res.statusCode == 500) {
         showSign("服务器内部错误，请稍后重试");
-        return;
-      } 
-      if (res.data[0] == "<") {
-        showSign("网络错误，请稍后重试");
-        return;
-      } 
+        errCode = false;
+      }  
       if (res.data.status == "Fail") {
         showSign(res.data.result);
+        errCode = false;
       }
       if (!res.data){
         showSign("网络错误，请稍后重试");
-        return;
+        errCode = false;
       }
-      
-      // if (res.data.status == "Fail" && res.data.result != "云服务器发生错误：目标url未指定")  {
-      //   showSign(res.data.result);
-      //   return;
-      // }
       if (typeof doSuccess == "function") {
         console.log("response data is:");
         console.log(res.data.data);
-        doSuccess(res.data.data);
+        doSuccess(res.data.data, errCode);
       }
     },
     fail: function (res) {
@@ -67,32 +64,32 @@ function setRequest(url, postData, doSuccess, doFail = null, doComplete = null) 
     header: { 'content-type': 'application/x-www-form-urlencoded;charset=uft-8' },
     data: postData,
     success: function (res) {
+      var errCode = true;
       wx.hideLoading();
       console.log("request successed!");
       console.log(res);
-      if (res.data[0] == "<") {
+      if (res.data[0] == "<" && res.statusCode != 500) {
+        console.log("res.data[0] ==  < && res.statusCode != 500");
         showSign("网络错误，请稍后重试");
-        return;
+        errCode = false;
       }
-      // if (!res.data) {
-      //   showSign("网络错误，请稍后重试");
-      //   return;
-      // }
+      if (res.statusCode == 500) {
+        console.log("res.statusCode == 500");
+        showSign("服务器内部错误，请稍后重试");
+        errCode = false;
+      } 
+      if (!res.data) {
+        showSign("网络错误，请稍后重试");
+        errCode = false;
+      }
       if (res.data.status == "Fail") {
         showSign(res.data.result);
-        return;
+        errCode = false;
       }
-      // if (res.data.status == "Fail" && res.data.result != "云服务器发生错误：目标url未指定") {
-      //   showSign(res.data.result);
-      //   return;
-      // }
-      // if (res.data.status == "Success"){
-      //   showTip("提交成功");
-      // }
       if (typeof doSuccess == "function") {
         console.log("response data is:");
         console.log(res.data.data);
-        doSuccess("success",res.data.data);
+        doSuccess(errCode,res.data.data);
       }
     },
     fail: function (res) {
@@ -121,8 +118,17 @@ function downloadAndLookFiles(fileUrl,doSuccess = null, doFail = null, doComplet
       console.log("download file success");
       console.log(res);
       // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
+      // if (res.header["Content-Length"] === '0'){
+      //   wx.showToast({
+      //     title: '文件不存在',
+      //     icon: 'none',
+      //     duration: 3000
+      //   })
+      //   return;
+      // }
       if (res.statusCode === 200) {
         // if (res["header"]["Content-Type"] == "image/jpeg" || res["header"]["Content-Type"] == "image/png" || res["header"]["Content-Type"] == "image/gif"){
+          console.log(res.tempFilePath);
         var fileType = res.tempFilePath.split(".")[res.tempFilePath.split(".").length - 1];
         fileType = fileType.toLowerCase();
         if (fileType == "jpg" || fileType == "jpeg" || fileType == "png" || fileType == "gif"){
@@ -139,8 +145,10 @@ function downloadAndLookFiles(fileUrl,doSuccess = null, doFail = null, doComplet
           })
         }
         else {
+          const filePath = res.tempFilePath;
           wx.openDocument({
-            filePath: res.tempFilePath,
+            filePath: filePath,
+            // fileType:filePath,
             // filePath: fileUrl,
             fail: res => {
               console.log(res);
@@ -152,6 +160,13 @@ function downloadAndLookFiles(fileUrl,doSuccess = null, doFail = null, doComplet
             }
           })
         }
+        // else {
+        //   wx.showToast({
+        //     title: '不受支持的文件类型',
+        //     icon: 'none',
+        //     duration: 3000
+        //   })
+        // }
       }
       else {
         wx.showToast({
@@ -175,9 +190,51 @@ function downloadAndLookFiles(fileUrl,doSuccess = null, doFail = null, doComplet
       })
       console.log("download file failed");
       console.log(res);
-    }
+    },
+    // complete: res => {
+    //   console.log("complete");
+    //   console.log(res);
+    //   if (res.statusCode === 200) {
+    //     // if (res["header"]["Content-Type"] == "image/jpeg" || res["header"]["Content-Type"] == "image/png" || res["header"]["Content-Type"] == "image/gif"){
+    //     var fileType = res.tempFilePath.split(".")[res.tempFilePath.split(".").length - 1];
+    //     fileType = fileType.toLowerCase();
+    //     if (fileType.toLowerCase() == "jpg" || fileType.toLowerCase() == "jpeg" || fileType.toLowerCase() == "png" || fileType.toLowerCase() == "gif") {
+    //       wx.previewImage({
+    //         urls: [res.tempFilePath],
+    //         fail: res => {
+    //           console.log(res);
+    //           wx.showToast({
+    //             title: '文件打开失败',
+    //             icon: 'none',
+    //             duration: 3000
+    //           })
+    //         }
+    //       })
+    //     }
+    //     else {
+    //       wx.openDocument({
+    //         filePath: res.tempFilePath,
+    //         // filePath: fileUrl,
+    //         fail: res => {
+    //           console.log(res);
+    //           wx.showToast({
+    //             title: '文件打开失败',
+    //             icon: 'none',
+    //             duration: 3000
+    //           })
+    //         }
+    //       })
+    //     }
+    //   }
+    //   else {
+    //     wx.showToast({
+    //       title: '文件下载失败',
+    //       icon: 'none',
+    //       duration: 3000
+    //     })
+    //   }
+    // }
   })
-
 }
 
 function uploadImage(url,filePath,formData){
@@ -235,6 +292,27 @@ function call(phoneNumber){
      },
     complete: function (res) { },
   })
+}
+
+function getStorageSync (key) {
+  try {
+    wx.getStorageSync(key);
+  }
+  catch (e){
+    console.log(e);
+    showSign("获取缓存数据出错");
+  }
+}
+
+
+function getStorageSync(key, value) {
+  try {
+    wx.setStorageSync(key, value);
+  }
+  catch (e) {
+    console.log(e);
+    showSign("缓存数据出错");
+  }
 }
 
 /**

@@ -1,4 +1,5 @@
 const config = require("../../../utils/config.js");
+const util = require("../../../utils/util.js");
 
 Page({
 
@@ -6,15 +7,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    equipmentList: [],
-    filtrateEquipmentList: [],
-    dai: "choose",
-    yi: "nonChoose",
-    guo: "nonChoose",
-    daiPage: 1,
-    yiPage: 1,
-    guoPage: 1,
-    inputValue: "",
+    equipmentList: [],//服务器获取到的设备列表
+    filtrateEquipmentList: [],//根据筛选条件筛选过的设备列表
+    dai: "choose",//待处理状态
+    yi: "nonChoose",//已处理状态
+    guo: "nonChoose",//过期状态
+    // daiPage: 1,
+    // yiPage: 1,
+    // guoPage: 1,
+    inputValue: "",//筛选框输入的值
   },
 
   /**
@@ -86,9 +87,9 @@ Page({
           guo: "choose",
           dai: "nonChoose",
           yi: "nonChoose",
-          guoPage: 1
+          // guoPage: 1
         })
-        getEquipmentList(that, "2");
+        getEquipmentList(that, "2");//获取过期未处理设备列表
         break;
       }
       case "dai": {
@@ -99,9 +100,9 @@ Page({
           guo: "nonChoose",
           dai: "choose",
           yi: "nonChoose",
-          daiPage: 1
+          // daiPage: 1
         })
-        getEquipmentList(that, "0");
+        getEquipmentList(that, "0");//获取待处理设备列表
         break;
       }
       case "yi": {
@@ -112,125 +113,97 @@ Page({
           guo: "nonChoose",
           yi: "choose",
           dai: "nonChoose",
-          yiPage: 1
+          // yiPage: 1
         })
-        getEquipmentList(that, "1");
+        getEquipmentList(that, "1");//获取已处理设备列表
         break;
       }
-
     }
-  },
-
-  // scrolltoupper: function () {
-  //   var that = this;
-  //   that.data.dai == "choose" ? getEquipmentList(that, "0") : that.data.yi == "choose" ? getEquipmentList(that, "1") : getEquipmentList(that, "2");
-  // },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
   }
 })
 
 
-function getEquipmentList(that, isDone) {
-  // return;
-  var app = getApp();
+function getEquipmentList(that, status) {
   var ztInfo = wx.getStorageSync("currentZT") || {};
   var data = {
     classify: ztInfo ? ztInfo.ZTCode : "",
-    isDone: isDone,
-    serverURL: config.urls.getEquipmentListUrl
+    status: status
   }
-  wx.showLoading({
-    title: '加载中...',
-  })
-  wx.request({
-    url: config.urls.getEquipmentListUrl,
-    method: 'POST',
-    data: data,
-    header: {
-      'content-type': 'application/x-www-form-urlencoded;charset=uft-8'
-    },
-    success: res => {
-      console.log(res);
-      wx.hideLoading();
-      if (res.data.status == "Fail") {
-        if (res.data.result == "未查询到任何数据") {
-          wx.showModal({
-            title: '提示',
-            content: '未查询到任何数据',
-            showCancel: false,
-            success: res => {
-              that.setData({
-                equipmentList: [],
-                filtrateEquipmentList: [],
-              })
-            }
-          })
-          return;
-        }
-        wx.showModal({
-          title: '提示',
-          content: '发生未知错误，请稍后重试',
-          showCancel: false
-        })
-        return;
-      }
+  // wx.showLoading({title: '加载中...',})
+  util.getRequest(config.urls.getEquipmentListUrl, data, function success(data, errCode) {
+    if (errCode){
+      var equipmentList = data;
       that.setData({
-        equipmentList: res.data.data || [],
+        equipmentList: equipmentList,
+        filtrateEquipmentList: equipmentList,
+        inputValue: ""
       })
-      if (!that.data.inputValue) {
-        that.setData({
-          filtrateEquipmentList: res.data.data || [],
-        })
-      }
-      else {
-        setFiltrateArray(that,res.data.data,that.data.inputValue);
-      }
-      console.log("equipmentList is: ================================================")
-      console.log(that.data.equipmentList);
-    },
-    fail: res => {
-      console.log(res);
-      wx.hideLoading();
-      wx.showModal({
-        title: '提示',
-        content: '发生未知错误，请稍后重试',
-        showCancel: false
+    }
+    else {
+      that.setData({
+        equipmentList: [],
+        filtrateEquipmentList: [],
+        inputValue: ""
       })
     }
   })
+
+  // wx.request({
+  //   url: config.urls.getEquipmentListUrl,
+  //   method: 'POST',
+  //   data: data,
+  //   header: {
+  //     'content-type': 'application/x-www-form-urlencoded;charset=uft-8'
+  //   },
+  //   success: res => {
+  //     console.log(res);
+  //     wx.hideLoading();
+  //     if (res.data.status == "Fail") {
+  //       if (res.data.result == "未查询到任何数据") {
+  //         wx.showModal({
+  //           title: '提示',
+  //           content: '未查询到任何数据',
+  //           showCancel: false,
+  //           success: res => {
+  //             that.setData({
+  //               equipmentList: [],
+  //               filtrateEquipmentList: [],
+  //             })
+  //           }
+  //         })
+  //         return;
+  //       }
+  //       wx.showModal({
+  //         title: '提示',
+  //         content: '发生未知错误，请稍后重试',
+  //         showCancel: false
+  //       })
+  //       return;
+  //     }
+  //     that.setData({
+  //       equipmentList: res.data.data || [],
+  //     })
+  //     if (!that.data.inputValue) {
+  //       that.setData({
+  //         filtrateEquipmentList: res.data.data || [],
+  //       })
+  //     }
+  //     else {
+  //       setFiltrateArray(that,res.data.data,that.data.inputValue);
+  //     }
+  //     console.log("equipmentList is: ================================================")
+  //     console.log(that.data.equipmentList);
+  //   },
+  //   fail: res => {
+  //     console.log(res);
+  //     wx.hideLoading();
+  //     wx.showModal({
+  //       title: '提示',
+  //       content: '发生未知错误，请稍后重试',
+  //       showCancel: false
+  //     })
+  //   }
+  // })
 }
 
 
@@ -239,8 +212,11 @@ function setFiltrateArray(that,equipmentList,inputValue){
   var inputLength = inputValue.length;
   var filtrateArray = [];
   for (var i = 0; i < equipmentList.length; i++) {
-    console.log(equipmentList[i].Number.substr(0, inputLength - 1));
-    if (equipmentList[i].Number.substr(0, inputLength) == inputValue) {
+    // console.log(equipmentList[i].Number.substr(0, inputLength - 1));
+    // if (equipmentList[i].Number.substr(0, inputLength).toLowerCase() == inputValue.toLowerCase()) {
+    //   filtrateArray.push(equipmentList[i]);
+    // }
+    if (equipmentList[i].Number.indexOf(inputValue) >= 0){
       filtrateArray.push(equipmentList[i]);
     }
   }

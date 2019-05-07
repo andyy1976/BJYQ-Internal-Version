@@ -188,13 +188,23 @@ Page({
     console.log("beforeImage");
     console.log(that.data.repairOrder.BeforeImage[index]);
     if (!that.data.repairOrder.BeforeImage[index]){return;}
-    util.previewImage(config.urls.getImageUrl + that.data.repairOrder.BeforeImage[index]);
+    util.previewImage(config.urls.getRepairImageUrl + that.data.repairOrder.BeforeImage[index]);
   },
 
   afterImageTaped: function (e) {
     var that = this;
-    var index = parseInt(e.target.id);
-    selectAndUploadImage(this, "after", index);
+    if (that.data.repairOrder.status === 'done') {
+      console.log(e);
+      var that = this;
+      var index = parseInt(e.target.id);
+      console.log(that.data.repairOrder.AfterImage[index]);
+      if (!that.data.repairOrder.AfterImage[index]) { return; }
+      util.previewImage(config.urls.getRepairImageUrl + that.data.repairOrder.AfterImage[index]);
+    }
+    else {
+      var index = parseInt(e.target.id);
+      selectAndUploadImage(this, "after", index);
+    }
   },
 
   // beforeImageLongTaped: function (e) {
@@ -208,7 +218,7 @@ Page({
     console.log(e);
     var that = this;
     var index = parseInt(e.target.id);
-    previewImage(config.urls.getImageUrl + that.data.repairOrder.AfterImage[index]);
+    util.previewImage(config.urls.getRepairImageUrl + that.data.repairOrder.AfterImage[index]);
   },
 
 

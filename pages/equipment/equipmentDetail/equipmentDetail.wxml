@@ -62,6 +62,8 @@
     </view>
   </view>
 
+
+  <!-- 状态为已完成 -->
   <block wx:if="{{equipment.IsDone == 1}}">
     <view class="func-block">
     <view class="block-header">
@@ -115,6 +117,8 @@
       </view>
   </block>
 
+
+  <!-- 状态为待处理和已过期 -->
   <block wx:else>
     <form bindsubmit="submit">
       <view class="func-block">
@@ -159,39 +163,18 @@
         </view>
       </view>
 
-      <!-- <view class="header-view">
-      <view class="tip-view">
-        保养前照片
-      </view>
-    </view>
-    <view class="form-view">
-      <view class="add-image">
-        <image src='{{beforeImage}}' bindtap='beforeImageTaped' />
-      </view>
-    </view> -->
 
-      <view class="func-block">
+      <!-- <view class="func-block">
         <view class="block-header">
           <view class="tip-view">
             保养中照片
           </view>
         </view>
         <view class="images-view">
-          <!-- <block wx:for="{{beforeImage}}"> -->
           <image class='sd-image' src='{{middleImage}}' bindtap='middleImageTaped' />
-          <!-- </block> -->
         </view>
-      </view>
-      <!-- <view class="header-view">
-      <view class="tip-view">
-        保养中照片
-      </view>
-    </view>
-    <view class="form-view">
-      <view class="add-image">
-        <image src='{{middleImage}}' bindtap='middleImageTaped' />
-      </view>
-    </view> -->
+      </view> -->
+     
       <view class="func-block">
         <view class="block-header">
           <view class="tip-view">

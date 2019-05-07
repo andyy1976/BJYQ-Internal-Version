@@ -44,13 +44,17 @@ Page({
    */
   onShow: function () {
     var that = this;
-    // var data = { userId: wx.getStorageSync("currentUserId") };//315,280
-    var data = { userId: wx.getStorageSync("userInfo").Id };
-    util.getRequest(config.urls.getProcessListUrl, data, function (data) {
-      var processList = data;
-      that.setData({
-        processList: processList
-      })
+    var data = { userId: wx.getStorageSync("currentUserId") };//315,280
+    // var data = { userId: wx.getStorageSync("userInfo").Id };
+    util.getRequest(config.urls.getProcessListUrl, data, function (data,errCode) {
+      console.log("errCode is : =====================================")
+      console.log(errCode)
+     if (errCode) {
+       var processList = data;
+       that.setData({
+         processList: processList
+       })
+     }
     })
   },
 

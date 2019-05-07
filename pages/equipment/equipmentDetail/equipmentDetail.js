@@ -1,6 +1,7 @@
 
 //前后宽限天数，完成时间，设备资料查询
 
+const util = require("../../../utils/util.js");
 const config = require("../../../utils/config.js");
 Page({
 
@@ -22,7 +23,7 @@ Page({
     console.log(options);
     var that = this;
     var equipment = JSON.parse(options.equipment) || {};
-    if (equipment.BeforeImage){
+    if (equipment.BeforeImage) {
       that.setData({
         beforeImage: config.urls.getImageUrl + equipment.BeforeImage
       })
@@ -34,7 +35,7 @@ Page({
     //     middleImage: config.urls.getImageUrl + equipment.MiddleImage
     //   })
     // }
-    if (equipment.AfterImage){
+    if (equipment.AfterImage) {
       that.setData({
         afterImage: config.urls.getImageUrl + equipment.AfterImage
       })
@@ -67,54 +68,72 @@ Page({
     submitData.serverUrl = config.urls.setEquipmentUrl;
     console.log(submitData);
     // return;
-    wx.showLoading({
-      title: '正在提交...',
-    })
-    wx.request({
-      url: config.urls.setEquipmentUrl,
-      method: "POST",
-      header: {
-        'content-type': 'application/x-www-form-urlencoded;charset=uft-8'
-      },
-      data: submitData,
-      success: res => {
-        console.log(res);
-        wx.hideLoading();
-        if (res.data.status == "Success") {
-          wx.showModal({
-            title: '提示',
-            content: '提交成功，点击确定返回设备列表',
-            showCancel: false,
-            success: res => {
-              wx.reLaunch({
-                url: '../equipment/equipment',
-              })
-            }
-          })
-        }
-        else {
-          wx.showModal({
-            title: '提示',
-            content: '发生未知错误，请稍后重试',
-            showCancel: false
-          })
-        }
-      },
-      fail: res => {
-        console.log(res);
-        wx.hideLoading();
+
+    util.setRequest(config.urls.setEquipmentUrl, submitData, function success(errCode, data) {
+      if (errCode) {
         wx.showModal({
           title: '提示',
-          content: '发生未知错误，请稍后重试',
-          showCancel: false
+          content: '提交成功，点击确定返回设备列表',
+          showCancel: false,
+          success: res => {
+            wx.navigateBack({
+              delta: 1
+            })
+            // wx.reLaunch({
+            //   url: '../equipment/equipment',
+            // })
+          }
         })
       }
     })
+    // wx.showLoading({
+    //   title: '正在提交...',
+    // })
+    // wx.request({
+    //   url: config.urls.setEquipmentUrl,
+    //   method: "POST",
+    //   header: {
+    //     'content-type': 'application/x-www-form-urlencoded;charset=uft-8'
+    //   },
+    //   data: submitData,
+    //   success: res => {
+    //     console.log(res);
+    //     wx.hideLoading();
+    //     if (res.data.status == "Success") {
+    //       wx.showModal({
+    //         title: '提示',
+    //         content: '提交成功，点击确定返回设备列表',
+    //         showCancel: false,
+    //         success: res => {
+    //           wx.reLaunch({
+    //             url: '../equipment/equipment',
+    //           })
+    //         }
+    //       })
+    //     }
+    //     else {
+    //       wx.showModal({
+    //         title: '提示',
+    //         content: '发生未知错误，请稍后重试',
+    //         showCancel: false
+    //       })
+    //     }
+    //   },
+    //   fail: res => {
+    //     console.log(res);
+    //     wx.hideLoading();
+    //     wx.showModal({
+    //       title: '提示',
+    //       content: '发生未知错误，请稍后重试',
+    //       showCancel: false
+    //     })
+    //   }
+    // })
   },
 
   beforeImageTaped: function () {
     var that = this;
-    if (that.data.equipment.IsDone == "1"){
+    if (that.data.equipment.IsDone == "1") {
       previewImage(config.urls.getImageUrl + that.data.equipment.BeforeImage);
     }
     else {
@@ -139,68 +158,17 @@ Page({
     else {
       selectAndUploadImage(this, "after");
     }
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
   }
 })
 
 
-function previewImage (imageUrl) {
+function previewImage(imageUrl) {
   wx.previewImage({
     urls: [imageUrl],
   })
 }
 
-function selectAndUploadImage (that,imageType) {
+function selectAndUploadImage(that, imageType) {
   var userInfo = wx.getStorageSync("userInfo");
   wx.chooseImage({
     count: 1, // 默认9
@@ -214,7 +182,7 @@ function selectAndUploadImage (that,imageType) {
       var imageName = imagePath[imagePath.length - 1];
       var extraName = extra[extra.length - 1];
       console.log(tempFilePath);
-      if (imageType == "before"){
+      if (imageType == "before") {
         that.setData({
           beforeImage: tempFilePath
         })
@@ -229,7 +197,7 @@ function selectAndUploadImage (that,imageType) {
       //     middleImage: tempFilePath
       //   })
       // }
-      
+
       wx.showLoading({
         title: '正在上传...',
       })

@@ -23,8 +23,9 @@ page {
 
 .search-view view {
   margin-left: 25rpx;
+  margin-right: 25rpx;
   height: 60rpx;
-  width: 700rpx;
+  /* width: 700rpx; */
   /* border: 1.5rpx solid darkgray;
   border-radius: 10rpx; */
   background-color: white;
@@ -63,12 +64,14 @@ page {
 }
 
 .choose {
-  color: white;
-  background-color: rgb(38, 171, 40);
+  /* color: white; */
+  /* background-color: rgb(38, 171, 40); */
+  color: rgb(38, 171, 40);
+  border-bottom: 5rpx solid rgb(38, 171, 40);
 }
 
 .nonChoose {
-  color: black;
+  /* color: black; */
 }
 
 .main-view {

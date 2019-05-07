@@ -38,8 +38,8 @@ Page({
       transferObjectId: selectedCheckData.transferObjectId ? selectedCheckData.transferObjectId : selectedProcess.transferObjectId,
       receiveLinkId: selectedCheckData.receiveLinkId ? selectedCheckData.receiveLinkId : selectedProcess.receiveLinkId,
       receiveLinkIds: selectedCheckData.receiveLinkIds ? selectedCheckData.receiveLinkIds : selectedProcess.receiveLinkIds,
-      // userId: wx.getStorageSync("currentUserId"),
-      userId: wx.getStorageSync("userInfo").Id,
+      userId: wx.getStorageSync("currentUserId"),
+      // userId: wx.getStorageSync("userInfo").Id,
       businessId: selectedProcess.businessId,
       // linkId: selectedCheckData.linkId,
       // task: selectedCheckData.task,
@@ -53,25 +53,27 @@ Page({
       thridDepartment: selectedProcess.initiateThirdDepartment,
       registerId: selectedProcess.registerId
     }
-    util.getRequest(config.urls.getNextLinkUrl, submitData, function (data) {
-      that.setData({ 
-        allowReceiveLinks: data.allowReceiveLinks, 
-        allowReceiveStaffs: data.allowReceiveStaffs, 
-        outOfControlLinks: data.outOfControlLinks 
-      });
-      var nextOutOfControlIds = "";
-      var nextOutOfControlUserIds = "";
-      if (data.outOfControlLinks.length > 0){ //如果存在知会或并行等非控制环节，进行下列赋值
-        for (var i = 0; i < data.outOfControlLinks.length; i++) {
-          nextOutOfControlIds += data.outOfControlLinks[i].linkId + ",";
-          nextOutOfControlUserIds += data.outOfControlLinks[i].department ? data.outOfControlLinks[i].staffId + "," : ",";
-        }
+    util.getRequest(config.urls.getNextLinkUrl, submitData, function (data,errCode) {
+      if (errCode){
         that.setData({
-          nextOutOfControlIds: nextOutOfControlIds.substring(0, nextOutOfControlIds.length - 1),
-          nextOutOfControlUserIds: nextOutOfControlUserIds.substring(0, nextOutOfControlUserIds.length - 1)
-        })
+          allowReceiveLinks: data.allowReceiveLinks,
+          allowReceiveStaffs: data.allowReceiveStaffs,
+          outOfControlLinks: data.outOfControlLinks
+        });
+        var nextOutOfControlIds = "";
+        var nextOutOfControlUserIds = "";
+        if (data.outOfControlLinks.length > 0) { //如果存在知会或并行等非控制环节，进行下列赋值
+          for (var i = 0; i < data.outOfControlLinks.length; i++) {
+            nextOutOfControlIds += data.outOfControlLinks[i].linkId + ",";
+            nextOutOfControlUserIds += data.outOfControlLinks[i].department ? data.outOfControlLinks[i].staffId + "," : ",";
+          }
+          that.setData({
+            nextOutOfControlIds: nextOutOfControlIds.substring(0, nextOutOfControlIds.length - 1),
+            nextOutOfControlUserIds: nextOutOfControlUserIds.substring(0, nextOutOfControlUserIds.length - 1)
+          })
+        }
+        console.log(that.data);
       }
-      console.log(that.data);
     })
     // wx.request({
     //   url: 'http://localhost:33079/Process/BussinessHandler_NextLink?userId=100',
@@ -130,8 +132,8 @@ Page({
     var nextLink = that.data.allowReceiveLinks[index];
     var submitData = {
       registId: selectedProcess.registId,
-      // userId: wx.getStorageSync("currentUserId"),
-      userId: wx.getStorageSync("userInfo").Id,
+      userId: wx.getStorageSync("currentUserId"),
+      // userId: wx.getStorageSync("userInfo").Id,
       businessId: selectedProcess.businessId,
       linkId: nextLink.linkId,
       task: nextLink.task,
@@ -145,8 +147,10 @@ Page({
       thridDepartment: selectedProcess.initiateThirdDepartment,
       registerId: selectedProcess.registerId
     }
-    util.getRequest(config.urls.getNextStaffUrl, submitData, function (data) {
-      that.setData({ allowReceiveStaffs: data.allowReceiveStaffs });
+    util.getRequest(config.urls.getNextStaffUrl, submitData, function (data,errCode) {
+      if (errCode){
+        that.setData({ allowReceiveStaffs: data.allowReceiveStaffs });
+      }
     })
 
 
@@ -173,8 +177,8 @@ Page({
     var updateDataKeys = Object.keys(updateData);
     var submitData = {
       instanceId: selectedProcess.id,
-      // userId: wx.getStorageSync("currentUserId"),
-      userId: wx.getStorageSync("userInfo").Id,
+      userId: wx.getStorageSync("currentUserId"),
+      // userId: wx.getStorageSync("userInfo").Id,
       leaveMessage: that.data.leaveMessage,
       docTableName: selectedProcess.docTableName,
       docTableId: selectedProcess.docTableId,

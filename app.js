@@ -41,7 +41,7 @@ App({
     //b: 488
     //刘洵： 57
     //王占东: 337
-    // wx.setStorageSync('currentUserId', 337);
+    wx.setStorageSync('currentUserId', 488);
   },
 
   
