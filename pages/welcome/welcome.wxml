@@ -39,6 +39,12 @@
 </view>
 
 
+
+<!-- <rich-text nodes='{{nodes}}'>
+  
+</rich-text> -->
+
+
 <!-- <view wx:if="{{coverViewShow}}" class='cover-view'> -->
 <view wx:if="{{false}}" class='cover-view'>
   <view class='cover-main-view'>

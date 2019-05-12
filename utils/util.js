@@ -1,5 +1,38 @@
 
 /**
+ * 获取设备窗口高度
+ */
+function getWindowHeight() {
+    var systemInfo = getSystemInfo();
+    var windowHeight = systemInfo.windowHeight * 2;
+    return windowHeight;
+}
+
+/**
+ * 获取设备窗口高度
+ */
+function getWindowWidth() {
+  var systemInfo = getSystemInfo();
+  var windowWidth = systemInfo.windowWidth * 2;
+  return windowWidth;
+}
+
+/**
+ * 获取设备信息
+ */
+function getSystemInfo() {
+  try {
+    var systemInfo = wx.getSystemInfoSync();
+    return systemInfo;
+  }
+  catch (e) {
+    console.log("获取设备信息失败");
+    console.log(e);
+  }
+}
+
+
+/**
  * post请求，封装wx.request方法，获取数据
  */
 function getRequest(url, postData, doSuccess, doFail = null, doComplete = null) {
@@ -294,26 +327,57 @@ function call(phoneNumber){
   })
 }
 
-function getStorageSync (key) {
+/**
+ * 获取缓存数据
+ */
+function getStorage (key) {
   try {
     wx.getStorageSync(key);
   }
-  catch (e){
+  catch (e) {
+    console.log("获取缓存数据出错");
     console.log(e);
-    showSign("获取缓存数据出错");
   }
 }
 
-
-function getStorageSync(key, value) {
+/**
+ * 缓存数据
+ */
+function setStorage(key, value) {
   try {
     wx.setStorageSync(key, value);
   }
   catch (e) {
+    console.log("缓存数据出错");
     console.log(e);
-    showSign("缓存数据出错");
   }
 }
+
+/**
+ * 获取小程序启动参数
+ */
+function getLaunchOptions(){
+  try {
+    var launchOptions = wx.getLaunchOptionsSync();
+    return launchOptions;
+  }
+  catch (e) {
+    console.log("获取小程序启动参数出错");
+    console.log(e);
+  }
+}
+
+
+/**
+ * 获取用户微信运动步数
+ */
+// function getWeRunData () {
+//   wx.getWeRunData({
+//     success: res => {
+//       console.log(res);
+//     }
+//   })
+// }
 
 /**
  * 简单提示

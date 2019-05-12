@@ -38,16 +38,16 @@ Page({
         bindtap: "imageTouched",
         showValue: "投诉处理"
       },
-      {
-        imgSrc: "../../images/zhuangxiu.png",
-        bindtap: "imageTouched",
-        showValue: "装修管理"
-      },
-      {
-        imgSrc: "../../images/zhuangxiuxuncha.png",
-        bindtap: "imageTouched",
-        showValue: "装修巡检"
-      },
+      // {
+      //   imgSrc: "../../images/zhuangxiu.png",
+      //   bindtap: "imageTouched",
+      //   showValue: "装修管理"
+      // },
+      // {
+      //   imgSrc: "../../images/zhuangxiuxuncha.png",
+      //   bindtap: "imageTouched",
+      //   showValue: "装修巡检"
+      // },
       {
         imgSrc: "../../images/xunjian.png",
         bindtap: "imageTouched",
@@ -75,8 +75,8 @@ Page({
       "../equipment/equipmentTrouble/equipmentTrouble",
       "../patrol/patrol",
       "../complain/complainOrder/complainOrder",
-      "../decoration/decorationList/decorationList",
-      "../decoration/decorationPatrolList/decorationPatrolList",
+      // "../decoration/decorationList/decorationList",
+      // "../decoration/decorationPatrolList/decorationPatrolList",
       "../lookOver/lookOver/lookOver",
       "../spot/spot/spot",
       "../statistics/statistics/statistics",

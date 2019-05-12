@@ -42,6 +42,38 @@ App({
     //刘洵： 57
     //王占东: 337
     wx.setStorageSync('currentUserId', 488);
+
+
+
+    wx.getSystemInfo({
+      success: function (res) {
+        console.log("wx.getSystemInfo");
+        console.log(res);
+      },
+    })
+
+    wx.getNetworkType({
+      success: function(res) {
+        console.log("wx.getNetworkType");
+        console.log(res);
+      },
+    })
+
+  // wx.openSetting({
+    
+  // })
+
+    var launchOptions = wx.getLaunchOptionsSync();
+    console.log("launchOptions");
+    console.log(launchOptions);
+
+
+
+
+    var rect = wx.getMenuButtonBoundingClientRect();
+
+    console.log("MenuButtonBoundingClientRect");
+    console.log(rect);
   },
 
   
