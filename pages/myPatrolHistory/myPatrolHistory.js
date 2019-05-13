@@ -31,6 +31,13 @@ Page({
     getPatrolList(that);
   },
 
+
+  toPatrol: function (e) {
+    wx.navigateBack({
+      delta: 1
+    })
+  },
+
   viewTaped: function (e) {
     var that = this;
     console.log(e);

@@ -111,10 +111,10 @@ function setRequest(url, postData, doSuccess, doFail = null, doComplete = null) 
         showSign("服务器内部错误，请稍后重试");
         errCode = false;
       } 
-      if (!res.data) {
-        showSign("网络错误，请稍后重试");
-        errCode = false;
-      }
+      // if (!res.data) {
+      //   showSign("网络错误，请稍后重试");
+      //   errCode = false;
+      // }
       if (res.data.status == "Fail") {
         showSign(res.data.result);
         errCode = false;
@@ -122,7 +122,7 @@ function setRequest(url, postData, doSuccess, doFail = null, doComplete = null) 
       if (typeof doSuccess == "function") {
         console.log("response data is:");
         console.log(res.data.data);
-        doSuccess(errCode,res.data.data);
+        doSuccess(res.data.data, errCode);
       }
     },
     fail: function (res) {

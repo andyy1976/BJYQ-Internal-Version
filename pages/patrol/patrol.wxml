@@ -1,6 +1,58 @@
 
 
-<view class="main-view">
+
+
+  <view class='yi-button' bindtap='toPatrolHistory'>
+    <text class='yi-button-text'>{{"历史报事 >"}}</text>
+  </view>
+
+    <form bindsubmit="submit">
+      <view class="func-block">
+        <view class="block-header">
+          <view class="tip-view">
+            填写报事信息
+          </view>
+        </view>
+        
+        <view class="cd-item">
+          <view class='cd-title'>上报人</view>
+          <input id="0" class='cd-input' name="name" value="{{name}}" disabled='{{true}}' />
+        </view>
+        <view class="cd-item">
+          <view class='cd-title'>上报地点</view>
+          <input id="1" class='cd-input' name="address" value='{{address}}' placeholder="请输入上报地点" placeholder-class="cd-placeholder" />
+          <image class='xiayiye' src="../../images/saoma.png" id="1" bindtap='scan' ></image>
+        </view>
+        <view class="cd-item">
+          <view class='cd-title'>上报内容</view>
+          <textarea auto-height='{{true}}' class='cd-file-input'  name="content" placeholder="请输入上报内容" placeholder-class="cd-placeholder" />
+          <!-- <input id="2" class='cd-input' name="content" placeholder="请输入上报内容" placeholder-class="cd-placeholder" /> -->
+        </view>
+      </view>
+      <view class="func-block">
+        <view class="block-header">
+          <view class="tip-view">
+            添加图片(点击添加，长按预览）
+          </view>
+        </view>
+        <view class="images-view">
+        <block wx:for="{{image}}">
+          <image id='{{index}}' class='sd-image' src='{{item}}' bindtap='imageTaped' bindlongtap='imageLongTaped' />
+        </block>
+        </view>
+      </view>
+      <!-- <text class='text-button' bindtap='toMyPatrol'>{{"我的历史报事 "}}</text> -->
+      <button id="submit" formType="submit" type='primary'>提交</button>
+      <view class="footer-view"></view>
+    </form>
+
+
+
+
+
+
+
+<!-- <view class="main-view">
   <view class="header-view">
     <view class="tip-view">
       请填写如下报事信息
@@ -9,16 +61,16 @@
   <form bindsubmit="submit">
     <view class="form-view">
       <view class="item-view">
-        <label>报事人</label>
+        <label>上报人</label>
         <input id="0" name="name" value='{{name}}' disabled='{{true}}' />
       </view>
       <view class="item-view">
-        <label>报事地点</label>
-        <input id="1" name="address" placeholder="请输入报事地点" placeholder-class="placeholder-text" />
+        <label>上报地点</label>
+        <input id="1" name="address" placeholder="请输入上报地点" placeholder-class="placeholder-text" />
       </view>
       <view class="item-view textarea-content">
-        <label>报事详情</label>
-        <textarea id="2" name="detail" placeholder="请输入报事详情" placeholder-class="placeholder-text" />
+        <label>上报内容</label>
+        <textarea id="2" name="detail" placeholder="请输入上报内容" placeholder-class="placeholder-text" />
       </view>
     </view>
 
@@ -40,4 +92,27 @@
   </form>
 
 
-</view>
+</view> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

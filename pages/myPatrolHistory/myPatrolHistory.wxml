@@ -1,3 +1,7 @@
+ <view class='yi-button' bindtap='toPatrol'>
+    <text class='yi-button-text'>{{"< 返回报事 "}}</text>
+  </view>
+
 <view class="main-view">
   <scroll-view scroll-y="{{true}}" bindscrolltoupper="scrolltoupper">
 

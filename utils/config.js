@@ -1,11 +1,11 @@
-const baseUrl = "https://yanqiao2018.cn/bjyqwx";//云服务器Url
-const getFileUrl = "https://yanqiao2018.cn/bjyqfiles";//从服务器获取文件
-const getImageUrl = "https://yanqiao2018.cn/bjyqfiles";//从服务器获取图片
+// const baseUrl = "https://yanqiao2018.cn/bjyqwx";//云服务器Url
+// const getFileUrl = "https://yanqiao2018.cn/bjyqfiles";//从服务器获取文件
+// const getImageUrl = "https://yanqiao2018.cn/bjyqfiles";//从服务器获取图片
     // const baseUrl = "https://yanqiao2018.cn/bjyqwxtest";//云服务器Url
-// const baseUrl = "http://localhost:33079/";
+const baseUrl = "http://localhost:33079/";
 // const baseUrl = "http://k17154485y.imwork.net:23530/bjyqwx";//本地服务器Url
-// const getImageUrl = "http://k17154485y.imwork.net:23530/bjyqImage";//从服务器获取图片
-// const getFileUrl = "http://k17154485y.imwork.net:23530/bjyqwx/Files/GetFiles";//从服务器获取文件
+const getImageUrl = "http://k17154485y.imwork.net:23530/bjyqImage";//从服务器获取图片
+const getFileUrl = "http://k17154485y.imwork.net:23530/bjyqwx/Files/GetFiles";//从服务器获取文件
 // const baseUrl = "http://k17154485y.imwork.net:23530/bjyqwx";//本地服务器Url
 // const getImageUrl = "http://k17154485y.imwork.net:23530/bjyqFile";//从服务器获取图片
 // const getFileUrl = "http://k17154485y.imwork.net:23530/bjyqwx/Files/";//从服务器获取文件
@@ -15,6 +15,7 @@ const setImageUrl = "http://k17154485y.imwork.net:23530/bjyqwx/Files";//从服�
 // const getFileUrl = "http://192.168.1.106:8080/bjyqFile";//从服务器获取文件
 
 const workOrderUrl = baseUrl + "/WorkOrder";//工单相关功能Url
+const patrolUrl = baseUrl + "/Patrol";//报事相关功能Url
 const complainUrl = baseUrl + "/Complain";//投诉相关功能Url
 const equipmentUrl = baseUrl + "/Equipment";//设备相关功能Url
 const decorationUrl = baseUrl + "/Decoration";//装修相关功能Url
@@ -39,8 +40,8 @@ const urls = {
   setWorkOrderIsReadUrl : workOrderUrl + "/OnSetOrderIsRead",//设置工单已阅读
   setRepairImageUrl: setImageUrl + "/OnSetRepairImages",//提交工单图片信息
   getRepairImageUrl: getImageUrl + "/jczl_fwrwgl/",//获取工单图片
-  setPatrolUrl: workOrderUrl + "/OnSetPatrol",//提交报事信息
-  setPatrolImageUrl: workOrderUrl + "/OnSetPatrolImage",//提交报事图片信息
+  setPatrolUrl: patrolUrl + "/OnSetPatrol",//提交报事信息
+  setPatrolImageUrl: patrolUrl + "/OnSetPatrolImage",//提交报事图片信息
   getPatrolUrl: workOrderUrl + "/OnGetPatrol",//获取报事历史
 
   getComplainUrl: complainUrl + "/OnGetComplainList",//获取投诉列表

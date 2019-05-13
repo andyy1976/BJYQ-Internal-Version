@@ -216,7 +216,8 @@ function setFiltrateArray(that,equipmentList,inputValue){
     // if (equipmentList[i].Number.substr(0, inputLength).toLowerCase() == inputValue.toLowerCase()) {
     //   filtrateArray.push(equipmentList[i]);
     // }
-    if (equipmentList[i].Number.indexOf(inputValue) >= 0){
+    var equipmentNumber = equipmentList[i].Number.toUpperCase();
+    if (equipmentNumber.indexOf(inputValue.toUpperCase()) >= 0){
       filtrateArray.push(equipmentList[i]);
     }
   }

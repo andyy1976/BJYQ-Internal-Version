@@ -1,5 +1,6 @@
 
 const config = require("../../utils/config.js");
+const util = require("../../utils/util.js");
 
 Page({
 
@@ -8,8 +9,10 @@ Page({
    */
   data: {
     image: ["../../images/addimage.png", "../../images/addimage.png", "../../images/addimage.png"],
+    address: "",
     name: "",
-    classify: ""
+    classify: "",
+    ztName: ""
   },
 
   /**
@@ -21,7 +24,8 @@ Page({
     var ztInfo = wx.getStorageSync("currentZT");
     that.setData({
       name: userInfo.UserName,
-      classify: ztInfo.ZTCode + "\\" + ztInfo.ZTName
+      classify: ztInfo.ZTCode,
+      ztName: ztInfo.ZTName
     })
 
     console.log(that.data);
@@ -41,6 +45,28 @@ Page({
 
   },
 
+  scan: function (e) {
+    var that = this;
+    console.log(e);
+    wx.scanCode({
+      onlyFromCamera: true,
+      scanType: ["qrCode"],
+      success: res => {
+        console.log(res);
+        var result = res.result;
+        console.log(result);
+        that.setData({address:result});
+      },
+      fail: res => {
+        console.log(res);
+        wx.showToast({
+          icon: "none",
+          title: '扫码失败',
+        })
+      }
+    })
+  },
+
 
   imageTaped: function (e) {
     console.log(e);
@@ -56,7 +82,7 @@ Page({
     previewImage(that.data.image[index]);
   },
 
-  toMyPatrol: function (e) {
+  toPatrolHistory: function (e) {
     wx.navigateTo({
       url: '../myPatrolHistory/myPatrolHistory',
     })
@@ -69,7 +95,9 @@ Page({
     console.log(e);
     var that = this;
     var submitData = e.detail.value;
-    if(!submitData.address || !submitData.detail){
+    console.log(submitData);
+    // return;
+    if(!submitData.address || !submitData.content){
       wx.showModal({
         title: '提示',
         content: '请完善需提交信息后再进行提交',
@@ -77,60 +105,80 @@ Page({
       return;
     }
     submitData.classify = that.data.classify;
+    submitData.ztName = that.data.ztName;
     submitData.time = getDateTime();
-    submitData.serverUrl = config.urls.setPatrolUrl;
     console.log(submitData);
-    // return;
-    wx.showLoading({
-      title: '正在提交...',
-    })
-    wx.request({
-      url: config.urls.setPatrolUrl,
-      method: "POST",
-      header: {
-        'content-type': 'application/x-www-form-urlencoded;charset=uft-8'
-      },
-      data: submitData,
-      success: res => {
-        wx.hideLoading();
-        console.log(res);
-        if (res.data.status == "Success") {
-          if (res.data.data){
-            uploadImage(that,res.data.data);
-          }
-          wx.showModal({
-            title: '提示',
-            content: '提交成功，点击确定返回上一页',
-            showCancel: false,
-            success : function(e) {
-              if (e.confirm) {
-                wx.navigateBack({
-                  delta : 1
-                })
-              }
-            }
-          })
+
+    util.setRequest(config.urls.setPatrolUrl, submitData, function (data, errCode) {
+      if (errCode) {
+        if (data) {
+          uploadImage(that, data);
         }
-        else {
-          wx.showModal({
-            title: '提示',
-            content: '发生未知错误，请稍后重试',
-            showCancel: false
-          })
-          return;
-        }
-      },
-      fail: res => {
-        console.log(res);
-        wx.hideLoading();
         wx.showModal({
           title: '提示',
-          content: '发生未知错误，请稍后重试',
-          showCancel: false
+          content: '提交成功，点击确定返回上一页',
+          showCancel: false,
+          success: function (e) {
+            if (e.confirm) {
+              wx.navigateBack({
+                delta: 1
+              })
+            }
+          }
         })
-        return;
       }
-    })
+    });
+
+    // wx.showLoading({
+    //   title: '正在提交...',
+    // })
+    // wx.request({
+    //   url: config.urls.setPatrolUrl,
+    //   method: "POST",
+    //   header: {
+    //     'content-type': 'application/x-www-form-urlencoded;charset=uft-8'
+    //   },
+    //   data: submitData,
+    //   success: res => {
+    //     wx.hideLoading();
+    //     console.log(res);
+    //     if (res.data.status == "Success") {
+    //       if (res.data.data){
+    //         uploadImage(that,res.data.data);
+    //       }
+    //       wx.showModal({
+    //         title: '提示',
+    //         content: '提交成功，点击确定返回上一页',
+    //         showCancel: false,
+    //         success : function(e) {
+    //           if (e.confirm) {
+    //             wx.navigateBack({
+    //               delta : 1
+    //             })
+    //           }
+    //         }
+    //       })
+    //     }
+    //     else {
+    //       wx.showModal({
+    //         title: '提示',
+    //         content: '发生未知错误，请稍后重试',
+    //         showCancel: false
+    //       })
+    //       return;
+    //     }
+    //   },
+    //   fail: res => {
+    //     console.log(res);
+    //     wx.hideLoading();
+    //     wx.showModal({
+    //       title: '提示',
+    //       content: '发生未知错误，请稍后重试',
+    //       showCancel: false
+    //     })
+    //     return;
+    //   }
+    // })
   },
 
   /**
@@ -197,6 +245,7 @@ function selectImage(that, imageType, id) {
 }
 
 function uploadImage(that, id) {
+  console.log(id);
   var image = that.data.image;
   var userInfo = wx.getStorageSync("userInfo");
   for (var i = 0; i < image.length; i++){
@@ -209,9 +258,9 @@ function uploadImage(that, id) {
     var imageName = imagePath[imagePath.length - 1];
     var extraName = extra[extra.length - 1];
     wx.uploadFile({
-      url: config.urls.cloudImageUrl,
+      url: config.urls.setPatrolImageUrl,
       filePath: tempFilePath,
-      formData: { func: "before", id: id, index: i + 1, serverUrl: config.urls.setPatrolImageUrl },
+      formData: { id: id, index: i + 1,},
       name: '' + userInfo.Id + + getTimeStamp() + "." + extraName,
       // name: extra[imagePath.length - 2] + getTimeStamp()+ "." +  extraName,
       // name: "repairOrder" + "before" + userInfo.UserName + getTimeStamp() + "." + extraName,
