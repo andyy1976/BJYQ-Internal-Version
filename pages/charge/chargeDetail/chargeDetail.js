@@ -439,6 +439,7 @@ function getCharges(that, data) {
     chargeData[i].isAllChoosed = true;
     for (var j = 0; j < chargeData[i].ChargeDetails.length; j++) {
       chargeData[i].ChargeDetails[j].isChoosed = true;
+      chargeData[i].ChargeDetails[j].Charge = parseFloat(chargeData[i].ChargeDetails[j].Charge.toFixed(2));
     }
   }
   console.log("chargeList is: ");
@@ -460,7 +461,7 @@ function computeCharge(that) {
     }
   }
   that.setData({
-    totalCharge: totalCharge
+    totalCharge: parseFloat(totalCharge.toFixed(2))
   })
 }
 

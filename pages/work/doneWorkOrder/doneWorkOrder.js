@@ -1,5 +1,5 @@
 const config = require("../../../utils/config.js");
-
+const util = require("../../../utils/util.js");
 Page({
 
   /**
@@ -213,55 +213,69 @@ function getRepairList(that) {
     orderType: that.data.currentSortType,
     serverURL: config.urls.getWorkOrderUrl
   }
-  wx.showLoading({
-    title: '加载中...',
-  })
-  wx.request({
-    url: config.urls.getWorkOrderUrl,
-    method: 'POST',
-    data: data,
-    header: {
-      'content-type': 'application/x-www-form-urlencoded;charset=uft-8'
-    },
-    success: res => {
-      wx.hideLoading();
-      console.log(res);
-      if (res.data.status == "Fail") {
-        if (res.data.result == "未查询到任何数据"){
-          wx.showModal({
-            title: '提示',
-            content: '未查询到任何数据',
-            showCancel: false
-          })
-          return;
-        }
-        wx.showModal({
-          title: '提示',
-          content: '发生未知错误，请稍后重试',
-          showCancel: false
-        })
-        return;
-      }
-      var repairList = res.data.data || [];
-      if (repairList) {
-        filtrateRepairOrder(repairList, that.data.filtrateList[that.data.filtrateIndex], that);
-      }
-      that.setData({
-        repairList: repairList
-      })
-      console.log("repairList is: ================================================")
-      console.log(that.data.repairList);
-    },
-    fail: res => {
-      console.log(res);
-      wx.hideLoading();
-      wx.showModal({
-        title: '提示',
-        content: '发生未知错误，请稍后重试',
-        showCancel: false
-      })
+
+
+
+  util.getRequest(config.urls.getWorkOrderUrl, data, function (data) {
+    var repairList = data;
+    if (repairList) {
+      filtrateRepairOrder(repairList, that.data.filtrateList[that.data.filtrateIndex], that);
     }
+    that.setData({
+      repairList: repairList
+    })
+    console.log("repairList is: ================================================")
+    console.log(that.data.repairList);
   })
+  // wx.showLoading({
+  //   title: '加载中...',
+  // })
+  // wx.request({
+  //   url: config.urls.getWorkOrderUrl,
+  //   method: 'POST',
+  //   data: data,
+  //   header: {
+  //     'content-type': 'application/x-www-form-urlencoded;charset=uft-8'
+  //   },
+  //   success: res => {
+  //     wx.hideLoading();
+  //     console.log(res);
+  //     if (res.data.status == "Fail") {
+  //       if (res.data.result == "未查询到任何数据"){
+  //         wx.showModal({
+  //           title: '提示',
+  //           content: '未查询到任何数据',
+  //           showCancel: false
+  //         })
+  //         return;
+  //       }
+  //       wx.showModal({
+  //         title: '提示',
+  //         content: '发生未知错误，请稍后重试',
+  //         showCancel: false
+  //       })
+  //       return;
+  //     }
+  //     var repairList = res.data.data || [];
+  //     if (repairList) {
+  //       filtrateRepairOrder(repairList, that.data.filtrateList[that.data.filtrateIndex], that);
+  //     }
+  //     that.setData({
+  //       repairList: repairList
+  //     })
+  //     console.log("repairList is: ================================================")
+  //     console.log(that.data.repairList);
+  //   },
+  //   fail: res => {
+  //     console.log(res);
+  //     wx.hideLoading();
+  //     wx.showModal({
+  //       title: '提示',
+  //       content: '发生未知错误，请稍后重试',
+  //       showCancel: false
+  //     })
+  //   }
+  // })
 }
 
 function filtrateRepairOrder(repairList, status, that) {

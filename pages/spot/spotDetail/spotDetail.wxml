@@ -1,132 +1,112 @@
 <!--pages/login/login.wxml-->
 
 <view class="main-view">
-  <view class="header-view">
-    <view class="tip-view">
-      欠费详情
+
+
+
+  <view class="func-block">
+    <view class="block-header">
+      <view class="tip-view">
+        欠费详情
+      </view>
     </view>
-  </view>
-  <!-- <form bindsubmit="submit"> -->
-  <view class="form-view">
-    <view class="item-view">
-      <label>欠费金额</label>
-      <label class='input orange'>{{proprietor.TotalArrearage ? proprietor.TotalArrearage : '无欠费'}}</label>
+    <view class="sd-item">
+      <view class='sd-title'>欠费金额：</view>
+      <view class='sd-content orange'>{{proprietor.TotalArrearage ? proprietor.TotalArrearage : '无欠费'}}</view>
     </view>
-  </view>
-  <view class="header-view">
-    <view class="tip-view">
-      房产详情
-    </view>
-  </view>
-  <!-- <form bindsubmit="submit"> -->
-  <view class="form-view">
-    <view class="item-view">
-      <label>房号</label>
-      <label class='input'>{{proprietor.RoomNumber}}</label>
-    </view>
-    <view class="item-view">
-      <label>房产地址</label>
-      <label class='input'>{{proprietor.RoomAddress}}</label>
-    </view>
-    <view class="item-view">
-      <label>建筑面积</label>
-      <label class='input'>{{proprietor.Area}}</label>
-    </view>
-    <!-- <view class="item-view">
-          <label>材料费</label>
-          <input id="1" name="materialExpense" value="{{repairOrder.MaterialExpense}}" placeholder="请输入材料费" placeholder-class="placeholder-text" />
-        </view>
-        <view class="item-view">
-          <label>人工费</label>
-          <input id="1" name="laborExpense" value="{{repairOrder.LaborExpense}}" placeholder="请输入人工费" placeholder-class="placeholder-text" />
-        </view>
-        <picker id="1" mode="time" name="arriveTime" value="{{repairOrder.ArriveTime ? repairOrder.ArriveTime : toDay}}" bindchange="datepickerBindchange">
-        <view class="item-view">
-          <label>到场时间</label>
-          <label class='input'>{{repairOrder.ArriveTime ? repairOrder.ArriveTime : toDay}}</label>
-        </view>
-        </picker>
-        <picker id="2" mode="time" name="completeTime" value="{{repairOrder.CompleteTime ? repairOrder.CompleteTime : toDay}}" bindchange="datepickerBindchange">
-        <view class="item-view">
-          <label>完成时间</label>
-          <label class='input'>{{repairOrder.CompleteTime ? repairOrder.CompleteTime : toDay}}</label>
-        </view>
-        </picker> -->
-    <!-- <picker id="3" mode="date" value="{{pageData[3].value}}" bindchange="datepickerBindchange">
-        <view class="item-view" id="104" bindtap="viewTap">
-          <label class="blabel">{{pageData[3].showValue}}</label>
-          <label>{{pageData[3].value}}</label>
-        </view>
-      </picker> -->
-    <!-- <view class="item-view">
-          <label>服务项目</label>
-          <label class='input'>{{repairOrder.ServiceProject}}</label>
-        </view> -->
   </view>
 
 
-  <view class="header-view">
-    <view class="tip-view">
-      业主详情
+
+
+  <view class="func-block">
+    <view class="block-header">
+      <view class="tip-view">
+        房产详情
+      </view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>房号：</view>
+      <view class='sd-content'>{{proprietor.RoomNumber}}</view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>建筑面积：</view>
+      <view class='sd-content'>{{proprietor.Area}}</view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>所属楼宇：</view>
+      <view class='sd-content'>{{proprietor.Building}}</view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>房产类型：</view>
+      <view class='sd-content'>{{proprietor.Type}}</view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>户型：</view>
+      <view class='sd-content'>{{proprietor.HouseType}}</view>
     </view>
   </view>
-  <view class="form-view">
-    <view class="item-view">
-      <label>姓名</label>
-      <label class='input'>{{proprietor.Name}}</label>
+
+
+
+
+
+    <view class="func-block">
+    <view class="block-header">
+      <view class="tip-view">
+        业主详情
+      </view>
     </view>
-    <view class="item-view">
-      <label>身份</label>
-      <label class='input'>{{proprietor.Identity}}</label>
+    <view class="sd-item">
+      <view class='sd-title'>姓名：</view>
+      <view class='sd-content'>{{proprietor.Name}}</view>
     </view>
-    <view class="item-view">
-      <label>地址</label>
-      <label class='input'>{{proprietor.Address}}</label>
+    <view class="sd-item">
+      <view class='sd-title'>身份：</view>
+      <view class='sd-content'>{{proprietor.Identity}}</view>
     </view>
-    <!-- <view class="item-view">
-        <label>身份证号码</label>
-        <label class='input'>{{proprietor.IDNumber}}</label>
-      </view> -->
-    <view class="item-view">
-      <label>联系电话</label>
-      <label class='input call' bindtap='phoneCall' data-phone='{{proprietor.Phone}}'>{{proprietor.Phone}}</label>
+    <view class="sd-item">
+      <view class='sd-title'>地址：</view>
+      <view class='sd-content'>{{proprietor.Address}}</view>
     </view>
-    <view class="item-view">
-      <label>紧急联系人</label>
-      <label class='input'>{{proprietor.EmergencyContact}}</label>
+    <view class="sd-item">
+      <view class='sd-title'>联系电话：</view>
+      <view class='sd-content'>{{proprietor.Phone}}</view>
     </view>
-    <view class="item-view">
-      <label>紧急联系地址</label>
-      <label class='input'>{{proprietor.EmergencyAddress}}</label>
+    <view class="sd-item">
+      <view class='sd-title'>紧急联系人：</view>
+      <view class='sd-content'>{{proprietor.EmergencyContact}}</view>
     </view>
-    <view class="item-view">
-      <label>紧急联系电话</label>
-      <label class='input call' bindtap='emergencyPhoneCall' data-phone='{{proprietor.EmergencyPhone}}'>{{proprietor.EmergencyPhone}}</label>
+    <view class="sd-item">
+      <view class='sd-title'>紧急联系地址：</view>
+      <view class='sd-content'>{{proprietor.EmergencyAddress}}</view>
     </view>
-  </view>
-<view class="header-view">
-    <view class="tip-view">
-      车辆详情
-    </view>
-  </view>
-  <!-- <form bindsubmit="submit"> -->
-  <view class="form-view">
-    <view class="item-view">
-      <label>车牌号</label>
-      <label class='input '>{{proprietor.LicensePlateNumber}}</label>
-    </view>
-    <view class="item-view">
-      <label>颜色</label>
-      <label class='input '>{{proprietor.CarColor}}</label>
-    </view>
-    <view class="item-view">
-      <label>品牌</label>
-      <label class='input '>{{proprietor.CarBrand}}</label>
-    </view>
-    <view class="item-view">
-      <label>型号</label>
-      <label class='input '>{{proprietor.CarType}}</label>
+    <view class="sd-item">
+      <view class='sd-title'>紧急联系电话：</view>
+      <view class='sd-content'>{{proprietor.EmergencyPhone}}</view>
     </view>
   </view>
+
+   <view class="func-block">
+    <view class="block-header">
+      <view class="tip-view">
+        车辆详情
+      </view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>车牌号：</view>
+      <view class='sd-content'>{{proprietor.LicensePlateNumber}}</view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>颜色：</view>
+      <view class='sd-content'>{{proprietor.CarColor}}</view>
+    </view>
+    <view class="sd-item">
+      <view class='sd-title'>品牌型号：</view>
+      <view class='sd-content'>{{proprietor.CarType}}</view>
+    </view>
+  </view>
+    
+     <view class="footer-view"></view>
 
 </view>

@@ -1,3 +1,6 @@
+/* pages/wrokOrder/wrokOrder.wxss */
+
+/* pages/login/login.wxss */
 
 page {
   background-color: whitesmoke;
@@ -12,29 +15,59 @@ label {
   color: #353535;
   text-align: left;
 }
-
-.header-view {
-  /* height: 100rpx;
+.search-view{
+  height: 60rpx;
   position: fixed;
   left: 0rpx;
-  top: -1rpx;
+  top: 20rpx;
   right: 0rpx;
-  z-index: 998; */
+  z-index: 998;
+  /* display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center; */
+  background-color: whitesmoke;
+}
+
+.search-view view {
+  margin-left: 25rpx;
+  height: 60rpx;
+  width: 700rpx;
+  /* border: 1.5rpx solid darkgray;
+  border-radius: 10rpx; */
+  background-color: white;
+  /* padding: 10rpx; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+
+
+.header-view {
+  height: 80rpx;
+  position: fixed;
+  left: 0rpx;
+  top: 0rpx;
+  right: 0rpx;
+  z-index: 998;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
-  background-color: whitesmoke;
+  background-color: white;
 }
 
 .switch-view {
   width: 375rpx;
-  height: 100rpx;
+  height: 80rpx;
   /* background-color: yellowgreen; */
   text-align: center;
   vertical-align: center;
-  line-height: 100rpx;
+  line-height: 80rpx;
 }
 
 .choose {
@@ -47,7 +80,7 @@ label {
 }
 
 .main-view {
-  /* margin-top: 100rpx; */
+  margin-top: 20rpx;
   width: 750rpx;
   /*height:1234rpx;*//* background-color: #f0f0f0;*/
   font-size: 32rpx;
@@ -88,7 +121,7 @@ label {
 }
 
 .do-label {
-  color: darkgray;
+  color: red;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -96,13 +129,18 @@ label {
 
 .serial-label {
   font-weight: bold;
-  font-size: 30rpx;
+  font-size: 34rpx;
   color: black;
 }
 
-.date-view label {
+.date-view {
+  height: 160rpx;
+  width : 375rpx;
+}
+.date-label {
   width: 375rpx;
-  margin-right: 30rpx;
+  /* margin-right: 30rpx; */
+  /* margin-top: 20rpx; */
   font-size: 28rpx;
   color: darkgray;
 }
@@ -171,7 +209,114 @@ button {
   margin-left: 5rpx;
 }
 
-/* .image-view {
- margin-top: 50rpx;
- height: 635rpx;
-} */
+ .image-view {
+ width: 375rpx;
+ height: 60rpx;
+ /* float: right; */
+} 
+
+.temp-view {
+  width: 315rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 28rpx;
+}
+
+image {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+scroll-view {
+  height: 1120rpx;
+}
+
+.search-view view image {
+  height: 40rpx;
+  width: 40rpx;
+  /* margin-top: 10rpx; */
+  margin-left: 20rpx;
+}
+.search-view view label {
+  height: 50rpx;
+  width: 300rpx;
+  font-size: 30rpx;
+   margin-top: 0rpx; 
+  margin-left: 10rpx;
+   line-height: 50rpx; 
+   /* color: darkgray; */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* ========================列表子项 WXSS============================= */
+
+.list-item {
+  width: 680rpx;
+  margin-left: 20rpx;
+  margin-top: 20rpx;
+  padding-left: 30rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  /* align-items: center; */
+  background-color: white;
+  border-bottom: 0.5rpx solid whitesmoke;
+}
+
+.list-item-child {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.list-item-child-title {
+  width: 230rpx;
+  font-size: 28rpx;
+  color: black;
+}
+
+.list-item-left {
+  width: 630rpx;
+  padding-top: 10rpx;
+}
+
+.list-item-right {
+  width: 50rpx;
+}
+
+.list-item-number {
+  color: #606060;
+  font-size: 30rpx;
+  /* padding: 10rpx; */
+  padding-bottom: 5rpx;
+  /* margin-bottom: 15rpx; */
+  border-bottom: 1rpx solid whitesmoke;
+}
+
+.list-item-child-info {
+  color: #606060;
+  font-size: 28rpx;
+  width: 400rpx;
+  padding: 5rpx;
+}
+
+.list-item-child-content {
+  color: #343434;
+  font-size: 28rpx;
+  padding: 5rpx;
+}
+
+/* ============================================================ */

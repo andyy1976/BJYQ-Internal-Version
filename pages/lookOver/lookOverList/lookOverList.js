@@ -1,5 +1,5 @@
 const config = require("../../../utils/config.js");
-
+const util = require("../../../utils/util.js");
 Page({
 
   /**
@@ -8,6 +8,7 @@ Page({
   data: {
     lookOverInfo: null,
     business: "",
+    route: "",
     objects: null,
     day: "choose",
     week: "nonChoose",
@@ -20,11 +21,13 @@ Page({
   onLoad: function (options) {
     var that = this;
     var business = options.business;
+    var route = options.route;
     that.setData({
-      business: business
+      business: business,
+      route: route,
     })
     wx.setNavigationBarTitle({
-      title: business + '列表',
+      title: business + '列表（' + route + '）',
     })
   },
 
@@ -40,7 +43,7 @@ Page({
     //   })
     // }
     // else {
-      getLookOverList(that);
+    getLookOverList(that);
     // }
   },
 
@@ -80,20 +83,21 @@ Page({
     var that = this;
     console.log(e);
     var viewCanTouch = e.currentTarget.dataset.canTouch;
-    if (!viewCanTouch){
-      wx.showModal({
-        title: '提示',
-        content: '该对象已完成巡检',
-        showCancel: false
-      })
+    if (!viewCanTouch) {
+      util.showSign("该对象已完成巡检");
       return;
     }
-   
+    if (e.currentTarget.id > 0) {
+      if (!that.data.objects[e.currentTarget.id - 1].isLook) {
+        util.showSign("上一位置还未完成巡检，请完成后重试");
+        return;
+      }
+    }
     var objectName = that.data.objects[e.currentTarget.id].name;
     var lookInfo = that.data.lookOverInfo;
     var items = [];
-    for (var i = 0; i < lookInfo.length; i ++){
-      if (lookInfo[i].objectName == objectName){
+    for (var i = 0; i < lookInfo.length; i++) {
+      if (lookInfo[i].objectName == objectName) {
         items.push(lookInfo[i]);
       }
     }
@@ -101,7 +105,7 @@ Page({
     console.log(objectName);
     if (objectName) {
       wx.navigateTo({
-        url: '../lookOverDetail/lookOverDetail?objectName=' + objectName + '&business=' + that.data.business + '&items=' + JSON.stringify(items),
+        url: '../lookOverDetail/lookOverDetail?objectName=' + objectName + '&route=' + that.data.route + '&business=' + that.data.business + '&items=' + JSON.stringify(items),
       })
     }
     else {
@@ -120,95 +124,46 @@ function getLookOverList(that) {
   var ztInfo = wx.getStorageSync("currentZT") || {};
   var data = {
     ztCode: ztInfo ? ztInfo.ZTCode : "",
-    // ztCode: "21",
+    name: wx.getStorageSync("userInfo").UserCode,
     func: that.data.business,
-    period: that.data.period,
+    route: that.data.route,
     serverURL: config.urls.getLookOverListUrl
   }
-  wx.showLoading({
-    title: '加载中...',
-  })
-  wx.request({
-    url: config.urls.getLookOverListUrl,
-    method: 'POST',
-    data: data,
-    header: {
-      'content-type': 'application/x-www-form-urlencoded;charset=uft-8'
-    },
-    success: res => {
-      console.log(res);
-      wx.hideLoading();
-      if (res.data.status == "Fail") {
-        if (res.data.result == "未查询到任何数据") {
-          wx.showModal({
-            title: '提示',
-            content: '未查询到任何数据',
-            showCancel: false
-          })
-          that.setData({ objects: null});
-          return;
-        }
-        wx.showModal({
-          title: '提示',
-          content: '发生未知错误，请稍后重试',
-          showCancel: false
-        })
-        that.setData({ objects: null });
-        return;
-      }
-      else if (res.data.status == "Success"){
-        var data = res.data.data;
-        // that.setData({
-        //   lookOverInfo: data,
-        // })
-        getObjects(that, data);
-      // wx.setStorageSync(that.data.business, data);
-      }
-      else {
-        wx.showModal({
-          title: '提示',
-          content: '发生未知错误，请稍后重试',
-          showCancel: false
-        })
-        that.setData({ objects: null });
-      }
-    },
-    fail: res => {
-      console.log(res);
-      wx.hideLoading();
-      wx.showModal({
-        title: '提示',
-        content: '发生未知错误，请稍后重试',
-        showCancel: false
-      })
+
+
+  util.getRequest(config.urls.getLookOverListUrl, data, function (data, errCode) {
+    if (errCode) {
+      var data = data;
+      getObjects(that, data);
+    }
+    else {
       that.setData({ objects: null });
     }
   })
 }
 
+function getObjects(that, data) {
+      var objectName = data[0].objectName;
+      var objects = [];
+      objects.push({ name: data[0].objectName, isLook: data[0].isLook });
+      for (var i = 0; i < data.length; i++) {
+        data[i].isNormal = true;
+        if (data[i].objectName != objectName) {
+          objects.push({ name: data[i].objectName, isLook: data[i].isLook });
+          objectName = data[i].objectName;
+        }
+      }
 
-function getObjects(that,data){
-  var objectName = data[0].objectName;
-  var objects = [];
-  objects.push({ name: data[0].objectName, isLook: data[0].isLook});
-  for (var i = 0; i < data.length; i++){
-    data[i].isNormal = true;
-    if (data[i].objectName != objectName){
-      objects.push({ name: data[i].objectName, isLook: data[i].isLook });
-      objectName = data[i].objectName;
+      // for(var i = 0; i < objects.length; i++){
+      //   var isLook = true;
+      //   for(var j = 0; j < data.length; j++){
+      //     if (data[j].objectName == objects[i].name && data[j].isLook == false){
+      //       isLook = false;
+      //     }
+      //   }
+      //   if (isLook == true) {
+      //     objects[i].isLook = true;
+      //   }
+      // }
+      that.setData({ objects: objects, lookOverInfo: data });
     }
-  }
-
-  // for(var i = 0; i < objects.length; i++){
-  //   var isLook = true;
-  //   for(var j = 0; j < data.length; j++){
-  //     if (data[j].objectName == objects[i].name && data[j].isLook == false){
-  //       isLook = false;
-  //     }
-  //   }
-  //   if (isLook == true) {
-  //     objects[i].isLook = true;
-  //   }
-  // }
-  that.setData({ objects: objects, lookOverInfo: data });
-}

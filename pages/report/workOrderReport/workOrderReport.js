@@ -38,7 +38,8 @@ Page({
     console.log(repairOrder);
     if (repairOrder) {
       wx.navigateTo({
-        url: '../workOrderReportDetail/workOrderReportDetail?repairOrder=' + JSON.stringify(repairOrder),
+        url: '../../work/workDetail/workDetail?status=done&repairOrder=' + JSON.stringify(repairOrder),
+        // url: '../workOrderReportDetail/workOrderReportDetail?repairOrder=' + JSON.stringify(repairOrder),
       })
     }
     else {

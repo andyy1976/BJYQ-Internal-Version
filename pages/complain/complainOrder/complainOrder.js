@@ -1,5 +1,5 @@
 const config = require("../../../utils/config.js");
-
+const util = require("../../../utils/util.js");
 Page({
 
   /**
@@ -237,46 +237,15 @@ function getComplainList(that, orderType) {
   var app = getApp();
   var ztInfo = wx.getStorageSync("currentZT") || {};
   var data = {
-    // userCode: wx.getStorageSync("userInfo").UserCode,
+    name: wx.getStorageSync("userInfo").UserCode,
     classify: ztInfo ? ztInfo.ZTCode : "",
     status: "未完成",
-    // orderType: orderType,
-    serverURL: config.urls.getComplainUrl
   }
-  wx.showLoading({
-    title: '加载中...',
-  })
-  wx.request({
-    url: config.urls.getComplainUrl,
-    method: 'POST',
-    data: data,
-    header: {'content-type': 'application/x-www-form-urlencoded;charset=uft-8'},
-    success: res => {
-      console.log(res);
-      wx.hideLoading();
-      if (res.data.status == "Fail") {
-        if (res.data.result == "查询条件错误或没有数据") {
-          wx.showModal({
-            title: '提示',
-            content: '未查询到任何数据',
-            showCancel: false
-          })
-          that.setData({
-            filtrateOrder: [],
-          })
-          return;
-        }
-        wx.showModal({
-          title: '提示',
-          content: '发生未知错误，请稍后重试',
-          showCancel: false
-        })
-        that.setData({
-          filtrateOrder: [],
-        })
-        return;
-      }
-      var complainList = res.data.data || [];
+
+
+  util.getRequest(config.urls.getComplainUrl, data, function success(data, errCode) {
+    if (errCode) {
+      var complainList = data || [];
       if (complainList) {
         filtrateComplainOrder(complainList, that.data.filtrateList[that.data.filtrateIndex], that);
       }
@@ -285,17 +254,66 @@ function getComplainList(that, orderType) {
       })
       console.log("repairList is: ================================================")
       console.log(that.data.complainList);
-    },
-    fail: res => {
-      console.log(res);
-      wx.hideLoading();
-      wx.showModal({
-        title: '提示',
-        content: '发生未知错误，请稍后重试',
-        showCancel: false
+    }
+    else {
+      that.setData({
+        filtrateOrder: [],
       })
     }
   })
+  // wx.showLoading({
+  //   title: '加载中...',
+  // })
+  // wx.request({
+  //   url: config.urls.getComplainUrl,
+  //   method: 'POST',
+  //   data: data,
+  //   header: {'content-type': 'application/x-www-form-urlencoded;charset=uft-8'},
+  //   success: res => {
+  //     console.log(res);
+  //     wx.hideLoading();
+  //     if (res.data.status == "Fail") {
+  //       if (res.data.result == "查询条件错误或没有数据") {
+  //         wx.showModal({
+  //           title: '提示',
+  //           content: '未查询到任何数据',
+  //           showCancel: false
+  //         })
+  //         that.setData({
+  //           filtrateOrder: [],
+  //         })
+  //         return;
+  //       }
+  //       wx.showModal({
+  //         title: '提示',
+  //         content: '发生未知错误，请稍后重试',
+  //         showCancel: false
+  //       })
+  //       that.setData({
+  //         filtrateOrder: [],
+  //       })
+  //       return;
+  //     }
+  //     var complainList = res.data.data || [];
+  //     if (complainList) {
+  //       filtrateComplainOrder(complainList, that.data.filtrateList[that.data.filtrateIndex], that);
+  //     }
+  //     that.setData({
+  //       complainList: complainList
+  //     })
+  //     console.log("repairList is: ================================================")
+  //     console.log(that.data.complainList);
+  //   },
+  //   fail: res => {
+  //     console.log(res);
+  //     wx.hideLoading();
+  //     wx.showModal({
+  //       title: '提示',
+  //       content: '发生未知错误，请稍后重试',
+  //       showCancel: false
+  //     })
+  //   }
+  // })
 }
 
 function filtrateComplainOrder(complainList, status, that) {

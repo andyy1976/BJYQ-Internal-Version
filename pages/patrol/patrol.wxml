@@ -19,6 +19,10 @@
           <input id="0" class='cd-input' name="name" value="{{name}}" disabled='{{true}}' />
         </view>
         <view class="cd-item">
+          <view class='cd-title'>上报人手机</view>
+          <input id="0" class='cd-input' name="phone" value="{{phone}}" placeholder="请输入上报人手机" placeholder-class="cd-placeholder"  />
+        </view>
+        <view class="cd-item">
           <view class='cd-title'>上报地点</view>
           <input id="1" class='cd-input' name="address" value='{{address}}' placeholder="请输入上报地点" placeholder-class="cd-placeholder" />
           <image class='xiayiye' src="../../images/saoma.png" id="1" bindtap='scan' ></image>

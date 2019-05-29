@@ -1,15 +1,18 @@
-// const baseUrl = "https://yanqiao2018.cn/bjyqwx";//云服务器Url
-// const getFileUrl = "https://yanqiao2018.cn/bjyqfiles";//从服务器获取文件
-// const getImageUrl = "https://yanqiao2018.cn/bjyqfiles";//从服务器获取图片
-    // const baseUrl = "https://yanqiao2018.cn/bjyqwxtest";//云服务器Url
-const baseUrl = "http://localhost:33079/";
+const baseUrl = "https://yanqiao2018.cn/bjyqwx";//云服务器Url
+const getFileUrl = "https://yanqiao2018.cn/bjyqfiles";//从服务器获取文件
+const getImageUrl = "https://yanqiao2018.cn/bjyqfiles";//从服务器获取图片
+const setImageUrl = "https://yanqiao2018.cn/bjyqwx/Files";//从服务器获取图片
+// const baseUrl = "https://yanqiao2018.cn/bjyqwxtest";//云服务器Url
+// const baseUrl = "http://localhost:33079/";
+// const setImageUrl = "http://localhost:33079/Files"
+// const getImageUrl = "http://localhost:8080/bjyqFile";//从服务器获取图片
 // const baseUrl = "http://k17154485y.imwork.net:23530/bjyqwx";//本地服务器Url
-const getImageUrl = "http://k17154485y.imwork.net:23530/bjyqImage";//从服务器获取图片
-const getFileUrl = "http://k17154485y.imwork.net:23530/bjyqwx/Files/GetFiles";//从服务器获取文件
+// const getImageUrl = "http://k17154485y.imwork.net:23530/bjyqFile";//从服务器获取图片
+// const getFileUrl = "http://k17154485y.imwork.net:23530/bjyqwx/Files/GetFiles";//从服务器获取文件
 // const baseUrl = "http://k17154485y.imwork.net:23530/bjyqwx";//本地服务器Url
 // const getImageUrl = "http://k17154485y.imwork.net:23530/bjyqFile";//从服务器获取图片
 // const getFileUrl = "http://k17154485y.imwork.net:23530/bjyqwx/Files/";//从服务器获取文件
-const setImageUrl = "http://k17154485y.imwork.net:23530/bjyqwx/Files";//从服务器获取文件
+// const setImageUrl = "http://k17154485y.imwork.net:23530/bjyqwx/Files";//从服务器获取文件
 // const baseUrl = "http://192.168.1.106:8080/bjyqwx";//本地服务器Url
 // const getImageUrl = "http://192.168.1.106:8080/bjyqImage";//从服务器获取图片
 // const getFileUrl = "http://192.168.1.106:8080/bjyqFile";//从服务器获取文件
@@ -34,6 +37,10 @@ const urls = {
   // cloudUrl: "http://localhost:8080/wxics/SendData/OnSendData",//云服务器向本地服务器发送数据的Url
   // cloudImageUrl: "https://yqwy-hd.com/wxics/SetImage/OnSetImage",//云服务器向本地服务器发送图片的Url
   // getImageUrl: "http://k17154485y.imwork.net:23530/bjyqImage",//从云服务器获取图片
+
+  // setImageUrl: "https://yanqiao2018.cn/bjyqwxtest/Files/OnSetImage",//向服务器上传图片
+  // setImageUrl: "http://localhost:33079/Files/OnSetImage",//向服务器上传图片
+
   getFileUrl: getFileUrl,
   getWorkOrderUrl: workOrderUrl + "/OnGetRepairList",//获取工单列表
   setWorkOrderUrl: workOrderUrl + "/OnSetRepairOrder",//设置工单完成情况
@@ -41,19 +48,23 @@ const urls = {
   setRepairImageUrl: setImageUrl + "/OnSetRepairImages",//提交工单图片信息
   getRepairImageUrl: getImageUrl + "/jczl_fwrwgl/",//获取工单图片
   setPatrolUrl: patrolUrl + "/OnSetPatrol",//提交报事信息
-  setPatrolImageUrl: patrolUrl + "/OnSetPatrolImage",//提交报事图片信息
-  getPatrolUrl: workOrderUrl + "/OnGetPatrol",//获取报事历史
+  setPatrolImageUrl: setImageUrl + "/OnSetPatrolImages",//提交报事图片信息
+  getPatrolUrl: patrolUrl + "/OnGetPatrol",//获取报事历史
+  getPatrolImageUrl: getImageUrl + "/jczl_bsgl/",
 
   getComplainUrl: complainUrl + "/OnGetComplainList",//获取投诉列表
   setComplainUrl: complainUrl + "/OnSetComplain",//设置投诉处理完成情况
-  setComplainImageUrl: complainUrl + "/OnSetcomplainImage",//提交投诉处理照片
-
+  setComplainImageUrl: setImageUrl + "/OnSetcomplainImage",//提交投诉处理照片
+  getComplainImageUrl: getImageUrl + "/gktscl/",//获取投诉照片
 
   getEquipmentListUrl: equipmentUrl + "/OnGetEquipment",//获取设备保养信息列表
   setEquipmentUrl: equipmentUrl + "/OnSetEquipment",//提交设备保养情况
-  setEquipmentImageUrl: equipmentUrl + "/OnSetEquipmentImage",//提交设备保养照片信息
+  getEquipmentImageUrl: getImageUrl + "/bywj/",
+  setEquipmentImageUrl: setImageUrl + "/OnSetEquipmentImage",//提交设备保养照片信息
   getEquipmentTroubleListUrl: equipmentUrl + "/OnGetEquipmentTrouble",//获取设备故障列表
   setEquipmentTroubleUrl: equipmentUrl + "/OnSetEquipmentTrouble",//提交设备维修信息
+  getEquipmentTroubleImageUrl: getImageUrl + "/基础资料_设备故障管理/",
+  setEquipmentTroubleImageUrl: setImageUrl + "/OnSetEquipmentTroubleImage",//提交设备维修照片
   equipmentSearchUrl: equipmentUrl + "/OnSearchEquipment",//通过设备运行编号查询设备信息
   equipmentMaintainSearchUrl: equipmentUrl + "/OnSearchEquipmentMaintain",//通过设备运行编号查询设备保养记录
 
@@ -72,9 +83,10 @@ const urls = {
 
   getProprietorListUrl: proprietorUrl + "/OnGetProprietorList",//获取现场查询的占用者列表
   
+  getLookOverRouteListUrl: lookOverUrl + "/GetLookOverRouteInfo",//获取巡检路线信息
   getLookOverListUrl: lookOverUrl + "/OnGetLookOverInfo",//获取巡检信息
   setLookOverResultUrl: lookOverUrl + "/OnSetLookOverResult",//设置巡检结果
-  setLookOverImageUrl: lookOverUrl + "/OnSetLookOverImage",//提交巡检照片
+  setLookOverImageUrl: setImageUrl + "/OnSetLookOverImage",//提交巡检照片
   
   loginUrl: userUrl + "/OnLogin",//用户登陆
   getUserInfoUrl: userUrl + "/OnGetUserInfo",//获取用户信息

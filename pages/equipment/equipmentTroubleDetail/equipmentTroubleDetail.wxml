@@ -1,25 +1,141 @@
 <!--pages/login/login.wxml-->
+<block wx:if="{{type === 'undone'}}">
+  <view class="main-view">
+    <form bindsubmit="submit">
 
-<view class="main-view">
-  <!-- <view class="header-view">
-    <view class="tip-view">
-      设备信息
-    </view>
-  </view> -->
-  <form bindsubmit="submit">
-
-    <!-- <view class="form-view">
-      <view class="item-view">
-        <label>设备编号</label>
-        <label class='input'>{{equipment.number}}</label>
+      <view class="func-block">
+        <view class="block-header">
+          <view class="tip-view">
+            设备信息
+          </view>
+        </view>
+        <view class="sd-item">
+          <view class='sd-title'>设备名称：</view>
+          <view class='sd-content'>{{equipment.number}}</view>
+        </view>
+        <view class="sd-item">
+          <view class='sd-title'>设备编号：</view>
+          <view class='sd-content'>{{equipment.name}}</view>
+        </view>
+        <view class="sd-item">
+          <view class='sd-title'>安装地点：</view>
+          <view class='sd-content'>{{equipment.useAddress}}</view>
+        </view>
       </view>
-      <view class="item-view">
-        <label>设备名称</label>
-        <label class='input'>{{equipment.name}}</label>
+
+      <view class="func-block">
+        <view class="block-header">
+          <view class="tip-view">
+            报修信息
+          </view>
+        </view>
+        <view class="sd-item">
+          <view class='sd-title'>管理处：</view>
+          <view class='sd-content'>{{equipment.project}}</view>
+        </view>
+        <view class="sd-item">
+          <view class='sd-title'>登记人：</view>
+          <view class='sd-content'>{{equipment.registrant}}</view>
+        </view>
+        <view class="sd-item">
+          <view class='sd-title'>登记时间：</view>
+          <view class='sd-content'>{{equipment.registerTime}}</view>
+        </view>
+        <view class="sd-item">
+          <view class='sd-title'>发生时间：</view>
+          <view class='sd-content'>{{equipment.brokenTime}}</view>
+        </view>
+        <view class="sd-item">
+          <view class='sd-title'>故障描述：</view>
+          <view class='sd-content'>{{equipment.brokenInfo}}</view>
+        </view>
+        <view class="sd-item">
+          <view class='sd-title'>状态：</view>
+          <view class='sd-content'>{{equipment.status}}</view>
+        </view>
+        <view class="sd-item">
+          <view class='sd-title'>维修人：</view>
+          <view class='sd-content'>{{equipment.repairMan}}</view>
+        </view>
+        <view class="sd-item">
+          <view class='sd-title'>维修时限：</view>
+          <view class='sd-content'>{{equipment.repairTimeLimit}}</view>
+        </view>
+        <view class="sd-item">
+          <view class='sd-title'>接单时间：</view>
+          <view class='sd-content'>{{equipment.receiveTime}}</view>
+        </view>
       </view>
-    </view> -->
+
+      <view class="func-block">
+        <view class="block-header">
+          <view class="tip-view">
+            设备保养情况
+          </view>
+        </view>
+        <picker id="100" mode="time" name="doneTime" value="{{today}}" bindchange="pickerChange">
+          <view class="cd-item">
+            <view class='cd-title'>完成时间：</view>
+            <view class='cd-content'>{{today}}</view>
+            <image class='cd-next-image' src='../../../images/xiala.png' />
+          </view>
+        </picker>
+        <view class="cd-item" hidden='{{chargeHidden}}' bindtap='checkIdentity'>
+          <view class='cd-title'>维修费用：</view>
+          <input class='cd-input' id="2" name="fee" value="{{equipment.fee}}" placeholder="请输入维修费用" placeholder-class="cd-placeholder" />
+        </view>
+        <view class="cd-item" hidden='{{chargeHidden}}' bindtap='checkIdentity'>
+          <view class='cd-title'>维修说明：</view>
+          <input class='cd-input' id="2" name="doneInfo" value="{{equipment.repairInfo}}" placeholder="请输入维修说明" placeholder-class="cd-placeholder" />
+        </view>
+      </view>
 
 
+
+
+      <view class="func-block">
+        <view class="block-header">
+          <view class="tip-view">
+            维修前照片
+          </view>
+        </view>
+        <view class="images-view">
+          <block wx:for="{{beforeImage}}">
+            <image class='sd-image' id='{{index}}' src='{{item}}' bindtap='beforeImageTaped' />
+          </block>
+        </view>
+      </view>
+
+
+
+
+
+      <view class="func-block">
+        <view class="block-header">
+          <view class="tip-view">
+            处理后照片(点击添加,长按预览)
+          </view>
+        </view>
+        <view class=" images-view">
+          <block wx:for="{{afterImage}}">
+            <image class='cd-image' id='{{index}}' src='{{item}}' bindtap='afterImageTaped' bindlongpress='afterImageLongTaped' />
+          </block>
+        </view>
+      </view>
+
+
+      <button id="submit" formType="submit" type='primary' hidden='{{equipment.IsDone == 1 ? true : false}}'>确认提交</button>
+      <view class="footer-view"></view>
+    </form>
+
+
+  </view>
+
+</block>
+
+
+<block wx:else>
+  <view class="main-view">
     <view class="func-block">
       <view class="block-header">
         <view class="tip-view">
@@ -71,181 +187,55 @@
         <view class='sd-content'>{{equipment.receiveTime}}</view>
       </view>
     </view>
-
-
-    <!-- <view class="header-view">
-      <view class="tip-view">
-        报修信息
-      </view>
-    </view>
-    <view class="form-view">
-      <view class="item-view">
-        <label>发生时间</label>
-        <label class='input'>{{equipment.brokenTime}}</label>
-      </view>
-      <view class="high-view">
-        <label>故障描述</label>
-        <text class='high-text'>  {{equipment.brokenInfo}}</text>
-      </view>
-      <view class="item-view">
-        <label>状态</label>
-        <label class='input'>{{equipment.status}}</label>
-      </view>
-      <view class="item-view">
-        <label>维修人</label>
-        <label class='input'>{{equipment.repairMan}}</label>
-      </view>
-      <view class="item-view">
-        <label>维修时限</label>
-        <label class='input'>{{equipment.repairTimeLimit}}</label>
-      </view>
-      <view class="item-view">
-        <label>接单时间</label>
-        <label class='input'>{{equipment.receiveTime}}</label>
-      </view>
-    </view> -->
-
-
     <view class="func-block">
       <view class="block-header">
         <view class="tip-view">
           设备保养情况
         </view>
       </view>
-      <picker id="100" mode="time" name="doneTime" value="{{today}}" bindchange="pickerChange">
-        <view class="cd-item">
-          <view class='cd-title'>完成时间：</view>
-          <view class='cd-content'>{{today}}</view>
-          <image class='cd-next-image' src='../../../images/xiala.png' />
-        </view>
-      </picker>
-      <view class="cd-item" hidden='{{chargeHidden}}' bindtap='checkIdentity'>
-        <view class='cd-title'>维修费用：</view>
-        <input class='cd-input' id="2" name="fee" value="{{equipment.fee}}" placeholder="请输入维修费用" placeholder-class="cd-placeholder" />
+      <view class="sd-item">
+        <view class='sd-title'>完成时间：</view>
+        <view class='sd-content'>{{equipment.finishTime}}</view>
       </view>
-      <view class="cd-item" hidden='{{chargeHidden}}' bindtap='checkIdentity'>
-        <view class='cd-title'>维修说明：</view>
-        <input class='cd-input' id="2" name="doneInfo" value="{{equipment.repairInfo}}" placeholder="请输入维修说明" placeholder-class="cd-placeholder" />
+      <view class="sd-item">
+        <view class='sd-title'>维修费用：</view>
+        <view class='sd-content'>{{equipment.fee}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>维修说明</view>
+        <view class='sd-content'>{{equipment.repairInfo}}</view>
+      </view>
+    </view>
+    <view class="func-block">
+      <view class="block-header">
+        <view class="tip-view">
+          维修前照片
+        </view>
+      </view>
+      <view class="images-view">
+        <block wx:for="{{beforeImage}}">
+          <image class='sd-image' id='{{index}}' src='{{item}}' bindtap='beforeImageTaped' />
+        </block>
       </view>
     </view>
 
-
-    <!-- <view class="header-view">
-      <view class="tip-view">
-        设备保养情况
-      </view>
-    </view>
-    <view class="form-view">
-      <picker mode="time" value='today' bindchange='pickerChange'>
-        <view class="item-view">
-          <label>完成时间</label>
-          <input id="2" name='doneTime' value="{{today}}" placeholder-class="placeholder-text" disabled='{{true}}' />
-
-          <image class='xiala' src='../../../images/xiala.png' />
-        </view>
-      </picker>
-      <view class="item-view">
-        <label>维修费用</label>
-        <input id="2" name="fee" value="{{equipment.fee}}" placeholder="请输入维修费用" placeholder-class="placeholder-text" />
-      </view>
-      <view class="item-view">
-        <label>维修说明</label>
-        <input id="2" name="doneInfo" value="{{equipment.repairInfo}}" placeholder="请输入维修说明" placeholder-class="placeholder-text" />
-      </view>
-    </view> -->
 
 
     <view class="func-block">
-    <view class="block-header">
-      <view class="tip-view">
-        维修前照片
+      <view class="block-header">
+        <view class="tip-view">
+          处理后照片
+        </view>
       </view>
-    </view>
-    <view class="images-view">
-      <block wx:for="{{beforeImage}}">
-        <image class='sd-image' id='{{index}}' src='{{item}}' bindtap='beforeImageTaped' />
-      </block>
-    </view>
-  </view>
-
-    <!-- <view class="header-view">
-      <view class="tip-view">
-        维修前照片
-      </view>
-    </view>
-    <view class="form-view">
-      <view class="add-image images-view">
-        <block wx:for="{{beforeImage}}">
-          <image id='{{index}}' src='{{item}}' bindtap='beforeImageTaped' />
-        </block>
-      </view>
-    </view> -->
-
-
-
-<view class="func-block">
-    <view class="block-header">
-      <view class="tip-view">
-        处理后照片(点击添加,长按预览)
-      </view>
-    </view>
-    <view class=" images-view">
-      <block wx:for="{{afterImage}}">
-        <image class='cd-image' id='{{index}}' src='{{item}}' bindtap='afterImageTaped' bindlongpress='afterImageLongTaped' />
-      </block>
-    </view>
-  </view>
-
-
-    <!-- <view class="header-view">
-      <view class="tip-view">
-        处理后照片(点击添加,长按预览)
-      </view>
-    </view>
-    <view class="form-view">
-      <view class="add-image images-view">
+      <view class=" images-view">
         <block wx:for="{{afterImage}}">
-          <image id='{{index}}' src='{{item}}' bindtap='afterImageTaped' bindlongpress='afterImageLongTaped' />
+          <image class='cd-image' id='{{index}}' src='{{item}}' bindtap='afterImageTaped' />
         </block>
       </view>
-    </view> -->
-
-    <!-- <view class="header-view">
-      <view class="tip-view">
-        保养前照片
-      </view>
     </view>
-    <view class="form-view">
-      <view class="add-image">
-        <image src='{{beforeImage}}' bindtap='beforeImageTaped' />
-        </image>
-      </view>
-    </view>
-    <view class="header-view">
-      <view class="tip-view">
-        保养中照片
-      </view>
-    </view>
-    <view class="form-view">
-      <view class="add-image">
-        <image src='{{middleImage}}' bindtap='middleImageTaped' />
-        </image>
-      </view>
-    </view>
-    <view class="header-view">
-      <view class="tip-view">
-        保养后照片
-      </view>
-    </view>
-    <view class="form-view">
-      <view class="add-image">
-        <image src='{{afterImage}}' bindtap='afterImageTaped' />
-        </image>
-      </view>
-    </view> -->
-    <button id="submit" formType="submit" type='primary' hidden='{{equipment.IsDone == 1 ? true : false}}'>确认提交</button>
     <view class="footer-view"></view>
-  </form>
+    <!-- </form> -->
 
 
-</view>
+  </view>
+</block>

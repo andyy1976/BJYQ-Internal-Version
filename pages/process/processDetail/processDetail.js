@@ -23,10 +23,9 @@ Page({
     var process = JSON.parse(options.process);
     console.log(process);
     that.setData({ processInfo: process });
-    // var data = { userId: wx.getStorageSync("currentUserId") };//315,280
     var submitData = {
-      userId: wx.getStorageSync("currentUserId"),
-      // userId: wx.getStorageSync("userInfo").Id,
+      // userId: wx.getStorageSync("currentUserId"),
+      userId: wx.getStorageSync("userInfo").Id,
       linkId: process.linkId,
       docTableName: process.docTableName,
       docTableId: process.docTableId,
@@ -101,63 +100,6 @@ Page({
       // console.log(needShowItems);
       }
     })
-    // wx.request({
-    //   url: 'http://localhost:8080/bjyqwx/Process/BussinessHandler_TableData?userId=100',
-    //   method: 'GET',
-    //   success: res => {
-    //     console.log(res);
-    //     console.log(res.data.data);
-    //     // return;
-    //     var data = res.data.data;
-    //     var items = data.items[0];
-    //     var defines = data.defines;
-    //     // var processItem = {};
-    //     // for (var i = 0; i < items.length; i++){
-    //     //   processItem[items[i].title] = items[i].content;
-    //     // }
-    //     // console.log("processItem")
-    //     // console.log(processItem);
-    //     // var needShowItems = [];
-    //     // var needHandleItems = [];
-    //     var requiredFields = [];
-    //     for (var i = 0; i < items.length; i++){
-    //       for (var j = 0; j < defines.length; j++){
-    //         if (items[i].title == defines[j].fieldName){
-    //           items[i].fieldSourceName = defines[j].fieldSourceName;
-    //           items[i].required = defines[j].required;
-    //           items[i].defaultValue = defines[j].defaultValue;
-    //           items[i].allowEdit = defines[j].allowEdit;
-    //           break;
-    //         }
-    //       }
-    //       if (!items[i].fieldSourceName){
-    //         items[i].fieldSourceName = items[i].title;
-    //         items[i].required = false;
-    //         items[i].defaultValue = '';
-    //         items[i].allowEdit = false;
-    //       }
-    //       // if (items[i].required == true){
-    //       //   requiredFields.push(items[i].fieldSourceName);
-    //       // }
-    //       // if (items[i].allowEidt){
-    //       //   needHandleItems.push(items[i]);
-    //       // }
-    //       // else {
-    //       //   needShowItems.push(items[i]);
-    //       // }
-    //     }
-    //     console.log("items")
-    //     console.log(items);
-    //     // console.log("requiredFields:");
-    //     // console.log(requiredFields);
-    //     that.setData({ processItems: items, checkDataDefines: data.checkDataDefines});
-    //     // console.log(needHandleItems);
-    //     // console.log(needShowItems);
-    //   },
-    //   fail: res => {
-    //     console.log(res);
-    //   }
-    // })
   },
 
   /**
@@ -179,7 +121,7 @@ Page({
     console.log(e);
     var index = parseInt(e.detail.value);
     
-    if (that.data.checkDataDefines[index].isSelect == false && that.data.checkDataDefines[index].checkResult != "不同意" && !that.data.isAllCanSelect){
+    if (that.data.checkDataDefines[index].isSelect == false && that.data.checkDataDefines[index].checkResult.indexOf("不同意") < 0 && !that.data.isAllCanSelect){
       wx.showToast({
         title: '不能选择该项',
         icon: 'none'
@@ -201,14 +143,22 @@ Page({
       })
       return;
       }
-    var docValue = value.split('-')[value.split('-').length - 1];
-    var splitArr = docValue.split('|');
+      console.log(value);
+    // var docValue = value.split('-')[value.split('-').length - 1];
+    // var splitArr = docValue.split('|');
+    // var docName = splitArr[splitArr.length - 1];
+    // var recordId = splitArr[splitArr.length - 2];
+    // var docType = docName.split(".")[docName.split(".").length - 1];
+    var splitArr = value.split("|");
     var docName = splitArr[splitArr.length - 1];
-    var recordId = splitArr[splitArr.length - 2];
-    var docType = docName.split(".")[docName.split(".").length - 1];
+    var temp = splitArr[splitArr.length - 2];
+    var recordTemp = temp.split("-");
+    var recordId = recordTemp[recordTemp.length - 1];
+
     var fileFullName = "\\" + that.data.processInfo.docTableName + "\\" + recordId + "\\" + docName;
     // // var fileFullName = '/abc/Background-a.jpg';
     var fileUrl = config.urls.getFileUrl + fileFullName;
+    console.log(fileUrl);
     // var docTableName = that.data.processInfo.docTableName;
     // var fileUrl = config.urls.getFileUrl + "?tempFileName=" + value + "&docTableName=" + docTableName;
     console.log(fileUrl);
@@ -270,8 +220,8 @@ Page({
       var updateKeys = Object.keys(updateData);
       var submitData = {
         instanceId: selectedProcess.id,
-        userId: wx.getStorageSync("currentUserId"),
-        // userId: wx.getStorageSync("userInfo").Id,
+        // userId: wx.getStorageSync("currentUserId"),
+        userId: wx.getStorageSync("userInfo").Id,
         leaveMessage: value.leaveMessage,
         isEnd: 1,
         docTableName: selectedProcess.docTableName,
@@ -306,8 +256,8 @@ Page({
       var updateKeys = Object.keys(updateData);
       var submitData = {
         instanceId: selectedProcess.id,
-        userId: wx.getStorageSync("currentUserId"),
-        // userId: wx.getStorageSync("userInfo").Id,
+        // userId: wx.getStorageSync("currentUserId"),
+        userId: wx.getStorageSync("userInfo").Id,
         leaveMessage: value.leaveMessage,
         needArchiving: that.data.isArchiving,
         docTableName: selectedProcess.docTableName,

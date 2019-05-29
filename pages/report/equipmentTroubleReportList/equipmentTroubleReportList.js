@@ -1,4 +1,5 @@
 const config = require("../../../utils/config.js");
+const util = require("../../../utils/util.js");
 Page({
 
   /**
@@ -120,10 +121,16 @@ function getEquipmentTroubleReport(that) {
       console.log(res);
       if (res.data.status == "Success") {
         if (res.data.data) {
-          that.setData({
-            report: res.data.data,
-            //  personalHidden: false
-          })
+          if (res.data.data.countTimeout == "0"){
+            util.showSign("未查询到任何数据");
+          }
+          else {
+            that.setData({
+              report: res.data.data,
+              //  personalHidden: false
+            })
+          }
+          
         }
       }
       else {

@@ -1,5 +1,5 @@
 const config = require("../../../utils/config.js");
-
+const util = require("../../../utils/util.js");
 Page({
 
   /**
@@ -63,12 +63,12 @@ Page({
     if (equipment) {
       if (that.data.dai == "choose"){
         wx.navigateTo({
-          url: '../equipmentTroubleDetail/equipmentTroubleDetail?equipment=' + JSON.stringify(equipment),
+          url: '../equipmentTroubleDetail/equipmentTroubleDetail?type=undone&equipment=' + JSON.stringify(equipment), 
         })
       }
       else {
         wx.navigateTo({
-          url: '../equipmentTroubleDoneDetail/equipmentTroubleDoneDetail?equipment=' + JSON.stringify(equipment),
+          url: '../equipmentTroubleDetail/equipmentTroubleDetail?type=done&equipment=' + JSON.stringify(equipment),
         })
       }
     }
@@ -173,70 +173,99 @@ function getEquipmentTroubleList(that, isDone) {
   // return;
   var app = getApp();
   var ztInfo = wx.getStorageSync("currentZT") || {};
+  var userInfo = wx.getStorageSync("userInfo");
   var data = {
     classify: ztInfo ? ztInfo.ZTCode : "",
     isDone: isDone,
-    serverURL: config.urls.getEquipmentTroubleListUrl
+    name: userInfo.UserCode
   }
-  wx.showLoading({
-    title: '加载中...',
-  })
-  wx.request({
-    url: config.urls.getEquipmentTroubleListUrl,
-    method: 'POST',
-    data: data,
-    header: {
-      'content-type': 'application/x-www-form-urlencoded;charset=uft-8'
-    },
-    success: res => {
-      console.log(res);
-      wx.hideLoading();
-      if (res.data.status == "Fail") {
-        if (res.data.result == "未查询到任何数据") {
-          wx.showModal({
-            title: '提示',
-            content: '未查询到任何数据',
-            showCancel: false,
-            success: res => {
-              that.setData({
-                equipmentTroubleList: [],
-                filtrateEquipmentTroubleList: [],
-              })
-            }
-          })
-          return;
-        }
-        wx.showModal({
-          title: '提示',
-          content: '发生未知错误，请稍后重试',
-          showCancel: false
-        })
-        return;
-      }
+
+  util.getRequest(config.urls.getEquipmentTroubleListUrl, data, function (data, errCode) {
+    // var repairList = data;
+    if (errCode) {
       that.setData({
-        equipmentTroubleList: res.data.data || [],
+        equipmentTroubleList: data || [],
       })
       if (!that.data.inputValue) {
         that.setData({
-          filtrateEquipmentTroubleList: res.data.data || [],
+          filtrateEquipmentTroubleList: data || [],
         })
       }
       else {
-        setFiltrateArray(that, res.data.data, that.data.inputValue);
+        setFiltrateArray(that, data, that.data.inputValue);
       }
       console.log("equipmentTroubleList is: ================================================")
       console.log(that.data.equipmentTroubleList);
-    },
-    fail: res => {
-      console.log(res);
-      wx.hideLoading();
-      wx.showModal({
-        title: '提示',
-        content: '发生未知错误，请稍后重试',
-        showCancel: false
+    }
+    else {
+      that.setData({
+        equipmentTroubleList: [],
+        filtrateEquipmentTroubleList: [],
       })
     }
+   
   })
+
+
+  // wx.showLoading({
+  //   title: '加载中...',
+  // })
+  // wx.request({
+  //   url: config.urls.getEquipmentTroubleListUrl,
+  //   method: 'POST',
+  //   data: data,
+  //   header: {
+  //     'content-type': 'application/x-www-form-urlencoded;charset=uft-8'
+  //   },
+  //   success: res => {
+  //     console.log(res);
+  //     wx.hideLoading();
+  //     if (res.data.status == "Fail") {
+  //       if (res.data.result == "未查询到任何数据") {
+  //         wx.showModal({
+  //           title: '提示',
+  //           content: '未查询到任何数据',
+  //           showCancel: false,
+  //           success: res => {
+  //             that.setData({
+  //               equipmentTroubleList: [],
+  //               filtrateEquipmentTroubleList: [],
+  //             })
+  //           }
+  //         })
+  //         return;
+  //       }
+  //       wx.showModal({
+  //         title: '提示',
+  //         content: '发生未知错误，请稍后重试',
+  //         showCancel: false
+  //       })
+  //       return;
+  //     }
+  //     that.setData({
+  //       equipmentTroubleList: res.data.data || [],
+  //     })
+  //     if (!that.data.inputValue) {
+  //       that.setData({
+  //         filtrateEquipmentTroubleList: res.data.data || [],
+  //       })
+  //     }
+  //     else {
+  //       setFiltrateArray(that, res.data.data, that.data.inputValue);
+  //     }
+  //     console.log("equipmentTroubleList is: ================================================")
+  //     console.log(that.data.equipmentTroubleList);
+  //   },
+  //   fail: res => {
+  //     console.log(res);
+  //     wx.hideLoading();
+  //     wx.showModal({
+  //       title: '提示',
+  //       content: '发生未知错误，请稍后重试',
+  //       showCancel: false
+  //     })
+  //   }
+  // })
 }
 
 

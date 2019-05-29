@@ -34,7 +34,12 @@ Page({
     var afterImages = [];
     for (var i = 0; i < 3; i++) {
       beforeImages.push(repairOrder.BeforeImage[i] ? config.urls.getRepairImageUrl + repairOrder.BeforeImage[i] : "");
-      afterImages.push(repairOrder.AfterImage[i] ? config.urls.getRepairImageUrl + repairOrder.AfterImage[i] : "../../../images/addimage.png");
+      if (options.status == "undone"){
+        afterImages.push(repairOrder.AfterImage[i] ? config.urls.getRepairImageUrl + repairOrder.AfterImage[i] : "../../../images/addimage.png");
+      }
+      else {
+        afterImages.push(repairOrder.AfterImage[i] ? config.urls.getRepairImageUrl + repairOrder.AfterImage[i] : "");
+      }
     }
     that.setData({//设置占位图片
       beforeImage: beforeImages,
@@ -176,8 +181,8 @@ Page({
     // submitData.serverUrl = config.urls.setWorkOrderUrl;
     console.log(submitData);
     // if (!checkSubmitData(submitData)){return;}
-    util.setRequest(config.urls.setWorkOrderUrl,submitData,function(status,data){
-      if (status == "success"){util.showTip("提交成功");}
+    util.setRequest(config.urls.setWorkOrderUrl,submitData,function(data,errCode){
+      if (errCode){util.showTip("提交成功");}
     });
   },
 
@@ -186,20 +191,20 @@ Page({
     var that = this;
     var index = parseInt(e.target.id);
     console.log("beforeImage");
-    console.log(that.data.repairOrder.BeforeImage[index]);
-    if (!that.data.repairOrder.BeforeImage[index]){return;}
-    util.previewImage(config.urls.getRepairImageUrl + that.data.repairOrder.BeforeImage[index]);
+    console.log(that.data.beforeImage[index]);
+    if (!that.data.beforeImage[index]){return;}
+    util.previewImage(that.data.beforeImage[index]);
   },
 
   afterImageTaped: function (e) {
     var that = this;
-    if (that.data.repairOrder.status === 'done') {
+    if (that.data.status === 'done') {
       console.log(e);
       var that = this;
       var index = parseInt(e.target.id);
-      console.log(that.data.repairOrder.AfterImage[index]);
-      if (!that.data.repairOrder.AfterImage[index]) { return; }
-      util.previewImage(config.urls.getRepairImageUrl + that.data.repairOrder.AfterImage[index]);
+      console.log(that.data.afterImage[index]);
+      if (!that.data.afterImage[index]) { return; }
+      util.previewImage(that.data.afterImage[index]);
     }
     else {
       var index = parseInt(e.target.id);
@@ -218,7 +223,7 @@ Page({
     console.log(e);
     var that = this;
     var index = parseInt(e.target.id);
-    util.previewImage(config.urls.getRepairImageUrl + that.data.repairOrder.AfterImage[index]);
+    util.previewImage( that.data.afterImage[index]);
   },
 
 
@@ -302,7 +307,7 @@ function selectAndUploadImage(that, imageType, id) {
           afterImage: afterImage
         })
       }
-      var formData = { func: imageType, index: id + 1, id: that.data.repairOrder.Id };
+      var formData = { func: imageType, index: id + 1, id: that.data.repairOrder.Id, path: 'jczl_fwrwgl' };
       util.uploadImage(config.urls.setRepairImageUrl,tempFilePath,formData);
       // wx.showLoading({
       //   title: '正在上传...',

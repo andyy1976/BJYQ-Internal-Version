@@ -1,8 +1,35 @@
 <!--pages/wrokOrder/wrokOrder.wxml-->
 <!--pages/login/login.wxml-->
 
-  <view class="main-view">
-    <block wx:for="{{report}}">
+<view class="main-view">
+
+  <block wx:for="{{report}}">
+    <view id="{{index}}" class="list-item" bindtap="viewTaped">
+      <view class='list-item-left'>
+        <!-- 工单编号 -->
+        <view class='list-item-number'>{{item.Number}}</view>
+        <!-- 房号 -->
+        <view class='list-item-child'>
+          <view class='list-item-child-title'>安装位置：</view>
+          <view class='list-item-child-info'>{{item.UseAddress}}</view>
+        </view>
+        <!-- 房号 -->
+        <view class='list-item-child'>
+          <view class='list-item-child-title'>保养代号：</view>
+          <view class='list-item-child-info'>{{item.MaintainNumber}}</view>
+        </view>
+        <view class='list-item-child'>
+          <view class='list-item-child-title'>工作日期：</view>
+          <view class='list-item-child-info'>{{item.WorkDate}}</view>
+        </view>
+      </view>
+    </view>
+  </block>
+
+
+
+
+  <!-- <block wx:for="{{report}}">
       <view id="{{index}}" class="item-view" bindtap="viewTaped">
         <view class="outline-view">
           <label class="serial-label">{{item.Number}}</label>
@@ -21,8 +48,6 @@
         </view>
 
       </view>
-    </block>
-    <!-- </scroll-view> -->
-  </view>
-
-
+    </block> -->
+  <!-- </scroll-view> -->
+</view>

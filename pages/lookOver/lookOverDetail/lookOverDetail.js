@@ -1,5 +1,6 @@
 // pages/lookOver/houseLookOverDetail/houseLookOverDetail.js
 const config = require("../../../utils/config.js");
+const util = require("../../../utils/util.js");
 Page({
 
   /**
@@ -10,7 +11,9 @@ Page({
     objectName: null,
     objectIndex: null,
     lookOverItem: null,
-    unnormalItems: []
+    unnormalItems: [],
+    isScan: false,
+    route: "",
   },
 
   /**
@@ -19,13 +22,14 @@ Page({
   onLoad: function (options) {
     var that = this;
     console.log(options);
+    var route = options.route;
     var lookOverItems = getLookOverItems(JSON.parse(options.items));
     // var lookOverItems = JSON.parse(options.items);
     console.log(lookOverItems);
     that.setData({
       business: options.business,
       objectName: options.objectName,
-      // objectIndex: options.objectIndex,
+      route: route,
       lookOverItem: lookOverItems
     })
     wx.setNavigationBarTitle({
@@ -101,11 +105,16 @@ Page({
    */
   submit: function (e) {
     var that = this;
+    if (that.data.isScan == false) {
+      util.showSign("尚未扫码，无法提交");
+      return;
+    }
     console.log(e);
     var userName = wx.getStorageSync("userInfo").UserCode;
     var ztCode = wx.getStorageSync("currentZT").ZTCode;
     var submitData = e.detail.value;
     var lookOverItem = that.data.lookOverItem;
+    // var route = that.data.route;
     var submitItems = [];
     for(var i = 0; i < lookOverItem.length; i++){
         submitItems.push({
@@ -145,8 +154,9 @@ Page({
     submitData.items = JSON.stringify(submitItems);
     // submitData.isNormal = unnormalItems.length == 0 ? "是" : "否";
     submitData.userName = userName;
+    // submitData.route = route;
     // submitData.ztCode = ztCode;
-    submitData.serverUrl = config.urls.setLookOverResultUrl;
+    // submitData.serverUrl = config.urls.setLookOverResultUrl;
     console.log(submitData);
     //开始上传
     wx.showLoading({
@@ -199,6 +209,30 @@ Page({
           showCancel: false
         })
         return;
+      }
+    })
+  },
+
+
+  scanCode: function (e) {
+    var that = this;
+    var objectName = that.data.objectName;
+    wx.scanCode({
+      onlyFromCamera: true,
+      scanType: ['qrCode'],
+      success: res => {
+        console.log(res);
+        if (res.result.indexOf(objectName) < 0) {
+          util.showSign("所扫二维码码与当前位置不符，请查证后重试");
+          return;
+        }
+        else {
+          that.setData({ isScan: true })
+          util.showSign("扫码成功");
+        }
+      },
+      fail: res => {
+        console.log(res);
       }
     })
   },
@@ -304,13 +338,12 @@ function uploadImage(that) {
       var imageName = imagePath[imagePath.length - 1];
       var extraName = extra[extra.length - 1];
       wx.uploadFile({
-        url: config.urls.cloudImageUrl,
+        url: config.urls.setLookOverImageUrl,
         filePath: tempFilePath,
         formData: {
-          // func: "before",
+          path: "基础资料_巡检记录",
           id: items[k].id,
           index: i + 1,
-          serverUrl: config.urls.setLookOverImageUrl
         },
         name: '' + userInfo.Id + +getTimeStamp() + "." + extraName,
         // name: extra[imagePath.length - 2] + getTimeStamp()+ "." +  extraName,

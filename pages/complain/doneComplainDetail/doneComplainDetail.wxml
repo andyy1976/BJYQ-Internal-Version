@@ -1,153 +1,94 @@
 <!--pages/login/login.wxml-->
 
+
+
 <view class="main-view">
-  <view class="header-view">
-    <view class="tip-view">
-      投诉详情
+    <view class="func-block">
+      <view class="block-header">
+        <view class="tip-view">
+          投诉详情
+        </view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>编号：</view>
+        <view class='sd-content'>{{complainOrder.Number}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>姓名：</view>
+        <view class='sd-content'>{{complainOrder.Name}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>联系电话：</view>
+        <view class='sd-content call' bindtap='phoneCall' data-phone-number='complainOrder.Phone'>{{complainOrder.Phone}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>地址：</view>
+        <view class='sd-content'>{{complainOrder.Address}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>接待时间：</view>
+        <view class='sd-content'>{{complainOrder.ReceptionDate}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>投诉内容：</view>
+        <view class='sd-content'>{{complainOrder.Content}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>登记人：</view>
+        <view class='sd-content'>{{complainOrder.Registrant}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>责任部门：</view>
+        <view class='sd-content'>{{complainOrder.Department}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>发单人：</view>
+        <view class='sd-content'>{{complainOrder.Sender}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>发单时间：</view>
+        <view class='sd-content'>{{complainOrder.SendTime}}</view>
+      </view>
     </view>
-  </view>
-  <!-- <form bindsubmit="submit"> -->
+    <view class="func-block">
+      <view class="block-header">
+        <view class="tip-view">
+          投诉处理
+        </view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>完成时间：</view>
+        <view class='sd-content'>{{complainOrder.FinishDate}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>完成情况：</view>
+        <view class='sd-content'>{{complainOrder.FinishStatus}}</view>
+      </view>
+    </view>
 
-  <view class="form-view">
-    <view class="item-view">
-      <label>编号</label>
-      <label class='input'>{{complainOrder.Number}}</label>
-    </view>
-    <view class="item-view">
-      <label>姓名</label>
-      <label class='input'>{{complainOrder.Name}}</label>
-    </view>
-    <view class="item-view">
-      <label>联系电话</label>
-      <label class='input call' bindtap='phoneCall' data-phone-number='complainOrder.Phone'>{{complainOrder.Phone}}</label>
-    </view>
-    <view class="item-view">
-      <label>地址</label>
-      <label class='input'>{{complainOrder.Address}}</label>
-    </view>
-    <view class="item-view">
-      <label>接待时间</label>
-      <label class='input'>{{complainOrder.ReceptionDate}}</label>
-    </view>
-    <view class="item-view">
-      <label>投诉内容</label>
-      <label class='input'>{{complainOrder.Content}}</label>
-    </view>
-    <view class="item-view">
-      <label>登记人</label>
-      <label class='input'>{{complainOrder.Registrant}}</label>
-    </view>
-    <view class="item-view">
-      <label>责任部门</label>
-      <label class='input'>{{complainOrder.Department}}</label>
-    </view>
-
-
-    <view class="header-view">
+<view class="func-block">
+    <view class="block-header">
       <view class="tip-view">
-        投诉处理
+        投诉前照片
       </view>
     </view>
-    <form bindsubmit="submit">
-      <view class="form-view">
-
-        <!-- <picker id="100" mode="time" name="arriveTime" value="{{repairOrder.ArriveTime ? repairOrder.ArriveTime : ''}}" bindchange="datepickerBindchange">
-        <view class="item-view">
-          <label>到场时间</label>
-          <label class='input'>{{repairOrder.ArriveTime ? repairOrder.ArriveTime : ""}}</label>
-          <image class='xiala' src='../../../images/xiala.png' />
-        </view>
-      </picker>
-      <view class="item-view">
-        <label>延期维修</label>
-        <radio-group name="isLate" bindchange='isLateChange'>
-          <radio value= '是' checked='{{repairOrder.status == "维修延期"}}' >是</radio>
-          <radio value='否' checked='{{repairOrder.status != "维修延期"}}'>否</radio>
-        </radio-group>
-      </view>
-      <picker id="300" mode="date" name="lateTime" value="{{repairOrder.LateTime ? repairOrder.LateTime : ''}}" bindchange="datepickerBindchange"  hidden='{{reasonHidden}}'>
-        <view class="item-view"  hidden='{{reasonHidden}}'>
-          <label>延期到</label>
-          <label class='input'>{{repairOrder.LateTime ? repairOrder.LateTime : ""}}</label>
-          <image class='xiala' src='../../../images/xiala.png' />
-        </view>
-      </picker>
-      <view class="item-view" hidden='{{reasonHidden}}'>
-        <label>延期原因</label>
-        <input id="2" name="lateReason" value="{{repairOrder.LateReason}}" placeholder="请输入需要延期的原因" placeholder-class="placeholder-text" />
-      </view> -->
-        <picker id="100" mode="time" name="finishDate" value="{{complainOrder.FinishDate ? complainOrder.FinishDate : ''}}" bindchange="datepickerBindchange">
-          <view class="item-view">
-            <label>完成时间</label>
-            <label class='input'>{{complainOrder.FinishDate ? complainOrder.FinishDate : ""}}</label>
-            <image class='xiala' src='../../../images/xiala.png' />
-          </view>
-        </picker>
-        <view class="item-view">
-          <label>完成情况</label>
-          <input id="1" name="finishStatus" value="{{complainOrder.FinishStatus}}" placeholder="请输入完成情况" placeholder-class="placeholder-text" />
-        </view>
-        <!-- <picker id="3" mode="date" value="{{pageData[3].value}}" bindchange="datepickerBindchange">
-        <view class="item-view" id="104" bindtap="viewTap">
-          <label class="blabel">{{pageData[3].showValue}}</label>
-          <label>{{pageData[3].value}}</label>
-        </view>
-      </picker> -->
-        <!-- <view class="item-view">
-          <label>服务项目</label>
-          <label class='input'>{{repairOrder.ServiceProject}}</label>
-        </view> -->
-      </view>
-      <view class="header-view">
-        <view class="tip-view">
-          投诉前照片
-        </view>
-      </view>
-      <view class="form-view">
-        <view class="add-image images-view">
-          <block wx:for="{{beforeImage}}">
-            <image id='{{index}}' src='{{item}}' bindtap='beforeImageTaped' />
-            <!-- <image id='{{index}}' src='{{item}}' bindtap='beforeImageTaped' bindlongtap='beforeImageLongTaped' /> -->
-          </block>
-        </view>
-      </view>
-      <view class="header-view">
-        <view class="tip-view">
-          投诉后照片
-        </view>
-      </view>
-      <view class="form-view">
-        <view class="add-image images-view">
-          <block wx:for="{{afterImage}}">
-            <image id='{{index}}' src='{{item}}' bindtap='afterImageTaped' bindlongpress='afterImageLongTaped' />
-          </block>
-        </view>
-      </view>
-      <!-- <button id="submit" formType="submit" type='primary'>确认提交</button> -->
-      <view class="header-view">
-        <view class="tip-view">
-          业主确认
-        </view>
-      </view>
-      <view class="form-view">
-        <view class="item-view">
-          <label>确认解决</label>
-          <label class='input'>{{complainOrder.AffirmComplete}}</label>
-        </view>
-        <view class="item-view">
-          <label>确认时间</label>
-          <label class='input'>{{complainOrder.AffirmCompleteTime}}</label>
-        </view>
-        <view class="item-view">
-          <label>是否满意</label>
-          <input value="{{complainOrder.IsSatisfying}}" disabled='{{true}}' />
-        </view>
-        <view class="item-view">
-          <label>业主评价</label>
-          <input value="{{complainOrder.AffirmCompleteEvaluation}}" disabled='{{true}}' />
-        </view>
-      </view>
-    </form>
+    <view class="images-view">
+      <block wx:for="{{beforeImage}}">
+        <image class='sd-image' id='{{index}}' src='{{item}}' bindtap='beforeImageTaped' />
+      </block>
+    </view>
   </view>
-</view>
-<view class="footer-view"></view>
+<view class="func-block">
+    <view class="block-header">
+      <view class="tip-view">
+        处理后照片(点击添加,长按预览)
+      </view>
+    </view>
+    <view class=" images-view">
+      <block wx:for="{{afterImage}}">
+        <image class='cd-image' id='{{index}}' src='{{item}}' bindtap='afterImageTaped'  />
+      </block>
+    </view>
+  </view>
+  </view>
+  <view class="footer-view"></view> 

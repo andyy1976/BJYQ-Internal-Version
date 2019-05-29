@@ -1,4 +1,5 @@
 const config = require("../../../utils/config.js");
+const util = require("../../../utils/util.js");
 Page({
 
   /**
@@ -24,8 +25,8 @@ Page({
     var beforeImages = [];
     var afterImages = [];
     for (var i = 0; i < 3; i++) {
-      beforeImages.push(complainOrder.BeforeImage[i] ? config.urls.getImageUrl + complainOrder.BeforeImage[i] : "");
-      afterImages.push(complainOrder.AfterImage[i] ? config.urls.getImageUrl + complainOrder.AfterImage[i] : "");
+      beforeImages.push(complainOrder.BeforeImage[i] ? config.urls.getComplainImageUrl + complainOrder.BeforeImage[i] : "");
+      afterImages.push(complainOrder.AfterImage[i] ? config.urls.getComplainImageUrl + complainOrder.AfterImage[i] : "");
     }
     that.setData({//设置占位图片
       beforeImage: beforeImages,
@@ -77,82 +78,16 @@ Page({
       }
     }
   },
-
-  submit: function (e) {
-    console.log(e);
-    var that = this;
-    var complainOrder = that.data.complainOrder;
-    var submitData = e.detail.value;
-    submitData.id = that.data.complainOrder.Id;
-    submitData.serverUrl = config.urls.setComplainUrl;
-    // submitData.sessionId = wx.getStorageSync("sessionId");
-    // submitData.finishDate = submitData.arriveTime.replace(/-/g, "/");
-    // submitData.completeTime = submitData.completeTime.replace(/-/g, "/");
-    // submitData.status = complainOrder.isLate == "是" ? "维修延期" : complainOrder.status;
-    // submitData.lateReason = repairOrder.lateReason;
-    console.log(submitData);
-    // return;
-    wx.showLoading({
-      title: '正在提交...',
-    })
-    wx.request({
-      url: config.urls.setComplainUrl,
-      method: "POST",
-      header: {
-        'content-type': 'application/x-www-form-urlencoded;charset=uft-8'
-      },
-      data: submitData,
-      success: res => {
-        console.log(res);
-        wx.hideLoading();
-        if (res.data.status == "Success") {
-          wx.showModal({
-            title: '提示',
-            content: "提交成功",
-            // content: '提交成功，点击确定返回工单列表',
-            showCancel: false,
-            // success: res => {
-            //   wx.reLaunch({
-            //     url: '../workOrder/workOrder',
-            //   })
-            // }
-          })
-        }
-        else {
-          wx.showModal({
-            title: '提示',
-            content: '提交失败，请稍后重试',
-            showCancel: false
-          })
-          return;
-        }
-      },
-      fail: res => {
-        wx.showModal({
-          title: '提示',
-          content: '提交失败，请稍后重试',
-          showCancel: false
-        })
-        return;
-      }
-    })
-  },
-
   beforeImageTaped: function (e) {
     console.log(e);
     var that = this;
     var index = parseInt(e.target.id);
     console.log("beforeImage");
-    console.log(that.data.complainOrder.BeforeImage[index]);
-    // if (that.data.repairOrder.Status == "已完成") {
-    if (!that.data.complainOrder.BeforeImage[index]) {
+    console.log(that.data.beforeImage[index]);
+    if (!that.data.beforeImage[index]) {
       return;
     }
-    previewImage(config.urls.getImageUrl + that.data.complainOrder.BeforeImage[index]);
-    // }
-    // else {
-    //   selectAndUploadImage(this, "before",index);
-    // }
+    previewImage(that.data.beforeImage[index]);
   },
 
   afterImageTaped: function (e) {
@@ -160,39 +95,13 @@ Page({
     var that = this;
     var index = parseInt(e.target.id);
     console.log("afterImage");
-    console.log(that.data.complainOrder.AfterImage[index]);
-    // if (that.data.repairOrder.Status == "已完成") {
-    if (!that.data.complainOrder.AfterImage[index]) {
+    console.log(that.data.afterImage[index]);
+    if (!that.data.afterImage[index]) {
       return;
     }
-    previewImage(config.urls.getImageUrl + that.data.complainOrder.AfterImage[index]);
-    // }
-    // else {
-    //   selectAndUploadImage(this, "before",index);
-    // }
-    // var that = this;
-    // var index = parseInt(e.target.id);
-    // if (that.data.repairOrder.Status == "已完成") {
-    //   previewImage(config.urls.getImageUrl + that.data.repairOrder.AfterImage[index]);
-    // }
-    // else {
-    //   selectAndUploadImage(this, "after", index);
-    // }
+    previewImage(that.data.afterImage[index]);
   },
 
-  // beforeImageLongTaped: function (e) {
-  //   console.log(e);
-  //   var that = this;
-  //   var index = parseInt(e.target.id);
-  //   previewImage("https://yqwy-hd.com/wxics/wximages/" + that.data.repairOrder.BeforeImage[index]);
-  // },
-
-  // afterImageLongTaped: function (e) {
-  //   console.log(e);
-  //   var that = this;
-  //   var index = parseInt(e.target.id);
-  //   previewImage(config.urls.getImageUrl + that.data.repairOrder.AfterImage[index]);
-  // },
 
 
 

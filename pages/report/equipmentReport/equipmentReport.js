@@ -53,8 +53,12 @@ Page({
     console.log("equipment");
     console.log(equipment);
     if (equipment) {
+      equipment.IsDone = 1;
+      // wx.navigateTo({
+      //   url: '../equipmentReportDetail/equipmentReportDetail?equipment=' + JSON.stringify(equipment),
+      // })
       wx.navigateTo({
-        url: '../equipmentReportDetail/equipmentReportDetail?equipment=' + JSON.stringify(equipment),
+        url: '../../equipment/equipmentDetail/equipmentDetail?equipment=' + JSON.stringify(equipment),
       })
     }
     else {

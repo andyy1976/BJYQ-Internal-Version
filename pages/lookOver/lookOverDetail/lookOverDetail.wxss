@@ -240,9 +240,13 @@ textarea {
 } 
 
 
+.button-view {
+  margin-top: 220rpx;
+}
+
 button {
   margin: 20rpx;
-  margin-top: 120rpx;
+  margin-top: 20rpx;
   /* background-color: rgb(53, 178, 168); */
   color: white;
   font-size: 32rpx;

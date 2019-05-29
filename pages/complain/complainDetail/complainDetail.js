@@ -1,4 +1,5 @@
 const config = require("../../../utils/config.js");
+const util = require("../../../utils/util.js");
 Page({
 
   /**
@@ -24,8 +25,8 @@ Page({
     var beforeImages = [];
     var afterImages = [];
     for (var i = 0; i < 3; i++) {
-      beforeImages.push(complainOrder.BeforeImage[i] ? config.urls.getImageUrl + complainOrder.BeforeImage[i] : "");
-      afterImages.push(complainOrder.AfterImage[i] ? config.urls.getImageUrl + complainOrder.AfterImage[i] : "../../../images/addimage.png");
+      beforeImages.push(complainOrder.BeforeImage[i] ? config.urls.getComplainImageUrl + complainOrder.BeforeImage[i] : "");
+      afterImages.push(complainOrder.AfterImage[i] ? config.urls.getComplainImageUrl + complainOrder.AfterImage[i] : "../../../images/addimage.png");
     }
     that.setData({//设置占位图片
       beforeImage: beforeImages,
@@ -84,7 +85,7 @@ Page({
     var complainOrder = that.data.complainOrder;
     var submitData = e.detail.value;
     submitData.id = that.data.complainOrder.Id;
-    submitData.serverUrl = config.urls.setComplainUrl;
+    // submitData.serverUrl = config.urls.setComplainUrl;
     // submitData.sessionId = wx.getStorageSync("sessionId");
     // submitData.finishDate = submitData.arriveTime.replace(/-/g, "/");
     // submitData.completeTime = submitData.completeTime.replace(/-/g, "/");
@@ -92,48 +93,20 @@ Page({
     // submitData.lateReason = repairOrder.lateReason;
     console.log(submitData);
     // return;
-    wx.showLoading({
-      title: '正在提交...',
-    })
-    wx.request({
-      url: config.urls.setComplainUrl,
-      method: "POST",
-      header: {
-        'content-type': 'application/x-www-form-urlencoded;charset=uft-8'
-      },
-      data: submitData,
-      success: res => {
-        console.log(res);
-        wx.hideLoading();
-        if (res.data.status == "Success") {
-          wx.showModal({
-            title: '提示',
-            content: "提交成功",
-            // content: '提交成功，点击确定返回工单列表',
-            showCancel: false,
-            // success: res => {
-            //   wx.reLaunch({
-            //     url: '../workOrder/workOrder',
-            //   })
-            // }
-          })
-        }
-        else {
-          wx.showModal({
-            title: '提示',
-            content: '提交失败，请稍后重试',
-            showCancel: false
-          })
-          return;
-        }
-      },
-      fail: res => {
+
+
+    util.setRequest(config.urls.setComplainUrl, submitData, function success(data, errCode) {
+      if (errCode) {
         wx.showModal({
           title: '提示',
-          content: '提交失败，请稍后重试',
-          showCancel: false
+          content: '提交成功，点击确定返回投诉列表',
+          showCancel: false,
+          success: res => {
+            wx.navigateBack({
+              delta: 1
+            })
+          }
         })
-        return;
       }
     })
   },
@@ -143,12 +116,12 @@ Page({
     var that = this;
     var index = parseInt(e.target.id);
     console.log("beforeImage");
-    console.log(that.data.complainOrder.BeforeImage[index]);
+    console.log(that.data.beforeImage[index]);
     // if (that.data.repairOrder.Status == "已完成") {
-    if (!that.data.complainOrder.BeforeImage[index]) {
+    if (!that.data.beforeImage[index]) {
       return;
     }
-    previewImage(config.urls.getImageUrl + that.data.complainOrder.BeforeImage[index]);
+    previewImage(that.data.beforeImage[index]);
     // }
     // else {
     //   selectAndUploadImage(this, "before",index);
@@ -159,7 +132,7 @@ Page({
     var that = this;
     var index = parseInt(e.target.id);
     if (that.data.complainOrder.Status == "已完成") {
-      previewImage(config.urls.getImageUrl + that.data.complainOrder.AfterImage[index]);
+      previewImage(that.data.afterImage[index]);
     }
     else {
       selectAndUploadImage(this, "after", index);
@@ -177,7 +150,7 @@ Page({
     console.log(e);
     var that = this;
     var index = parseInt(e.target.id);
-    previewImage(config.urls.getImageUrl + that.data.complainOrder.AfterImage[index]);
+    previewImage(that.data.afterImage[index]);
   },
 
 
@@ -273,9 +246,9 @@ function selectAndUploadImage(that, imageType, id) {
         title: '正在上传...',
       })
       wx.uploadFile({
-        url: config.urls.cloudImageUrl,
+        url: config.urls.setComplainImageUrl,
         filePath: tempFilePath,
-        formData: { func: imageType, index: id + 1, id: that.data.complainOrder.Id, serverUrl: config.urls.setComplainImageUrl },
+        formData: { func: imageType, index: id + 1, id: that.data.complainOrder.Id, path: "gktscl" },
         name: "" + userInfo.Id + getTimeStamp() + "." + extraName,
         // name: extra[imagePath.length - 2] + getTimeStamp() + "." + extraName,
         // name: "repairOrder" + imageType + userInfo.UserName + getTimeStamp() + "." + extraName,

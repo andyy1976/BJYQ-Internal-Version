@@ -110,22 +110,22 @@ Page({
     var level = userInfo.Level[userInfo.Level.length - 1];
     var username = userInfo.UserCode;
     var ztcode = wx.getStorageSync("currentZT").ZTCode;
-    if ((func == "工单上报" && level == "一线") || (func == "工单上报" && level == "公司")) {
-      wx.showModal({
-        title: '提示',
-        content: '没有此权限',
-        showCancel: false,
-      })
-      return;
-    }
-    if (func == "投诉上报" && (level == "一线" || level == "项目经理" || level == "助理")) {
-      wx.showModal({
-        title: '提示',
-        content: '没有此权限',
-        showCancel: false,
-      })
-      return;
-    }
+    // if ((func == "工单上报" && level == "一线") || (func == "工单上报" && level == "公司")) {
+    //   wx.showModal({
+    //     title: '提示',
+    //     content: '没有此权限',
+    //     showCancel: false,
+    //   })
+    //   return;
+    // }
+    // if (func == "投诉上报" && (level == "一线" || level == "项目经理" || level == "助理")) {
+    //   wx.showModal({
+    //     title: '提示',
+    //     content: '没有此权限',
+    //     showCancel: false,
+    //   })
+    //   return;
+    // }
     if (func == "设备上报") {
       if (level == "一线") {
         wx.showModal({
@@ -173,7 +173,7 @@ Page({
 
 
     wx.navigateTo({
-      url: that.data.icons[e.target.id].navPage,
+      url: that.data.icons[e.currentTarget.id].navPage,
     })
 
 

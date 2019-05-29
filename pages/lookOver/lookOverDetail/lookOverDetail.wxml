@@ -9,7 +9,7 @@
 </view>
 
 
-<view class="form-view">
+<!-- <view class="form-view">
     <view class="item-view">
         <label>是否抽检</label>
         <radio-group name="isSpotCheck" bindchange='chargeChange'>
@@ -17,7 +17,7 @@
           <radio value='否' checked='{{true}}'>否</radio>
         </radio-group>
       </view>
-  </view>
+  </view> -->
 
 <view class="main-view">
   <block wx:for="{{lookOverItem}}" wx:for-index="lkiIndex" wx:for-item="lkiItem">
@@ -26,7 +26,7 @@
         <!-- <view class='number-view'>{{lkiItem.number + "、"}}</view> -->
         <view class="outline-view">{{lkiItem.item}}</view>
         <!-- 是否正常小图片 -->
-        <image id="{{lkiIndex}}" src='{{lkiItem.isNormal ? "../../../images/weixuanze.png" : "../../../images/cuowu.png"}}' bindtap='imageTaped' />
+        <image id="{{lkiIndex}}" src='{{lkiItem.isNormal ? "../../../images/yiwancheng.png" : "../../../images/cuowu.png"}}' bindtap='imageTaped' />
       </view>
       <!-- 如果显示不正常图片，则显示以下不正常说明和图片 -->
       <block wx:if="{{lkiItem.isNormal == false}}">
@@ -44,11 +44,10 @@
     </view>
   </block>
 </view>
-
-
-  
+<view class='button-view'>
+<button type='primary' bindtap='scanCode'>扫码</button>
   <button id="submit" formType="submit" type='primary'>提交</button>
-
+</view>
   <view class='footer'></view>
 
 </form>

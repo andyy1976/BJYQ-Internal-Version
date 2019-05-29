@@ -39,6 +39,14 @@
         <view class='sd-title'>责任部门：</view>
         <view class='sd-content'>{{complainOrder.Department}}</view>
       </view>
+      <view class="sd-item">
+        <view class='sd-title'>发单人：</view>
+        <view class='sd-content'>{{complainOrder.Sender}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>发单时间：</view>
+        <view class='sd-content'>{{complainOrder.SendTime}}</view>
+      </view>
     </view>
 
 

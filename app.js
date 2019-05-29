@@ -15,7 +15,7 @@ App({
 
 
 
-
+//服务任务管理，投诉处理
 
 
 
@@ -41,23 +41,23 @@ App({
     //b: 488
     //刘洵： 57
     //王占东: 337
-    wx.setStorageSync('currentUserId', 488);
+    wx.setStorageSync('currentUserId', 337);
 
 
 
-    wx.getSystemInfo({
-      success: function (res) {
-        console.log("wx.getSystemInfo");
-        console.log(res);
-      },
-    })
+    // wx.getSystemInfo({
+    //   success: function (res) {
+    //     console.log("wx.getSystemInfo");
+    //     console.log(res);
+    //   },
+    // })
 
-    wx.getNetworkType({
-      success: function(res) {
-        console.log("wx.getNetworkType");
-        console.log(res);
-      },
-    })
+    // wx.getNetworkType({
+    //   success: function(res) {
+    //     console.log("wx.getNetworkType");
+    //     console.log(res);
+    //   },
+    // })
 
   // wx.openSetting({
     

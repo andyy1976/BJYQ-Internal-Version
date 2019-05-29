@@ -12,6 +12,7 @@ Page({
     today: "",
     beforeImage: [],
     afterImage: [],
+    type: "",
     // beforeImage: "../../../images/addimage.png",
     // middleImage: "../../../images/addimage.png",
     // afterImage: "../../../images/addimage.png"
@@ -23,17 +24,21 @@ Page({
   onLoad: function (options) {
     console.log(options);
     var that = this;
+    var type = options.type;
     var equipment = JSON.parse(options.equipment) || {};
     that.setData({
+      type,
       equipment: equipment,
       // toDay: getDateTime()
     })
     var beforeImages = [];
     var afterImages = [];
     for (var i = 0; i < 3; i++) {
-      beforeImages.push(equipment.beforeImage[i] ? config.urls.getImageUrl + equipment.beforeImage[i] : "");
-      afterImages.push(equipment.afterImage[i] ? config.urls.getImageUrl + equipment.afterImage[i] : "../../../images/addimage.png");
+      beforeImages.push(equipment.beforeImage[i] ? config.urls.getEquipmentTroubleImageUrl + equipment.beforeImage[i] : "");
+      afterImages.push(equipment.afterImage[i] ? config.urls.getEquipmentTroubleImageUrl + equipment.afterImage[i] : type === "undone" ? "../../../images/addimage.png" : "");
     }
+    console.log(beforeImages);
+    console.log(afterImages);
     that.setData({//设置占位图片
       beforeImage: beforeImages,
       afterImage: afterImages
@@ -100,9 +105,12 @@ Page({
             content: '提交成功，点击确定返回设备故障列表',
             showCancel: false,
             success: res => {
-              wx.reLaunch({
-                url: '../equipmentTrouble/equipmentTrouble',
+              wx.navigateBack({
+                delta: 1
               })
+              // wx.reLaunch({
+              //   url: '../equipmentTrouble/equipmentTrouble',
+              // })
             }
           })
         }
@@ -131,12 +139,12 @@ Page({
     var that = this;
     var index = parseInt(e.target.id);
     console.log("beforeImage");
-    console.log(that.data.repairOrder.BeforeImage[index]);
+    console.log(that.data.beforeImage[index]);
     // if (that.data.repairOrder.Status == "已完成") {
-    if (!that.data.repairOrder.BeforeImage[index]) {
+    if (!that.data.beforeImage[index]) {
       return;
     }
-    previewImage(config.urls.getImageUrl + that.data.repairOrder.BeforeImage[index]);
+    previewImage(that.data.beforeImage[index]);
     // }
     // else {
     //   selectAndUploadImage(this, "before",index);
@@ -146,11 +154,14 @@ Page({
   afterImageTaped: function (e) {
     var that = this;
     var index = parseInt(e.target.id);
-    if (that.data.repairOrder.Status == "已完成") {
-      previewImage(config.urls.getImageUrl + that.data.repairOrder.AfterImage[index]);
+    if (that.data.type == "done") {
+      if (!that.data.afterImage[index]) {
+        return;
+      }
+      previewImage(that.data.afterImage[index]);
     }
     else {
-      selectAndUploadImage(this, "after", index);
+      selectAndUploadImage(that, "after", index);
     }
   },
 
@@ -165,7 +176,10 @@ Page({
     console.log(e);
     var that = this;
     var index = parseInt(e.target.id);
-    previewImage(config.urls.getImageUrl + that.data.repairOrder.AfterImage[index]);
+    if (!that.data.afterImage[index]) {
+      return;
+    }
+    previewImage(that.data.afterImage[index]);
   },
 
   // beforeImageTaped: function () {
@@ -256,7 +270,7 @@ function previewImage(imageUrl) {
   })
 }
 
-function selectAndUploadImage(that, imageType) {
+function selectAndUploadImage(that, imageType,index) {
   var userInfo = wx.getStorageSync("userInfo");
   wx.chooseImage({
     count: 1, // 默认9
@@ -271,18 +285,17 @@ function selectAndUploadImage(that, imageType) {
       var extraName = extra[extra.length - 1];
       console.log(tempFilePath);
       if (imageType == "before") {
+        var beforeImage = that.data.beforeImage;
+        beforeImage[index] = tempFilePath;
         that.setData({
-          beforeImage: tempFilePath
-        })
-      }
-      else if (imageType == "after") {
-        that.setData({
-          afterImage: tempFilePath
+          beforeImage: beforeImage
         })
       }
       else {
+        var afterImage = that.data.afterImage;
+        afterImage[index] = tempFilePath;
         that.setData({
-          middleImage: tempFilePath
+          afterImage: afterImage
         })
       }
 
@@ -290,9 +303,9 @@ function selectAndUploadImage(that, imageType) {
         title: '正在上传...',
       })
       wx.uploadFile({
-        url: config.urls.cloudImageUrl,
+        url: config.urls.setEquipmentTroubleImageUrl,
         filePath: tempFilePath,
-        formData: { func: imageType, id: that.data.equipment.ID, serverUrl: config.urls.setEquipmentImageUrl },
+        formData: { func: imageType, id: that.data.equipment.id, index: index + 1, path: "基础资料_设备故障管理" },
         name: userInfo.Id + getTimeStamp() + "." + extraName,
         // name: "equipment" + imageType + userInfo.UserName + getTimeStamp() + "." + extraName,
         success: res => {

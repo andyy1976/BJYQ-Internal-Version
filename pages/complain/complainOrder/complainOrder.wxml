@@ -42,7 +42,7 @@
           </view>
           <view class='list-item-child'>
             <view class='list-item-child-title'>状态：</view>
-            <view class='list-item-child-info {{item.status == "已派单" ? "status-red" : item.status == "已现场确认" ? "status-orange" : item.status == "维修中" ? "status-green" : "status-blue"}}'>{{item.status}}</view>
+            <view class='list-item-child-info' >{{item.Status}}</view>
           </view>
         </view>
         <view class='list-item-right'>

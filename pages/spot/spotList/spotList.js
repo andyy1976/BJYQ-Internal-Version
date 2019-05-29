@@ -1,4 +1,5 @@
 const config = require("../../../utils/config.js");
+const util = require("../../../utils/util.js");
 Page({
 
   /**
@@ -17,38 +18,52 @@ Page({
     var submitData = JSON.parse(options.queryInfo);
     var currentZT = wx.getStorageSync("currentZT"); 
     submitData.ztCode = currentZT.ZTCode;
-    submitData.serverUrl = config.urls.getProprietorListUrl;
+    // submitData.serverUrl = config.urls.getProprietorListUrl;
     console.log(submitData);
-    wx.request({
-      url: config.urls.getProprietorListUrl,
-      method: "POST",
-      header: {
-        'content-type': 'application/x-www-form-urlencoded;charset=uft-8'
-      },
-      data: submitData,
-      success: res => {
-        console.log(res);
-        if (res.data.length == 0) {
-          wx.showModal({
-            title: '提示',
-            content: '未查询到任何记录，请更改查询条件后重试',
-            showCancel: false,
-            success: function (){
-              wx.navigateBack({
-                delta: 1
-              })
-            }
-          })
-          return;
-        }
+
+    util.getRequest(config.urls.getProprietorListUrl, submitData, function (data, errCode) {
+      if (errCode) {
         that.setData({
-          proprietorList : res.data || []
+          proprietorList: data || []
         })
-      },
-      fail: res => {
-        console.log(res);
+      }
+      else {
+        
       }
     })
+
+
+
+    // wx.request({
+    //   url: config.urls.getProprietorListUrl,
+    //   method: "POST",
+    //   header: {
+    //     'content-type': 'application/x-www-form-urlencoded;charset=uft-8'
+    //   },
+    //   data: submitData,
+    //   success: res => {
+    //     console.log(res);
+    //     if (res.data.length == 0) {
+    //       wx.showModal({
+    //         title: '提示',
+    //         content: '未查询到任何记录，请更改查询条件后重试',
+    //         showCancel: false,
+    //         success: function (){
+    //           wx.navigateBack({
+    //             delta: 1
+    //           })
+    //         }
+    //       })
+    //       return;
+    //     }
+    //     that.setData({
+    //       proprietorList : res.data || []
+    //     })
+    //   },
+    //   fail: res => {
+    //     console.log(res);
+    //   }
+    // })
   },
 
   /**

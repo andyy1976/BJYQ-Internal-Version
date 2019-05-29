@@ -35,6 +35,10 @@
       <view class='sd-title'>本年收缴率：</view>
       <view class='sd-content'>{{statisticsProject.collectionRate}}</view>
     </view>
+    <view class="sd-item">
+      <view class='sd-title'>三年平均收缴率：</view>
+      <view class='sd-content'>{{statisticsProject.avgCollectionRate}}</view>
+    </view>
   </view>
 </block>
 <view class='foot-view'></view>

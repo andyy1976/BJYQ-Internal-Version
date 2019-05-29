@@ -2,7 +2,31 @@
 <view class="main-view">
  
 
-<block wx:for= "{{proprietorList}}">
+<block wx:for="{{proprietorList}}">
+      <view id="{{index}}" class="list-item" bindtap="viewTaped">
+        <view class='list-item-left'>
+          <!-- 工单编号 -->
+          <view class='list-item-number'>{{item.RoomNumber}}</view>
+          <!-- 房号 -->
+          <view class='list-item-child'>
+            <view class='list-item-child-title'>业主姓名：</view>
+            <view class='list-item-child-info'>{{item.Name}}</view>
+          </view>
+          <!-- 房号 -->
+          <view class='list-item-child'>
+            <view class='list-item-child-title'>业主电话：</view>
+            <view class='list-item-child-info'>{{item.Phone}}</view>
+          </view>
+          <view class='list-item-child'>
+            <view class='list-item-child-title'>欠款总计：</view>
+            <view class='list-item-child-info'>{{item.TotalArrearage ? item.TotalArrearage : "0.00"}}</view>
+          </view>
+        </view>
+      </view>
+    </block>
+
+
+<!-- <block wx:for= "{{proprietorList}}">
     <view id="{{index}}" class="item-view" bindtap="viewTaped">
       <view class="outline-view">
         <label class="serial-label">{{item.RoomNumber}}</label>
@@ -13,6 +37,6 @@
         <label>{{item.RoomAddress}}</label>
       </view>
     </view>
-</block>
+</block> -->
 
 </view>

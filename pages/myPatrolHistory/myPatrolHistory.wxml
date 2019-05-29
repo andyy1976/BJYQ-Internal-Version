@@ -3,63 +3,32 @@
   </view>
 
 <view class="main-view">
-  <scroll-view scroll-y="{{true}}" bindscrolltoupper="scrolltoupper">
+  <!-- <scroll-view scroll-y="{{true}}" bindscrolltoupper="scrolltoupper"> -->
 
     <block wx:for="{{patrolList}}">
       <view id="{{index}}" class="list-item" bindtap="viewTaped">
         <view class='list-item-left'>
           <!-- 工单编号 -->
-          <view class='list-item-number'>{{item.SerialNumber}}</view>
+          <!-- <view class='list-item-number'>{{item.SerialNumber}}</view> -->
           <!-- 房号 -->
           <view class='list-item-child'>
             <view class='list-item-child-title'>报修地址：</view>
-            <view class='list-item-child-info'>{{item.Address}}</view>
+            <view class='list-item-child-info'>{{item.address}}</view>
           </view>
           <view class='list-item-child'>
             <view class='list-item-child-title'>报事时间：</view>
-            <view class='list-item-child-info'>{{item.RepairTime}}</view>
+            <view class='list-item-child-info'>{{item.patrolTime}}</view>
           </view>
           <view class='list-item-child'>
             <view class='list-item-child-title'>报事详情：</view>
-            <view class='list-item-child-info'>{{item.ServiceProject}}</view>
-          </view>
-          <view class='list-item-child'>
-            <view class='list-item-child-title'>紧急程度：</view>
-            <view class='list-item-child-info'>{{item.Level}}</view>
-          </view>
-          <view class='list-item-child'>
-            <view class='list-item-child-title'>状态：</view>
-            <view class='list-item-child-info {{item.status == "已派单" ? "status-red" : item.status == "已现场确认" ? "status-orange" : item.status == "维修中" ? "status-green" : "status-blue"}}'>{{item.status}}</view>
+            <view class='list-item-child-info'>{{item.content}}</view>
           </view>
         </view>
         
       </view>
     </block>
 
-    <!-- <block wx:for="{{patrolList}}">
-      <view id="{{index}}" class="item-view" bindtap="viewTaped">
-        <view class="outline-view">
-          <label class="serial-label">{{item.SerialNumber}}</label>
-          <label class="homenum-label">{{item.Address}}</label>
-          <label class="do-label">{{item.ServiceProject}}</label>
-        </view>
-        <view class="date-view">
-          <view class='image-view'>
-            <view class='temp-view'>
-              <label class='date-label '>报修时间：</label>
-            </view>
-          </view>
-          <view>
-            <label class='date-label'>{{item.RepairTime}}</label>
-          </view>
-
-          <view>
-            <label class='level-label'>{{item.Level}}</label>
-          </view>
-          <view class='status-view {{item.status == "已派单" ? "status-red" : item.status == "已现场确认" ? "status-orange" : item.status == "维修中" ? "status-green" : "status-blue"}}'>{{item.status}}</view>
-        </view>
-
-      </view>
-    </block> -->
-  </scroll-view>
+   
+ 
+  <!-- </scroll-view> -->
 </view>

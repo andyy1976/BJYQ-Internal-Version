@@ -95,7 +95,7 @@
         </view>
       </view>
 
-      <!-- <view class="func-block">
+      <view class="func-block">
         <view class="block-header">
           <view class="tip-view">
             保养中照片
@@ -104,7 +104,7 @@
         <view class="images-view">
           <image class='sd-image' src='{{middleImage}}' bindtap='middleImageTaped' />
         </view>
-      </view> -->
+      </view>
       <view class="func-block">
         <view class="block-header">
           <view class="tip-view">
@@ -115,6 +115,7 @@
           <image class='sd-image' src='{{afterImage}}' bindtap='afterImageTaped' />
         </view>
       </view>
+      <view class="footer-view"></view>
   </block>
 
 
@@ -148,7 +149,7 @@
         </view>
       </view>
 
-
+<button type='primary' bindtap='scanCode'>扫码</button>
 
       <view class="func-block">
         <view class="block-header">
@@ -164,7 +165,7 @@
       </view>
 
 
-      <!-- <view class="func-block">
+      <view class="func-block">
         <view class="block-header">
           <view class="tip-view">
             保养中照片
@@ -173,7 +174,7 @@
         <view class="images-view">
           <image class='sd-image' src='{{middleImage}}' bindtap='middleImageTaped' />
         </view>
-      </view> -->
+      </view>
      
       <view class="func-block">
         <view class="block-header">
@@ -187,17 +188,7 @@
           <!-- </block> -->
         </view>
       </view>
-      <!-- <view class="header-view">
-      <view class="tip-view">
-        保养后照片
-      </view>
-    </view>
-    <view class="form-view">
-      <view class="add-image">
-        <image src='{{afterImage}}' bindtap='afterImageTaped' />
-      </view>
-    </view> -->
-      <button id="submit" formType="submit" type='primary' hidden='{{equipment.IsDone == 1 ? true : false}}'>确认提交</button>
+      <button id="submit" formType="submit" type='primary'>确认提交</button>
       <view class="footer-view"></view>
     </form>
   </block>

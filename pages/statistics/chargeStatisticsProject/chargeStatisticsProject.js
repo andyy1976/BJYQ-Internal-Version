@@ -46,10 +46,12 @@ function getChargeStatistics(that) {
   var dateArr = dateTemp.split('-');
   var date = "" + dateArr[0] + dateArr[1];
   var ztcode = wx.getStorageSync("currentZT").ZTCode;
+  var ztName = wx.getStorageSync("currentZT").ZTName;
   var submitData = {
     ztcode: ztcode,
     level: level,
     month: date,
+    ztName: ztName
   }
   wx.showLoading({
     title: '正在加载...',

@@ -1,4 +1,6 @@
+/* pages/wrokOrder/wrokOrder.wxss */
 
+/* pages/login/login.wxss */
 
 page {
   background-color: whitesmoke;
@@ -7,68 +9,48 @@ page {
 label {
   margin-left: 30rpx;
   margin-top: 10rpx;
-  height: 50rpx;
+  height: 40rpx;
   width: 140rpx;
   /* color: mediumpurple; */
   color: #353535;
   text-align: left;
 }
-
-.status-view {
-  /* margin-top: 20rpx; */
-  padding-left: 30rpx;
-  /* color: red; */
-}
-
-.call {
-  color: blue;
-  text-decoration:underline;
-}
-
-.status-red {
-  color: red;
-}
-
-.status-orange {
-  color: orange;
-}
-
-.status-green {
-  color: green;
-}
-
-.status-blue {
-  color: blue;
-}
-
-.yi-button{
-  height: 80rpx;
-  margin-top: 20rpx;
-  /* position: fixed;
-  right: 0rpx;
+.search-view{
+  height: 60rpx;
+  position: fixed;
   left: 0rpx;
-  top: 0rpx;
-  z-index: 998; */
-  /* background-color: rgb(38, 171, 40); */
-  color: #353535;
-  font-size: 30rpx;
-  line-height: 80rpx;
-  padding-left: 10rpx;
-  padding-right: 10rpx;
-  text-align: center;
+  top: 20rpx;
+  right: 0rpx;
+  z-index: 998;
+  /* display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center; */
+  background-color: whitesmoke;
+}
+
+.search-view view {
+  margin-left: 25rpx;
+  height: 60rpx;
+  width: 700rpx;
+  /* border: 1.5rpx solid darkgray;
+  border-radius: 10rpx; */
   background-color: white;
+  /* padding: 10rpx; */
   display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  /* justify-content: center; */
   align-items: center;
-  justify-content: center;
 }
 
 
 
 .header-view {
-  height: 100rpx;
+  height: 80rpx;
   position: fixed;
   left: 0rpx;
-  top: -1rpx;
+  top: 0rpx;
   right: 0rpx;
   z-index: 998;
   display: flex;
@@ -76,50 +58,29 @@ label {
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
-  background-color: whitesmoke;
-  border-bottom: 0.5rpx solid white;
-
-}
-
-.sort-view {
-  height: 80rpx;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
   background-color: white;
-  margin-top: 20rpx;
 }
-
-.sort-view text {
-  background-color: white;
-  border-radius: 10rpx;
-  padding: 10rpx;
-  font-size: 28rxp;
-}
-
-
 
 .switch-view {
   width: 375rpx;
-  height: 100rpx;
+  height: 80rpx;
   /* background-color: yellowgreen; */
   text-align: center;
   vertical-align: center;
-  line-height: 100rpx;
+  line-height: 80rpx;
 }
 
 .choose {
-  color: #e64340;
-  font-weight: bold;
-  /* background-color: rgb(38, 171, 40); */
+  color: white;
+  background-color: rgb(38, 171, 40);
 }
 
 .nonChoose {
-  color: darkgray;
+  color: black;
 }
 
 .main-view {
-  /* margin-top: 100rpx; */
+  /* margin-top: 80rpx; */
   width: 750rpx;
   /*height:1234rpx;*//* background-color: #f0f0f0;*/
   font-size: 32rpx;
@@ -130,7 +91,7 @@ label {
 
 .item-view {
   width: 750rpx;
-  height: 200rpx;
+  height: 160rpx;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -145,14 +106,14 @@ label {
 .outline-view {
   /* background-color: lavenderblush; */
   width: 375rpx;
-  height: 180rpx;
+  height: 160rpx;
   display: flex;
   flex-direction: column;
 }
 
 .outline-view label {
   width: 375rpx;
-  font-size: 34rpx;
+  font-size: 28rpx;
 }
 
 .homenum-label {
@@ -160,7 +121,7 @@ label {
 }
 
 .do-label {
-  color: darkgray;
+  color: red;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -173,7 +134,7 @@ label {
 }
 
 .date-view {
-  height: 180rpx;
+  height: 160rpx;
   width : 375rpx;
 }
 .date-label {
@@ -182,15 +143,6 @@ label {
   /* margin-top: 20rpx; */
   font-size: 28rpx;
   color: darkgray;
-  /* margin-left: 0rpx; */
-}
-
-.level-label {
-  width: 375rpx;
-  /* margin-right: 30rpx; */
-  /* margin-top: 20rpx; */
-  font-size: 28rpx;
-  color: orange;
 }
 
 /*--------------------------input--------------------------------------------*/
@@ -260,60 +212,117 @@ button {
  .image-view {
  width: 375rpx;
  height: 60rpx;
- display: flex;
- flex-wrap: nowrap;
  /* float: right; */
 } 
 
 .temp-view {
   width: 315rpx;
   height: 60rpx;
-  display: flex;
-  align-items: flex-end;
-  /* display: inline; */
+  line-height: 60rpx;
+  font-size: 28rpx;
 }
-
 
 image {
   width: 60rpx;
   height: 60rpx;
 }
 
-.doneImage {
-  width: 40rpx;
-  height:40rpx;
-  margin-left: 60rpx;
-}
 scroll-view {
-  height: 980rpx;
-  margin-top: 20rpx;
+  height: 1120rpx;
 }
 
-.filtrate-view {
-  display: flex;
-  flex-wrap: nowrap;
-  height: 80rpx;
-  background-color: white;
-  margin-top: 20rpx;
-}
-
-.filtrate-text {
-  width: 530rpx;
-  font-size: 34rpx;
-  line-height: 80rpx;
-  text-align: center;
-}
-
-.dropDown-image {
+.search-view view image {
   height: 40rpx;
   width: 40rpx;
-  margin: 20rpx;
-}
-
-.title-text {
-  width: 120rpx;
-  font-size: 34rpx;
-  line-height: 80rpx;
-  /* text-align: center; */
+  /* margin-top: 10rpx; */
   margin-left: 20rpx;
 }
+.search-view view label {
+  height: 50rpx;
+  width: 300rpx;
+  font-size: 30rpx;
+   margin-top: 0rpx; 
+  margin-left: 10rpx;
+   line-height: 50rpx; 
+   /* color: darkgray; */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* ========================列表子项 WXSS============================= */
+
+.list-item {
+  width: 680rpx;
+  margin-left: 20rpx;
+  margin-top: 20rpx;
+  padding-left: 30rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  /* align-items: center; */
+  background-color: white;
+  border-bottom: 0.5rpx solid whitesmoke;
+}
+
+.list-item-child {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.list-item-child-title {
+  width: 230rpx;
+  font-size: 28rpx;
+  color: black;
+}
+
+.list-item-left {
+  width: 630rpx;
+  padding-top: 10rpx;
+}
+
+.list-item-right {
+  width: 50rpx;
+}
+
+.list-item-number {
+  color: #606060;
+  font-size: 30rpx;
+  /* padding: 10rpx; */
+  padding-bottom: 5rpx;
+  /* margin-bottom: 15rpx; */
+  border-bottom: 1rpx solid whitesmoke;
+}
+
+.list-item-child-info {
+  color: #606060;
+  font-size: 28rpx;
+  width: 400rpx;
+  padding: 5rpx;
+}
+
+.list-item-child-content {
+  color: #343434;
+  font-size: 28rpx;
+  padding: 5rpx;
+}
+
+
+
+.status-red {
+  color: red;
+}
+
+/* ============================================================ */

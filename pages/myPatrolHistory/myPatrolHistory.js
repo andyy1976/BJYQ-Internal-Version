@@ -1,5 +1,6 @@
 // pages/myPatrolHistory/myPatrolHistory.js
 const config = require("../../utils/config.js");
+const util = require("../../utils/util.js");
 Page({
 
   /**
@@ -41,28 +42,12 @@ Page({
   viewTaped: function (e) {
     var that = this;
     console.log(e);
-    var repairOrder = that.data.patrolList[e.currentTarget.id] || {};
-    console.log("repairOrder");
-    console.log(repairOrder);
-    if (repairOrder) {
-      // if (repairOrder.IsRead == 0) {
-      //   wx.request({
-      //     url: config.urls.cloudUrl,
-      //     method: "POST",
-      //     header: {
-      //       'content-type': 'application/x-www-form-urlencoded;charset=uft-8'
-      //     },
-      //     data: { id: repairOrder.Id, serverUrl: config.urls.setWorkOrderIsReadUrl },
-      //     success: res => {
-      //       console.log(res);
-      //     },
-      //     fail: res => {
-      //       console.log(res);
-      //     }
-      //   })
-      // }
+    var patrol = that.data.patrolList[e.currentTarget.id] || {};
+    console.log("patrol");
+    console.log(patrol);
+    if (patrol) {
       wx.navigateTo({
-        url: '../work/doneWorkDetail/doneWorkDetail?repairOrder=' + JSON.stringify(repairOrder),
+        url: '../patrolHistoryDetail/patrolHistoryDetail?patrol=' + JSON.stringify(patrol),
       })
     }
     else {
@@ -119,53 +104,17 @@ function getPatrolList(that) {
     classify: ztInfo ? ztInfo.ZTCode : "",
     serverURL: config.urls.getPatrolUrl
   }
-  wx.showLoading({
-    title: '加载中...',
-  })
-  wx.request({
-    url: config.urls.getPatrolUrl,
-    method: 'POST',
-    data: data,
-    header: {
-      'content-type': 'application/x-www-form-urlencoded;charset=uft-8'
-    },
-    success: res => {
-      console.log(res);
-      wx.hideLoading();
-      if (res.data.status == "Fail") {
-        if (res.data.result == "未查询到任何数据") {
-          wx.showModal({
-            title: '提示',
-            content: '未查询到任何数据',
-            showCancel: false
-          })
-          return;
-        }
-        wx.showModal({
-          title: '提示',
-          content: '发生未知错误，请稍后重试',
-          showCancel: false
-        })
-        return;
-      }
-      var patrolList = res.data.data || [];
-      // if (repairList) {
-      //   filtrateRepairOrder(repairList, that.data.filtrateList[that.data.filtrateIndex], that);
-      // }
+  
+  util.getRequest(config.urls.getPatrolUrl, data, function (data, errCode) {
+    if (errCode) {
+      var patrolList = data || [];
       that.setData({
         patrolList: patrolList
       })
-      console.log("repairList is: ================================================")
-      console.log(that.data.repairList);
-    },
-    fail: res => {
-      console.log(res);
-      wx.hideLoading();
-      wx.showModal({
-        title: '提示',
-        content: '发生未知错误，请稍后重试',
-        showCancel: false
-      })
+    }
+    else {
+      that.setData({ patrolList: null });
     }
   })
+ 
 }

@@ -260,7 +260,7 @@ function uploadImage(that, id) {
     wx.uploadFile({
       url: config.urls.setPatrolImageUrl,
       filePath: tempFilePath,
-      formData: { id: id, index: i + 1,},
+      formData: { id: id, index: i + 1, path: "jczl_bsgl"},
       name: '' + userInfo.Id + + getTimeStamp() + "." + extraName,
       // name: extra[imagePath.length - 2] + getTimeStamp()+ "." +  extraName,
       // name: "repairOrder" + "before" + userInfo.UserName + getTimeStamp() + "." + extraName,

@@ -59,21 +59,21 @@ Page({
       onlyFromCamera: true,
       success: (res) => {
         console.log(res)
-        var result = JSON.parse(res.result);
-        if(result.type != "equipment"){
-          wx.showModal({
-            title: '提示',
-            content: '您扫描的二维码非设备二维码，请查证后重试',
-            showCancel:false,
-          })
-          return;
-        }
-        else {
-          getEquipmentInfo(that, result.equipmentNumber);
+        var result = res.result;
+        // if(result.type != "equipment"){
+        //   wx.showModal({
+        //     title: '提示',
+        //     content: '您扫描的二维码非设备二维码，请查证后重试',
+        //     showCancel:false,
+        //   })
+        //   return;
+        // }
+        // else {
+          getEquipmentInfo(that, result);
           that.setData({
-            Number: result.equipmentNumber
+            Number: result
           })
-        }
+        // }
         
       }
     })

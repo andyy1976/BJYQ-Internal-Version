@@ -43,7 +43,7 @@
       <label>全选</label> -->
     <!-- </view> -->
     <!-- <label class='footer-label'>合计：￥{{totalCharge}}</label> -->
-    <button type='primary' bindtap='buttonTaped'>确认收费</button>
+    <!-- <button type='primary' bindtap='buttonTaped'>确认收费</button> -->
   </view>
 
 </view>

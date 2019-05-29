@@ -11,9 +11,10 @@ Page({
   data: {
     equipment: {},
     today: "",
-    beforeImage: "../../../images/addimage.png",
-    // middleImage: "../../../images/addimage.png",
-    afterImage: "../../../images/addimage.png"
+    isScan: false,
+    beforeImage: "",
+    middleImage: "",
+    afterImage: ""
   },
 
   /**
@@ -23,21 +24,19 @@ Page({
     console.log(options);
     var that = this;
     var equipment = JSON.parse(options.equipment) || {};
-    if (equipment.BeforeImage) {
+    var isDone = equipment.IsDone;
+    if (isDone == 1) {
       that.setData({
-        beforeImage: config.urls.getImageUrl + equipment.BeforeImage
+        beforeImage: equipment.BeforeImage ? config.urls.getEquipmentImageUrl + equipment.BeforeImage : "",
+        middleImage: equipment.MiddleImage ? config.urls.getEquipmentImageUrl + equipment.MiddleImage : "",
+        afterImage: equipment.AfterImage ? config.urls.getEquipmentImageUrl + equipment.AfterImage : ""
       })
-      console.log("beforeImage:");
-      console.log(that.data.beforeImage);
     }
-    // if (equipment.MiddleImage) {
-    //   that.setData({
-    //     middleImage: config.urls.getImageUrl + equipment.MiddleImage
-    //   })
-    // }
-    if (equipment.AfterImage) {
+    else {
       that.setData({
-        afterImage: config.urls.getImageUrl + equipment.AfterImage
+        beforeImage: equipment.BeforeImage ? config.urls.getEquipmentImageUrl + equipment.BeforeImage : "../../../images/addimage.png",
+        middleImage: equipment.MiddleImage ? config.urls.getEquipmentImageUrl + equipment.MiddleImage : "../../../images/addimage.png",
+        afterImage: equipment.AfterImage ? config.urls.getEquipmentImageUrl + equipment.AfterImage : "../../../images/addimage.png"
       })
     }
     that.setData({
@@ -56,10 +55,41 @@ Page({
     })
   },
 
+  scanCode: function (e) {
+    var that = this;
+    var equipment = that.data.equipment;
+    wx.scanCode({
+      onlyFromCamera: true,
+      scanType: ['qrCode'],
+      success: res => {
+        console.log(res);
+        if (res.result.indexOf(equipment.Number) < 0){
+          wx.showModal({
+            title: '提示',
+            content: '所扫二维码码与当前设备不符，请查证后重试',
+            showCancel: false,
+          })
+          return;
+        }
+        else {
+          that.setData({isScan: true})
+        }
+      },
+      fail: res => {
+        console.log(res);
+      }
+    })
+  },
+
+
   submit: function (e) {
     console.log(e);
     // return;
     var that = this;
+    // if (that.data.isScan == false) {
+    //   util.showSign("尚未扫码，无法提交");
+    //    return;
+    // }
     var userInfo = wx.getStorageSync("userInfo");
     var submitData = e.detail.value;
     submitData.id = that.data.equipment.ID;
@@ -69,7 +99,7 @@ Page({
     console.log(submitData);
     // return;
 
-    util.setRequest(config.urls.setEquipmentUrl, submitData, function success(errCode, data) {
+    util.setRequest(config.urls.setEquipmentUrl, submitData, function success(data, errCode) {
       if (errCode) {
         wx.showModal({
           title: '提示',
@@ -79,81 +109,35 @@ Page({
             wx.navigateBack({
               delta: 1
             })
-            // wx.reLaunch({
-            //   url: '../equipment/equipment',
-            // })
           }
         })
       }
     })
-    // wx.showLoading({
-    //   title: '正在提交...',
-    // })
-    // wx.request({
-    //   url: config.urls.setEquipmentUrl,
-    //   method: "POST",
-    //   header: {
-    //     'content-type': 'application/x-www-form-urlencoded;charset=uft-8'
-    //   },
-    //   data: submitData,
-    //   success: res => {
-    //     console.log(res);
-    //     wx.hideLoading();
-    //     if (res.data.status == "Success") {
-    //       wx.showModal({
-    //         title: '提示',
-    //         content: '提交成功，点击确定返回设备列表',
-    //         showCancel: false,
-    //         success: res => {
-    //           wx.reLaunch({
-    //             url: '../equipment/equipment',
-    //           })
-    //         }
-    //       })
-    //     }
-    //     else {
-    //       wx.showModal({
-    //         title: '提示',
-    //         content: '发生未知错误，请稍后重试',
-    //         showCancel: false
-    //       })
-    //     }
-    //   },
-    //   fail: res => {
-    //     console.log(res);
-    //     wx.hideLoading();
-    //     wx.showModal({
-    //       title: '提示',
-    //       content: '发生未知错误，请稍后重试',
-    //       showCancel: false
-    //     })
-    //   }
-    // })
   },
 
   beforeImageTaped: function () {
     var that = this;
     if (that.data.equipment.IsDone == "1") {
-      previewImage(config.urls.getImageUrl + that.data.equipment.BeforeImage);
+      previewImage(that.data.beforeImage);
     }
     else {
       selectAndUploadImage(this, "before");
     }
   },
-  // middleImageTaped: function () {
-  //   var that = this;
-  //   if (that.data.equipment.IsDone == "1") {
-  //     previewImage(config.urls.getImageUrl + that.data.equipment.MiddleImage);
-  //   }
-  //   else {
-  //     selectAndUploadImage(this, "middle");
-  //   }
-  // },
+  middleImageTaped: function () {
+    var that = this;
+    if (that.data.equipment.IsDone == "1") {
+      previewImage(that.data.middleImage);
+    }
+    else {
+      selectAndUploadImage(this, "middle");
+    }
+  },
 
   afterImageTaped: function () {
     var that = this;
     if (that.data.equipment.IsDone == "1") {
-      previewImage(config.urls.getImageUrl + that.data.equipment.AfterImage);
+      previewImage(that.data.afterImage);
     }
     else {
       selectAndUploadImage(this, "after");
@@ -192,21 +176,20 @@ function selectAndUploadImage(that, imageType) {
           afterImage: tempFilePath
         })
       }
-      // else {
-      //   that.setData({
-      //     middleImage: tempFilePath
-      //   })
-      // }
+      else {
+        that.setData({
+          middleImage: tempFilePath
+        })
+      }
 
       wx.showLoading({
         title: '正在上传...',
       })
       wx.uploadFile({
-        url: config.urls.cloudImageUrl,
+        url: config.urls.setEquipmentImageUrl,
         filePath: tempFilePath,
-        formData: { func: imageType, id: that.data.equipment.ID, serverUrl: config.urls.setEquipmentImageUrl },
+        formData: { func: imageType, id: that.data.equipment.ID, path: "bywj" },
         name: userInfo.Id + getTimeStamp() + "." + extraName,
-        // name: "equipment" + imageType + userInfo.UserName + getTimeStamp() + "." + extraName,
         success: res => {
           wx.hideLoading();
           console.log(res);

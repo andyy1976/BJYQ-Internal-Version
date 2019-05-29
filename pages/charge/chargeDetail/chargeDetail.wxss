@@ -5,8 +5,8 @@ page {
 label {
   margin-left: 10rpx;
   margin-top: 10rpx;
-  height: 40rpx;
-  width: 200rpx;
+  /* height: 40rpx; */
+  /* width: 200rpx; */
   /* color: mediumpurple; */
   color: #353535;
   text-align: left;
@@ -31,7 +31,7 @@ label {
 }
 
 .title-view {
-  /* margin-top: 10rpx; */
+  font-size: 32rpx;
   background-color: #fcfcfc;
    height: 80rpx; 
    width: 750rpx;
@@ -84,8 +84,17 @@ label {
     border-bottom-color: lavender; *//*margin-left: 5rpx;*/
 }
 
-scroll-view {
+/* scroll-view {
   height: 930rpx;
+} */
+
+scroll-view {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 150rpx;
+  bottom: 0;
+  /* height: 980rpx; */
 }
 
 .img-title-view {
@@ -196,8 +205,8 @@ input {
 
 .serial-label {
   color: #606060;
-  font-size: 30rpx;
-  width: 450rpx;
+  font-size: 28rpx;
+  width: 500rpx;
   margin-top: 0rpx;
 }
 
@@ -208,10 +217,10 @@ input {
 
 .orange-label {
   color: darkorange;
-  font-size: 30rpx;
+  font-size: 28rpx;
   margin-top: 0rpx;
-  width: 100rpx;
-  /* margin-left: 80rpx; */
+  width: 120rpx;
+  margin-right: 5rpx;
 }
 
 .green-label {

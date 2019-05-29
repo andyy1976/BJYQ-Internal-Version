@@ -1,6 +1,6 @@
 <!--pages/equipmentSearch/equipmentSearch.wxml-->
 <view class='search-view'>
-  <input placeholder='请输入设备运行编号...' value="{{Number}}" focus="{{true}}" bindinput='input' />
+  <input placeholder='请输入设备编号...' value="{{Number}}" focus="{{true}}" bindinput='input' />
   <image src='../../../images/saoma.png' bindtap='scan' />
 </view>
 <view class='main-view'>

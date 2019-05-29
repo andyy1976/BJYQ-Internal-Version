@@ -10,9 +10,9 @@ Page({
     // coverViewShow: true,
     // password: "",
     icons: [{
-      imgSrc: "../../../images/kongfangxunjian.png",
+      imgSrc: "../../../images/guzhang.png",
       bindtap: "imageTouched",
-      showValue: "空房巡检",
+      showValue: "保安巡检",
       // navPage: "../houseLookOver/houseLookOver",//空房巡检
     },
     {
@@ -107,7 +107,7 @@ Page({
     console.log(e.target.id);
     var func = e.currentTarget.dataset.func;
     wx.navigateTo({
-      url: "../lookOverList/lookOverList?business=" + func,
+      url: "../lookOverRouteList/lookOverRouteList?business=" + func,
     })
 
 

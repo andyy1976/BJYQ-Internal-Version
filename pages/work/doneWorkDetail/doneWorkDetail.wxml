@@ -114,7 +114,7 @@
     </view>
   </view>
 
-  <view class="func-block">
+  <!-- <view class="func-block">
     <view class="block-header">
       <view class="tip-view">
         业主确认
@@ -157,7 +157,7 @@
       <view class='sd-title'>业主评价：</view>
       <view class='sd-content'>{{repairOrder.CallBackEvaluation}}</view>
     </view>
-  </view>
+  </view> -->
 
 
 
