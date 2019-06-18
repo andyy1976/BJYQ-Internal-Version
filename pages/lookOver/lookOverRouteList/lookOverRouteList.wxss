@@ -188,11 +188,14 @@ label {
 }
 
 .outline-view {
-  height: 100rpx;
-  width: 600rpx;
+  /* height: 100rpx; */
+  padding: 30rpx;
+  width: 560rpx;
   font-size: 34rpx;
-  line-height: 100rpx;
-  margin-left: 30rpx;
+  word-wrap: break-word;
+  /* line-height: 100rpx; */
+  /* white-space: pre-line; */
+  /* margin-left: 30rpx; */
 }
 
 image {

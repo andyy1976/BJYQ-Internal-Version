@@ -38,8 +38,8 @@ Page({
       transferObjectId: selectedCheckData.transferObjectId ? selectedCheckData.transferObjectId : selectedProcess.transferObjectId,
       receiveLinkId: selectedCheckData.receiveLinkId ? selectedCheckData.receiveLinkId : selectedProcess.receiveLinkId,
       receiveLinkIds: selectedCheckData.receiveLinkIds ? selectedCheckData.receiveLinkIds : selectedProcess.receiveLinkIds,
-      userId: wx.getStorageSync("currentUserId"),
-      // userId: wx.getStorageSync("userInfo").Id,
+      // userId: wx.getStorageSync("currentUserId"),
+      userId: wx.getStorageSync("userInfo").Id,
       businessId: selectedProcess.businessId,
       // linkId: selectedCheckData.linkId,
       // task: selectedCheckData.task,
@@ -132,8 +132,8 @@ Page({
     var nextLink = that.data.allowReceiveLinks[index];
     var submitData = {
       registId: selectedProcess.registId,
-      userId: wx.getStorageSync("currentUserId"),
-      // userId: wx.getStorageSync("userInfo").Id,
+      // userId: wx.getStorageSync("currentUserId"),
+      userId: wx.getStorageSync("userInfo").Id,
       businessId: selectedProcess.businessId,
       linkId: nextLink.linkId,
       task: nextLink.task,
@@ -177,8 +177,8 @@ Page({
     var updateDataKeys = Object.keys(updateData);
     var submitData = {
       instanceId: selectedProcess.id,
-      userId: wx.getStorageSync("currentUserId"),
-      // userId: wx.getStorageSync("userInfo").Id,
+      // userId: wx.getStorageSync("currentUserId"),
+      userId: wx.getStorageSync("userInfo").Id,
       leaveMessage: that.data.leaveMessage,
       docTableName: selectedProcess.docTableName,
       docTableId: selectedProcess.docTableId,

@@ -85,7 +85,7 @@ Page({
     if (!Number){
       wx.showModal({
         title: '提示',
-        content: '请输入设备运行编号后再点击查询',
+        content: '请输入设备编号后再点击查询',
         showCancel: false,
       })
       return;
@@ -161,7 +161,7 @@ function getEquipmentInfo(that, Number) {
       else if (res.data.status == "Fail" && res.data.result == "未查询到任何记录") {
         wx.showModal({
           title: '提示',
-          content: '未查询到任何信息，请检查输入设备运行编号或所扫描二维码是否正确',
+          content: '未查询到任何信息，请检查输入设备编号或所扫描二维码是否正确',
           showCancel: false
         })
       }
