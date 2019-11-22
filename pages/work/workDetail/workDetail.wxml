@@ -80,30 +80,9 @@
             <image class='cd-next-image' src='../../../images/xiala.png' />
           </view>
         </picker>
-        <!-- <view class="cd-item">
-          <view class='cd-title'>延期维修：</view>
-          <radio-group name="isLate" bindchange='isLateChange'>
-            <radio class='cd-radio' value='是' checked='{{repairOrder.status == "维修延期"}}'>是</radio>
-            <radio class='cd-radio' value='否' checked='{{repairOrder.status != "维修延期"}}'>否</radio>
-          </radio-group>
-        </view> -->
-        <!-- <picker id="300" mode="date" name="lateTime" value="{{repairOrder.LateTime ? repairOrder.LateTime : ''}}" bindchange="datepickerBindchange" hidden='{{reasonHidden}}'>
-          <view class="cd-item" hidden='{{repairOrder.isLate == "否" || !repairOrder.isLate}}'>
-            <view class='cd-title'>延期到：</view>
-            <view class='cd-content'>{{repairOrder.LateTime ? repairOrder.LateTime : ""}}</view>
-            <image class='cd-next-image' src='../../../images/xiala.png' />
-          </view>
-        </picker> -->
-        <!-- <view class="cd-item" hidden='{{repairOrder.isLate == "否" || !repairOrder.isLate}}'>
-          <view class='cd-title'>延期原因：</view>
-          <input class='cd-input' id="2" name="lateReason" value="{{repairOrder.LateReason}}" placeholder="请输入需要延期的原因" placeholder-class="cd-placeholder" />
-        </view> -->
-        <!-- <view class="cd-item" bindtap='checkIdentity' hidden='{{repairOrder.Identity == "维修工"}}'> -->
         <view class="cd-item" bindtap='checkIdentity'>
           <view class='cd-title'>收费类别：</view>
           <radio-group name="chargeType" bindchange='chargeTypeChange'>
-            <!-- <radio class='cd-radio' value='收费' checked='{{repairOrder.ChargeType == "收费"}}' disabled='{{repairOrder.Identity == "维修工" ? true : false}}'>收费</radio>
-            <radio class='cd-radio' value='免费' checked='{{repairOrder.ChargeType == "免费" || !repairOrder.ChargeType}}' disabled='{{repairOrder.Identity == "维修工" ? true : false}}'>免费</radio> -->
          <radio class='cd-radio' value='收费' checked='{{repairOrder.ChargeType == "收费"}}' >收费</radio>
             <radio class='cd-radio' value='免费' checked='{{repairOrder.ChargeType == "免费" || !repairOrder.ChargeType}}'>免费</radio>
           </radio-group>

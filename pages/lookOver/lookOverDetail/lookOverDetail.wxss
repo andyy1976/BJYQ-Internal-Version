@@ -18,7 +18,7 @@ page {
 }
 
 .header-name-view {
-  width: 375rpx;
+  /* width: 375rpx; */
   font-size: 50rpx;
   color: orange;
   line-height: 100rpx;

@@ -24,8 +24,8 @@ Page({
     console.log(process);
     that.setData({ processInfo: process });
     var submitData = {
-      // userId: wx.getStorageSync("currentUserId"),
-      userId: wx.getStorageSync("userInfo").Id,
+      userId: wx.getStorageSync("currentUserId"),
+      // userId: wx.getStorageSync("userInfo").Id,
       linkId: process.linkId,
       docTableName: process.docTableName,
       docTableId: process.docTableId,
@@ -220,8 +220,8 @@ Page({
       var updateKeys = Object.keys(updateData);
       var submitData = {
         instanceId: selectedProcess.id,
-        // userId: wx.getStorageSync("currentUserId"),
-        userId: wx.getStorageSync("userInfo").Id,
+        userId: wx.getStorageSync("currentUserId"),
+        // userId: wx.getStorageSync("userInfo").Id,
         leaveMessage: value.leaveMessage,
         isEnd: 1,
         docTableName: selectedProcess.docTableName,
@@ -256,8 +256,8 @@ Page({
       var updateKeys = Object.keys(updateData);
       var submitData = {
         instanceId: selectedProcess.id,
-        // userId: wx.getStorageSync("currentUserId"),
-        userId: wx.getStorageSync("userInfo").Id,
+        userId: wx.getStorageSync("currentUserId"),
+        // userId: wx.getStorageSync("userInfo").Id,
         leaveMessage: value.leaveMessage,
         needArchiving: that.data.isArchiving,
         docTableName: selectedProcess.docTableName,
