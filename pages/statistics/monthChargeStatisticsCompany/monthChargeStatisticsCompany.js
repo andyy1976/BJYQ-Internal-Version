@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    allTotal: {
+    allTotal : {
       allFooting: 0,
       cashFooting: 0,
       checkFooting: 0,
@@ -18,7 +18,7 @@ Page({
     startDate: util.getYearMonth() + "-01",
     endDate: util.getDate(),
     level: "",
-    ztCode: '',
+    projectTotal: null,
     // personalHidden: true
   },
 
@@ -27,16 +27,6 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    var ztCode = options.ztCode;
-    console.log(ztCode);
-    if (!ztCode) {
-      ztCode = wx.getStorageSync("currentZT").ZTCode;
-    }
-    that.setData({
-      ztCode: ztCode,
-      startDate: options.startDate || util.getYearMonth() + "-01",
-      endDate: options.endDate || util.getDate(),
-    });
     getMonthChargeStatistics(that);
   },
 
@@ -52,6 +42,14 @@ Page({
   //     url: '../chargeStatisticsProject/chargeStatisticsProject?level=' + level + "&statistics=" + stringStatistics,
   //   })
   // },
+
+  toProjects: function(e) {
+    var that = this;
+    var projectTotal = that.data.projectTotal;
+    wx.navigateTo({
+      url: '../monthChargeProjectList/monthChargeProjectList?projectTotal=' + JSON.stringify(projectTotal) + "&startDate=" + that.data.startDate + "&endDate=" + that.data.endDate,
+    })
+  },
 
   bindStartDateChange: function (e) {
     var that = this;
@@ -80,7 +78,7 @@ function getMonthChargeStatistics(that) {
   // var userInfo = wx.getStorageSync("userInfo");
   // var level = userInfo.Level[userInfo.Level.length - 1];
   that.setData({
-    level: '项目经理'
+    level: '公司'
   })
   // var username = userInfo.UserCode;
   // var startMonth = "201709";
@@ -89,10 +87,10 @@ function getMonthChargeStatistics(that) {
   // var date = "" + dateArr[0] + dateArr[1];
   var startTime = that.data.startDate;
   var endTime = that.data.endDate;
-  var ztcode = that.data.ztCode;
+  var ztcode = wx.getStorageSync("currentZT").ZTCode;
   var submitData = {
     ztcode: ztcode,
-    level: '项目经理',
+    level: '公司',
     startTime: startTime,
     endTime: endTime,
     // serverUrl: config.urls.getStatisticsUrl
@@ -118,16 +116,17 @@ function getMonthChargeStatistics(that) {
             overdueFineFooting: 0,
             reduceDepositFooting: 0,
           };
-          for (let i = 0; i < res.data.data.length; i++) {
-            allTotal.allFooting = Number((allTotal.allFooting + res.data.data[i].allFooting).toFixed(2));
-            allTotal.cashFooting = Number((allTotal.cashFooting + res.data.data[i].cashFooting).toFixed(2));
-            allTotal.checkFooting = Number((allTotal.checkFooting + res.data.data[i].checkFooting).toFixed(2));
-            allTotal.otherFooting = Number((allTotal.otherFooting + res.data.data[i].otherFooting).toFixed(2));
-            allTotal.overdueFineFooting = Number((allTotal.overdueFineFooting + res.data.data[i].overdueFineFooting).toFixed(2));
-            allTotal.reduceDepositFooting = Number((allTotal.reduceDepositFooting + res.data.data[i].reduceDepositFooting).toFixed(2));
+          for (let i = 0; i < res.data.data.company.length; i++) {
+            allTotal.allFooting = Number((allTotal.allFooting + res.data.data.company[i].allFooting).toFixed(2));
+            allTotal.cashFooting = Number((allTotal.cashFooting + res.data.data.company[i].cashFooting).toFixed(2));
+            allTotal.checkFooting = Number((allTotal.checkFooting + res.data.data.company[i].checkFooting).toFixed(2));
+            allTotal.otherFooting = Number((allTotal.otherFooting + res.data.data.company[i].otherFooting).toFixed(2));
+            allTotal.overdueFineFooting = Number((allTotal.overdueFineFooting + res.data.data.company[i].overdueFineFooting).toFixed(2));
+            allTotal.reduceDepositFooting = Number((allTotal.reduceDepositFooting + res.data.data.company[i].reduceDepositFooting).toFixed(2));
           }
           that.setData({
-            statistics: res.data.data,
+            statistics: res.data.data.company,
+            projectTotal: res.data.data.projects,
             allTotal: allTotal
           })
         }
@@ -166,22 +165,3 @@ function getMonthChargeStatistics(that) {
   })
 }
 
-
-
-// function getDate() {
-//   var date = new Date;
-//   var year = (Number(date.getFullYear()));
-//   var month = date.getMonth() + 1;
-//   var day 
-//   var dateString = "" + year + "-" + appendZero(month);
-//   return dateString;
-// }
-
-// function appendZero(value) {
-//   if (Number(value) < 10) {
-//     return "0" + value;
-//   }
-//   else {
-//     return value;
-//   }
-// }

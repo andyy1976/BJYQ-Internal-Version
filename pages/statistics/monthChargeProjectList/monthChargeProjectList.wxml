@@ -1,0 +1,16 @@
+<!--pages/wrokOrder/wrokOrder.wxml-->
+<!--pages/login/login.wxml-->
+
+<view class="main-view">
+  <block wx:for="{{projectTotal}}">
+    <view id="{{index}}" class="item-view" bindtap="viewTaped">
+      <view class='project-view'>{{item.ztName}}</view>
+      <view class='count-view'>
+        <view class='count-title-view'>合计总数：</view>
+        <view class='count-number-view'>{{item.total == null ? 0 : item.total}}</view>
+        <image class='xiayiye' src="../../../images/xiayiye.png" id="1" ></image>
+      </view>
+    </view>
+  </block>
+  <!-- </scroll-view> -->
+</view>

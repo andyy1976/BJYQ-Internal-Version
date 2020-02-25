@@ -1,0 +1,116 @@
+<view class='header-view'>
+  <view class='header-name-view'>
+    全公司
+  </view>
+  <view class='header-project-view' bindtap="toProjects">
+    查看各管理处
+  </view>
+</view>
+<view class="date-pickers">
+  <picker mode="date" value="{{date}}" bindchange="bindStartDateChange">
+    <view class='date-view'>
+      <view class='date-show-view'>{{startDate}} </view>
+      <image class='xiala-image' src='../../../images/xiala.png' />
+    </view>
+  </picker>
+
+  <view> 至 </view>
+
+  <picker mode="date" value="{{date}}" bindchange="bindEndDateChange">
+    <view class='date-view'>
+      <view class='date-show-view'>{{endDate}} </view>
+      <image class='xiala-image' src='../../../images/xiala.png' />
+    </view>
+  </picker>
+</view>
+
+
+<!-- <view class="func-block">
+  <view class="block-header">
+    <view class="tip-view">
+      总合计：
+    </view>
+  </view>
+  <view class="sd-item">
+    <view class='sd-right-content num-big'>{{ "￥" + allTotal}}</view>
+  </view>
+</view> -->
+
+
+<view class="func-block">
+  <view class="block-header">
+    <view class="tip-view">
+      总合计
+    </view>
+  </view>
+  <view class="sd-item">
+    <view class='sd-title'>现金实收合计：</view>
+    <view class='sd-content'>{{"￥" + allTotal.cashFooting}}</view>
+  </view>
+  <view class="sd-item">
+    <view class='sd-title'>支票实收合计：</view>
+    <view class='sd-content'>{{"￥" + allTotal.checkFooting}}</view>
+  </view>
+  <view class="sd-item">
+    <view class='sd-title'>预存扣减实收合计：</view>
+    <view class='sd-content'>{{"￥" + allTotal.reduceDepositFooting}}</view>
+  </view>
+  <view class="sd-item">
+    <view class='sd-title'>其他实收合计：</view>
+    <view class='sd-content'>{{"￥" + allTotal.otherFooting}}</view>
+  </view>
+  <view class="sd-item">
+    <view class='sd-title'>滞纳金实收合计：</view>
+    <view class='sd-content'>{{ "￥" + allTotal.overdueFineFooting}}</view>
+  </view>
+  <view class="sd-item">
+    <!-- <view class='sd-title'>实收总计：</view> -->
+    <view class='sd-right-content'>合计：{{ "￥" + allTotal.allFooting}}</view>
+  </view>
+</view>
+
+
+<block wx:if="{{statistics}}">
+  <block wx:for="{{statistics}}">
+    <view class="func-block">
+      <view class="block-header">
+        <view class="tip-view">
+          {{item.chargeName + "（" + item.type + "）"}}
+        </view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>现金实收合计：</view>
+        <view class='sd-content'>{{"￥" + item.cashFooting}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>支票实收合计：</view>
+        <view class='sd-content'>{{"￥" + item.checkFooting}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>预存扣减实收合计：</view>
+        <view class='sd-content'>{{"￥" + item.reduceDepositFooting}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>其他实收合计：</view>
+        <view class='sd-content'>{{"￥" + item.otherFooting}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>滞纳金实收合计：</view>
+        <view class='sd-content'>{{ "￥" + item.overdueFineFooting}}</view>
+      </view>
+      <view class="sd-item">
+        <!-- <view class='sd-title'>实收总计：</view> -->
+        <view class='sd-right-content'>合计：{{ "￥" + item.allFooting}}</view>
+      </view>
+    </view>
+  </block>
+</block>
+
+
+
+
+
+
+
+
+<view class='foot-view'></view>

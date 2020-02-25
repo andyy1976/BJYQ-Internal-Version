@@ -1,0 +1,68 @@
+<view class='header-view'>
+  <view class='header-name-view'>
+    全公司
+  </view>
+  <view class='header-project-view'>
+  </view>
+</view>
+
+
+
+<picker mode="date" value="{{date}}" fields="year" bindchange="bindDateChange">
+  <view class='date-view'>
+    <view class='date-show-view'>查询年度：{{date}} </view>
+    <image class='xiala-image' src='../../../images/xiala.png' />
+  </view>
+</picker>
+
+
+  <view class='title-view'>
+    各项目统计
+  </view>
+  <block wx:for="{{statistics}}">
+    <view class="func-block">
+      <view class="block-header">
+        <view class="tip-view">
+          {{item.department}}
+        </view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>收入合计：</view>
+        <view class='sd-content status-red'>￥{{item.countIncomeAll}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>支出合计：</view>
+        <view class='sd-content status-red'>￥{{item.countAll}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>年度预算金额：</view>
+        <view class='sd-content'>￥{{item.countBudget}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>年度预算余额：</view>
+        <view class='sd-content'>￥{{item.balance}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>物业类支出：</view>
+        <view class='sd-content'>￥{{item.countInBudget}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>有偿服务支出：</view>
+        <view class='sd-content'>￥{{item.countPaidService}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>其他支出：</view>
+        <view class='sd-content'>￥{{item.countOther}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title'>预算外合计：</view>
+        <view class='sd-content'>￥{{item.countOutOfBudget}}</view>
+      </view>
+      <view class="sd-item">
+        <view class='sd-title status-grayblue'>代收代缴：</view>
+        <view class='sd-content status-grayblue'>￥{{item.countCollectAndRemitTax}}</view>
+      </view>
+    </view>
+  </block>
+<!-- </block> -->
+<view class='foot-view'></view>

@@ -402,6 +402,14 @@ function showTip(content){
   })
 }
 
+function getYearMonth() {
+  var date = new Date;
+  var year = (Number(date.getFullYear()));
+  var month = date.getMonth() + 1;
+  var dateString = year + "-" + appendZero(month);
+  return dateString;
+}
+
 /**
  * 获取日期
  */
@@ -462,6 +470,7 @@ module.exports = {
   getDate:getDate,
   getTime: getTime,
   getDateTime: getDateTime,
+  getYearMonth: getYearMonth,
   getTimeStamp: getTimeStamp,
   call: call,
   getRequest: getRequest,

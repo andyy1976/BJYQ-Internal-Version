@@ -97,6 +97,7 @@ const urls = {
   getMonthChargeStatisticsUrl: statisticsUrl + "/OnGetMonthChargeStatistics",//报表_财务_月收费统计_管理处
   getArrearageStatisticsUrl: statisticsUrl + "/OnGetArrearageStatistics",//报表_财务_未收_欠款情况汇总
   getChargeStatisticsUrl: statisticsUrl + "/OnGetChargeStatistics",//报表_考核_物业管理费绩效考核
+  getIncomeAndExpenseStatisticsUrl: statisticsUrl + "/OnGetIncomeAndExpenseStatistics",//小程序_报表_收入支出情况表_公司
 
   getReportUrl: reportUrl + "/OnGetReport",//获取上报信息
 

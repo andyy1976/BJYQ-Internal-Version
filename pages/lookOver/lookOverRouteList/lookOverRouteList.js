@@ -92,8 +92,7 @@ function getLookOverRouteList(that) {
   var ztInfo = wx.getStorageSync("currentZT") || {};
   var data = {
     ztCode: ztInfo ? ztInfo.ZTCode : "",
-    name: '徐丽丽',
-    // name: wx.getStorageSync("userInfo").UserCode,
+    name: wx.getStorageSync("userInfo").UserCode,
     func: that.data.business,
   }
 

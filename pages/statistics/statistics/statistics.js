@@ -24,26 +24,21 @@ Page({
     {
       imgSrc: "../../../images/shoufei.png",
       bindtap: "imageTouched",
-      showValue: "收费情况统计",
+      showValue: "物业费收费情况统计",
       // navPage: "../equipmentStatistics/equipmentStatistics",//设备统计
     },
-    //   {
-    //     imgSrc: "../../../images/guzhang.png",
-    //     bindtap: "imageTouched",
-    //     showValue: "设备故障统计",
-    //     navPage: "../equipmentTroubleStatistics/equipmentTroubleStatistics",//设备统计
-    //   },
-    // {
-    //   imgSrc: "../../../images/tousu.png",
-    //   bindtap: "imageTouched",
-    //   showValue: "投诉统计",
-    //   navPage: "../complainStatistics/complainStatistics",//投诉统计
-    // },
+    {
+      imgSrc: "../../../images/shoufei.png",
+      bindtap: "imageTouched",
+      showValue: "收入支出情况表",
+      // navPage: "../IncomeAndExpenseStatistics/IncomeAndExpenseStatistics",//设备统计
+    },
+      
     ],
     navPages: [
-      
-      
-      
+
+
+
     ],
     // userInfo: {},
     // currentZT: { "ZTCode": "100000", "ZTName": "燕侨苏州" }
@@ -81,15 +76,30 @@ Page({
     var level = userInfo.Level[userInfo.Level.length - 1];
     var username = userInfo.UserCode;
     var ztcode = wx.getStorageSync("currentZT").ZTCode;
-    if (func == "财务_未收_欠款情况汇总"){
-      if (level == "公司"){
+    if (func == "财务_未收_欠款情况汇总") {
+      if (level == "公司") {
         wx.navigateTo({
           url: '../arrearageStatisticsCompany/arrearageStatisticsCompany',
         })
       }
-      else if (level == "项目经理"){
+      else {
         wx.navigateTo({
           url: '../arrearageStatisticsProject/arrearageStatisticsProject',
+        })
+      }
+      return;
+    }
+
+
+    if (func == "财务_月收费统计") {
+      if (level == "公司") {
+        wx.navigateTo({
+          url: '../monthChargeStatisticsCompany/monthChargeStatisticsCompany',
+        })
+      }
+      else if (level == "项目经理") {
+        wx.navigateTo({
+          url: '../monthChargeStatistics/monthChargeStatistics',
         })
       }
       else {
@@ -100,7 +110,8 @@ Page({
       }
       return;
     }
-    if (func == "收费情况统计") {
+
+    if (func == "物业费收费情况统计") {
       if (level == "公司") {
         wx.navigateTo({
           url: '../chargeStatisticsCompany/chargeStatisticsCompany',
@@ -116,6 +127,22 @@ Page({
           title: '没有此权限',
           icon: "none"
         })
+      }
+      return;
+    }
+
+    if (func == "收入支出情况表") {
+      if (level == "公司") {
+        wx.navigateTo({
+          url: '../IncomeAndExpenseStatistics/IncomeAndExpenseStatistics',
+        })
+      }
+      else {
+       wx.showModal({
+         title: '提示',
+         content: '没有此权限',
+         showCancel: false
+       })
       }
       return;
     }
